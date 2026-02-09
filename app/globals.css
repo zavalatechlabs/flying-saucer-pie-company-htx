@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+  }
+
+  * {
+    @apply border-dust-light;
+  }
+
+  body {
+    @apply bg-cream-white text-dust-darkest;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dust-lightest;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-cosmic-orange rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cosmic-orange-dark;
+  }
+}
+
+@layer components {
+  /* Primary Button */
+  .btn-primary {
+    @apply bg-cosmic-orange text-white px-6 py-3 rounded-full font-semibold
+           transition-all duration-200 shadow-cosmic
+           hover:bg-cosmic-orange-light hover:shadow-cosmic-hover hover:-translate-y-0.5
+           active:translate-y-0 active:shadow-cosmic
+           focus:outline-none focus:ring-4 focus:ring-cosmic-orange/50;
+  }
+
+  /* Secondary Button */
+  .btn-secondary {
+    @apply bg-transparent text-cosmic-orange px-6 py-3 rounded-full font-semibold
+           border-2 border-cosmic-orange transition-all duration-200
+           hover:bg-cosmic-orange hover:text-white hover:-translate-y-0.5
+           active:translate-y-0
+           focus:outline-none focus:ring-4 focus:ring-cosmic-orange/50;
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    @apply bg-transparent text-dust-dark px-6 py-3 rounded-full font-semibold
+           transition-all duration-200
+           hover:bg-dust-lightest hover:text-dust-darkest
+           active:bg-dust-light
+           focus:outline-none focus:ring-4 focus:ring-dust-light;
+  }
+
+  /* Pie Card */
+  .pie-card {
+    @apply bg-white rounded-2xl overflow-hidden
+           shadow-lg transition-all duration-300
+           hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02];
+  }
+
+  /* Input Field */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-dust-light
+           bg-white text-dust-darkest placeholder-dust-medium
+           transition-all duration-200
+           hover:border-cosmic-orange/50
+           focus:border-cosmic-orange focus:outline-none focus:ring-2 focus:ring-cosmic-orange/20;
+  }
+
+  /* Navigation Link */
+  .nav-link {
+    @apply text-dust-dark font-medium transition-colors duration-200
+           hover:text-cosmic-orange;
+  }
+
+  /* Section Container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20;
+  }
+}
+
+@layer utilities {
+  /* Animated Background Stars */
+  .stars-background {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stars-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, white, transparent),
+      radial-gradient(2px 2px at 40px 70px, white, transparent),
+      radial-gradient(1px 1px at 50px 50px, white, transparent),
+      radial-gradient(1px 1px at 80px 10px, white, transparent),
+      radial-gradient(2px 2px at 130px 80px, white, transparent),
+      radial-gradient(1px 1px at 110px 30px, white, transparent);
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.3;
+    animation: space-dust 40s linear infinite;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-cosmic-orange to-berry-purple bg-clip-text text-transparent;
+  }
+
+  /* Steam Effect Container */
+  .steam-container {
+    position: relative;
+  }
+
+  .steam-container::before,
+  .steam-container::after {
+    content: '~';
+    position: absolute;
+    top: -10px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 2rem;
+    animation: steam 3s ease-out infinite;
+  }
+
+  .steam-container::before {
+    left: 30%;
+    animation-delay: 0s;
+  }
+
+  .steam-container::after {
+    left: 60%;
+    animation-delay: 1.5s;
+  }
+
+  /* Loading Skeleton */
+  .skeleton {
+    @apply animate-pulse bg-gradient-to-r from-dust-lightest via-dust-light to-dust-lightest;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+
+/* Custom Focus Styles */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  @apply ring-2 ring-cosmic-orange ring-offset-2;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection Color */
+::selection {
+  @apply bg-cosmic-orange text-white;
+}
