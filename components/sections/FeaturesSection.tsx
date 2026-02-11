@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { Calendar, Clock, Heart, Sparkles } from 'lucide-react'
+import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { fadeIn, slideUp, scaleUp } from '@/lib/animations/variants'
 
 const features = [
   {
@@ -30,28 +32,21 @@ export function FeaturesSection() {
   return (
     <section className="py-20 bg-cream-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <ScrollReveal variants={fadeIn} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-space-night mb-4">
             Why Houston Loves Us
           </h2>
           <p className="text-xl text-dust-medium">
             Houston Strong Since 1967
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+            <ScrollReveal 
+              key={feature.title} 
+              variants={slideUp} 
+              delay={index * 0.1}
               className="text-center group"
             >
               <motion.div
@@ -70,15 +65,14 @@ export function FeaturesSection() {
               <p className="text-dust-medium">
                 {feature.description}
               </p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* Fun Fact */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+        <ScrollReveal 
+          variants={scaleUp} 
+          delay={0.2}
           className="mt-20 bg-space-night text-white rounded-3xl p-8 text-center relative overflow-hidden"
         >
           <div className="absolute inset-0 stars-background opacity-20" />
@@ -89,7 +83,7 @@ export function FeaturesSection() {
               We&apos;ve made over 2 million pies since 1967 - that&apos;s enough pies to reach the moon and back!
             </p>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   )

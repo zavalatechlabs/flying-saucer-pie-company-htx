@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { businessInfo } from '@/lib/data/business-info'
 import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
+import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { fadeIn, slideUp, slideInLeft, slideInRight } from '@/lib/animations/variants'
 
 const faqs = [
   {
@@ -99,18 +101,15 @@ export function AboutContent() {
       {/* Our Story */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="prose prose-lg mx-auto"
-          >
+          <ScrollReveal variants={fadeIn} className="prose prose-lg mx-auto">
             <h2 className="text-3xl font-bold text-space-night mb-6">Our Story</h2>
             <p className="text-dust-dark leading-relaxed mb-6">
               {businessInfo.about.full}
             </p>
-
-            <h3 className="text-2xl font-bold text-space-night mb-4 mt-12">Thank You Houston!</h3>
+          </ScrollReveal>
+          
+          <ScrollReveal variants={slideUp} delay={0.2} className="prose prose-lg mx-auto mt-12">
+            <h3 className="text-2xl font-bold text-space-night mb-4">Thank You Houston!</h3>
             <p className="text-dust-dark leading-relaxed mb-6">
               We appreciate all of our customers in Houston and the surrounding communities that have 
               helped to make this bakery a success. With your support, we&apos;ve been able to celebrate 
@@ -126,41 +125,36 @@ export function AboutContent() {
               <br />
               The Crew at Flying Saucer
             </p>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section id="faq" className="py-20 bg-dust-lightest">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <ScrollReveal variants={fadeIn}>
             <h2 className="text-3xl font-bold text-space-night text-center mb-12">
               Frequently Asked Questions
             </h2>
+          </ScrollReveal>
+          <ScrollReveal variants={slideUp} delay={0.1}>
             <div className="bg-white rounded-2xl shadow-lg p-8">
               {faqs.map((faq, index) => (
                 <FAQItem key={index} question={faq.question} answer={faq.answer} />
               ))}
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Thanksgiving Section */}
       <section id="thanksgiving" className="py-20 bg-cosmic-orange text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
+          <ScrollReveal variants={fadeIn} className="text-center">
             <h2 className="text-3xl font-bold mb-8">🦃 Thanksgiving Week Information</h2>
-            
+          </ScrollReveal>
+          
+          <ScrollReveal variants={slideInLeft} delay={0.1}>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8">
               <h3 className="text-2xl font-semibold mb-6">Special Hours</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left max-w-md mx-auto">
@@ -172,7 +166,9 @@ export function AboutContent() {
                 ))}
               </div>
             </div>
+          </ScrollReveal>
 
+          <ScrollReveal variants={slideInRight} delay={0.2}>
             <div className="bg-white/10 backdrop-blur rounded-2xl p-8">
               <h3 className="text-2xl font-semibold mb-4">Important Notes</h3>
               <ul className="text-left max-w-2xl mx-auto space-y-4">
@@ -198,7 +194,7 @@ export function AboutContent() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </ScrollReveal>
         </div>
       </section>
     </>
