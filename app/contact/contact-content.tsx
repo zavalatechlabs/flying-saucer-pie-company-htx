@@ -77,13 +77,8 @@ export function ContactContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div>
+            <div className="space-y-8">
+              <ScrollReveal variants={slideInLeft}>
                 <h2 className="text-3xl font-bold text-space-night mb-6">
                   Get in Touch
                 </h2>
@@ -91,74 +86,77 @@ export function ContactContent() {
                   For the fastest response, give us a call during business hours. 
                   We&apos;re always happy to answer questions about our pies!
                 </p>
-              </div>
+              </ScrollReveal>
 
               {/* Phone */}
-              <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
-                <div className="p-3 bg-cosmic-orange/10 rounded-full">
-                  <Phone size={24} className="text-cosmic-orange" />
+              <ScrollReveal variants={slideUp} delay={0.1}>
+                <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
+                  <div className="p-3 bg-cosmic-orange/10 rounded-full">
+                    <Phone size={24} className="text-cosmic-orange" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-space-night mb-1">Call Us</h3>
+                    <a
+                      href={`tel:${businessInfo.phone}`}
+                      className="text-lg text-cosmic-orange hover:text-cosmic-orange-dark transition-colors"
+                    >
+                      {businessInfo.phone}
+                    </a>
+                    <p className="text-sm text-dust-medium mt-1">
+                      Best times: Tuesday-Saturday, 8am-7pm
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-space-night mb-1">Call Us</h3>
-                  <a
-                    href={`tel:${businessInfo.phone}`}
-                    className="text-lg text-cosmic-orange hover:text-cosmic-orange-dark transition-colors"
-                  >
-                    {businessInfo.phone}
-                  </a>
-                  <p className="text-sm text-dust-medium mt-1">
-                    Best times: Tuesday-Saturday, 8am-7pm
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
 
               {/* Location */}
-              <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
-                <div className="p-3 bg-cosmic-orange/10 rounded-full">
-                  <MapPin size={24} className="text-cosmic-orange" />
+              <ScrollReveal variants={slideUp} delay={0.15}>
+                <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
+                  <div className="p-3 bg-cosmic-orange/10 rounded-full">
+                    <MapPin size={24} className="text-cosmic-orange" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-space-night mb-1">Visit Us</h3>
+                    <p className="text-dust-dark">
+                      {businessInfo.address.street}<br />
+                      {businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-space-night mb-1">Visit Us</h3>
-                  <p className="text-dust-dark">
-                    {businessInfo.address.street}<br />
-                    {businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
 
               {/* Hours Quick Reference */}
-              <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
-                <div className="p-3 bg-cosmic-orange/10 rounded-full">
-                  <Clock size={24} className="text-cosmic-orange" />
+              <ScrollReveal variants={slideUp} delay={0.2}>
+                <div className="bg-dust-lightest rounded-2xl p-6 flex items-start gap-4">
+                  <div className="p-3 bg-cosmic-orange/10 rounded-full">
+                    <Clock size={24} className="text-cosmic-orange" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-space-night mb-1">Hours</h3>
+                    <p className="text-dust-dark">
+                      Tuesday - Saturday: 8:00 AM - 7:00 PM<br />
+                      Sunday & Monday: Closed
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-space-night mb-1">Hours</h3>
-                  <p className="text-dust-dark">
-                    Tuesday - Saturday: 8:00 AM - 7:00 PM<br />
-                    Sunday & Monday: Closed
-                  </p>
-                </div>
-              </div>
+              </ScrollReveal>
 
               {/* Special Note */}
-              <div className="bg-cosmic-orange/10 border-2 border-cosmic-orange rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-space-night mb-2">
-                  📞 Phone is Best!
-                </h3>
-                <p className="text-dust-dark text-sm">
-                  We&apos;re a small family bakery focused on making pies. For the quickest 
-                  response to your questions, please give us a call during business hours.
-                </p>
-              </div>
-            </motion.div>
+              <ScrollReveal variants={slideUp} delay={0.25}>
+                <div className="bg-cosmic-orange/10 border-2 border-cosmic-orange rounded-2xl p-6">
+                  <h3 className="text-lg font-semibold text-space-night mb-2">
+                    📞 Phone is Best!
+                  </h3>
+                  <p className="text-dust-dark text-sm">
+                    We&apos;re a small family bakery focused on making pies. For the quickest 
+                    response to your questions, please give us a call during business hours.
+                  </p>
+                </div>
+              </ScrollReveal>
+            </div>
 
             {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white rounded-2xl shadow-xl p-8"
-            >
+            <ScrollReveal variants={slideInRight} className="bg-white rounded-2xl shadow-xl p-8">
               <h3 className="text-2xl font-bold text-space-night mb-6">
                 Send Us a Message
               </h3>
@@ -281,7 +279,7 @@ export function ContactContent() {
                   </Button>
                 </form>
               )}
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
