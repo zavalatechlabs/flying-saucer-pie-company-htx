@@ -177,6 +177,67 @@
   }
 }
 
+@layer components {
+  /* Rotating Pies Row - Horizontal Scrolling Container */
+  .pie-scroll-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 1.5rem;
+    padding: 1rem 0 2rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pie-scroll-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pie-scroll-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Individual Pie Item */
+  .pie-item {
+    flex: 0 0 auto;
+    width: 160px;
+    scroll-snap-align: start;
+    perspective: 800px;
+  }
+
+  /* Rotating Pie Animation */
+  .pie-spin {
+    animation: pieSpin 16s linear infinite;
+    animation-delay: calc(var(--i) * -0.7s);
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  /* Pause animation on hover */
+  .pie-item:hover .pie-spin,
+  .pie-item:focus-within .pie-spin {
+    animation-play-state: paused;
+  }
+
+  /* 3D Rotation Keyframes */
+  @keyframes pieSpin {
+    from {
+      transform: rotateY(0deg);
+    }
+    to {
+      transform: rotateY(360deg);
+    }
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .pie-spin {
+      animation: none !important;
+    }
+  }
+}
+
 @layer utilities {
   /* Animated Background Stars */
   .stars-background {
