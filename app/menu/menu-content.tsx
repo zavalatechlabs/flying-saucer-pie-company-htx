@@ -2,35 +2,40 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search, Filter } from 'lucide-react'
-import { pies, getPiesByCategory } from '@/lib/data/pies'
+import { Search } from 'lucide-react'
+import { pies, Pie } from '@/lib/data/pies'
 import { PieCard } from '@/components/ui/PieCard'
+import { PieModal } from '@/components/ui/PieModal'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/lib/animations/scroll-reveal'
-import { slideUp, fadeIn } from '@/lib/animations/variants'
+import { slideUp } from '@/lib/animations/variants'
 
 const categories = [
   { id: 'all', name: 'All Pies', emoji: '🥧' },
   { id: 'fruit', name: 'Fruit', emoji: '🍎' },
-  { id: 'cream', name: 'Cream', emoji: '🥛' },
-  { id: 'cheesecake', name: 'Cheesecake', emoji: '🧀' },
+  { id: 'cream', name: 'Cream & Cheesecake', emoji: '🥛' },
   { id: 'seasonal', name: 'Seasonal', emoji: '🍂' },
-]
-
-const filters = [
-  { id: 'vegan', name: '🌱 Vegan' },
-  { id: 'freezable', name: '❄️ Can Freeze' },
 ]
 
 export function MenuContent() {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeFilters, setActiveFilters] = useState<string[]>([])
+  const [selectedPie, setSelectedPie] = useState<Pie | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Filter pies based on category, search, and filters
-  let filteredPies = selectedCategory === 'all' 
-    ? pies 
-    : getPiesByCategory(selectedCategory as any)
+  // Filter pies based on category and search
+  let filteredPies = pies
+
+  // Apply category filter
+  if (selectedCategory !== 'all') {
+    filteredPies = filteredPies.filter(pie => {
+      if (selectedCategory === 'cream') {
+        // Include both cream and cheesecake in the cream category
+        return pie.category === 'cream' || pie.category === 'cheesecake'
+      }
+      return pie.category === selectedCategory
+    })
+  }
 
   // Apply search filter
   if (searchQuery) {
@@ -40,20 +45,14 @@ export function MenuContent() {
     )
   }
 
-  // Apply additional filters
-  if (activeFilters.includes('vegan')) {
-    filteredPies = filteredPies.filter(pie => pie.isVegan)
-  }
-  if (activeFilters.includes('freezable')) {
-    filteredPies = filteredPies.filter(pie => pie.canFreeze)
+  const handlePieClick = (pie: Pie) => {
+    setSelectedPie(pie)
+    setIsModalOpen(true)
   }
 
-  const toggleFilter = (filterId: string) => {
-    setActiveFilters(prev =>
-      prev.includes(filterId)
-        ? prev.filter(id => id !== filterId)
-        : [...prev, filterId]
-    )
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+    setTimeout(() => setSelectedPie(null), 300) // Delay clearing to allow exit animation
   }
 
   return (
@@ -96,38 +95,23 @@ export function MenuContent() {
               />
             </div>
 
-            {/* Category Tabs */}
-            <div className="flex flex-wrap justify-center gap-2 mb-6">
+            {/* Category Filter Buttons */}
+            <div className="flex flex-wrap justify-center gap-3">
               {categories.map((category) => (
-                <button
+                <motion.button
                   key={category.id}
                   onClick={() => setSelectedCategory(category.id)}
-                  className={`px-6 py-3 rounded-full font-medium transition-all duration-200
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`px-8 py-3 rounded-full font-semibold transition-all duration-300
                     ${selectedCategory === category.id
-                      ? 'bg-cosmic-orange text-white shadow-cosmic'
-                      : 'bg-white text-dust-dark hover:bg-cosmic-orange/10'
+                      ? 'bg-cosmic-purple text-white shadow-lg shadow-cosmic-purple/30'
+                      : 'bg-white text-space-night hover:bg-cosmic-purple/10 border-2 border-cosmic-purple/20'
                     }`}
                 >
-                  <span className="mr-2">{category.emoji}</span>
+                  <span className="mr-2 text-lg">{category.emoji}</span>
                   {category.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Additional Filters */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {filters.map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => toggleFilter(filter.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200
-                    ${activeFilters.includes(filter.id)
-                      ? 'bg-green-600 text-white'
-                      : 'bg-dust-lightest text-dust-dark hover:bg-dust-light'
-                    }`}
-                >
-                  {filter.name}
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>
@@ -142,7 +126,11 @@ export function MenuContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredPies.map((pie, index) => (
                 <ScrollReveal key={pie.id} variants={slideUp} delay={index * 0.05}>
-                  <PieCard pie={pie} index={index} />
+                  <PieCard 
+                    pie={pie} 
+                    index={index} 
+                    onClick={() => handlePieClick(pie)}
+                  />
                 </ScrollReveal>
               ))}
             </div>
@@ -157,13 +145,19 @@ export function MenuContent() {
               </p>
               <Button onClick={() => {
                 setSearchQuery('')
-                setActiveFilters([])
                 setSelectedCategory('all')
               }}>
                 Clear Filters
               </Button>
             </motion.div>
           )}
+
+          {/* Pie Details Modal */}
+          <PieModal 
+            pie={selectedPie} 
+            isOpen={isModalOpen} 
+            onClose={handleCloseModal}
+          />
 
           {/* Special Notes */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
