@@ -203,12 +203,18 @@
     flex: 0 0 auto;
     width: 180px;
     scroll-snap-align: start;
+    transition: transform 0.3s ease;
+  }
+
+  /* Hover effect for clickable pies */
+  .pie-item:hover {
+    transform: scale(1.05);
   }
 
   /* Rotating Pie Animation */
   .pie-spin {
-    animation: pieSpin 16s linear infinite;
-    animation-delay: calc(var(--i) * -0.7s);
+    animation: pieSpin 30s linear infinite;
+    animation-delay: calc(var(--i) * -1.2s);
     will-change: transform;
   }
 
