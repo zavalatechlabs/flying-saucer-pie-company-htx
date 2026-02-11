@@ -6,6 +6,8 @@ import { Search, Filter } from 'lucide-react'
 import { pies, getPiesByCategory } from '@/lib/data/pies'
 import { PieCard } from '@/components/ui/PieCard'
 import { Button } from '@/components/ui/Button'
+import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { slideUp, fadeIn } from '@/lib/animations/variants'
 
 const categories = [
   { id: 'all', name: 'All Pies', emoji: '🥧' },
@@ -139,7 +141,9 @@ export function MenuContent() {
           {filteredPies.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredPies.map((pie, index) => (
-                <PieCard key={pie.id} pie={pie} index={index} />
+                <ScrollReveal key={pie.id} variants={slideUp} delay={index * 0.05}>
+                  <PieCard pie={pie} index={index} />
+                </ScrollReveal>
               ))}
             </div>
           ) : (
@@ -162,34 +166,33 @@ export function MenuContent() {
           )}
 
           {/* Special Notes */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8"
-          >
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Slice Information */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold text-space-night mb-4">🍰 About Our Slices</h3>
-              <p className="text-dust-medium mb-4">
-                All pies are available by the slice (1/6 of a whole pie). Perfect for trying multiple flavors!
-              </p>
-              <p className="text-sm text-dust-medium">
-                <strong>Note:</strong> After 6pm, slice selection may be limited based on availability.
-              </p>
-            </div>
+            <ScrollReveal variants={slideUp} delay={0.1}>
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-space-night mb-4">🍰 About Our Slices</h3>
+                <p className="text-dust-medium mb-4">
+                  All pies are available by the slice (1/6 of a whole pie). Perfect for trying multiple flavors!
+                </p>
+                <p className="text-sm text-dust-medium">
+                  <strong>Note:</strong> After 6pm, slice selection may be limited based on availability.
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* Freezing Information */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg">
-              <h3 className="text-2xl font-bold text-space-night mb-4">❄️ Freezing Instructions</h3>
-              <p className="text-dust-medium mb-4">
-                Pies with the ❄️ symbol can be frozen for up to 3 months.
-              </p>
-              <p className="text-sm text-dust-medium">
-                Wrap tightly in foil and heat from frozen at 350°F for 30-45 minutes.
-              </p>
-            </div>
-          </motion.div>
+            <ScrollReveal variants={slideUp} delay={0.2}>
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <h3 className="text-2xl font-bold text-space-night mb-4">❄️ Freezing Instructions</h3>
+                <p className="text-dust-medium mb-4">
+                  Pies with the ❄️ symbol can be frozen for up to 3 months.
+                </p>
+                <p className="text-sm text-dust-medium">
+                  Wrap tightly in foil and heat from frozen at 350°F for 30-45 minutes.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
     </div>

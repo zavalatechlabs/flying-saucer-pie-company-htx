@@ -16,11 +16,8 @@ export function PieCard({ pie, index = 0 }: PieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
-    <motion.div
+    <div
       className="pie-card group"
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden">
@@ -94,6 +91,6 @@ export function PieCard({ pie, index = 0 }: PieCardProps) {
           <p className="text-xs text-dust-medium mt-3">❄️ Can be frozen</p>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
