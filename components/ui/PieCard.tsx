@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, Plus, ShoppingCart } from 'lucide-react'
+import { Heart, Plus, ShoppingCart, Eye } from 'lucide-react'
 import { Pie } from '@/lib/data/pies'
 import { Button } from './Button'
 import { cn } from '@/lib/utils/cn'
@@ -10,14 +10,25 @@ import { useState } from 'react'
 interface PieCardProps {
   pie: Pie
   index?: number
+  onClick?: () => void
 }
 
-export function PieCard({ pie, index = 0 }: PieCardProps) {
+export function PieCard({ pie, index = 0, onClick }: PieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
     <div
-      className="pie-card group"
+      className="pie-card group cursor-pointer"
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onClick?.()
+        }
+      }}
+      aria-label={`View details for ${pie.name}`}
     >
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden">
@@ -40,12 +51,16 @@ export function PieCard({ pie, index = 0 }: PieCardProps) {
         
         {/* Favorite Button */}
         <button
-          onClick={() => setIsFavorite(!isFavorite)}
+          onClick={(e) => {
+            e.stopPropagation()
+            setIsFavorite(!isFavorite)
+          }}
           className={cn(
             "absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm",
             "transition-all duration-300 hover:scale-110",
             pie.isVegan && "right-20"
           )}
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
           <Heart
             size={20}
@@ -55,6 +70,11 @@ export function PieCard({ pie, index = 0 }: PieCardProps) {
             )}
           />
         </button>
+        
+        {/* View Details Indicator */}
+        <div className="absolute bottom-2 right-2 p-2 rounded-full bg-cosmic-purple text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <Eye size={20} />
+        </div>
       </div>
 
       {/* Content */}
@@ -77,11 +97,19 @@ export function PieCard({ pie, index = 0 }: PieCardProps) {
 
         {/* Actions */}
         <div className="flex gap-2">
-          <Button className="flex-1 flex items-center justify-center gap-2">
+          <Button 
+            className="flex-1 flex items-center justify-center gap-2"
+            onClick={(e) => e.stopPropagation()}
+          >
             <ShoppingCart size={18} />
             <span>Add Whole</span>
           </Button>
-          <Button variant="secondary" size="sm" className="px-4">
+          <Button 
+            variant="secondary" 
+            size="sm" 
+            className="px-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Plus size={18} />
           </Button>
         </div>

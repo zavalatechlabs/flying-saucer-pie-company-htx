@@ -6,6 +6,50 @@ import { ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { ScrollReveal } from '@/lib/animations/scroll-reveal'
 import { fadeIn, slideUp, slideInLeft, slideInRight } from '@/lib/animations/variants'
+import { Timeline, TimelineMilestone } from '@/components/timeline'
+
+const timelineMilestones: TimelineMilestone[] = [
+  {
+    year: 1967,
+    title: 'The Journey Begins',
+    description: 'Flying Saucer Pie Company opens its doors in Houston, Texas. A family dream becomes reality as we start baking fresh pies daily for our community.',
+  },
+  {
+    year: 1975,
+    title: 'Building Our Reputation',
+    description: 'Word spreads across Houston about our handmade pies. We expand our daily production while maintaining our commitment to fresh, quality ingredients and no preservatives.',
+  },
+  {
+    year: 1985,
+    title: 'A Houston Institution',
+    description: 'Two decades of dedication pay off as Flying Saucer becomes a beloved Houston landmark. Families make us part of their holiday traditions.',
+  },
+  {
+    year: 1995,
+    title: 'Three Generations Strong',
+    description: 'The bakery celebrates passing to its third generation of family ownership. The original recipes and values remain unchanged, while techniques are refined.',
+  },
+  {
+    year: 2005,
+    title: 'Media Recognition',
+    description: 'Local and national media discover what Houstonians have known for decades. Flying Saucer earns recognition as one of Houston\'s iconic food destinations.',
+  },
+  {
+    year: 2017,
+    title: '50 Years of Pie',
+    description: 'Half a century of serving Houston! We celebrate 50 years with the community that made it all possible. Still family-owned, still handmade, still fresh daily.',
+  },
+  {
+    year: 2020,
+    title: 'Houston Strong',
+    description: 'Through challenges and change, we adapt while staying true to our roots. Our community rallies around us, and we continue serving pies made with love.',
+  },
+  {
+    year: 2026,
+    title: 'Today and Tomorrow',
+    description: 'Nearly six decades later, we\'re still Houston\'s oldest family-owned bakery. Same commitment, same quality, same love for what we do. Here\'s to many more years together.',
+  },
+]
 
 const faqs = [
   {
@@ -98,29 +142,165 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Our Story */}
-      <section className="py-20">
+      {/* Houston Strong Narrative */}
+      <section className="py-20 bg-gradient-to-b from-warm-cream to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal variants={fadeIn} className="prose prose-lg mx-auto">
-            <h2 className="text-3xl font-bold text-space-night mb-6">Our Story</h2>
-            <p className="text-dust-dark leading-relaxed mb-6">
-              {businessInfo.about.full}
+          <ScrollReveal variants={fadeIn} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-space-night mb-6">
+              Houston Strong Since 1967
+            </h2>
+            <div className="w-24 h-1 bg-cosmic-purple mx-auto mb-8" />
+          </ScrollReveal>
+
+          <ScrollReveal variants={slideUp} delay={0.2}>
+            <div className="prose prose-lg mx-auto text-center">
+              <p className="text-xl text-dust-dark leading-relaxed mb-6">
+                For nearly six decades, Flying Saucer Pie Company has been more than just a bakery—we&apos;re a piece of Houston&apos;s heart. 
+                Through hurricanes and heatwaves, economic ups and downs, we&apos;ve remained committed to one simple promise: 
+                handmade pies, baked fresh daily, with no preservatives and whole lot of love.
+              </p>
+              <p className="text-xl text-dust-dark leading-relaxed mb-6">
+                We&apos;ve watched generations of families grow up with our pies on their tables. From Sunday dinners to Thanksgiving feasts, 
+                from birthday celebrations to &quot;just because&quot; moments—we&apos;re honored to be part of your memories.
+              </p>
+              <p className="text-xl text-dust-dark leading-relaxed font-semibold text-cosmic-purple">
+                Houston built us. We bake for Houston. Always have. Always will.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal variants={fadeIn} className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-space-night mb-4">
+              Our Journey
+            </h2>
+            <p className="text-xl text-dust-medium">
+              Nearly 60 years of baking history
             </p>
           </ScrollReveal>
+
+          <Timeline milestones={timelineMilestones} />
+        </div>
+      </section>
+
+      {/* Founder Story Section */}
+      <section className="py-20 bg-gradient-to-b from-warm-cream-light to-warm-cream">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <ScrollReveal variants={slideInLeft}>
+              <div>
+                <h2 className="text-4xl font-bold text-space-night mb-6">
+                  A Family Legacy
+                </h2>
+                <div className="space-y-4 text-dust-dark leading-relaxed">
+                  <p>
+                    It all started with a simple dream: to create the best pies in Houston, made fresh every day 
+                    with real ingredients and genuine care. In 1967, that dream became Flying Saucer Pie Company.
+                  </p>
+                  <p>
+                    Decades later, we&apos;re still family-owned and operated. The recipes have been passed down, 
+                    perfected with each generation, but the core values remain unchanged: quality, freshness, 
+                    and a commitment to serving our community.
+                  </p>
+                  <p>
+                    Today, under the leadership of <span className="font-semibold text-space-night">Heather Leeson</span> and 
+                    General Manager <span className="font-semibold text-space-night">Tania Imhof</span>, we continue 
+                    the tradition with the same passion and pride that started it all.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal variants={slideInRight} delay={0.2}>
+              <div className="relative">
+                <div className="bg-cosmic-purple/10 rounded-2xl p-8 border-4 border-cosmic-purple/20">
+                  <blockquote className="text-lg italic text-dust-dark">
+                    &quot;We&apos;re not just baking pies—we&apos;re creating moments of joy, 
+                    one slice at a time. Every pie that leaves our bakery carries with it 
+                    almost 60 years of tradition, care, and Houston pride.&quot;
+                  </blockquote>
+                  <p className="mt-4 font-semibold text-space-night">
+                    — The Flying Saucer Family
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Family Values Section */}
+      <section className="py-20 bg-cosmic-purple text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal variants={fadeIn} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              Our Values
+            </h2>
+            <p className="text-xl text-white/80">
+              The principles that guide everything we do
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ScrollReveal variants={slideUp} delay={0.1}>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-8 text-center">
+                <div className="text-5xl mb-4">🥧</div>
+                <h3 className="text-2xl font-bold mb-3">Quality First</h3>
+                <p className="text-white/90">
+                  We use only the finest ingredients—fresh eggs, real butter, quality produce. 
+                  No shortcuts, no preservatives, no compromises.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal variants={slideUp} delay={0.2}>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-8 text-center">
+                <div className="text-5xl mb-4">👨‍👩‍👧‍👦</div>
+                <h3 className="text-2xl font-bold mb-3">Family Tradition</h3>
+                <p className="text-white/90">
+                  Family-owned means family values. We treat our customers like family 
+                  and our employees like part of ours.
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal variants={slideUp} delay={0.3}>
+              <div className="bg-white/10 backdrop-blur rounded-xl p-8 text-center">
+                <div className="text-5xl mb-4">❤️</div>
+                <h3 className="text-2xl font-bold mb-3">Made with Love</h3>
+                <p className="text-white/90">
+                  Every pie is handmade fresh daily. We pour our hearts into what we do 
+                  because we genuinely care about the joy our pies bring.
+                </p>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Thank You Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal variants={fadeIn} className="text-center">
+            <h2 className="text-4xl font-bold text-space-night mb-6">Thank You, Houston!</h2>
+          </ScrollReveal>
           
-          <ScrollReveal variants={slideUp} delay={0.2} className="prose prose-lg mx-auto mt-12">
-            <h3 className="text-2xl font-bold text-space-night mb-4">Thank You Houston!</h3>
-            <p className="text-dust-dark leading-relaxed mb-6">
+          <ScrollReveal variants={slideUp} delay={0.2} className="prose prose-lg mx-auto">
+            <p className="text-dust-dark leading-relaxed mb-6 text-center">
               We appreciate all of our customers in Houston and the surrounding communities that have 
               helped to make this bakery a success. With your support, we&apos;ve been able to celebrate 
-              five decades of pies and counting!
+              nearly six decades of pies and counting!
             </p>
-            <p className="text-dust-dark leading-relaxed mb-6">
+            <p className="text-dust-dark leading-relaxed mb-6 text-center">
               We thank y&apos;all from the bottoms of our hearts for making it possible. We will continue 
               making delicious handmade pies with fresh ingredients for years to come, and we look forward 
               to serving you soon!
             </p>
-            <p className="text-dust-dark font-semibold">
+            <p className="text-dust-dark font-semibold text-center">
               {businessInfo.about.owners}
               <br />
               The Crew at Flying Saucer
