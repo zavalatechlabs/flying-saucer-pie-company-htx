@@ -1,3 +1,7 @@
+// TODO: Replace with actual transparent background aerial shots
+// User provided Google Photos links - need to download and add to public/images/pies/
+// Current images are placeholders - update with transparent background aerial pie shots
+
 export interface Pie {
   id: string
   name: string
