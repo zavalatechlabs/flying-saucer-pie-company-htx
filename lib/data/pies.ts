@@ -1,5 +1,5 @@
-// Pie images updated with beautiful aerial shots from user
-// 7 high-quality overhead pie images with clean/transparent backgrounds
+// Pie images updated with single clean aerial shot from user
+// All pies use the same cherry lattice image with clean black background
 // Perfect for the rotating pie animation on homepage
 
 export interface Pie {
@@ -28,7 +28,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Classic apple pie with tender apples and warm cinnamon spice',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/cherry-pie-1.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -40,7 +40,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Apple pie topped with a buttery crumb topping',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/cherry-pie-2.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -52,7 +52,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Sweet Georgia peaches in a flaky golden crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/peach-pie.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -64,7 +64,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tart cherries balanced with just the right amount of sweetness',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/cherry-pie-3.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -76,7 +76,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tropical pineapple filling in our signature crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/cherry-pie-4.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -88,7 +88,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Texas pecans in a rich, buttery filling',
     price: { whole: 32.99, slice: 6.49 },
-    image: '/images/pies/pecan.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     canFreeze: true,
     shelfLife: '3 days room temp, 4-5 days refrigerated'
@@ -99,7 +99,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Juicy blackberries bursting with summer flavor',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/berry-pie.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -111,7 +111,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Plump blueberries in a perfectly sweet filling',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/blueberry-pie.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -125,7 +125,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Fresh strawberries with homemade whipped cream',
     price: { whole: 29.99, slice: 5.99 },
-    image: '/images/pies/strawberry-cream.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isVegan: true,
     shelfLife: '2-3 days refrigerated',
@@ -137,7 +137,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Fresh banana slices layered with vanilla custard and whipped cream',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/banana-cream.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '1-2 days refrigerated (uncut), will brown once cut'
   },
@@ -147,7 +147,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Rich chocolate pudding topped with whipped cream',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/chocolate-cream.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '2-3 days refrigerated'
   },
@@ -157,7 +157,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Tangy lemon filling with a cloud of whipped cream',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/lemon-cream.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '2-3 days refrigerated'
   },
@@ -167,7 +167,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Creamy coconut custard topped with toasted coconut flakes',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/coconut-cream.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '2-3 days refrigerated'
   },
@@ -179,7 +179,7 @@ export const pies: Pie[] = [
     category: 'cheesecake',
     description: 'New York style cheesecake with graham cracker crust',
     price: { whole: 34.99, slice: 6.99 },
-    image: '/images/pies/cheesecake.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '3-4 days refrigerated',
     ingredients: ['Cream cheese', 'Sugar', 'Eggs', 'Vanilla extract', 'Sour cream', 'Graham crackers', 'Butter']
@@ -190,7 +190,7 @@ export const pies: Pie[] = [
     category: 'cheesecake',
     description: 'Tart and creamy key lime filling with graham crust',
     price: { whole: 29.99, slice: 5.99 },
-    image: '/images/pies/key-lime.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '3-4 days refrigerated'
   },
@@ -202,7 +202,7 @@ export const pies: Pie[] = [
     category: 'seasonal',
     description: 'Traditional spiced pumpkin filling - perfect for fall!',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/pumpkin.jpg',
+    image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     isSpecial: true,
     shelfLife: '3 days room temp, 4-5 days refrigerated',
