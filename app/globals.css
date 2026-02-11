@@ -213,8 +213,8 @@
 
   /* Rotating Pie Animation */
   .pie-spin {
-    animation: pieSpin 30s linear infinite;
-    animation-delay: calc(var(--i) * -1.2s);
+    animation: pieSpin 40s linear infinite;
+    animation-delay: calc(var(--i) * -1.6s);
     will-change: transform;
     overflow: hidden;
     border-radius: 9999px;
@@ -222,7 +222,7 @@
 
   /* Scale pie images to align crust with circular border */
   .pie-spin img {
-    transform: scale(1.15);
+    transform: scale(1.25);
     transition: transform 0.3s ease;
   }
 
