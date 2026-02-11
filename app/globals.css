@@ -201,9 +201,8 @@
   /* Individual Pie Item */
   .pie-item {
     flex: 0 0 auto;
-    width: 160px;
+    width: 180px;
     scroll-snap-align: start;
-    perspective: 800px;
   }
 
   /* Rotating Pie Animation */
@@ -211,7 +210,6 @@
     animation: pieSpin 16s linear infinite;
     animation-delay: calc(var(--i) * -0.7s);
     will-change: transform;
-    transform-style: preserve-3d;
   }
 
   /* Pause animation on hover */
@@ -220,13 +218,13 @@
     animation-play-state: paused;
   }
 
-  /* 3D Rotation Keyframes */
+  /* 2D Rotation Keyframes - Spins like a record */
   @keyframes pieSpin {
     from {
-      transform: rotateY(0deg);
+      transform: rotate(0deg);
     }
     to {
-      transform: rotateY(360deg);
+      transform: rotate(360deg);
     }
   }
 
