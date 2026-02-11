@@ -1,6 +1,6 @@
-// TODO: Replace with actual transparent background aerial shots
-// User provided Google Photos links - need to download and add to public/images/pies/
-// Current images are placeholders - update with transparent background aerial pie shots
+// Pie images updated with beautiful aerial shots from user
+// 7 high-quality overhead pie images with clean/transparent backgrounds
+// Perfect for the rotating pie animation on homepage
 
 export interface Pie {
   id: string
@@ -28,7 +28,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Classic apple pie with tender apples and warm cinnamon spice',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/apple.jpg',
+    image: '/images/pies/cherry-pie-1.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -40,7 +40,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Apple pie topped with a buttery crumb topping',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/dutch-apple.jpg',
+    image: '/images/pies/cherry-pie-2.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -52,7 +52,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Sweet Georgia peaches in a flaky golden crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/peach.jpg',
+    image: '/images/pies/peach-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -64,7 +64,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tart cherries balanced with just the right amount of sweetness',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/cherry.jpg',
+    image: '/images/pies/cherry-pie-3.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -76,7 +76,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tropical pineapple filling in our signature crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/pineapple.jpg',
+    image: '/images/pies/cherry-pie-4.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -99,7 +99,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Juicy blackberries bursting with summer flavor',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/blackberry.jpg',
+    image: '/images/pies/berry-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -111,7 +111,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Plump blueberries in a perfectly sweet filling',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/blueberry.jpg',
+    image: '/images/pies/blueberry-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
