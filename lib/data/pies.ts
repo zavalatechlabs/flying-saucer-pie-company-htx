@@ -124,7 +124,8 @@ export const pies: Pie[] = [
     image: '/images/pies/strawberry-cream.jpg',
     available: true,
     isVegan: true,
-    shelfLife: '2-3 days refrigerated'
+    shelfLife: '2-3 days refrigerated',
+    ingredients: ['Fresh strawberries', 'Coconut cream', 'Vanilla', 'Sugar', 'Graham crackers', 'Vegan butter']
   },
   {
     id: 'banana-cream',
@@ -176,7 +177,8 @@ export const pies: Pie[] = [
     price: { whole: 34.99, slice: 6.99 },
     image: '/images/pies/cheesecake.jpg',
     available: true,
-    shelfLife: '3-4 days refrigerated'
+    shelfLife: '3-4 days refrigerated',
+    ingredients: ['Cream cheese', 'Sugar', 'Eggs', 'Vanilla extract', 'Sour cream', 'Graham crackers', 'Butter']
   },
   {
     id: 'key-lime',
@@ -199,7 +201,8 @@ export const pies: Pie[] = [
     image: '/images/pies/pumpkin.jpg',
     available: true,
     isSpecial: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    ingredients: ['Pumpkin puree', 'Eggs', 'Heavy cream', 'Sugar', 'Cinnamon', 'Ginger', 'Nutmeg', 'Cloves', 'Flour', 'Butter']
   },
 ]
 
