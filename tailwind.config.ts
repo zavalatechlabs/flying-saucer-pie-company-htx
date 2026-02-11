@@ -9,30 +9,33 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Space Night - Primary brand color
+        // V1 Primary Palette - Cosmic Purple Theme
+        'cosmic-purple': '#6B2CBF',
+        'cosmic-purple-light': '#8B4FD9',
+        'cosmic-purple-dark': '#4F1E99',
+        
+        'electric-blue': '#00D4FF',
+        'electric-blue-light': '#33E0FF',
+        'electric-blue-dark': '#00A8CC',
+        
+        'warm-cream': '#FFF8F3',
+        'warm-cream-light': '#FFFDFB',
+        'warm-cream-dark': '#F5E8DD',
+        
+        'deep-navy': '#0B1929',
+        'deep-navy-light': '#1A2B3E',
+        'deep-navy-dark': '#050D1A',
+        
+        'sunset-orange': '#FF6B35',
+        'sunset-orange-light': '#FF8F5C',
+        'sunset-orange-dark': '#E55A2B',
+        
+        // Legacy colors for backwards compatibility (can be removed after full migration)
         'space-night': '#0B1929',
-        'space-night-light': '#1A2B3E',
-        'space-night-dark': '#050D1A',
-        
-        // Cosmic Orange - Accent/CTA
         'cosmic-orange': '#FF6B35',
-        'cosmic-orange-light': '#FF8F5C',
-        'cosmic-orange-dark': '#E55A2B',
-        
-        // Pie Crust - Warm neutral
-        'pie-crust': '#D4A574',
-        'pie-crust-light': '#E4C5A4',
-        'pie-crust-dark': '#B4855F',
-        
-        // Berry Colors
-        'berry-purple': '#7B2CBF',
-        'berry-red': '#C73E1D',
-        
-        // Cream Colors
         'cream-white': '#FFF8F3',
-        'cream-light': '#FFFDFB',
         
-        // Space Dust - Grays
+        // Utility colors
         'dust-darkest': '#1F2937',
         'dust-dark': '#374151',
         'dust-medium': '#6B7280',
