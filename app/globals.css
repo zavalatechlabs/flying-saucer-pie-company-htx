@@ -220,9 +220,9 @@
     border-radius: 9999px;
   }
 
-  /* Scale pie images to fill circular frame */
+  /* Scale pie images to align crust with circular border */
   .pie-spin img {
-    transform: scale(1.35);
+    transform: scale(1.15);
     transition: transform 0.3s ease;
   }
 
