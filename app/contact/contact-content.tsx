@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import { businessInfo } from '@/lib/data/business-info'
 import { Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
+import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { slideInLeft, slideInRight, slideUp } from '@/lib/animations/variants'
 
 export function ContactContent() {
   const [formData, setFormData] = useState({
