@@ -216,6 +216,14 @@
     animation: pieSpin 30s linear infinite;
     animation-delay: calc(var(--i) * -1.2s);
     will-change: transform;
+    overflow: hidden;
+    border-radius: 9999px;
+  }
+
+  /* Scale pie images to fill circular frame */
+  .pie-spin img {
+    transform: scale(1.35);
+    transition: transform 0.3s ease;
   }
 
   /* Pause animation on hover */
