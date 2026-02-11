@@ -1,6 +1,6 @@
-// Pie images updated with single clean aerial shot from user
-// All pies use the same cherry lattice image with clean black background
-// Perfect for the rotating pie animation on homepage
+// Pie images updated with 5 transparent background varieties
+// Using variety across the 8 rotating featured pies on homepage
+// Images have transparent backgrounds and show beautiful overhead shots
 
 export interface Pie {
   id: string
@@ -28,7 +28,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Classic apple pie with tender apples and warm cinnamon spice',
     price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/apple-crumble-1.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -40,7 +40,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Apple pie topped with a buttery crumb topping',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/apple-crumble-2.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -52,7 +52,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Sweet Georgia peaches in a flaky golden crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/chocolate-swirl.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -64,7 +64,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tart cherries balanced with just the right amount of sweetness',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/blueberry-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -76,7 +76,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Tropical pineapple filling in our signature crust',
     price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/pecan-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -88,7 +88,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Texas pecans in a rich, buttery filling',
     price: { whole: 32.99, slice: 6.49 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/pecan-pie.jpg',
     available: true,
     canFreeze: true,
     shelfLife: '3 days room temp, 4-5 days refrigerated'
@@ -99,7 +99,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Juicy blackberries bursting with summer flavor',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/apple-crumble-1.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
@@ -111,7 +111,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Plump blueberries in a perfectly sweet filling',
     price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    image: '/images/pies/blueberry-pie.jpg',
     available: true,
     isVegan: true,
     canFreeze: true,
