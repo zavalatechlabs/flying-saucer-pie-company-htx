@@ -15,17 +15,17 @@ const SHOW_VIEWPORT_INDICATOR = false
 const ENABLE_ANIMATION = true
 
 // Tuning knobs - centralized positioning values
-// All elements centered vertically while maintaining relative spacing
+// Shifted up to reduce gap above headline while maintaining relative spacing
 const POS = {
-  headlineTop: "17.5%",
+  headlineTop: "12.5%",
   headlineLeft: "0.5%",
   headlineWidth: "99%",
   
-  swooshTop: "31.5%",
+  swooshTop: "26.5%",
   swooshLeft: "0%",
   swooshWidth: "94%",
   
-  taglineTop: "41.5%",
+  taglineTop: "36.5%",
   taglineLeft: "35%",
   taglineWidth: "60%",
   
