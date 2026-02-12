@@ -11,14 +11,15 @@ export default function Home() {
       <HeroSection />
       
       {/* Transition from hero to pies */}
-      <CurvedDivider variant="wave" color="cream" />
+      <CurvedDivider variant="wave" color="white" />
       
-      <div className="relative">
+      {/* Featured Pies - Alternate Background */}
+      <div className="relative bg-surface">
         {/* Decorative starburst - top left */}
         <Starburst 
           size={300} 
           color="purple" 
-          opacity={0.04}
+          opacity={0.03}
           className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
         />
         
@@ -26,24 +27,28 @@ export default function Home() {
       </div>
       
       {/* Transition to features */}
-      <CurvedDivider variant="curve" color="white" flip />
+      <CurvedDivider variant="curve" color="cream" flip />
       
-      <div className="relative bg-white">
-        {/* Decorative starburst - center right */}
-        <Starburst 
-          size={250} 
-          color="lavender" 
-          opacity={0.05}
-          className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 pointer-events-none"
-        />
-        
+      {/* Features - Main Background */}
+      <div className="relative" style={{ background: 'var(--bg)' }}>
         <FeaturesSection />
       </div>
       
       {/* Transition to reviews */}
-      <CurvedDivider variant="swoop" color="cream" />
+      <CurvedDivider variant="swoop" color="white" />
       
-      <ReviewsMarquee />
+      {/* Reviews - Alternate Background */}
+      <div className="relative bg-surface">
+        {/* Decorative starburst - bottom right */}
+        <Starburst 
+          size={250} 
+          color="lavender" 
+          opacity={0.03}
+          className="absolute bottom-0 right-0 translate-x-1/2 translate-y-1/2 pointer-events-none"
+        />
+        
+        <ReviewsMarquee />
+      </div>
     </>
   )
 }

@@ -3,9 +3,9 @@ import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
 import { businessInfo } from '@/lib/data/business-info'
-import { Fredoka, Pacifico } from 'next/font/google'
+import { Fredoka, Pacifico, DM_Sans, Outfit } from 'next/font/google'
 
-// Logo fonts
+// Hero logo fonts (LOCKED - hero foreground only)
 const fredoka = Fredoka({ 
   subsets: ['latin'],
   weight: ['600', '700'],
@@ -16,6 +16,19 @@ const pacifico = Pacifico({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-pacifico'
+})
+
+// Retro theme fonts (applied globally except hero foreground)
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body'
+})
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-display'
 })
 
 export const metadata: Metadata = {
@@ -123,7 +136,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`font-sans antialiased ${fredoka.variable} ${pacifico.variable}`}>
+      <body className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${dmSans.variable} ${outfit.variable}`}>
+        {/* Global paper grain texture overlay */}
+        <div className="grain-overlay" aria-hidden="true" />
+        
         <Navigation />
         <main>{children}</main>
         <Footer />

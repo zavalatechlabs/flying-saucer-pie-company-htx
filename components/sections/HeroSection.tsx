@@ -50,9 +50,54 @@ const FONTS = {
 
 export function HeroSection() {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-warm-cream to-white overflow-hidden py-8">
+    <section className="hero-retro-background relative w-full min-h-screen flex items-center justify-center overflow-hidden py-8">
       {/* CSS Variables for Responsive Font Sizes */}
       <style jsx>{`
+        /* === RETRO HERO BACKGROUND (background-only changes) === */
+        .hero-retro-background {
+          background: 
+            radial-gradient(ellipse 120% 80% at 50% 40%, rgba(255, 248, 240, 0.95), transparent),
+            radial-gradient(ellipse 100% 100% at 50% 50%, #FFF8F0, #FFF3E6);
+          position: relative;
+        }
+
+        /* Paper light radial glow */
+        .hero-retro-background::before {
+          content: '';
+          position: absolute;
+          top: -10%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 150%;
+          height: 120%;
+          background: radial-gradient(
+            ellipse 80% 60% at 50% 30%,
+            rgba(255, 255, 255, 0.6),
+            transparent 70%
+          );
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        /* Faint starburst accents in corners (behind content) */
+        .hero-retro-background::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background-image: 
+            radial-gradient(circle 200px at 10% 15%, rgba(212, 133, 106, 0.04), transparent),
+            radial-gradient(circle 250px at 90% 85%, rgba(107, 142, 159, 0.04), transparent);
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        /* Ensure foreground content sits above background layers */
+        .hero-retro-background > * {
+          position: relative;
+          z-index: 10;
+        }
+
+        /* === HERO FONT SIZING (LOCKED - DO NOT CHANGE) === */
         .hero-headline {
           font-size: ${FONTS.headline.mobile};
         }
@@ -101,7 +146,7 @@ export function HeroSection() {
           position: fixed;
           bottom: 20px;
           right: 20px;
-          background: rgba(107, 44, 191, 0.9);
+          background: rgba(212, 133, 106, 0.9);
           color: white;
           padding: 8px 16px;
           border-radius: 8px;
@@ -157,7 +202,7 @@ export function HeroSection() {
           </div>
         )}
 
-        {/* Layer 2-4: Logo Composition */}
+        {/* Layer 2-4: Logo Composition (LOCKED - DO NOT CHANGE) */}
         <div className="absolute inset-0">
           
           {/* Layer 2: Swoosh (behind text) */}

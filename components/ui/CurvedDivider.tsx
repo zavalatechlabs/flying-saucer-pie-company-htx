@@ -12,10 +12,10 @@ export function CurvedDivider({
   className = '' 
 }: CurvedDividerProps) {
   const colorMap = {
-    cream: '#FFF8F3',
-    white: '#FFFFFF',
+    cream: '#FFF8F0',       // --bg (main cream)
+    white: '#FFFFFF',       // --surface (pure white)
     purple: '#6B2CBF',
-    navy: '#0B1929',
+    navy: '#1A1A2E',        // --ink
   }
 
   const fillColor = colorMap[color]

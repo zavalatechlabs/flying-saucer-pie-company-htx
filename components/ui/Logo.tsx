@@ -17,8 +17,8 @@ export function Logo() {
         </div>
       </div>
       <div className="flex flex-col">
-        <span className="text-xl font-bold text-space-night">Flying Saucer</span>
-        <span className="text-xs text-dust-medium -mt-1">Pie Company</span>
+        <span className="text-xl font-display font-bold text-ink">Flying Saucer</span>
+        <span className="text-xs font-display text-ink-muted -mt-1">Pie Company</span>
       </div>
     </Link>
   )
