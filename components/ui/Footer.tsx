@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { businessInfo } from '@/lib/data/business-info'
 import { MapPin, Phone, Clock, Facebook, Instagram } from 'lucide-react'
+import { SaucerIcon } from './SaucerIcon'
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -12,7 +13,7 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <span className="text-3xl">🛸</span>
+              <SaucerIcon size={48} />
               <div>
                 <h3 className="text-xl font-bold">Flying Saucer</h3>
                 <p className="text-xs text-cream-white/60">Pie Company</p>
@@ -110,7 +111,10 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-cream-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-cream-white/60">
             <p>© {currentYear} Flying Saucer Pie Company. All pies reserved.</p>
-            <p>🚀 Powered by Space City Love</p>
+            <p className="flex items-center gap-2">
+              <SaucerIcon size={20} />
+              Powered by Space City Love
+            </p>
           </div>
         </div>
       </div>
