@@ -62,7 +62,7 @@ export function HeroSection() {
     
     if (!ENABLE_ANIMATION || prefersReducedMotion) {
       // Skip animation, show final state
-      setAnimationPhase(4)
+      setAnimationPhase(3)
       return
     }
 
@@ -74,11 +74,8 @@ export function HeroSection() {
       await delay(400)
       setAnimationPhase(2) // Headline fades in (while swoosh continues)
       
-      await delay(800) // Adjusted: Saucer appears right when swoosh finishes (200 + 1200 = 1400ms)
-      setAnimationPhase(3) // Saucer lands
-      
-      await delay(400)
-      setAnimationPhase(4) // Tagline fades in
+      await delay(700) // Saucer + tagline appear together slightly before swoosh finishes
+      setAnimationPhase(3) // Saucer lands + tagline fades in simultaneously
     }
 
     timeline()
@@ -283,7 +280,7 @@ export function HeroSection() {
             {/* Tagline: Our Pies Are / Out Of This World! */}
             <div 
               className={`absolute text-center transition-all duration-700 ${
-                animationPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ 
                 top: POS.taglineTop, 
