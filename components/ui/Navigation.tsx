@@ -3,8 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Logo } from './Logo'
-import { Button } from './Button'
-import { Menu, X, ShoppingCart } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 
 const navLinks = [
@@ -53,17 +52,10 @@ export function Navigation() {
                 {link.name}
               </Link>
             ))}
-            <Button size="sm" className="flex items-center gap-2">
-              <ShoppingCart size={18} />
-              <span>Order Now</span>
-            </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-4">
-            <button className="text-cosmic-orange p-2">
-              <ShoppingCart size={24} />
-            </button>
+          <div className="md:hidden">
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -95,9 +87,6 @@ export function Navigation() {
                   {link.name}
                 </Link>
               ))}
-              <div className="px-4 pt-2">
-                <Button className="w-full">Order Now</Button>
-              </div>
             </div>
           </div>
         )}

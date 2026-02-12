@@ -2,9 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ShoppingCart } from 'lucide-react'
+import { X } from 'lucide-react'
 import { Pie } from '@/lib/data/pies'
-import { Button } from './Button'
 
 interface PieModalProps {
   pie: Pie | null
@@ -216,21 +215,6 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                       </div>
                     </div>
                   </div>
-
-                  {/* Actions */}
-                  <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-dust-light">
-                    <Button className="flex-1 flex items-center justify-center gap-2">
-                      <ShoppingCart size={20} />
-                      <span>Add Whole Pie</span>
-                    </Button>
-                    <Button variant="secondary" className="flex-1">
-                      Add Slice
-                    </Button>
-                  </div>
-
-                  <p className="text-xs text-dust-medium text-center mt-3">
-                    * Cart functionality coming soon
-                  </p>
                 </div>
               </div>
             </motion.div>
