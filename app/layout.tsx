@@ -3,6 +3,20 @@ import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
 import { businessInfo } from '@/lib/data/business-info'
+import { Fredoka, Pacifico } from 'next/font/google'
+
+// Logo fonts
+const fredoka = Fredoka({ 
+  subsets: ['latin'],
+  weight: ['600', '700'],
+  variable: '--font-fredoka'
+})
+
+const pacifico = Pacifico({ 
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-pacifico'
+})
 
 export const metadata: Metadata = {
   title: {
@@ -109,7 +123,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className={`font-sans antialiased ${fredoka.variable} ${pacifico.variable}`}>
         <Navigation />
         <main>{children}</main>
         <Footer />
