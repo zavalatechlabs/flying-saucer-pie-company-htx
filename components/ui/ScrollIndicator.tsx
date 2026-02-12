@@ -16,7 +16,7 @@ export function ScrollIndicator({ visible }: ScrollIndicatorProps) {
 
   return (
     <div 
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 
+      className="absolute bottom-[5%] left-1/2 -translate-x-1/2 z-50 
                  transition-opacity duration-700 cursor-pointer
                  hover:scale-110 transition-transform"
       onClick={handleClick}
