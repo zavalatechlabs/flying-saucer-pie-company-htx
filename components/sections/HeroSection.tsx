@@ -10,19 +10,19 @@ const SHOW_VIEWPORT_INDICATOR = true
 
 // Tuning knobs - centralized positioning values
 const POS = {
-  headlineTop: "20%",
-  headlineLeft: "8%",
-  headlineWidth: "84%",
+  headlineTop: "10%",
+  headlineLeft: "0.5%",
+  headlineWidth: "99%",
   
-  swooshTop: "35.5%",
+  swooshTop: "24%",
   swooshLeft: "0%",
   swooshWidth: "94%",
   
-  taglineTop: "45%",
+  taglineTop: "34%",
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "13.5%",
+  saucerBottom: "25%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
 }
@@ -31,19 +31,19 @@ const POS = {
 const FONTS = {
   // Headline (FLYING SAUCER / PIE COMPANY)
   headline: {
-    mobile: "14vw",      // default (< 640px)
-    sm: "12vw",          // small screens (640px+)
-    md: "10vw",          // medium screens (768px+)
-    lg: "8vw",           // large screens (1024px+)
-    xl: "7vw",           // extra large (1280px+)
+    mobile: "10.3vw",      // default (< 640px)
+    sm: "10.5vw",          // small screens (640px+)
+    md: "9.4vw",          // medium screens (768px+)
+    lg: "7.5vw",           // large screens (1024px+)
+    xl: "5.6vw",           // extra large (1280px+)
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
-    mobile: "8vw",       // default (< 640px)
-    sm: "7vw",           // small screens (640px+)
-    md: "6vw",           // medium screens (768px+)
-    lg: "5vw",           // large screens (1024px+)
-    xl: "4vw",           // extra large (1280px+)
+    mobile: "5.5vw",       // default (< 640px)
+    sm: "5.5vw",           // small screens (640px+)
+    md: "5vw",           // medium screens (768px+)
+    lg: "4vw",           // large screens (1024px+)
+    xl: "3vw",           // extra large (1280px+)
   }
 }
 
