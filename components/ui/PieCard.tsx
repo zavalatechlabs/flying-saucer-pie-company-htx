@@ -1,9 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Heart, Plus, ShoppingCart, Eye } from 'lucide-react'
+import { Heart, Eye } from 'lucide-react'
 import { Pie } from '@/lib/data/pies'
-import { Button } from './Button'
 import { cn } from '@/lib/utils/cn'
 import { useState } from 'react'
 
@@ -94,25 +93,6 @@ export function PieCard({ pie, index = 0, onClick }: PieCardProps) {
         <p className="text-sm text-dust-medium mb-4">
           Slice: ${pie.price.slice.toFixed(2)}
         </p>
-
-        {/* Actions */}
-        <div className="flex gap-2">
-          <Button 
-            className="flex-1 flex items-center justify-center gap-2"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ShoppingCart size={18} />
-            <span>Add Whole</span>
-          </Button>
-          <Button 
-            variant="secondary" 
-            size="sm" 
-            className="px-4"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Plus size={18} />
-          </Button>
-        </div>
 
         {/* Additional Info */}
         {pie.canFreeze && (
