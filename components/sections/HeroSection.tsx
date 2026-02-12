@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { AnimatedSwoosh } from '../ui/AnimatedSwoosh'
 
 // Toggle alignment guide
 const SHOW_GUIDE = false
@@ -241,10 +242,10 @@ export function HeroSection() {
         {/* Layer 2-4: Logo Composition */}
         <div className="absolute inset-0">
           
-          {/* Layer 2: Swoosh (behind text) - Sequential reveal animation */}
+          {/* Layer 2: Swoosh (behind text) - Top-to-bottom reveal animation */}
           <div 
             className={`absolute pointer-events-none z-10 transition-opacity duration-300 ${
-              animationPhase >= 1 ? 'hero-swoosh-reveal' : 'opacity-0'
+              animationPhase >= 1 ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ 
               top: POS.swooshTop, 
@@ -252,13 +253,7 @@ export function HeroSection() {
               width: POS.swooshWidth 
             }}
           >
-            <Image 
-              src="/brand/swoosh.svg"
-              alt=""
-              width={800}
-              height={500}
-              className="w-full h-auto"
-            />
+            <AnimatedSwoosh isAnimating={animationPhase >= 1} />
           </div>
 
           {/* Layer 3: Text (headline + tagline) */}

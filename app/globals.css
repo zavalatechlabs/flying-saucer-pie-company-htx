@@ -644,3 +644,25 @@ html {
     transform: none;
   }
 }
+
+/* Swoosh draw reveal - top to bottom clip-path */
+@keyframes swooshDrawReveal {
+  0% {
+    clip-path: inset(0 0 100% 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.swoosh-draw-reveal {
+  animation: swooshDrawReveal 1.2s ease-out forwards;
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .swoosh-draw-reveal {
+    animation: none !important;
+    clip-path: none !important;
+  }
+}
