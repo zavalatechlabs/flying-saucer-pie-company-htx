@@ -69,12 +69,12 @@ export function HeroSection() {
     // Sequential animation phases
     const timeline = async () => {
       await delay(200)
-      setAnimationPhase(1) // Swoosh starts drawing (duration: 1.2s)
+      setAnimationPhase(1) // Swoosh starts drawing (duration: 1.2s, finishes at 1400ms)
       
       await delay(400)
       setAnimationPhase(2) // Headline fades in (while swoosh continues)
       
-      await delay(700) // Saucer + tagline appear together slightly before swoosh finishes
+      await delay(400) // Saucer + tagline appear at 1000ms (during swoosh, not after)
       setAnimationPhase(3) // Saucer lands + tagline fades in simultaneously
     }
 
