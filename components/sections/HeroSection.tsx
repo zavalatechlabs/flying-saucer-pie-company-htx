@@ -31,7 +31,7 @@ const POS = {
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "8%",
+  saucerBottom: "14.5%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
