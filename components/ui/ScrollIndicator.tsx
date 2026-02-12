@@ -1,7 +1,5 @@
 'use client'
 
-import { ChevronDown } from 'lucide-react'
-
 interface ScrollIndicatorProps {
   visible: boolean
 }
@@ -32,17 +30,18 @@ export function ScrollIndicator({ visible }: ScrollIndicatorProps) {
         }
       }}
     >
-      <div className="flex flex-col items-center gap-2">
-        <span className="text-xs font-display font-medium text-accent uppercase tracking-wider">
-          Scroll
-        </span>
-        <div className="scroll-bounce">
-          <ChevronDown 
-            size={32} 
-            className="text-accent"
-            strokeWidth={2.5}
-          />
-        </div>
+      <div className="scroll-bounce">
+        <svg
+          className="w-6 h-6 mx-auto"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          stroke="#020169"
+        >
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
       </div>
     </div>
   )
