@@ -15,8 +15,10 @@ const SHOW_VIEWPORT_INDICATOR = false
 const ENABLE_ANIMATION = true
 
 // Tuning knobs - centralized positioning values
-// Shifted up to reduce gap above headline while maintaining relative spacing
+// Mobile: shifted up more aggressively to fit in viewport with arrow visible
+// Desktop: moderately shifted to reduce gap
 const POS = {
+  // Desktop positioning
   headlineTop: "12.5%",
   headlineLeft: "0.5%",
   headlineWidth: "99%",
@@ -32,6 +34,14 @@ const POS = {
   saucerBottom: "17.5%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
+  
+  // Mobile-specific overrides (more aggressive)
+  mobile: {
+    headlineTop: "8%",
+    swooshTop: "22%",
+    taglineTop: "32%",
+    saucerBottom: "22%",
+  }
 }
 
 // Font size tuning knobs - adjust per viewport!
@@ -242,7 +252,7 @@ export function HeroSection() {
           
           {/* Layer 2: Swoosh (behind text) - Top-to-bottom reveal animation */}
           <div 
-            className={`absolute pointer-events-none z-10 transition-opacity duration-300 ${
+            className={`absolute pointer-events-none z-10 transition-opacity duration-300 hero-swoosh ${
               animationPhase >= 1 ? 'opacity-100' : 'opacity-0'
             }`}
             style={{ 
@@ -259,7 +269,7 @@ export function HeroSection() {
             
             {/* Headline: FLYING SAUCER / PIE COMPANY */}
             <div 
-              className={`absolute text-center transition-all duration-700 ${
+              className={`absolute text-center transition-all duration-700 hero-headline-container ${
                 animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ 
@@ -280,7 +290,7 @@ export function HeroSection() {
 
             {/* Tagline: Our Pies Are / Out Of This World! */}
             <div 
-              className={`absolute text-center transition-all duration-700 ${
+              className={`absolute text-center transition-all duration-700 hero-tagline-container ${
                 animationPhase >= 3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{ 
@@ -302,7 +312,7 @@ export function HeroSection() {
 
           {/* Layer 4: Saucer (bottom-right, landing effect) */}
           <div 
-            className={`absolute pointer-events-none z-30 transition-all duration-500 ${
+            className={`absolute pointer-events-none z-30 transition-all duration-500 hero-saucer ${
               animationPhase >= 3 
                 ? 'opacity-100 scale-100' 
                 : 'opacity-0 scale-75'

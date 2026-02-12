@@ -687,3 +687,22 @@ html {
     animation: none !important;
   }
 }
+
+/* Mobile-specific hero positioning - more aggressive shift up */
+@media (max-width: 640px) {
+  .hero-headline-container {
+    top: 8% !important;
+  }
+  
+  .hero-swoosh {
+    top: 22% !important;
+  }
+  
+  .hero-tagline-container {
+    top: 32% !important;
+  }
+  
+  .hero-saucer {
+    bottom: 22% !important;
+  }
+}
