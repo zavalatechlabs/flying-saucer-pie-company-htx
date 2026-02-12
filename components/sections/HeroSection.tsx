@@ -76,10 +76,10 @@ export function HeroSection() {
               }}
             >
               <h1 className="headline-font font-bold text-[#020169] leading-[0.82] tracking-[0.04em]">
-                <span className="block text-[14vw] sm:text-[12vw] md:text-[10vw] lg:text-[8vw] xl:text-[7vw]">
+                <span className="block text-[16vw] sm:text-[14vw] md:text-[12vw] lg:text-[9vw] xl:text-[8vw]">
                   FLYING SAUCER
                 </span>
-                <span className="block text-[14vw] sm:text-[12vw] md:text-[10vw] lg:text-[8vw] xl:text-[7vw]">
+                <span className="block text-[16vw] sm:text-[14vw] md:text-[12vw] lg:text-[9vw] xl:text-[8vw]">
                   PIE COMPANY
                 </span>
               </h1>
@@ -95,10 +95,10 @@ export function HeroSection() {
               }}
             >
               <p className="tagline-font text-[#020169] leading-[1.15]">
-                <span className="block text-[8vw] sm:text-[7vw] md:text-[6vw] lg:text-[5vw] xl:text-[4vw]">
+                <span className="block text-[9vw] sm:text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5vw]">
                   Our Pies Are
                 </span>
-                <span className="block text-[8vw] sm:text-[7vw] md:text-[6vw] lg:text-[5vw] xl:text-[4vw]">
+                <span className="block text-[9vw] sm:text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5vw]">
                   Out Of This World!
                 </span>
               </p>
