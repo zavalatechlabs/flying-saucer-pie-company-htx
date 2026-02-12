@@ -615,3 +615,32 @@ html {
     font-size: 2.25rem;
   }
 }
+
+/* ============================================
+   HERO SEQUENTIAL REVEAL ANIMATION
+   ============================================ */
+
+/* Swoosh reveal - gradual fade and scale from top */
+@keyframes swooshReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-swoosh-reveal {
+  animation: swooshReveal 1.2s ease-out forwards;
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-swoosh-reveal {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
