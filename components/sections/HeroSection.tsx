@@ -19,19 +19,19 @@ const ENABLE_ANIMATION = true
 // Desktop: moderately shifted to reduce gap
 const POS = {
   // Desktop positioning
-  headlineTop: "6%",
+  headlineTop: "9%",
   headlineLeft: "0.5%",
   headlineWidth: "99%",
   
-  swooshTop: "20%",
+  swooshTop: "23%",
   swooshLeft: "0%",
   swooshWidth: "94%",
   
-  taglineTop: "30%",
+  taglineTop: "33%",
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "14.5%",
+  saucerBottom: "17.5%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
