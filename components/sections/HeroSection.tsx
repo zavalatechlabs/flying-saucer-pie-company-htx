@@ -7,21 +7,21 @@ const SHOW_GUIDE = true
 
 // Tuning knobs - centralized positioning values
 const POS = {
-  headlineTop: "8%",
+  headlineTop: "20%",
   headlineLeft: "8%",
   headlineWidth: "84%",
   
-  swooshTop: "20%",
+  swooshTop: "35.5%",
   swooshLeft: "0%",
-  swooshWidth: "100%",
+  swooshWidth: "94%",
   
-  taglineTop: "36%",
-  taglineLeft: "20%",
+  taglineTop: "45%",
+  taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "8%",
-  saucerRight: "8%",
-  saucerWidth: "30%",
+  saucerBottom: "13.5%",
+  saucerRight: "0.8%",
+  saucerWidth: "41%",
 }
 
 export function HeroSection() {
