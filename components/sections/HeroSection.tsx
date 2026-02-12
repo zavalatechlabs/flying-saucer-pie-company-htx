@@ -95,7 +95,7 @@ export function HeroSection() {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
   return (
-    <section className="hero-retro-background relative w-full h-screen md:max-h-screen flex items-center justify-center overflow-hidden py-4">
+    <section className="hero-retro-background relative w-full h-screen md:h-auto flex items-center justify-center overflow-hidden py-4">
       {/* CSS Variables for Responsive Font Sizes */}
       <style jsx>{`
         /* === RETRO HERO BACKGROUND (background-only changes) === */
@@ -233,7 +233,7 @@ export function HeroSection() {
       `}</style>
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
-      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[600px]">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px]">
         
         {/* Layer 1: Reference Guide (optional, controlled by SHOW_GUIDE) */}
         {SHOW_GUIDE && (
