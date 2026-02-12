@@ -5,6 +5,9 @@ import Image from 'next/image'
 // Toggle alignment guide
 const SHOW_GUIDE = true
 
+// Toggle viewport indicator (shows which breakpoint is active)
+const SHOW_VIEWPORT_INDICATOR = true
+
 // Tuning knobs - centralized positioning values
 const POS = {
   headlineTop: "20%",
@@ -89,6 +92,51 @@ export function HeroSection() {
           }
           .hero-tagline {
             font-size: ${FONTS.tagline.xl};
+          }
+        }
+
+        /* Viewport Indicator Styles */
+        .viewport-indicator {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: rgba(107, 44, 191, 0.9);
+          color: white;
+          padding: 8px 16px;
+          border-radius: 8px;
+          font-family: monospace;
+          font-size: 14px;
+          font-weight: bold;
+          z-index: 9999;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+          pointer-events: none;
+        }
+        
+        .viewport-indicator::before {
+          content: "mobile (< 640px)";
+        }
+        
+        @media (min-width: 640px) {
+          .viewport-indicator::before {
+            content: "sm (640px+)";
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .viewport-indicator::before {
+            content: "md (768px+)";
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .viewport-indicator::before {
+            content: "lg (1024px+)";
+          }
+        }
+        
+        @media (min-width: 1280px) {
+          .viewport-indicator::before {
+            content: "xl (1280px+)";
           }
         }
       `}</style>
@@ -191,6 +239,11 @@ export function HeroSection() {
 
         </div>
       </div>
+
+      {/* Viewport Indicator (toggleable) */}
+      {SHOW_VIEWPORT_INDICATOR && (
+        <div className="viewport-indicator" aria-hidden="true" />
+      )}
     </section>
   )
 }
