@@ -9,20 +9,21 @@ const SHOW_GUIDE = false
 const SHOW_VIEWPORT_INDICATOR = false
 
 // Tuning knobs - centralized positioning values
+// All elements centered vertically while maintaining relative spacing
 const POS = {
-  headlineTop: "10%",
+  headlineTop: "17.5%",
   headlineLeft: "0.5%",
   headlineWidth: "99%",
   
-  swooshTop: "24%",
+  swooshTop: "31.5%",
   swooshLeft: "0%",
   swooshWidth: "94%",
   
-  taglineTop: "34%",
+  taglineTop: "41.5%",
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "25%",
+  saucerBottom: "17.5%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
 }
