@@ -3,10 +3,10 @@
 import Image from 'next/image'
 
 // Toggle alignment guide
-const SHOW_GUIDE = true
+const SHOW_GUIDE = false
 
 // Toggle viewport indicator (shows which breakpoint is active)
-const SHOW_VIEWPORT_INDICATOR = true
+const SHOW_VIEWPORT_INDICATOR = false
 
 // Tuning knobs - centralized positioning values
 const POS = {
