@@ -1,18 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { SaucerIntro } from '../animations/SaucerIntro'
-import { SwooshReveal } from '../animations/SwooshReveal'
 
 // Toggle alignment guide
 const SHOW_GUIDE = false
 
 // Toggle viewport indicator (shows which breakpoint is active)
 const SHOW_VIEWPORT_INDICATOR = false
-
-// Toggle animation (set to false to skip animation)
-const ENABLE_ANIMATION = true
 
 // Tuning knobs - centralized positioning values
 // All elements centered vertically while maintaining relative spacing
@@ -55,42 +49,6 @@ const FONTS = {
 }
 
 export function HeroSection() {
-  const [isAnimationComplete, setIsAnimationComplete] = useState(!ENABLE_ANIMATION)
-  const [isTextVisible, setIsTextVisible] = useState(!ENABLE_ANIMATION)
-  const [isSwooshVisible, setIsSwooshVisible] = useState(!ENABLE_ANIMATION)
-
-  useEffect(() => {
-    if (!ENABLE_ANIMATION) return
-
-    // Check for reduced motion
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
-      setIsAnimationComplete(true)
-      setIsTextVisible(true)
-      setIsSwooshVisible(true)
-      return
-    }
-
-    // Listen for animation phase changes
-    const handlePhaseChange = () => {
-      const textVisibleAttr = document.querySelector('[data-text-visible]')?.getAttribute('data-text-visible')
-      const phaseAttr = document.querySelector('[data-animation-phase]')?.getAttribute('data-animation-phase')
-      
-      if (textVisibleAttr === 'true') {
-        setIsTextVisible(true)
-      }
-      
-      if (phaseAttr === 'swoosh' || phaseAttr === 'landed') {
-        setIsSwooshVisible(true)
-      }
-    }
-
-    // Poll for changes (simple approach)
-    const interval = setInterval(handlePhaseChange, 100)
-    
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <section className="hero-retro-background relative w-full min-h-screen flex items-center justify-center overflow-hidden py-8">
       {/* CSS Variables for Responsive Font Sizes */}
@@ -227,30 +185,7 @@ export function HeroSection() {
             content: "xl (1280px+)";
           }
         }
-
-        /* Text reveal animation */
-        .text-reveal {
-          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .text-reveal-hidden {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-
-        .text-reveal-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
       `}</style>
-
-      {/* Flying Saucer Animation */}
-      {ENABLE_ANIMATION && (
-        <SaucerIntro 
-          onAnimationComplete={() => setIsAnimationComplete(true)}
-          disabled={!ENABLE_ANIMATION}
-        />
-      )}
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
       <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px]">
@@ -267,50 +202,33 @@ export function HeroSection() {
           </div>
         )}
 
-        {/* Layer 2-4: Logo Composition */}
+        {/* Layer 2-4: Logo Composition (LOCKED - DO NOT CHANGE) */}
         <div className="absolute inset-0">
           
           {/* Layer 2: Swoosh (behind text) */}
-          {ENABLE_ANIMATION && !isSwooshVisible ? (
-            /* Swoosh Reveal Animation */
-            <div 
-              className="absolute pointer-events-none z-10"
-              style={{ 
-                top: POS.swooshTop, 
-                left: POS.swooshLeft, 
-                width: POS.swooshWidth 
-              }}
-            >
-              <SwooshReveal isAnimating={isSwooshVisible} />
-            </div>
-          ) : (
-            /* Static Swoosh */
-            <div 
-              className="absolute pointer-events-none z-10"
-              style={{ 
-                top: POS.swooshTop, 
-                left: POS.swooshLeft, 
-                width: POS.swooshWidth 
-              }}
-            >
-              <Image 
-                src="/brand/swoosh.svg"
-                alt=""
-                width={800}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-          )}
+          <div 
+            className="absolute pointer-events-none z-10"
+            style={{ 
+              top: POS.swooshTop, 
+              left: POS.swooshLeft, 
+              width: POS.swooshWidth 
+            }}
+          >
+            <Image 
+              src="/brand/swoosh.svg"
+              alt=""
+              width={800}
+              height={500}
+              className="w-full h-auto"
+            />
+          </div>
 
           {/* Layer 3: Text (headline + tagline) */}
           <div className="absolute inset-0 z-20">
             
             {/* Headline: FLYING SAUCER / PIE COMPANY */}
             <div 
-              className={`absolute text-center text-reveal ${
-                isTextVisible ? 'text-reveal-visible' : 'text-reveal-hidden'
-              }`}
+              className="absolute text-center"
               style={{ 
                 top: POS.headlineTop, 
                 left: POS.headlineLeft, 
@@ -329,14 +247,11 @@ export function HeroSection() {
 
             {/* Tagline: Our Pies Are / Out Of This World! */}
             <div 
-              className={`absolute text-center text-reveal ${
-                isTextVisible ? 'text-reveal-visible' : 'text-reveal-hidden'
-              }`}
+              className="absolute text-center"
               style={{ 
                 top: POS.taglineTop, 
                 left: POS.taglineLeft, 
-                width: POS.taglineWidth,
-                transitionDelay: '0.2s'
+                width: POS.taglineWidth 
               }}
             >
               <p className="hero-tagline tagline-font text-[#020169] leading-[1.15]">
@@ -351,25 +266,22 @@ export function HeroSection() {
           </div>
 
           {/* Layer 4: Saucer (bottom-right, final landing position) */}
-          {/* Only show static saucer when animation is complete */}
-          {isAnimationComplete && (
-            <div 
-              className="absolute pointer-events-none z-30"
-              style={{ 
-                bottom: POS.saucerBottom, 
-                right: POS.saucerRight, 
-                width: POS.saucerWidth 
-              }}
-            >
-              <Image 
-                src="/brand/saucer.svg"
-                alt=""
-                width={500}
-                height={500}
-                className="w-full h-auto"
-              />
-            </div>
-          )}
+          <div 
+            className="absolute pointer-events-none z-30"
+            style={{ 
+              bottom: POS.saucerBottom, 
+              right: POS.saucerRight, 
+              width: POS.saucerWidth 
+            }}
+          >
+            <Image 
+              src="/brand/saucer.svg"
+              alt=""
+              width={500}
+              height={500}
+              className="w-full h-auto"
+            />
+          </div>
 
         </div>
       </div>
