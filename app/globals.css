@@ -615,3 +615,133 @@ html {
     font-size: 2.25rem;
   }
 }
+
+/* ============================================
+   HERO SAUCER ANIMATION
+   ============================================ */
+
+/* === PHASE A: FLY ACROSS === */
+
+@keyframes flyAcross {
+  0% {
+    transform: translate3d(-30vw, 2vh, 0) scale(1.6) rotate(-8deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(40vw, 0vh, 0) scale(1.6) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(115vw, -1vh, 0) scale(1.6) rotate(8deg);
+    opacity: 1;
+  }
+}
+
+.saucer-fly-across {
+  animation: flyAcross 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  will-change: transform;
+}
+
+/* === PHASE B: SWOOSH PATH === */
+
+@keyframes swooshIn {
+  0% {
+    offset-distance: 0%;
+    transform: scale(1.25) rotate(5deg);
+  }
+  100% {
+    offset-distance: 100%;
+    transform: scale(0.55) rotate(-15deg);
+  }
+}
+
+.saucer-swoosh {
+  /* Motion path: starts from top-right, follows swoosh curve to bottom-right */
+  offset-path: path('M 90 15 Q 85 25, 75 40 Q 65 55, 50 68 Q 35 81, 20 88');
+  offset-rotate: auto 15deg;
+  animation: swooshIn 1.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  will-change: transform, offset-distance;
+}
+
+/* === PHASE C: LANDED (FINAL POSITION) === */
+
+.saucer-landed {
+  /* Final position matching logo placement */
+  position: absolute;
+  bottom: 17.5%;
+  right: 0.8%;
+  width: 41%;
+  transform: scale(1) rotate(-15deg);
+  animation: saucerIdle 3s ease-in-out infinite;
+}
+
+/* === PHASE D: IDLE BOB === */
+
+@keyframes saucerIdle {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(-15deg);
+  }
+  50% {
+    transform: translateY(-6px) scale(1) rotate(-15deg);
+  }
+}
+
+.saucer-idle {
+  animation: saucerIdle 3s ease-in-out infinite;
+}
+
+/* === SWOOSH DRAW ANIMATION === */
+
+@keyframes swooshDraw {
+  0% {
+    stroke-dashoffset: 2000;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.swoosh-draw svg path {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: swooshDraw 1.2s ease-out forwards;
+}
+
+/* === ACCESSIBILITY: REDUCED MOTION === */
+
+@media (prefers-reduced-motion: reduce) {
+  .saucer-fly-across,
+  .saucer-swoosh,
+  .saucer-idle,
+  .swoosh-draw svg path {
+    animation: none !important;
+  }
+
+  /* Show final state immediately */
+  .saucer-fly-across,
+  .saucer-swoosh {
+    display: none;
+  }
+
+  .saucer-landed {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+
+.saucer-fly-across::before,
+.saucer-swoosh::before {
+  content: '';
+  will-change: transform, opacity, offset-distance;
+}
+
+/* Remove will-change after animation completes */
+.saucer-landed::before {
+  will-change: auto;
+}
