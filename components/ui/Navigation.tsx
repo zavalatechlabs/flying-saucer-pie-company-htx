@@ -33,8 +33,8 @@ export function Navigation() {
     <nav className={cn(
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
       isScrolled 
-        ? "bg-cream-white/95 backdrop-blur-lg shadow-md" 
-        : "bg-cream-white/80 backdrop-blur-sm"
+        ? "bg-warm-cream/95 backdrop-blur-lg shadow-lg" 
+        : "bg-warm-cream/80 backdrop-blur-sm"
     )}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -59,7 +59,8 @@ export function Navigation() {
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 text-dust-dark hover:text-cosmic-orange focus:outline-none"
+              className="p-2 text-deep-navy hover:text-cosmic-purple focus:outline-none 
+                       transition-colors duration-200"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
@@ -74,15 +75,15 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-dust-light mt-2">
-            <div className="flex flex-col gap-2 pt-4">
+          <div className="md:hidden pb-4 border-t border-neutral-200 mt-2 animate-in slide-in-from-top">
+            <div className="flex flex-col gap-1 pt-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className="px-4 py-3 text-dust-dark hover:text-cosmic-orange 
-                           hover:bg-cosmic-orange/5 rounded-lg transition-all"
+                  className="px-4 py-3 text-deep-navy hover:text-cosmic-purple 
+                           hover:bg-cosmic-purple/5 rounded-lg transition-all"
                 >
                   {link.name}
                 </Link>
