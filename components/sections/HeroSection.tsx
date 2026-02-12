@@ -95,7 +95,7 @@ export function HeroSection() {
   const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
 
   return (
-    <section className="hero-retro-background relative w-full h-screen flex items-center justify-center overflow-hidden">
+    <section className="hero-retro-background relative w-full min-h-screen flex items-center justify-center overflow-hidden pb-16 md:pb-20">
       {/* CSS Variables for Responsive Font Sizes */}
       <style jsx>{`
         /* === RETRO HERO BACKGROUND (background-only changes) === */
