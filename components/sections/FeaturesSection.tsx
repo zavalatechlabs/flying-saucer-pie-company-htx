@@ -30,13 +30,13 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="py-section-lg bg-warm-cream">
+    <section className="py-section-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal variants={fadeIn} className="text-center mb-16">
-          <h2 className="text-h1 md:text-display-md text-deep-navy mb-4">
+          <h2 className="text-h1 md:text-display-md text-ink mb-4 font-display">
             Why Houston Loves Us
           </h2>
-          <p className="text-body-xl text-neutral-600">
+          <p className="text-body-xl text-ink-muted font-body">
             Houston Strong Since 1967
           </p>
         </ScrollReveal>
@@ -51,18 +51,18 @@ export function FeaturesSection() {
             >
               <motion.div
                 className="inline-flex items-center justify-center w-20 h-20 rounded-full 
-                         bg-sunset-orange/10 text-sunset-orange mb-4
-                         group-hover:bg-sunset-orange group-hover:text-white
-                         transition-all duration-300 shadow-lg"
+                         bg-accent/10 text-accent mb-4
+                         group-hover:bg-accent group-hover:text-white
+                         transition-all duration-300 shadow-retro"
                 whileHover={{ scale: 1.1, rotate: 360 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
                 {feature.icon}
               </motion.div>
-              <h3 className="text-h4 text-deep-navy mb-2">
+              <h3 className="text-h4 text-ink mb-2 font-display">
                 {feature.title}
               </h3>
-              <p className="text-body text-neutral-600">
+              <p className="text-body text-ink-muted font-body">
                 {feature.description}
               </p>
             </ScrollReveal>
@@ -73,14 +73,13 @@ export function FeaturesSection() {
         <ScrollReveal 
           variants={scaleUp} 
           delay={0.2}
-          className="mt-20 bg-deep-navy text-warm-cream rounded-3xl p-8 text-center 
-                   relative overflow-hidden shadow-cosmic"
+          className="mt-20 bg-ink text-surface rounded-3xl p-8 text-center 
+                   relative overflow-hidden shadow-retro-hover"
         >
-          <div className="absolute inset-0 stars-background opacity-20" />
           <div className="relative z-10">
             <p className="text-6xl mb-4">🥧</p>
-            <h3 className="text-h2 mb-2">Fun Fact</h3>
-            <p className="text-body-lg text-warm-cream/80">
+            <h3 className="text-h2 mb-2 font-display">Fun Fact</h3>
+            <p className="text-body-lg text-surface/80 font-body">
               We&apos;ve made over 2 million pies since 1967 - that&apos;s enough pies to reach the moon and back!
             </p>
           </div>

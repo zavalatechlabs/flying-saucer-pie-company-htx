@@ -9,7 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // V1 Primary Palette - Cosmic Purple Theme
+        // Retro Space-Age Diner Theme (using CSS variables)
+        'bg': 'var(--bg)',
+        'bg-alt': 'var(--bg-alt)',
+        'surface': 'var(--surface)',
+        'ink': 'var(--ink)',
+        'ink-muted': 'var(--ink-muted)',
+        'accent': 'var(--accent)',
+        'accent-2': 'var(--accent-2)',
+        'border-color': 'var(--border)',
+        
+        // Legacy colors (preserved for compatibility)
         'cosmic-purple': {
           DEFAULT: '#6B2CBF',
           50: '#F5EEFF',
@@ -23,7 +33,6 @@ const config: Config = {
           800: '#3D1675',
           900: '#2B0F53',
         },
-        
         'electric-blue': {
           DEFAULT: '#00D4FF',
           50: '#E5F9FF',
@@ -37,7 +46,6 @@ const config: Config = {
           800: '#005266',
           900: '#002633',
         },
-        
         'warm-cream': {
           DEFAULT: '#FFF8F3',
           50: '#FFFDFB',
@@ -51,7 +59,6 @@ const config: Config = {
           800: '#9A8873',
           900: '#756856',
         },
-        
         'deep-navy': {
           DEFAULT: '#0B1929',
           50: '#E6E9EC',
@@ -65,7 +72,6 @@ const config: Config = {
           800: '#030810',
           900: '#010408',
         },
-        
         'sunset-orange': {
           DEFAULT: '#FF6B35',
           50: '#FFEDE8',
@@ -79,8 +85,6 @@ const config: Config = {
           800: '#B23B18',
           900: '#992C0E',
         },
-        
-        // Accent Colors
         'lavender': {
           DEFAULT: '#C9A9E0',
           50: '#F9F5FC',
@@ -94,7 +98,6 @@ const config: Config = {
           800: '#65398A',
           900: '#4B2766',
         },
-        
         'mint': {
           DEFAULT: '#A8E6CF',
           50: '#F0FCF7',
@@ -108,8 +111,6 @@ const config: Config = {
           800: '#2E8660',
           900: '#206847',
         },
-        
-        // Semantic Colors
         'success': {
           DEFAULT: '#10B981',
           50: '#ECFDF5',
@@ -123,7 +124,6 @@ const config: Config = {
           800: '#065F46',
           900: '#064E3B',
         },
-        
         'warning': {
           DEFAULT: '#F59E0B',
           50: '#FFFBEB',
@@ -137,7 +137,6 @@ const config: Config = {
           800: '#92400E',
           900: '#78350F',
         },
-        
         'error': {
           DEFAULT: '#EF4444',
           50: '#FEF2F2',
@@ -151,7 +150,6 @@ const config: Config = {
           800: '#991B1B',
           900: '#7F1D1D',
         },
-        
         'info': {
           DEFAULT: '#3B82F6',
           50: '#EFF6FF',
@@ -165,8 +163,6 @@ const config: Config = {
           800: '#1E40AF',
           900: '#1E3A8A',
         },
-        
-        // Neutral Grays
         'neutral': {
           50: '#FAFAF9',
           100: '#F5F5F4',
@@ -179,8 +175,7 @@ const config: Config = {
           800: '#292524',
           900: '#1C1917',
         },
-        
-        // Legacy colors for backwards compatibility
+        // Legacy aliases
         'space-night': '#0B1929',
         'cosmic-orange': '#FF6B35',
         'cream-white': '#FFF8F3',
@@ -191,12 +186,12 @@ const config: Config = {
         'dust-lightest': '#F3F4F6',
       },
       fontFamily: {
-        'space': ['Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        'sans': ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        'display': ['var(--font-display)', 'Outfit', 'Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
+        'body': ['var(--font-body)', 'DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+        'sans': ['var(--font-body)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       fontSize: {
-        // V1 Typography Scale
         'display-xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-lg': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-md': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
@@ -213,12 +208,17 @@ const config: Config = {
         'caption': ['0.75rem', { lineHeight: '1.5', fontWeight: '400' }],
       },
       spacing: {
-        // V1 Spacing System (section padding tokens)
-        'section-xs': '2rem',
-        'section-sm': '3rem',
-        'section': '4rem',
-        'section-lg': '6rem',
-        'section-xl': '8rem',
+        'section-xs': 'var(--section-xs)',
+        'section-sm': 'var(--section-sm)',
+        'section': 'var(--section)',
+        'section-lg': 'var(--section-lg)',
+        'section-xl': 'var(--section-xl)',
+      },
+      borderRadius: {
+        'sm': 'var(--radius-sm)',
+        'md': 'var(--radius-md)',
+        'lg': 'var(--radius-lg)',
+        'pill': 'var(--radius-pill)',
       },
       animation: {
         'float': 'float 3s ease-in-out infinite',
@@ -305,9 +305,11 @@ const config: Config = {
       boxShadow: {
         'cosmic': '0 10px 25px -5px rgba(107, 44, 191, 0.3)',
         'cosmic-hover': '0 20px 35px -5px rgba(107, 44, 191, 0.4)',
-        'glow-sm': '0 0 10px rgba(107, 44, 191, 0.2)',
-        'glow-md': '0 0 20px rgba(107, 44, 191, 0.3)',
-        'glow-lg': '0 0 30px rgba(107, 44, 191, 0.4)',
+        'glow-sm': '0 0 10px rgba(212, 133, 106, 0.2)',
+        'glow-md': '0 0 20px rgba(212, 133, 106, 0.3)',
+        'glow-lg': '0 0 30px rgba(212, 133, 106, 0.4)',
+        'retro': '0 2px 8px var(--shadow), 0 1px 3px rgba(26, 26, 46, 0.05)',
+        'retro-hover': '0 8px 24px rgba(26, 26, 46, 0.12), 0 4px 12px rgba(26, 26, 46, 0.08)',
       },
     },
   },
