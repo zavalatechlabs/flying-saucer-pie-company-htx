@@ -24,15 +24,75 @@ const POS = {
   saucerWidth: "41%",
 }
 
-// Font size tuning knobs - adjust these values easily
+// Font size tuning knobs - adjust per viewport!
 const FONTS = {
-  headlineSize: "14vw",  // Headline font size (adjust this!)
-  taglineSize: "8vw",    // Tagline font size (adjust this!)
+  // Headline (FLYING SAUCER / PIE COMPANY)
+  headline: {
+    mobile: "14vw",      // default (< 640px)
+    sm: "12vw",          // small screens (640px+)
+    md: "10vw",          // medium screens (768px+)
+    lg: "8vw",           // large screens (1024px+)
+    xl: "7vw",           // extra large (1280px+)
+  },
+  // Tagline (Our Pies Are / Out Of This World!)
+  tagline: {
+    mobile: "8vw",       // default (< 640px)
+    sm: "7vw",           // small screens (640px+)
+    md: "6vw",           // medium screens (768px+)
+    lg: "5vw",           // large screens (1024px+)
+    xl: "4vw",           // extra large (1280px+)
+  }
 }
 
 export function HeroSection() {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-warm-cream to-white overflow-hidden py-8">
+      {/* CSS Variables for Responsive Font Sizes */}
+      <style jsx>{`
+        .hero-headline {
+          font-size: ${FONTS.headline.mobile};
+        }
+        .hero-tagline {
+          font-size: ${FONTS.tagline.mobile};
+        }
+        
+        @media (min-width: 640px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.sm};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.sm};
+          }
+        }
+        
+        @media (min-width: 768px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.md};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.md};
+          }
+        }
+        
+        @media (min-width: 1024px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.lg};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.lg};
+          }
+        }
+        
+        @media (min-width: 1280px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.xl};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.xl};
+          }
+        }
+      `}</style>
+
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
       <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px]">
         
@@ -81,10 +141,7 @@ export function HeroSection() {
                 width: POS.headlineWidth 
               }}
             >
-              <h1 
-                className="headline-font font-bold text-[#020169] leading-[0.82] tracking-[0.04em]"
-                style={{ fontSize: FONTS.headlineSize }}
-              >
+              <h1 className="hero-headline headline-font font-bold text-[#020169] leading-[0.82] tracking-[0.04em]">
                 <span className="block">
                   FLYING SAUCER
                 </span>
@@ -103,10 +160,7 @@ export function HeroSection() {
                 width: POS.taglineWidth 
               }}
             >
-              <p 
-                className="tagline-font text-[#020169] leading-[1.15]"
-                style={{ fontSize: FONTS.taglineSize }}
-              >
+              <p className="hero-tagline tagline-font text-[#020169] leading-[1.15]">
                 <span className="block">
                   Our Pies Are
                 </span>
