@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { AnimatedSwoosh } from '../ui/AnimatedSwoosh'
+import { ScrollIndicator } from '../ui/ScrollIndicator'
 
 // Toggle alignment guide
 const SHOW_GUIDE = false
@@ -328,6 +329,9 @@ export function HeroSection() {
       {SHOW_VIEWPORT_INDICATOR && (
         <div className="viewport-indicator" aria-hidden="true" />
       )}
+
+      {/* Scroll Indicator - appears after animation completes */}
+      <ScrollIndicator visible={animationPhase >= 3} />
     </section>
   )
 }
