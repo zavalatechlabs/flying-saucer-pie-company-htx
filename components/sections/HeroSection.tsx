@@ -31,7 +31,7 @@ const POS = {
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "17.5%",
+  saucerBottom: "8%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
@@ -40,7 +40,7 @@ const POS = {
     headlineTop: "8%",
     swooshTop: "22%",
     taglineTop: "32%",
-    saucerBottom: "22%",
+    saucerBottom: "10%",
   }
 }
 
@@ -333,15 +333,15 @@ export function HeroSection() {
           </div>
 
         </div>
+
+        {/* Scroll Indicator - appears after animation completes */}
+        <ScrollIndicator visible={animationPhase >= 3} />
       </div>
 
       {/* Viewport Indicator (toggleable) */}
       {SHOW_VIEWPORT_INDICATOR && (
         <div className="viewport-indicator" aria-hidden="true" />
       )}
-
-      {/* Scroll Indicator - appears after animation completes */}
-      <ScrollIndicator visible={animationPhase >= 3} />
     </section>
   )
 }
