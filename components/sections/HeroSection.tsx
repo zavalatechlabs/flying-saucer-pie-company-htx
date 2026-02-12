@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 // Toggle alignment guide
@@ -7,6 +8,9 @@ const SHOW_GUIDE = false
 
 // Toggle viewport indicator (shows which breakpoint is active)
 const SHOW_VIEWPORT_INDICATOR = false
+
+// Toggle animation (set to false to skip animation)
+const ENABLE_ANIMATION = true
 
 // Tuning knobs - centralized positioning values
 // All elements centered vertically while maintaining relative spacing
@@ -49,6 +53,38 @@ const FONTS = {
 }
 
 export function HeroSection() {
+  const [animationPhase, setAnimationPhase] = useState(0)
+
+  useEffect(() => {
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    if (!ENABLE_ANIMATION || prefersReducedMotion) {
+      // Skip animation, show final state
+      setAnimationPhase(4)
+      return
+    }
+
+    // Sequential animation phases
+    const timeline = async () => {
+      await delay(200)
+      setAnimationPhase(1) // Swoosh starts drawing
+      
+      await delay(400)
+      setAnimationPhase(2) // Headline fades in (while swoosh continues)
+      
+      await delay(1200)
+      setAnimationPhase(3) // Saucer lands
+      
+      await delay(400)
+      setAnimationPhase(4) // Tagline fades in
+    }
+
+    timeline()
+  }, [])
+
+  const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms))
+
   return (
     <section className="hero-retro-background relative w-full min-h-screen flex items-center justify-center overflow-hidden py-8">
       {/* CSS Variables for Responsive Font Sizes */}
@@ -202,12 +238,14 @@ export function HeroSection() {
           </div>
         )}
 
-        {/* Layer 2-4: Logo Composition (LOCKED - DO NOT CHANGE) */}
+        {/* Layer 2-4: Logo Composition */}
         <div className="absolute inset-0">
           
-          {/* Layer 2: Swoosh (behind text) */}
+          {/* Layer 2: Swoosh (behind text) - Sequential reveal animation */}
           <div 
-            className="absolute pointer-events-none z-10"
+            className={`absolute pointer-events-none z-10 transition-opacity duration-300 ${
+              animationPhase >= 1 ? 'hero-swoosh-reveal' : 'opacity-0'
+            }`}
             style={{ 
               top: POS.swooshTop, 
               left: POS.swooshLeft, 
@@ -228,7 +266,9 @@ export function HeroSection() {
             
             {/* Headline: FLYING SAUCER / PIE COMPANY */}
             <div 
-              className="absolute text-center"
+              className={`absolute text-center transition-all duration-700 ${
+                animationPhase >= 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
               style={{ 
                 top: POS.headlineTop, 
                 left: POS.headlineLeft, 
@@ -247,7 +287,9 @@ export function HeroSection() {
 
             {/* Tagline: Our Pies Are / Out Of This World! */}
             <div 
-              className="absolute text-center"
+              className={`absolute text-center transition-all duration-700 ${
+                animationPhase >= 4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
               style={{ 
                 top: POS.taglineTop, 
                 left: POS.taglineLeft, 
@@ -265,9 +307,13 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Layer 4: Saucer (bottom-right, final landing position) */}
+          {/* Layer 4: Saucer (bottom-right, landing effect) */}
           <div 
-            className="absolute pointer-events-none z-30"
+            className={`absolute pointer-events-none z-30 transition-all duration-500 ${
+              animationPhase >= 3 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-75'
+            }`}
             style={{ 
               bottom: POS.saucerBottom, 
               right: POS.saucerRight, 
