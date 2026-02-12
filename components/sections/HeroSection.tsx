@@ -23,15 +23,15 @@ const POS = {
   headlineLeft: "0.5%",
   headlineWidth: "99%",
   
-  swooshTop: "20%",
+  swooshTop: "23%",
   swooshLeft: "0%",
   swooshWidth: "94%",
   
-  taglineTop: "30%",
+  taglineTop: "33%",
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "11%",
+  saucerBottom: "21%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
