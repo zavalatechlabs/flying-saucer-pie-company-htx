@@ -6,6 +6,7 @@ import { pies, Pie } from '@/lib/data/pies'
 import { staggerContainer, staggerItem } from '@/lib/animations/variants'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
+import { SaucerIcon } from '@/components/ui/SaucerIcon'
 
 // Featured pies (handpicked selection)
 const featuredPieIds = ['dutch-apple', 'cherry', 'chocolate-cream', 'key-lime', 'pecan', 'strawberry-cream']
@@ -212,8 +213,9 @@ export function PieShowcase() {
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <Link href="/menu">
-            <Button size="lg" className="text-lg px-10 py-6 shadow-cosmic hover:shadow-cosmic-hover">
-              🚀 Explore Full Menu
+            <Button size="lg" className="text-lg px-10 py-6 shadow-cosmic hover:shadow-cosmic-hover flex items-center gap-2">
+              <SaucerIcon size={24} />
+              Explore Full Menu
             </Button>
           </Link>
         </motion.div>

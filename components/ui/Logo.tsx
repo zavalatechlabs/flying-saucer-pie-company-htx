@@ -1,13 +1,14 @@
 import Link from 'next/link'
+import { SaucerIcon } from './SaucerIcon'
 
 export function Logo() {
   return (
     <Link href="/" className="flex items-center space-x-2 group">
       <div className="relative">
         {/* UFO Icon */}
-        <div className="w-10 h-10 bg-cosmic-orange rounded-full flex items-center justify-center 
+        <div className="w-10 h-10 flex items-center justify-center 
                         group-hover:animate-float transition-all duration-300">
-          <span className="text-2xl">🛸</span>
+          <SaucerIcon size={40} />
         </div>
         {/* Pie underneath UFO on hover */}
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 
