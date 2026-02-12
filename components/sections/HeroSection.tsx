@@ -24,6 +24,26 @@ const POS = {
   saucerWidth: "41%",
 }
 
+// Font size tuning knobs - easily adjustable
+const FONTS = {
+  // Headline (FLYING SAUCER / PIE COMPANY)
+  headline: {
+    mobile: "16vw",   // default mobile
+    sm: "14vw",       // sm breakpoint (640px+)
+    md: "12vw",       // md breakpoint (768px+)
+    lg: "9vw",        // lg breakpoint (1024px+)
+    xl: "8vw",        // xl breakpoint (1280px+)
+  },
+  // Tagline (Our Pies Are / Out Of This World!)
+  tagline: {
+    mobile: "9vw",    // default mobile
+    sm: "8vw",        // sm breakpoint (640px+)
+    md: "7vw",        // md breakpoint (768px+)
+    lg: "6vw",        // lg breakpoint (1024px+)
+    xl: "5vw",        // xl breakpoint (1280px+)
+  }
+}
+
 export function HeroSection() {
   return (
     <section className="relative w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-warm-cream to-white overflow-hidden py-8">
@@ -76,10 +96,10 @@ export function HeroSection() {
               }}
             >
               <h1 className="headline-font font-bold text-[#020169] leading-[0.82] tracking-[0.04em]">
-                <span className="block text-[16vw] sm:text-[14vw] md:text-[12vw] lg:text-[9vw] xl:text-[8vw]">
+                <span className={`block text-[${FONTS.headline.mobile}] sm:text-[${FONTS.headline.sm}] md:text-[${FONTS.headline.md}] lg:text-[${FONTS.headline.lg}] xl:text-[${FONTS.headline.xl}]`}>
                   FLYING SAUCER
                 </span>
-                <span className="block text-[16vw] sm:text-[14vw] md:text-[12vw] lg:text-[9vw] xl:text-[8vw]">
+                <span className={`block text-[${FONTS.headline.mobile}] sm:text-[${FONTS.headline.sm}] md:text-[${FONTS.headline.md}] lg:text-[${FONTS.headline.lg}] xl:text-[${FONTS.headline.xl}]`}>
                   PIE COMPANY
                 </span>
               </h1>
@@ -95,10 +115,10 @@ export function HeroSection() {
               }}
             >
               <p className="tagline-font text-[#020169] leading-[1.15]">
-                <span className="block text-[9vw] sm:text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5vw]">
+                <span className={`block text-[${FONTS.tagline.mobile}] sm:text-[${FONTS.tagline.sm}] md:text-[${FONTS.tagline.md}] lg:text-[${FONTS.tagline.lg}] xl:text-[${FONTS.tagline.xl}]`}>
                   Our Pies Are
                 </span>
-                <span className="block text-[9vw] sm:text-[8vw] md:text-[7vw] lg:text-[6vw] xl:text-[5vw]">
+                <span className={`block text-[${FONTS.tagline.mobile}] sm:text-[${FONTS.tagline.sm}] md:text-[${FONTS.tagline.md}] lg:text-[${FONTS.tagline.lg}] xl:text-[${FONTS.tagline.xl}]`}>
                   Out Of This World!
                 </span>
               </p>
