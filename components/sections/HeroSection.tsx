@@ -31,7 +31,7 @@ const POS = {
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "21%",
+  saucerBottom: "14%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
@@ -233,7 +233,7 @@ export function HeroSection() {
       `}</style>
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
-      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px]">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[85vh]">
         
         {/* Layer 1: Reference Guide (optional, controlled by SHOW_GUIDE) */}
         {SHOW_GUIDE && (
