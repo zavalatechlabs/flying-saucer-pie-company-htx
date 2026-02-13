@@ -31,7 +31,7 @@ const POS = {
   taglineLeft: "35%",
   taglineWidth: "60%",
   
-  saucerBottom: "21%",
+  saucerBottom: "14%",
   saucerRight: "0.8%",
   saucerWidth: "41%",
   
@@ -50,9 +50,9 @@ const FONTS = {
   headline: {
     mobile: "10.3vw",      // default (< 640px)
     sm: "10.5vw",          // small screens (640px+)
-    md: "9.4vw",          // medium screens (768px+)
-    lg: "7.5vw",           // large screens (1024px+)
-    xl: "5.6vw",           // extra large (1280px+)
+    md: "8.6vw",          // medium screens (768px+)
+    lg: "7vw",           // large screens (1024px+)
+    xl: "5.25vw",           // extra large (1280px+)
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
@@ -233,7 +233,7 @@ export function HeroSection() {
       `}</style>
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
-      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px]">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[calc(100vh-2rem)]">
         
         {/* Layer 1: Reference Guide (optional, controlled by SHOW_GUIDE) */}
         {SHOW_GUIDE && (
