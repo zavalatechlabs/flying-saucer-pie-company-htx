@@ -50,9 +50,9 @@ const FONTS = {
   headline: {
     mobile: "10.3vw",      // default (< 640px)
     sm: "10.5vw",          // small screens (640px+)
-    md: "9.4vw",          // medium screens (768px+)
-    lg: "7.5vw",           // large screens (1024px+)
-    xl: "5.6vw",           // extra large (1280px+)
+    md: "8.6vw",          // medium screens (768px+)
+    lg: "7vw",           // large screens (1024px+)
+    xl: "5.25vw",           // extra large (1280px+)
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
