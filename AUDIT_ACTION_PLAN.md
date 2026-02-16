@@ -24,6 +24,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 ## ⚠️ Critical Constraints
 
 ### **MUST PRESERVE**
+
 - **Hero Component:** Visual behavior, responsiveness, and layout logic are off-limits
   - Positioning calculations (`POS` object)
   - Animation timing and sequencing
@@ -32,6 +33,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Intent:** Any carefully tuned aspects with clear business logic
 
 ### **MAY IMPROVE**
+
 - Code structure (without changing behavior)
 - TypeScript types
 - Accessibility attributes
@@ -45,12 +47,14 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 ### **Phase 1: Discovery & Comprehension** (Current Phase)
 
 #### 1.1 Repository Structure Analysis
+
 - ✅ Map all directories and files
 - ✅ Identify framework conventions (Next.js App Router)
 - ✅ Understand folder organization patterns
 - 🔄 Check for orphaned or misplaced files
 
 #### 1.2 Configuration Review
+
 - ✅ Read `package.json` - understand dependencies
 - ✅ Read `tsconfig.json` - evaluate TypeScript strictness
 - 🔄 Review `tailwind.config.ts` - theme and token structure
@@ -58,6 +62,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - 🔄 Review `next.config.ts` - build configuration
 
 #### 1.3 Architecture Mapping
+
 - 🔄 Read all components to understand interaction patterns
 - 🔄 Identify data flow (props, state, context)
 - 🔄 Map routing structure (App Router pages)
@@ -65,6 +70,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - 🔄 Evaluate separation of concerns
 
 #### 1.4 Code Pattern Analysis
+
 - 🔄 Review component composition patterns
 - 🔄 Identify state management strategy (Zustand usage?)
 - 🔄 Review styling approach (Tailwind + CSS + inline styles)
@@ -78,6 +84,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.1 Architectural Assessment
 
 **Evaluation Criteria:**
+
 - **Separation of Concerns:** Are UI, business logic, and data clearly separated?
 - **Modularity:** Can components be reused or tested in isolation?
 - **Scalability:** Will this structure hold up with 2x, 5x, 10x growth?
@@ -85,6 +92,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Abstraction Level:** Right balance between DRY and readability?
 
 **Review Order:**
+
 1. `/app` - routing structure, page components, layouts
 2. `/components` - UI components, sections, animations
 3. `/lib` - utilities, data, shared logic
@@ -93,6 +101,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.2 Component Design Review
 
 **Per-Component Checklist:**
+
 - [ ] Single Responsibility Principle followed?
 - [ ] Props properly typed with interfaces/types?
 - [ ] Appropriate component size (not too large)?
@@ -102,6 +111,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - [ ] Performance considerations (memo, lazy loading)?
 
 **Components to Review:**
+
 - ✅ All files in `/components/ui/` (Button, Logo, Navigation, Footer, etc.)
 - ✅ All files in `/components/sections/` (Hero, Features, Reviews, etc.)
 - ✅ All files in `/components/animations/` (UFOLanding, AnimatedSwoosh)
@@ -110,6 +120,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.3 TypeScript Quality Assessment
 
 **Evaluation Criteria:**
+
 - **Strict Mode:** Is `strict: true` enforced? Are there workarounds?
 - **Type Safety:** Any `any` usage? Proper inference?
 - **Interface/Type Organization:** Centralized vs inline?
@@ -117,6 +128,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Utility Types:** Proper use of `Partial`, `Pick`, `Omit`, etc.?
 
 **Files to Review:**
+
 - All `.ts` and `.tsx` files
 - Check for:
   - `any` usage
@@ -128,6 +140,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.4 Styling Strategy Audit
 
 **Evaluation Criteria:**
+
 - **Consistency:** Are Tailwind classes used consistently?
 - **Token Usage:** Are design tokens (colors, spacing) properly abstracted?
 - **Duplication:** Are common class sets extracted appropriately?
@@ -136,6 +149,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Responsive Design:** Consistent breakpoint usage?
 
 **Files to Review:**
+
 - `tailwind.config.ts` - theme configuration
 - `app/globals.css` - global styles, custom CSS
 - All component files - Tailwind className usage
@@ -148,6 +162,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.5 Performance Audit
 
 **Evaluation Criteria:**
+
 - **Rendering Strategy:** Proper use of SSR, SSG, CSR?
 - **Code Splitting:** Lazy loading where appropriate?
 - **Image Optimization:** Next.js Image component usage?
@@ -156,6 +171,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Memoization:** Appropriate use of memo, useMemo, useCallback?
 
 **Analysis Methods:**
+
 - Review all `page.tsx` files for rendering directives
 - Check for heavy client components
 - Review dependency usage (Prisma, Stripe, Zustand)
@@ -164,14 +180,16 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.6 Accessibility Audit
 
 **Evaluation Criteria:**
+
 - **Semantic HTML:** Proper use of semantic elements?
-- **ARIA:** Appropriate aria-* attributes?
+- **ARIA:** Appropriate aria-\* attributes?
 - **Keyboard Navigation:** Tab order, focus management?
 - **Color Contrast:** WCAG AA compliance?
 - **Screen Reader:** Proper labeling and descriptions?
 - **Motion Preferences:** `prefers-reduced-motion` respected?
 
 **Components to Review:**
+
 - Navigation/Menu components
 - Interactive elements (buttons, links, forms)
 - Modal/Dialog components
@@ -180,6 +198,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 2.7 Developer Experience Review
 
 **Evaluation Criteria:**
+
 - **Documentation:** Adequate README, comments?
 - **Setup Process:** Clear onboarding path?
 - **Linting:** Sufficient ESLint rules?
@@ -189,6 +208,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - **Type Safety:** IDE autocomplete working properly?
 
 **Files to Review:**
+
 - `README.md` - setup instructions
 - `eslint.config.mjs` - linting rules
 - Project structure - discoverability
@@ -201,6 +221,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 3.1 Severity Definitions
 
 **High Severity:**
+
 - Security vulnerabilities
 - Critical accessibility violations
 - Breaking architectural flaws
@@ -208,6 +229,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - Data safety concerns
 
 **Medium Severity:**
+
 - Significant technical debt
 - Maintainability concerns
 - Non-critical accessibility issues
@@ -215,6 +237,7 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 - Inconsistent patterns
 
 **Low Severity:**
+
 - Minor stylistic improvements
 - Documentation gaps
 - Nice-to-have optimizations
@@ -235,18 +258,21 @@ Perform a comprehensive architectural and code quality audit as a Principal Soft
 #### 3.3 Effort Estimation
 
 **Small (1-2 hours):**
+
 - Single file changes
 - Simple refactors
 - Documentation updates
 - Config tweaks
 
 **Medium (3-8 hours):**
+
 - Multi-file refactors
 - Component extraction
 - Moderate restructuring
 - Medium-scope feature additions
 
 **Large (9+ hours):**
+
 - Architectural changes
 - Major refactors
 - New system implementations
@@ -269,25 +295,30 @@ For each finding, document:
 **Estimated Hours:** X
 
 **Current State:**
+
 - Description of what exists now
 - Code examples or file references
 
 **Problem:**
+
 - Why this is suboptimal
 - Impact on maintainability, performance, scalability, etc.
 - Principle or best practice violated
 
 **Recommendation:**
+
 - Proposed solution
 - Implementation approach
 - Benefits of the change
 
 **Acceptance Criteria:**
+
 - [ ] Measurable criteria for completion
 - [ ] Testing requirements
 - [ ] Documentation requirements
 
 **References:**
+
 - Links to relevant documentation
 - Code references
 - Related findings
@@ -296,21 +327,25 @@ For each finding, document:
 #### 4.2 Prioritization Framework
 
 **Priority 1 (Critical):**
+
 - High severity + High impact
 - Blocks other work
 - Security or accessibility violations
 
 **Priority 2 (High):**
+
 - Medium/High severity + High impact
 - Significant technical debt
 - Performance bottlenecks
 
 **Priority 3 (Medium):**
+
 - Medium severity + Medium impact
 - DX improvements
 - Maintainability concerns
 
 **Priority 4 (Low):**
+
 - Low severity or Low impact
 - Nice-to-have improvements
 - Cosmetic changes
@@ -329,29 +364,36 @@ For each finding, document:
 **Estimated Hours:** X
 
 ### Problem Statement
+
 Clear description of the issue and why it matters.
 
 ### Current State
+
 What exists now (with code references).
 
 ### Proposed Solution
+
 Detailed implementation approach.
 
 ### Acceptance Criteria
+
 - [ ] Specific, measurable criteria
 - [ ] Testing requirements
 - [ ] Documentation requirements
 
 ### Technical Notes
+
 Implementation details, considerations, constraints.
 
 ### Related Issues
+
 Links to dependencies or related work.
 ```
 
 #### 5.2 Project Board Organization
 
 **Columns:**
+
 1. **Backlog** - All identified issues
 2. **Ready** - Groomed and ready for work
 3. **In Progress** - Currently being worked on
@@ -359,6 +401,7 @@ Links to dependencies or related work.
 5. **Done** - Merged
 
 **Labels:**
+
 - `architecture` - Architectural issues
 - `code-quality` - Code quality improvements
 - `performance` - Performance optimizations
@@ -408,18 +451,21 @@ Links to dependencies or related work.
 ## 📊 Success Criteria
 
 ### **Audit Completeness:**
+
 - ✅ Every file reviewed
 - ✅ All findings documented
 - ✅ Severity and effort estimated
 - ✅ Prioritization applied
 
 ### **Report Quality:**
+
 - ✅ Clear problem statements
 - ✅ Actionable recommendations
 - ✅ Measurable acceptance criteria
 - ✅ Professional tone and structure
 
 ### **Work Items:**
+
 - ✅ GitHub issues created for all approved findings
 - ✅ Proper labeling and prioritization
 - ✅ Added to project board
@@ -441,6 +487,7 @@ Links to dependencies or related work.
 ## 🔐 Audit Scope Summary
 
 ### **In Scope:**
+
 - All `.tsx`, `.ts`, `.css`, `.json` files
 - Configuration files
 - Documentation files
@@ -448,12 +495,14 @@ Links to dependencies or related work.
 - Git repository organization
 
 ### **Out of Scope:**
+
 - Third-party dependencies (unless usage is problematic)
 - `.next` build artifacts
 - `node_modules`
 - `.vercel` deployment artifacts
 
 ### **Protected Areas:**
+
 - Hero component layout logic (visual behavior)
 - Carefully tuned responsive breakpoints
 - Animation timing (unless improving without visual change)

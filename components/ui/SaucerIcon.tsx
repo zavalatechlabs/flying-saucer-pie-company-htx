@@ -5,9 +5,9 @@ interface SaucerIconProps {
   className?: string
 }
 
-export function SaucerIcon({ size = 32, className = "" }: SaucerIconProps) {
+export function SaucerIcon({ size = 32, className = '' }: SaucerIconProps) {
   return (
-    <Image 
+    <Image
       src="/brand/saucer.svg"
       alt="Flying Saucer"
       width={size}

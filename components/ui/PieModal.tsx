@@ -27,7 +27,7 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
       document.addEventListener('keydown', handleEscape)
       // Prevent body scroll when modal is open
       document.body.style.overflow = 'hidden'
-      
+
       // Focus trap - focus the close button when modal opens
       closeButtonRef.current?.focus()
     }
@@ -143,7 +143,10 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                 <div className="flex flex-col">
                   <div className="flex-1">
                     {/* Title */}
-                    <h2 id="modal-title" className="text-3xl md:text-4xl font-bold text-space-night mb-2">
+                    <h2
+                      id="modal-title"
+                      className="text-3xl md:text-4xl font-bold text-space-night mb-2"
+                    >
                       {pie.name}
                     </h2>
 
@@ -153,16 +156,12 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                     </p>
 
                     {/* Description */}
-                    <p className="text-dust-medium text-lg mb-6">
-                      {pie.description}
-                    </p>
+                    <p className="text-dust-medium text-lg mb-6">{pie.description}</p>
 
                     {/* Ingredients */}
                     {pie.ingredients && pie.ingredients.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-space-night mb-2">
-                          Ingredients
-                        </h3>
+                        <h3 className="text-lg font-semibold text-space-night mb-2">Ingredients</h3>
                         <ul className="list-disc list-inside text-dust-medium space-y-1">
                           {pie.ingredients.map((ingredient, index) => (
                             <li key={index}>{ingredient}</li>
@@ -177,7 +176,7 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                         ⚠️ Allergen Information
                       </h3>
                       <p className="text-sm text-dust-medium">
-                        {pie.isVegan 
+                        {pie.isVegan
                           ? 'This pie is vegan and contains no animal products. May contain wheat and nuts.'
                           : 'Contains dairy, eggs, and wheat. May contain nuts. Made in a facility that processes tree nuts and peanuts.'}
                       </p>
@@ -186,18 +185,14 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                     {/* Shelf Life */}
                     {pie.shelfLife && (
                       <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-space-night mb-1">
-                          Shelf Life
-                        </h3>
+                        <h3 className="text-sm font-semibold text-space-night mb-1">Shelf Life</h3>
                         <p className="text-sm text-dust-medium">{pie.shelfLife}</p>
                       </div>
                     )}
 
                     {/* Pricing */}
                     <div className="border-t border-dust-light pt-6 mb-6">
-                      <h3 className="text-lg font-semibold text-space-night mb-3">
-                        Pricing
-                      </h3>
+                      <h3 className="text-lg font-semibold text-space-night mb-3">Pricing</h3>
                       <div className="grid grid-cols-2 gap-4">
                         <div className="bg-cosmic-purple/5 p-4 rounded-lg">
                           <p className="text-sm text-dust-medium mb-1">Whole Pie</p>

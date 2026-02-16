@@ -7,37 +7,38 @@ import { site } from '@/lib/config'
 import { Fredoka, Pacifico, DM_Sans, Outfit } from 'next/font/google'
 
 // Hero logo fonts (LOCKED - hero foreground only)
-const fredoka = Fredoka({ 
+const fredoka = Fredoka({
   subsets: ['latin'],
   weight: ['600', '700'],
-  variable: '--font-fredoka'
+  variable: '--font-fredoka',
 })
 
-const pacifico = Pacifico({ 
+const pacifico = Pacifico({
   subsets: ['latin'],
   weight: ['400'],
-  variable: '--font-pacifico'
+  variable: '--font-pacifico',
 })
 
 // Retro theme fonts (applied globally except hero foreground)
 const dmSans = DM_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
-  variable: '--font-body'
+  variable: '--font-body',
 })
 
 const outfit = Outfit({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-display'
+  variable: '--font-display',
 })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Flying Saucer Pie Company - Houston\'s Best Pies Since 1967',
-    template: '%s | Flying Saucer Pie Company'
+    default: "Flying Saucer Pie Company - Houston's Best Pies Since 1967",
+    template: '%s | Flying Saucer Pie Company',
   },
-  description: 'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives. Our pies are out of this world!',
+  description:
+    'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives. Our pies are out of this world!',
   keywords: [
     'Houston pies',
     'pie shop Houston',
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     'fresh pies',
     'homemade pies',
     'pie delivery Houston',
-    'best pies Houston'
+    'best pies Houston',
   ],
   authors: [{ name: 'Flying Saucer Pie Company' }],
   creator: 'Flying Saucer Pie Company',
@@ -66,8 +67,9 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: site.url,
-    title: 'Flying Saucer Pie Company - Houston\'s Best Pies Since 1967',
-    description: 'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives. Our pies are out of this world!',
+    title: "Flying Saucer Pie Company - Houston's Best Pies Since 1967",
+    description:
+      'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives. Our pies are out of this world!',
     siteName: site.name,
     images: [
       {
@@ -80,8 +82,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Flying Saucer Pie Company - Houston\'s Best Pies Since 1967',
-    description: 'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives.',
+    title: "Flying Saucer Pie Company - Houston's Best Pies Since 1967",
+    description:
+      'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives.',
     images: ['/og-image.jpg'],
   },
 }
@@ -104,20 +107,20 @@ export default function RootLayout({
       addressLocality: businessInfo.address.city,
       addressRegion: businessInfo.address.state,
       postalCode: businessInfo.address.zip,
-      addressCountry: 'US'
+      addressCountry: 'US',
     },
     geo: {
       '@type': 'GeoCoordinates',
       latitude: '29.8182',
-      longitude: '-95.4096'
+      longitude: '-95.4096',
     },
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
         opens: '08:00',
-        closes: '19:00'
-      }
+        closes: '19:00',
+      },
     ],
     servesCuisine: 'American',
     priceRange: '$$',
@@ -125,8 +128,8 @@ export default function RootLayout({
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
-      reviewCount: '1247'
-    }
+      reviewCount: '1247',
+    },
   }
 
   return (
@@ -137,10 +140,12 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${dmSans.variable} ${outfit.variable}`}>
+      <body
+        className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${dmSans.variable} ${outfit.variable}`}
+      >
         {/* Global paper grain texture overlay */}
         <div className="grain-overlay" aria-hidden="true" />
-        
+
         <Navigation />
         <main aria-label="Main content">{children}</main>
         <Footer />

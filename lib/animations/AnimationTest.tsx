@@ -1,13 +1,13 @@
-'use client';
+'use client'
 
 /**
  * Test file to verify animation utilities work correctly
  * This can be imported in any component to test the animation setup
  */
 
-import { motion } from 'framer-motion';
-import { ScrollReveal } from './scroll-reveal';
-import { fadeIn, slideInLeft, slideInRight, slideUp, scaleUp } from './variants';
+import { motion } from 'framer-motion'
+import { ScrollReveal } from './ScrollReveal'
+import { fadeIn, slideInLeft, slideInRight, slideUp, scaleUp } from './variants'
 
 export function AnimationTest() {
   return (
@@ -69,7 +69,7 @@ export function AnimationTest() {
         </div>
       </ScrollReveal>
     </div>
-  );
+  )
 }
 
-export default AnimationTest;
+export default AnimationTest

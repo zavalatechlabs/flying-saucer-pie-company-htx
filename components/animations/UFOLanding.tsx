@@ -1,31 +1,31 @@
-'use client';
+'use client'
 
-import { motion, useReducedMotion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, useReducedMotion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 interface UFOLandingProps {
-  onComplete?: () => void;
-  children?: React.ReactNode;
+  onComplete?: () => void
+  children?: React.ReactNode
 }
 
 export function UFOLanding({ onComplete, children }: UFOLandingProps) {
-  const [animationComplete, setAnimationComplete] = useState(false);
-  const [skipAnimation, setSkipAnimation] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const [animationComplete, setAnimationComplete] = useState(false)
+  const [skipAnimation, setSkipAnimation] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
-  // Detect mobile for faster animation
-  const [isMobile, setIsMobile] = useState(false);
-  
+  // Detect mobile for faster animation (using useState initializer to avoid setState in useEffect)
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  )
+
   useEffect(() => {
-    setIsMobile(window.innerWidth < 768);
-    
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Animation durations (mobile is faster)
   const duration = {
@@ -34,38 +34,37 @@ export function UFOLanding({ onComplete, children }: UFOLandingProps) {
     tractorBeam: isMobile ? 0.25 : 0.5,
     heroText: isMobile ? 0.25 : 0.5,
     totalDuration: isMobile ? 2 : 4,
-  };
+  }
 
   useEffect(() => {
     if (shouldReduceMotion || skipAnimation) {
-      setAnimationComplete(true);
-      onComplete?.();
-      return;
+      // Immediately complete animation when motion is reduced
+      setAnimationComplete(true)
+      onComplete?.()
+      return
     }
 
     const timer = setTimeout(() => {
-      setAnimationComplete(true);
-      onComplete?.();
-    }, duration.totalDuration * 1000);
+      setAnimationComplete(true)
+      onComplete?.()
+    }, duration.totalDuration * 1000)
 
-    return () => clearTimeout(timer);
-  }, [shouldReduceMotion, skipAnimation, duration.totalDuration, onComplete]);
+    return () => clearTimeout(timer)
+  }, [shouldReduceMotion, skipAnimation, duration.totalDuration, onComplete])
 
   const handleSkip = () => {
-    setSkipAnimation(true);
-    setAnimationComplete(true);
-    onComplete?.();
-  };
+    setSkipAnimation(true)
+    setAnimationComplete(true)
+    onComplete?.()
+  }
 
   // If reduced motion or skipped, show instant fade-in
   if (shouldReduceMotion || skipAnimation) {
     return (
       <div className="relative w-full min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-deep-navy to-cosmic-purple">
-        <div className="relative z-10 text-center px-4">
-          {children}
-        </div>
+        <div className="relative z-10 text-center px-4">{children}</div>
       </div>
-    );
+    )
   }
 
   return (
@@ -166,13 +165,13 @@ export function UFOLanding({ onComplete, children }: UFOLandingProps) {
         {children}
       </motion.div>
     </div>
-  );
+  )
 }
 
 // UFO SVG Component
 function UFOIcon({ isMobile }: { isMobile: boolean }) {
-  const size = isMobile ? 80 : 120;
-  
+  const size = isMobile ? 80 : 120
+
   return (
     <svg
       width={size}
@@ -182,63 +181,23 @@ function UFOIcon({ isMobile }: { isMobile: boolean }) {
       aria-label="Flying Saucer"
     >
       {/* Dome glow */}
-      <ellipse
-        cx="50"
-        cy="20"
-        rx="22"
-        ry="17"
-        fill="url(#domeGlow)"
-        opacity="0.4"
-      />
-      
+      <ellipse cx="50" cy="20" rx="22" ry="17" fill="url(#domeGlow)" opacity="0.4" />
+
       {/* Main saucer body */}
-      <ellipse
-        cx="50"
-        cy="40"
-        rx="40"
-        ry="10"
-        fill="#6B2CBF"
-        stroke="#00D4FF"
-        strokeWidth="1"
-      />
-      
+      <ellipse cx="50" cy="40" rx="40" ry="10" fill="#6B2CBF" stroke="#00D4FF" strokeWidth="1" />
+
       {/* Saucer highlight */}
-      <ellipse
-        cx="50"
-        cy="38"
-        rx="35"
-        ry="7"
-        fill="url(#saucerGradient)"
-        opacity="0.6"
-      />
-      
+      <ellipse cx="50" cy="38" rx="35" ry="7" fill="url(#saucerGradient)" opacity="0.6" />
+
       {/* Dome */}
-      <ellipse
-        cx="50"
-        cy="20"
-        rx="20"
-        ry="15"
-        fill="url(#domeGradient)"
-      />
-      
+      <ellipse cx="50" cy="20" rx="20" ry="15" fill="url(#domeGradient)" />
+
       {/* Dome highlight */}
-      <ellipse
-        cx="45"
-        cy="15"
-        rx="8"
-        ry="6"
-        fill="white"
-        opacity="0.3"
-      />
-      
+      <ellipse cx="45" cy="15" rx="8" ry="6" fill="white" opacity="0.3" />
+
       {/* Lights on bottom */}
       <circle cx="30" cy="43" r="2" fill="#00D4FF" opacity="0.8">
-        <animate
-          attributeName="opacity"
-          values="0.8;0.3;0.8"
-          dur="1.5s"
-          repeatCount="indefinite"
-        />
+        <animate attributeName="opacity" values="0.8;0.3;0.8" dur="1.5s" repeatCount="indefinite" />
       </circle>
       <circle cx="50" cy="45" r="2" fill="#00D4FF" opacity="0.8">
         <animate
@@ -274,14 +233,14 @@ function UFOIcon({ isMobile }: { isMobile: boolean }) {
         </radialGradient>
       </defs>
     </svg>
-  );
+  )
 }
 
 // Tractor Beam Component
 function TractorBeam({ isMobile }: { isMobile: boolean }) {
-  const width = isMobile ? 100 : 150;
-  const height = isMobile ? 150 : 250;
-  
+  const width = isMobile ? 100 : 150
+  const height = isMobile ? 150 : 250
+
   return (
     <svg
       width={width}
@@ -304,7 +263,7 @@ function TractorBeam({ isMobile }: { isMobile: boolean }) {
           ease: 'easeInOut',
         }}
       />
-      
+
       {/* Inner beam */}
       <motion.path
         d="M 75 0 L 45 250 L 105 250 Z"
@@ -332,5 +291,5 @@ function TractorBeam({ isMobile }: { isMobile: boolean }) {
         </linearGradient>
       </defs>
     </svg>
-  );
+  )
 }

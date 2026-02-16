@@ -51,14 +51,18 @@ export function LocationContent() {
                   <MapPin size={64} className="mx-auto mb-4 text-cosmic-orange" />
                   <h3 className="text-2xl font-bold mb-2">Flying Saucer Pie Company</h3>
                   <p className="text-cream-white/80">{address.street}</p>
-                  <p className="text-cream-white/80">{address.city}, {address.state} {address.zip}</p>
-                  
+                  <p className="text-cream-white/80">
+                    {address.city}, {address.state} {address.zip}
+                  </p>
+
                   <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                     <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
                       <Button size="sm">Open in Google Maps</Button>
                     </a>
                     <a href={appleMapsUrl} target="_blank" rel="noopener noreferrer">
-                      <Button variant="secondary" size="sm">Open in Apple Maps</Button>
+                      <Button variant="secondary" size="sm">
+                        Open in Apple Maps
+                      </Button>
                     </a>
                   </div>
                 </div>
@@ -81,7 +85,9 @@ export function LocationContent() {
                   <div>
                     <h3 className="text-2xl font-bold text-space-night mb-2">Address</h3>
                     <p className="text-lg text-dust-dark">{address.street}</p>
-                    <p className="text-lg text-dust-dark">{address.city}, {address.state} {address.zip}</p>
+                    <p className="text-lg text-dust-dark">
+                      {address.city}, {address.state} {address.zip}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -120,9 +126,7 @@ export function LocationContent() {
                         <div key={day} className="flex justify-between">
                           <span className="capitalize font-medium text-dust-dark">{day}</span>
                           <span className="text-dust-medium">
-                            {typeof hours === 'string' 
-                              ? hours 
-                              : `${hours.open} - ${hours.close}`}
+                            {typeof hours === 'string' ? hours : `${hours.open} - ${hours.close}`}
                           </span>
                         </div>
                       ))}
@@ -147,9 +151,7 @@ export function LocationContent() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-space-night mb-4">
-              Getting Here & Parking
-            </h2>
+            <h2 className="text-3xl font-bold text-space-night mb-4">Getting Here & Parking</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -163,7 +165,7 @@ export function LocationContent() {
               <Car size={32} className="text-cosmic-orange mb-4" />
               <h3 className="text-xl font-bold text-space-night mb-3">Parking</h3>
               <p className="text-dust-medium">
-                Free parking available in our lot. During busy times (especially Thanksgiving week), 
+                Free parking available in our lot. During busy times (especially Thanksgiving week),
                 additional street parking is available on Crosstimbers.
               </p>
             </motion.div>
@@ -178,8 +180,8 @@ export function LocationContent() {
               <Navigation size={32} className="text-cosmic-orange mb-4" />
               <h3 className="text-xl font-bold text-space-night mb-3">Nearby Landmarks</h3>
               <p className="text-dust-medium">
-                Located on W Crosstimbers Street in the Heights area. Look for our iconic 
-                Flying Saucer sign - you can&apos;t miss it!
+                Located on W Crosstimbers Street in the Heights area. Look for our iconic Flying
+                Saucer sign - you can&apos;t miss it!
               </p>
             </motion.div>
           </div>
@@ -191,9 +193,7 @@ export function LocationContent() {
             viewport={{ once: true }}
             className="mt-12 bg-cosmic-orange/10 border-2 border-cosmic-orange rounded-2xl p-8 text-center"
           >
-            <h3 className="text-xl font-bold text-space-night mb-4">
-              💡 Pro Tips
-            </h3>
+            <h3 className="text-xl font-bold text-space-night mb-4">💡 Pro Tips</h3>
             <ul className="text-dust-dark space-y-2 text-left max-w-2xl mx-auto">
               <li>• Tuesday mornings are typically the least busy</li>
               <li>• Call ahead to check if we have your favorite pie in stock</li>

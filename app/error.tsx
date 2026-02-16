@@ -22,9 +22,7 @@ export default function Error({
       <div className="text-center max-w-md">
         <div className="mb-8">
           <div className="text-6xl mb-4">🛸</div>
-          <h1 className="text-h1 font-display text-ink mb-2">
-            Houston, we have a problem!
-          </h1>
+          <h1 className="text-h1 font-display text-ink mb-2">Houston, we have a problem!</h1>
           <p className="text-body text-ink-muted mb-6">
             Something went wrong while loading this page. Our team has been notified.
           </p>
@@ -39,7 +37,7 @@ export default function Error({
             </details>
           )}
         </div>
-        
+
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button
             onClick={reset}

@@ -1,4 +1,4 @@
-import { Variants } from 'framer-motion';
+import { Variants } from 'framer-motion'
 
 /**
  * Reusable Framer Motion animation variants for the Flying Saucer Pie Company
@@ -16,7 +16,7 @@ export const fadeIn: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Slide in from left
 export const slideInLeft: Variants = {
@@ -32,7 +32,7 @@ export const slideInLeft: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Slide in from right
 export const slideInRight: Variants = {
@@ -48,7 +48,7 @@ export const slideInRight: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Slide up animation
 export const slideUp: Variants = {
@@ -64,7 +64,7 @@ export const slideUp: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Slide down animation
 export const slideDown: Variants = {
@@ -80,7 +80,7 @@ export const slideDown: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Scale up animation (good for cards/images)
 export const scaleUp: Variants = {
@@ -96,7 +96,7 @@ export const scaleUp: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Stagger children animation (for lists/grids)
 export const staggerContainer: Variants = {
@@ -108,7 +108,7 @@ export const staggerContainer: Variants = {
       delayChildren: 0.2,
     },
   },
-};
+}
 
 // Individual item in stagger container
 export const staggerItem: Variants = {
@@ -124,7 +124,7 @@ export const staggerItem: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Rotate and scale (good for hero elements)
 export const rotateScale: Variants = {
@@ -142,7 +142,7 @@ export const rotateScale: Variants = {
       ease: 'easeOut',
     },
   },
-};
+}
 
 // Bounce in effect
 export const bounceIn: Variants = {
@@ -160,4 +160,4 @@ export const bounceIn: Variants = {
       duration: 0.8,
     },
   },
-};
+}

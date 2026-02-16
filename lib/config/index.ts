@@ -1,6 +1,6 @@
 /**
  * Application Configuration
- * 
+ *
  * Centralized configuration loaded from environment variables.
  * All config values are validated at build time.
  */
@@ -80,7 +80,7 @@ export type Config = typeof config
 if (typeof window === 'undefined') {
   // Server-side only validation
   console.log('✓ Configuration loaded successfully')
-  
+
   // Log warnings for missing optional values
   if (!config.analytics.gaId) {
     console.warn('⚠ Google Analytics ID not configured (NEXT_PUBLIC_GA_ID)')

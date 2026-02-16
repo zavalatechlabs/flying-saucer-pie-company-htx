@@ -5,40 +5,40 @@
 @layer base {
   :root {
     /* === RETRO SPACE-AGE DINER DESIGN TOKENS === */
-    
+
     /* Colors - Warm Paper & Ink Theme */
-    --bg: #FFF8F0;                    /* Main cream paper background */
-    --bg-alt: #FFF3E6;                /* Slightly darker cream for alternating sections */
-    --surface: #FFFFFF;               /* Card surface (pure white) */
-    --ink: #1A1A2E;                   /* Primary navy/ink text */
-    --ink-muted: #4A5568;             /* Muted ink for secondary text */
-    --accent: #D4856A;                /* Muted vintage terracotta */
-    --accent-2: #6B8E9F;              /* Muted vintage teal */
-    --border: #E8DDD0;                /* Soft paper border */
+    --bg: #fff8f0; /* Main cream paper background */
+    --bg-alt: #fff3e6; /* Slightly darker cream for alternating sections */
+    --surface: #ffffff; /* Card surface (pure white) */
+    --ink: #1a1a2e; /* Primary navy/ink text */
+    --ink-muted: #4a5568; /* Muted ink for secondary text */
+    --accent: #d4856a; /* Muted vintage terracotta */
+    --accent-2: #6b8e9f; /* Muted vintage teal */
+    --border: #e8ddd0; /* Soft paper border */
     --shadow: rgba(26, 26, 46, 0.08); /* Soft shadow */
-    
+
     /* Accent highlights (from original palette, used sparingly) */
-    --cosmic-purple: #6B2CBF;
-    --cosmic-purple-light: #8B4FD9;
-    --cosmic-purple-dark: #4F1E99;
-    --electric-blue: #00D4FF;
-    --sunset-orange: #FF6B35;
-    --deep-navy: #0B1929;
-    --warm-cream: #FFF8F3;
-    
+    --cosmic-purple: #6b2cbf;
+    --cosmic-purple-light: #8b4fd9;
+    --cosmic-purple-dark: #4f1e99;
+    --electric-blue: #00d4ff;
+    --sunset-orange: #ff6b35;
+    --deep-navy: #0b1929;
+    --warm-cream: #fff8f3;
+
     /* Radii - Friendly Rounded */
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
     --radius-lg: 1.25rem;
     --radius-pill: 9999px;
-    
+
     /* Typography */
     --font-display: var(--font-outfit);
     --font-body: var(--font-dm-sans);
     --tracking-display: -0.02em;
     --leading-display: 1.1;
     --leading-body: 1.6;
-    
+
     /* Layout */
     --container-max: 80rem;
     --section-xs: 2rem;
@@ -46,7 +46,7 @@
     --section: 4rem;
     --section-lg: 6rem;
     --section-xl: 8rem;
-    
+
     /* Legacy CSS variable support */
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -79,7 +79,12 @@
   }
 
   /* Retro Typography System */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display), 'Space Grotesk', 'Inter', system-ui, sans-serif;
     font-weight: 700;
     color: var(--ink);
@@ -138,7 +143,7 @@
 
 @layer components {
   /* === RETRO BUTTONS === */
-  
+
   .btn-primary {
     background-color: var(--accent);
     color: white;
@@ -157,7 +162,7 @@
   }
 
   .btn-primary:hover {
-    background-color: #C17259;
+    background-color: #c17259;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(212, 133, 106, 0.35);
   }
@@ -168,7 +173,9 @@
 
   .btn-primary:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+    box-shadow:
+      0 0 0 3px var(--bg),
+      0 0 0 5px var(--accent);
   }
 
   .btn-primary:disabled {
@@ -209,7 +216,9 @@
 
   .btn-secondary:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+    box-shadow:
+      0 0 0 3px var(--bg),
+      0 0 0 5px var(--accent);
   }
 
   .btn-ghost {
@@ -239,7 +248,9 @@
 
   .btn-ghost:focus {
     outline: none;
-    box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--accent);
+    box-shadow:
+      0 0 0 3px var(--bg),
+      0 0 0 5px var(--accent);
   }
 
   /* Button Sizes */
@@ -254,23 +265,29 @@
   }
 
   /* === RETRO CARDS === */
-  
-  .card, .pie-card {
+
+  .card,
+  .pie-card {
     background-color: var(--surface);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
-    box-shadow: 0 2px 8px var(--shadow), 0 1px 3px rgba(26, 26, 46, 0.05);
+    box-shadow:
+      0 2px 8px var(--shadow),
+      0 1px 3px rgba(26, 26, 46, 0.05);
     border: 1px solid var(--border);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .card:hover, .pie-card:hover {
-    box-shadow: 0 8px 24px rgba(26, 26, 46, 0.12), 0 4px 12px rgba(26, 26, 46, 0.08);
+  .card:hover,
+  .pie-card:hover {
+    box-shadow:
+      0 8px 24px rgba(26, 26, 46, 0.12),
+      0 4px 12px rgba(26, 26, 46, 0.08);
     transform: translateY(-4px);
   }
 
   /* === FORM INPUTS === */
-  
+
   .input-field {
     width: 100%;
     padding: 0.875rem 1.125rem;
@@ -328,7 +345,7 @@
   }
 
   /* === NAVIGATION === */
-  
+
   .nav-link {
     color: var(--ink);
     font-weight: 500;
@@ -358,7 +375,7 @@
   }
 
   /* === SECTIONS === */
-  
+
   .section-container {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -384,7 +401,7 @@
   }
 
   /* === BADGES === */
-  
+
   .badge {
     display: inline-flex;
     align-items: center;
@@ -409,16 +426,16 @@
 
   .badge-warning {
     background-color: rgba(245, 158, 11, 0.15);
-    color: #D97706;
+    color: #d97706;
   }
 
   .badge-error {
     background-color: rgba(239, 68, 68, 0.15);
-    color: #DC2626;
+    color: #dc2626;
   }
 
   /* === LINKS === */
-  
+
   .link {
     color: var(--accent);
     text-decoration: underline;
@@ -429,14 +446,14 @@
   }
 
   .link:hover {
-    color: #C17259;
-    text-decoration-color: #C17259;
+    color: #c17259;
+    text-decoration-color: #c17259;
   }
 }
 
 @layer components {
   /* === PIE ROTATION (preserved from V1) === */
-  
+
   .pie-scroll-container {
     display: flex;
     flex-wrap: nowrap;
@@ -501,7 +518,7 @@
   }
 
   /* === HERO FONTS (LOCKED - DO NOT CHANGE) === */
-  
+
   .headline-font {
     font-family: var(--font-fredoka), sans-serif;
   }
@@ -513,7 +530,7 @@
 
 @layer utilities {
   /* === SPACING UTILITIES === */
-  
+
   .py-section-xs {
     padding-top: var(--section-xs);
     padding-bottom: var(--section-xs);
@@ -540,7 +557,7 @@
   }
 
   /* === GRADIENT TEXT === */
-  
+
   .gradient-text {
     background: linear-gradient(to right, var(--accent), var(--accent-2));
     -webkit-background-clip: text;
@@ -549,7 +566,7 @@
   }
 
   /* === LOADING SKELETON === */
-  
+
   .skeleton {
     background: linear-gradient(to right, var(--bg-alt), var(--border), var(--bg-alt));
     background-size: 200% 100%;
@@ -669,7 +686,8 @@ html {
 
 /* Scroll indicator bounce animation */
 @keyframes scrollBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -693,15 +711,15 @@ html {
   .hero-headline-container {
     top: 8% !important;
   }
-  
+
   .hero-swoosh {
     top: 22% !important;
   }
-  
+
   .hero-tagline-container {
     top: 32% !important;
   }
-  
+
   .hero-saucer {
     bottom: 22% !important;
   }

@@ -7,7 +7,7 @@ import { pies, Pie } from '@/lib/data/pies'
 import { PieCard } from '@/components/ui/PieCard'
 import { PieModal } from '@/components/ui/PieModal'
 import { Button } from '@/components/ui/Button'
-import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideUp } from '@/lib/animations/variants'
 
 const categories = [
@@ -28,7 +28,7 @@ export function MenuContent() {
 
   // Apply category filter
   if (selectedCategory !== 'all') {
-    filteredPies = filteredPies.filter(pie => {
+    filteredPies = filteredPies.filter((pie) => {
       if (selectedCategory === 'cream') {
         // Include both cream and cheesecake in the cream category
         return pie.category === 'cream' || pie.category === 'cheesecake'
@@ -39,9 +39,10 @@ export function MenuContent() {
 
   // Apply search filter
   if (searchQuery) {
-    filteredPies = filteredPies.filter(pie =>
-      pie.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      pie.description.toLowerCase().includes(searchQuery.toLowerCase())
+    filteredPies = filteredPies.filter(
+      (pie) =>
+        pie.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        pie.description.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }
 
@@ -85,7 +86,10 @@ export function MenuContent() {
           <div className="mb-12">
             {/* Search Bar */}
             <div className="relative max-w-md mx-auto mb-8">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-dust-medium" size={20} />
+              <Search
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-dust-medium"
+                size={20}
+              />
               <input
                 type="text"
                 placeholder="Search pies..."
@@ -104,9 +108,10 @@ export function MenuContent() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-8 py-3 rounded-full font-semibold transition-all duration-300
-                    ${selectedCategory === category.id
-                      ? 'bg-cosmic-purple text-white shadow-lg shadow-cosmic-purple/30'
-                      : 'bg-white text-space-night hover:bg-cosmic-purple/10 border-2 border-cosmic-purple/20'
+                    ${
+                      selectedCategory === category.id
+                        ? 'bg-cosmic-purple text-white shadow-lg shadow-cosmic-purple/30'
+                        : 'bg-white text-space-night hover:bg-cosmic-purple/10 border-2 border-cosmic-purple/20'
                     }`}
                 >
                   <span className="mr-2 text-lg">{category.emoji}</span>
@@ -126,11 +131,7 @@ export function MenuContent() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
               {filteredPies.map((pie, index) => (
                 <ScrollReveal key={pie.id} variants={slideUp} delay={index * 0.05}>
-                  <PieCard 
-                    pie={pie} 
-                    index={index} 
-                    onClick={() => handlePieClick(pie)}
-                  />
+                  <PieCard pie={pie} index={index} onClick={() => handlePieClick(pie)} />
                 </ScrollReveal>
               ))}
             </div>
@@ -143,21 +144,19 @@ export function MenuContent() {
               <p className="text-2xl text-dust-medium mb-4">
                 No pies found matching your criteria 😢
               </p>
-              <Button onClick={() => {
-                setSearchQuery('')
-                setSelectedCategory('all')
-              }}>
+              <Button
+                onClick={() => {
+                  setSearchQuery('')
+                  setSelectedCategory('all')
+                }}
+              >
                 Clear Filters
               </Button>
             </motion.div>
           )}
 
           {/* Pie Details Modal */}
-          <PieModal 
-            pie={selectedPie} 
-            isOpen={isModalOpen} 
-            onClose={handleCloseModal}
-          />
+          <PieModal pie={selectedPie} isOpen={isModalOpen} onClose={handleCloseModal} />
 
           {/* Special Notes */}
           <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -166,10 +165,12 @@ export function MenuContent() {
               <div className="bg-white rounded-2xl p-8 shadow-lg">
                 <h3 className="text-2xl font-bold text-space-night mb-4">🍰 About Our Slices</h3>
                 <p className="text-dust-medium mb-4">
-                  All pies are available by the slice (1/6 of a whole pie). Perfect for trying multiple flavors!
+                  All pies are available by the slice (1/6 of a whole pie). Perfect for trying
+                  multiple flavors!
                 </p>
                 <p className="text-sm text-dust-medium">
-                  <strong>Note:</strong> After 6pm, slice selection may be limited based on availability.
+                  <strong>Note:</strong> After 6pm, slice selection may be limited based on
+                  availability.
                 </p>
               </div>
             </ScrollReveal>
@@ -177,7 +178,9 @@ export function MenuContent() {
             {/* Freezing Information */}
             <ScrollReveal variants={slideUp} delay={0.2}>
               <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-space-night mb-4">❄️ Freezing Instructions</h3>
+                <h3 className="text-2xl font-bold text-space-night mb-4">
+                  ❄️ Freezing Instructions
+                </h3>
                 <p className="text-dust-medium mb-4">
                   Pies with the ❄️ symbol can be frozen for up to 3 months.
                 </p>

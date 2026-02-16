@@ -9,10 +9,10 @@ import { ArrowRight } from 'lucide-react'
 
 // Featured pies - select a variety
 const featuredPies = [
-  pies.find(p => p.id === 'apple'),
-  pies.find(p => p.id === 'strawberry-cream'),
-  pies.find(p => p.id === 'pecan'),
-  pies.find(p => p.id === 'key-lime')
+  pies.find((p) => p.id === 'apple'),
+  pies.find((p) => p.id === 'strawberry-cream'),
+  pies.find((p) => p.id === 'pecan'),
+  pies.find((p) => p.id === 'key-lime'),
 ].filter(Boolean)
 
 export function MenuPreviewSection() {
@@ -34,9 +34,9 @@ export function MenuPreviewSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {featuredPies.map((pie, index) => (
-            pie && <PieCard key={pie.id} pie={pie} index={index} />
-          ))}
+          {featuredPies.map(
+            (pie, index) => pie && <PieCard key={pie.id} pie={pie} index={index} />
+          )}
         </div>
 
         <motion.div
@@ -51,7 +51,7 @@ export function MenuPreviewSection() {
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
-          
+
           <p className="mt-6 text-dust-medium">
             We have {pies.length} varieties of pies - something for everyone!
           </p>
@@ -64,12 +64,10 @@ export function MenuPreviewSection() {
           viewport={{ once: true }}
           className="mt-16 bg-cosmic-orange/10 border-2 border-cosmic-orange rounded-2xl p-8 text-center"
         >
-          <h3 className="text-2xl font-bold text-space-night mb-3">
-            🎄 Holiday Orders
-          </h3>
+          <h3 className="text-2xl font-bold text-space-night mb-3">🎄 Holiday Orders</h3>
           <p className="text-dust-dark mb-4">
-            Planning for Thanksgiving? Remember - we don&apos;t take orders during Thanksgiving week.
-            All pies are first come, first served!
+            Planning for Thanksgiving? Remember - we don&apos;t take orders during Thanksgiving
+            week. All pies are first come, first served!
           </p>
           <Link href="/about#thanksgiving">
             <Button variant="secondary">Learn More About Holiday Hours</Button>

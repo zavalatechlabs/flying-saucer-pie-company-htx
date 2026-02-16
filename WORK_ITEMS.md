@@ -3,6 +3,7 @@
 ## Phase 1: Foundation & Setup
 
 ### Issue #1: Install Dependencies & Setup Animation Infrastructure
+
 **Priority:** High  
 **Effort:** 1-2 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -11,6 +12,7 @@
 Install required dependencies for animations and modern interactions.
 
 **Tasks:**
+
 - [ ] Install Framer Motion: `npm install framer-motion`
 - [ ] Install React Intersection Observer: `npm install react-intersection-observer`
 - [ ] Create animation utilities in `lib/animations/`
@@ -19,6 +21,7 @@ Install required dependencies for animations and modern interactions.
 - [ ] Test basic animation setup
 
 **Acceptance Criteria:**
+
 - All dependencies installed
 - No build errors
 - Basic animation test passes
@@ -26,6 +29,7 @@ Install required dependencies for animations and modern interactions.
 ---
 
 ### Issue #2: Update Color Palette & Typography System
+
 **Priority:** High  
 **Effort:** 1-2 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -34,6 +38,7 @@ Install required dependencies for animations and modern interactions.
 Update Tailwind config with new V1 design system (cosmic purple theme).
 
 **Tasks:**
+
 - [ ] Update `tailwind.config.ts` with new color palette:
   ```typescript
   colors: {
@@ -49,6 +54,7 @@ Update Tailwind config with new V1 design system (cosmic purple theme).
 - [ ] Test color contrast for accessibility (WCAG AA)
 
 **Acceptance Criteria:**
+
 - New colors applied throughout site
 - Typography hierarchy consistent
 - Accessibility contrast requirements met
@@ -58,6 +64,7 @@ Update Tailwind config with new V1 design system (cosmic purple theme).
 ## Phase 2: Hero & Landing Animation
 
 ### Issue #3: Create UFO Landing Hero Animation
+
 **Priority:** High  
 **Effort:** 4-6 hours  
 **Assignee:** Animation Engineer Sub-Agent
@@ -66,6 +73,7 @@ Update Tailwind config with new V1 design system (cosmic purple theme).
 Build the UFO landing sequence for the homepage hero section.
 
 **Tasks:**
+
 - [ ] Create `components/animations/UFOLanding.tsx`
 - [ ] Animation sequence:
   1. Stars fade in (0-0.5s)
@@ -79,11 +87,13 @@ Build the UFO landing sequence for the homepage hero section.
 - [ ] Mobile-optimized version (faster, simpler)
 
 **Assets Needed:**
+
 - UFO SVG or Lottie animation
 - Tractor beam effect (SVG gradient or canvas)
 - Stars background
 
 **Acceptance Criteria:**
+
 - Animation runs smoothly (60fps)
 - Works on mobile and desktop
 - Respects user motion preferences
@@ -92,6 +102,7 @@ Build the UFO landing sequence for the homepage hero section.
 ---
 
 ### Issue #4: Update Homepage Hero Section
+
 **Priority:** High  
 **Effort:** 2-3 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -100,6 +111,7 @@ Build the UFO landing sequence for the homepage hero section.
 Integrate UFO landing animation into hero section with new copy and CTAs.
 
 **Tasks:**
+
 - [ ] Update `app/page.tsx` hero section
 - [ ] Integrate `<UFOLanding />` component
 - [ ] Update headline: "Houston's Pies That Are Out of This World"
@@ -108,6 +120,7 @@ Integrate UFO landing animation into hero section with new copy and CTAs.
 - [ ] Add background (stars, deep navy gradient)
 
 **Acceptance Criteria:**
+
 - Hero loads with animation
 - Text readable and accessible
 - CTAs functional and prominent
@@ -117,6 +130,7 @@ Integrate UFO landing animation into hero section with new copy and CTAs.
 ## Phase 3: Interactive Elements
 
 ### Issue #5: Build Rotating Pie Showcase Section
+
 **Priority:** High  
 **Effort:** 4-5 hours  
 **Assignee:** Animation Engineer Sub-Agent
@@ -125,6 +139,7 @@ Integrate UFO landing animation into hero section with new copy and CTAs.
 Create interactive pie showcase with 3D rotation effects.
 
 **Tasks:**
+
 - [ ] Create `components/sections/PieShowcase.tsx`
 - [ ] Implement 3D tilt effect on hover (CSS transforms)
 - [ ] Framer Motion animation for smooth rotation
@@ -133,6 +148,7 @@ Create interactive pie showcase with 3D rotation effects.
 - [ ] Mobile: disable 3D, use simple fade/scale
 
 **Technical Details:**
+
 ```tsx
 // Example hover effect
 const pieVariants = {
@@ -140,12 +156,13 @@ const pieVariants = {
     rotateY: 15,
     rotateX: -10,
     scale: 1.05,
-    transition: { duration: 0.3 }
-  }
+    transition: { duration: 0.3 },
+  },
 }
 ```
 
 **Acceptance Criteria:**
+
 - Pies rotate smoothly on hover
 - No janky animations
 - Works on all screen sizes
@@ -154,6 +171,7 @@ const pieVariants = {
 ---
 
 ### Issue #6: Implement Scroll-Triggered Animations
+
 **Priority:** Medium  
 **Effort:** 3-4 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -162,6 +180,7 @@ const pieVariants = {
 Add scroll-reveal animations to all content sections.
 
 **Tasks:**
+
 - [ ] Create `components/animations/ScrollReveal.tsx` wrapper
 - [ ] Use Intersection Observer API
 - [ ] Apply to:
@@ -173,6 +192,7 @@ Add scroll-reveal animations to all content sections.
 - [ ] Variants: slide-in-left, slide-in-right, fade-up
 
 **Example Implementation:**
+
 ```tsx
 <ScrollReveal variant="slide-in-left" delay={0.1}>
   <FeatureCard />
@@ -180,6 +200,7 @@ Add scroll-reveal animations to all content sections.
 ```
 
 **Acceptance Criteria:**
+
 - Animations trigger at correct scroll position
 - Smooth, natural feel
 - Respects `prefers-reduced-motion`
@@ -188,6 +209,7 @@ Add scroll-reveal animations to all content sections.
 ---
 
 ### Issue #7: Create Falling Cherry/UFO Animation
+
 **Priority:** Medium  
 **Effort:** 3-4 hours  
 **Assignee:** Animation Engineer Sub-Agent
@@ -196,6 +218,7 @@ Add scroll-reveal animations to all content sections.
 Build cherry dropping onto pie animation for menu section.
 
 **Tasks:**
+
 - [ ] Create `components/animations/CherryDrop.tsx`
 - [ ] Animation: Cherry falls from top, lands with bounce
 - [ ] Trigger: Scroll position in menu section
@@ -204,6 +227,7 @@ Build cherry dropping onto pie animation for menu section.
 - [ ] Use Lottie or Canvas for smooth animation
 
 **Acceptance Criteria:**
+
 - Cherry/UFO animation smooth and playful
 - Triggered at correct scroll position
 - Mobile-friendly
@@ -211,6 +235,7 @@ Build cherry dropping onto pie animation for menu section.
 ---
 
 ### Issue #8: Build Scrolling Reviews Marquee
+
 **Priority:** Medium  
 **Effort:** 2-3 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -219,6 +244,7 @@ Build cherry dropping onto pie animation for menu section.
 Create infinite scrolling testimonial section.
 
 **Tasks:**
+
 - [ ] Create `components/sections/ReviewsMarquee.tsx`
 - [ ] Infinite horizontal scroll (CSS or Framer Motion)
 - [ ] Two rows scrolling in opposite directions
@@ -227,10 +253,12 @@ Create infinite scrolling testimonial section.
 - [ ] Content: Customer name, rating, quote
 
 **Technical:**
+
 - Use CSS `@keyframes` for performance
 - Or Framer Motion `animate` for more control
 
 **Acceptance Criteria:**
+
 - Smooth, infinite scroll
 - Pauses on hover
 - Responsive on mobile
@@ -241,6 +269,7 @@ Create infinite scrolling testimonial section.
 ## Phase 4: Page Updates
 
 ### Issue #9: Redesign Menu Page
+
 **Priority:** High  
 **Effort:** 3-4 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -249,6 +278,7 @@ Create infinite scrolling testimonial section.
 Update menu page with new design and animations.
 
 **Tasks:**
+
 - [ ] Filter by category (fruit, cream, seasonal, etc.)
 - [ ] Pie cards with 3D tilt on hover
 - [ ] Modal for pie details (click to expand)
@@ -257,6 +287,7 @@ Update menu page with new design and animations.
 - [ ] Add "Add to Cart" button (non-functional for now)
 
 **Acceptance Criteria:**
+
 - Clean, modern layout
 - Filters work correctly
 - Modal accessible and responsive
@@ -264,6 +295,7 @@ Update menu page with new design and animations.
 ---
 
 ### Issue #10: Redesign About Page with Timeline
+
 **Priority:** Medium  
 **Effort:** 2-3 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -272,6 +304,7 @@ Update menu page with new design and animations.
 Update about page with scroll-triggered timeline.
 
 **Tasks:**
+
 - [ ] Vertical timeline layout
 - [ ] Scroll-reveal animation for each milestone
 - [ ] Add photos/images
@@ -279,6 +312,7 @@ Update about page with scroll-triggered timeline.
 - [ ] Founder story section
 
 **Acceptance Criteria:**
+
 - Timeline animates on scroll
 - Story engaging and readable
 - Images optimized (WebP)
@@ -286,6 +320,7 @@ Update about page with scroll-triggered timeline.
 ---
 
 ### Issue #11: Update Location Page
+
 **Priority:** Low  
 **Effort:** 1-2 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -294,18 +329,21 @@ Update about page with scroll-triggered timeline.
 Refresh location page with new design.
 
 **Tasks:**
+
 - [ ] Embed Google Maps (responsive)
 - [ ] Hours, phone, address with icons
 - [ ] Scroll animation for content blocks
 - [ ] Directions/parking info
 
 **Acceptance Criteria:**
+
 - Map loads correctly
 - Info clear and accessible
 
 ---
 
 ### Issue #12: Update Contact Page with Animation
+
 **Priority:** Low  
 **Effort:** 2 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -314,6 +352,7 @@ Refresh location page with new design.
 Redesign contact form with UFO "sending" animation.
 
 **Tasks:**
+
 - [ ] Clean form layout
 - [ ] Validation (client-side)
 - [ ] On submit: UFO "beaming up" message animation
@@ -321,6 +360,7 @@ Redesign contact form with UFO "sending" animation.
 - [ ] Integrate with existing contact API
 
 **Acceptance Criteria:**
+
 - Form validates correctly
 - Submit animation delightful
 - Works on all devices
@@ -330,6 +370,7 @@ Redesign contact form with UFO "sending" animation.
 ## Phase 5: Polish & Optimization
 
 ### Issue #13: Performance Optimization
+
 **Priority:** High  
 **Effort:** 2-3 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -338,6 +379,7 @@ Redesign contact form with UFO "sending" animation.
 Optimize site performance for production.
 
 **Tasks:**
+
 - [ ] Lazy load animations (viewport-based)
 - [ ] Optimize images (WebP, lazy loading)
 - [ ] Preload critical assets (fonts, UFO animation)
@@ -346,6 +388,7 @@ Optimize site performance for production.
 - [ ] Test on slow 3G connection
 
 **Acceptance Criteria:**
+
 - Lighthouse Performance > 90
 - First Contentful Paint < 2s
 - Smooth animations on mid-tier devices
@@ -353,6 +396,7 @@ Optimize site performance for production.
 ---
 
 ### Issue #14: Accessibility Audit & Fixes
+
 **Priority:** High  
 **Effort:** 2 hours  
 **Assignee:** Frontend Engineer Sub-Agent
@@ -361,6 +405,7 @@ Optimize site performance for production.
 Ensure site meets WCAG AA standards.
 
 **Tasks:**
+
 - [ ] Add "Skip to main content" link
 - [ ] Keyboard navigation for all interactive elements
 - [ ] ARIA labels for animations
@@ -370,6 +415,7 @@ Ensure site meets WCAG AA standards.
 - [ ] Implement `prefers-reduced-motion` throughout
 
 **Acceptance Criteria:**
+
 - Lighthouse Accessibility > 95
 - Keyboard navigable
 - Screen reader friendly
@@ -377,6 +423,7 @@ Ensure site meets WCAG AA standards.
 ---
 
 ### Issue #15: Mobile Responsiveness Testing
+
 **Priority:** High  
 **Effort:** 2 hours  
 **Assignee:** QA Sub-Agent
@@ -385,6 +432,7 @@ Ensure site meets WCAG AA standards.
 Test all pages and animations on mobile devices.
 
 **Tasks:**
+
 - [ ] Test on iOS Safari (iPhone 12, 14)
 - [ ] Test on Android Chrome (Pixel, Samsung)
 - [ ] Verify animations don't cause jank
@@ -392,6 +440,7 @@ Test all pages and animations on mobile devices.
 - [ ] Forms usable on small screens
 
 **Acceptance Criteria:**
+
 - All features work on mobile
 - No layout issues
 - Animations smooth (or simplified for performance)
@@ -403,11 +452,13 @@ Test all pages and animations on mobile devices.
 **Total Issues:** 15  
 **Estimated Effort:** 35-45 hours  
 **Priority Breakdown:**
+
 - High: 9 issues
 - Medium: 4 issues
 - Low: 2 issues
 
 **Suggested Sprint Plan:**
+
 - **Sprint 1 (Week 1):** Issues #1-4 (Foundation + Hero)
 - **Sprint 2 (Week 2):** Issues #5-8 (Interactive Elements)
 - **Sprint 3 (Week 3):** Issues #9-12 (Page Updates)

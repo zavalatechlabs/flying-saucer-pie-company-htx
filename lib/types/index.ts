@@ -1,9 +1,9 @@
 /**
  * Centralized Type Definitions
- * 
+ *
  * This file exports all type definitions used throughout the application.
  * Import types from this file rather than defining them inline.
- * 
+ *
  * @example
  * import { Pie, PieCardProps, BusinessInfo } from '@/lib/types'
  */
