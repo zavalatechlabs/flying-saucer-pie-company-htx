@@ -19,7 +19,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'dutch-apple',
@@ -31,7 +31,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'peach',
@@ -43,7 +43,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'cherry',
@@ -55,7 +55,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'pineapple',
@@ -67,7 +67,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'pecan',
@@ -78,7 +78,7 @@ export const pies: Pie[] = [
     image: '/images/pies/pecan-pie.jpg',
     available: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'blackberry',
@@ -90,7 +90,7 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
   {
     id: 'blueberry',
@@ -102,9 +102,9 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated'
+    shelfLife: '3 days room temp, 4-5 days refrigerated',
   },
-  
+
   // CREAM PIES
   {
     id: 'strawberry-cream',
@@ -116,7 +116,14 @@ export const pies: Pie[] = [
     available: true,
     isVegan: true,
     shelfLife: '2-3 days refrigerated',
-    ingredients: ['Fresh strawberries', 'Coconut cream', 'Vanilla', 'Sugar', 'Graham crackers', 'Vegan butter']
+    ingredients: [
+      'Fresh strawberries',
+      'Coconut cream',
+      'Vanilla',
+      'Sugar',
+      'Graham crackers',
+      'Vegan butter',
+    ],
   },
   {
     id: 'banana-cream',
@@ -126,7 +133,7 @@ export const pies: Pie[] = [
     price: { whole: 24.99, slice: 4.99 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '1-2 days refrigerated (uncut), will brown once cut'
+    shelfLife: '1-2 days refrigerated (uncut), will brown once cut',
   },
   {
     id: 'chocolate-cream',
@@ -136,7 +143,7 @@ export const pies: Pie[] = [
     price: { whole: 24.99, slice: 4.99 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '2-3 days refrigerated'
+    shelfLife: '2-3 days refrigerated',
   },
   {
     id: 'lemon-cream',
@@ -146,7 +153,7 @@ export const pies: Pie[] = [
     price: { whole: 24.99, slice: 4.99 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '2-3 days refrigerated'
+    shelfLife: '2-3 days refrigerated',
   },
   {
     id: 'coconut-cream',
@@ -156,9 +163,9 @@ export const pies: Pie[] = [
     price: { whole: 26.99, slice: 5.49 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '2-3 days refrigerated'
+    shelfLife: '2-3 days refrigerated',
   },
-  
+
   // CHEESECAKES
   {
     id: 'cheesecake',
@@ -169,7 +176,15 @@ export const pies: Pie[] = [
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
     shelfLife: '3-4 days refrigerated',
-    ingredients: ['Cream cheese', 'Sugar', 'Eggs', 'Vanilla extract', 'Sour cream', 'Graham crackers', 'Butter']
+    ingredients: [
+      'Cream cheese',
+      'Sugar',
+      'Eggs',
+      'Vanilla extract',
+      'Sour cream',
+      'Graham crackers',
+      'Butter',
+    ],
   },
   {
     id: 'key-lime',
@@ -179,9 +194,9 @@ export const pies: Pie[] = [
     price: { whole: 29.99, slice: 5.99 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '3-4 days refrigerated'
+    shelfLife: '3-4 days refrigerated',
   },
-  
+
   // SEASONAL PIES
   {
     id: 'pumpkin',
@@ -193,23 +208,34 @@ export const pies: Pie[] = [
     available: true,
     isSpecial: true,
     shelfLife: '3 days room temp, 4-5 days refrigerated',
-    ingredients: ['Pumpkin puree', 'Eggs', 'Heavy cream', 'Sugar', 'Cinnamon', 'Ginger', 'Nutmeg', 'Cloves', 'Flour', 'Butter']
+    ingredients: [
+      'Pumpkin puree',
+      'Eggs',
+      'Heavy cream',
+      'Sugar',
+      'Cinnamon',
+      'Ginger',
+      'Nutmeg',
+      'Cloves',
+      'Flour',
+      'Butter',
+    ],
   },
 ]
 
 // Helper functions
 export function getPiesByCategory(category: Pie['category']): Pie[] {
-  return pies.filter(pie => pie.category === category)
+  return pies.filter((pie) => pie.category === category)
 }
 
 export function getVeganPies(): Pie[] {
-  return pies.filter(pie => pie.isVegan)
+  return pies.filter((pie) => pie.isVegan)
 }
 
 export function getFreezablePies(): Pie[] {
-  return pies.filter(pie => pie.canFreeze)
+  return pies.filter((pie) => pie.canFreeze)
 }
 
 export function getPieById(id: string): Pie | undefined {
-  return pies.find(pie => pie.id === id)
+  return pies.find((pie) => pie.id === id)
 }

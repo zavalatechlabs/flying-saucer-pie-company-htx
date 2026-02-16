@@ -11,7 +11,7 @@ interface PieCardProps {
   onClick?: () => void
 }
 
-export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
+export function PieCard({ pie, onClick }: PieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
@@ -34,7 +34,7 @@ export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
         <div className="w-full h-full bg-gradient-to-br from-pie-crust-light to-pie-crust flex items-center justify-center">
           <span className="text-8xl steam-container">🥧</span>
         </div>
-        
+
         {/* Labels */}
         {pie.isSpecial && (
           <div className="absolute top-2 left-2 bg-berry-red text-white px-3 py-1 rounded-full text-sm font-medium">
@@ -46,7 +46,7 @@ export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
             🌱 Vegan
           </div>
         )}
-        
+
         {/* Favorite Button */}
         <button
           onClick={(e) => {
@@ -54,21 +54,21 @@ export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
             setIsFavorite(!isFavorite)
           }}
           className={cn(
-            "absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm",
-            "transition-all duration-300 hover:scale-110",
-            pie.isVegan && "right-20"
+            'absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm',
+            'transition-all duration-300 hover:scale-110',
+            pie.isVegan && 'right-20'
           )}
           aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
         >
           <Heart
             size={20}
             className={cn(
-              "transition-colors duration-300",
-              isFavorite ? "fill-berry-red text-berry-red" : "text-dust-medium"
+              'transition-colors duration-300',
+              isFavorite ? 'fill-berry-red text-berry-red' : 'text-dust-medium'
             )}
           />
         </button>
-        
+
         {/* View Details Indicator */}
         <div className="absolute bottom-2 right-2 p-2 rounded-full bg-cosmic-purple text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <Eye size={20} />
@@ -89,14 +89,10 @@ export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
         </div>
 
         {/* Slice price */}
-        <p className="text-sm text-dust-medium mb-4">
-          Slice: ${pie.price.slice.toFixed(2)}
-        </p>
+        <p className="text-sm text-dust-medium mb-4">Slice: ${pie.price.slice.toFixed(2)}</p>
 
         {/* Additional Info */}
-        {pie.canFreeze && (
-          <p className="text-xs text-dust-medium mt-3">❄️ Can be frozen</p>
-        )}
+        {pie.canFreeze && <p className="text-xs text-dust-medium mt-3">❄️ Can be frozen</p>}
       </div>
     </div>
   )

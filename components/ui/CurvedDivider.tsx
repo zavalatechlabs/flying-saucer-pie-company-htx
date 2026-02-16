@@ -5,17 +5,17 @@ interface CurvedDividerProps {
   className?: string
 }
 
-export function CurvedDivider({ 
-  variant = 'wave', 
+export function CurvedDivider({
+  variant = 'wave',
   color = 'cream',
   flip = false,
-  className = '' 
+  className = '',
 }: CurvedDividerProps) {
   const colorMap = {
-    cream: '#FFF8F0',       // --bg (main cream)
-    white: '#FFFFFF',       // --surface (pure white)
+    cream: '#FFF8F0', // --bg (main cream)
+    white: '#FFFFFF', // --surface (pure white)
     purple: '#6B2CBF',
-    navy: '#1A1A2E',        // --ink
+    navy: '#1A1A2E', // --ink
   }
 
   const fillColor = colorMap[color]
@@ -33,10 +33,7 @@ export function CurvedDivider({
   }
 
   return (
-    <div 
-      className={`w-full ${flip ? 'rotate-180' : ''} ${className}`}
-      aria-hidden="true"
-    >
+    <div className={`w-full ${flip ? 'rotate-180' : ''} ${className}`} aria-hidden="true">
       <svg
         viewBox="0 0 1440 64"
         fill="none"
@@ -44,9 +41,7 @@ export function CurvedDivider({
         preserveAspectRatio="none"
         className="w-full h-12 md:h-16"
       >
-        <g fill={fillColor}>
-          {variants[variant]}
-        </g>
+        <g fill={fillColor}>{variants[variant]}</g>
       </svg>
     </div>
   )

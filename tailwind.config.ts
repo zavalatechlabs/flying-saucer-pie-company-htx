@@ -10,15 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         // Retro Space-Age Diner Theme (using CSS variables)
-        'bg': 'var(--bg)',
+        bg: 'var(--bg)',
         'bg-alt': 'var(--bg-alt)',
-        'surface': 'var(--surface)',
-        'ink': 'var(--ink)',
+        surface: 'var(--surface)',
+        ink: 'var(--ink)',
         'ink-muted': 'var(--ink-muted)',
-        'accent': 'var(--accent)',
+        accent: 'var(--accent)',
         'accent-2': 'var(--accent-2)',
         'border-color': 'var(--border)',
-        
+
         // Legacy colors (preserved for compatibility)
         'cosmic-purple': {
           DEFAULT: '#6B2CBF',
@@ -85,7 +85,7 @@ const config: Config = {
           800: '#B23B18',
           900: '#992C0E',
         },
-        'lavender': {
+        lavender: {
           DEFAULT: '#C9A9E0',
           50: '#F9F5FC',
           100: '#F0E5F7',
@@ -98,7 +98,7 @@ const config: Config = {
           800: '#65398A',
           900: '#4B2766',
         },
-        'mint': {
+        mint: {
           DEFAULT: '#A8E6CF',
           50: '#F0FCF7',
           100: '#E0F9EE',
@@ -111,7 +111,7 @@ const config: Config = {
           800: '#2E8660',
           900: '#206847',
         },
-        'success': {
+        success: {
           DEFAULT: '#10B981',
           50: '#ECFDF5',
           100: '#D1FAE5',
@@ -124,7 +124,7 @@ const config: Config = {
           800: '#065F46',
           900: '#064E3B',
         },
-        'warning': {
+        warning: {
           DEFAULT: '#F59E0B',
           50: '#FFFBEB',
           100: '#FEF3C7',
@@ -137,7 +137,7 @@ const config: Config = {
           800: '#92400E',
           900: '#78350F',
         },
-        'error': {
+        error: {
           DEFAULT: '#EF4444',
           50: '#FEF2F2',
           100: '#FEE2E2',
@@ -150,7 +150,7 @@ const config: Config = {
           800: '#991B1B',
           900: '#7F1D1D',
         },
-        'info': {
+        info: {
           DEFAULT: '#3B82F6',
           50: '#EFF6FF',
           100: '#DBEAFE',
@@ -163,7 +163,7 @@ const config: Config = {
           800: '#1E40AF',
           900: '#1E3A8A',
         },
-        'neutral': {
+        neutral: {
           50: '#FAFAF9',
           100: '#F5F5F4',
           200: '#E7E5E4',
@@ -186,47 +186,54 @@ const config: Config = {
         'dust-lightest': '#F3F4F6',
       },
       fontFamily: {
-        'display': ['var(--font-display)', 'Outfit', 'Space Grotesk', 'Inter', 'system-ui', 'sans-serif'],
-        'body': ['var(--font-body)', 'DM Sans', 'Inter', 'system-ui', 'sans-serif'],
-        'sans': ['var(--font-body)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        'mono': ['JetBrains Mono', 'Fira Code', 'monospace'],
+        display: [
+          'var(--font-display)',
+          'Outfit',
+          'Space Grotesk',
+          'Inter',
+          'system-ui',
+          'sans-serif',
+        ],
+        body: ['var(--font-body)', 'DM Sans', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-body)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
       },
       fontSize: {
         'display-xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-lg': ['3.75rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
         'display-md': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
-        'h1': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
-        'h2': ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '600' }],
-        'h3': ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],
-        'h4': ['1.25rem', { lineHeight: '1.4', fontWeight: '600' }],
-        'h5': ['1.125rem', { lineHeight: '1.4', fontWeight: '600' }],
-        'h6': ['1rem', { lineHeight: '1.5', fontWeight: '600' }],
+        h1: ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
+        h2: ['1.875rem', { lineHeight: '1.25', letterSpacing: '-0.01em', fontWeight: '600' }],
+        h3: ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],
+        h4: ['1.25rem', { lineHeight: '1.4', fontWeight: '600' }],
+        h5: ['1.125rem', { lineHeight: '1.4', fontWeight: '600' }],
+        h6: ['1rem', { lineHeight: '1.5', fontWeight: '600' }],
         'body-xl': ['1.25rem', { lineHeight: '1.7', fontWeight: '400' }],
         'body-lg': ['1.125rem', { lineHeight: '1.7', fontWeight: '400' }],
-        'body': ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
+        body: ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
         'body-sm': ['0.875rem', { lineHeight: '1.6', fontWeight: '400' }],
-        'caption': ['0.75rem', { lineHeight: '1.5', fontWeight: '400' }],
+        caption: ['0.75rem', { lineHeight: '1.5', fontWeight: '400' }],
       },
       spacing: {
         'section-xs': 'var(--section-xs)',
         'section-sm': 'var(--section-sm)',
-        'section': 'var(--section)',
+        section: 'var(--section)',
         'section-lg': 'var(--section-lg)',
         'section-xl': 'var(--section-xl)',
       },
       borderRadius: {
-        'sm': 'var(--radius-sm)',
-        'md': 'var(--radius-md)',
-        'lg': 'var(--radius-lg)',
-        'pill': 'var(--radius-pill)',
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
+        pill: 'var(--radius-pill)',
       },
       animation: {
-        'float': 'float 3s ease-in-out infinite',
-        'steam': 'steam 3s ease-out infinite',
+        float: 'float 3s ease-in-out infinite',
+        steam: 'steam 3s ease-out infinite',
         'ufo-deliver': 'ufo-deliver 4s ease-in-out',
-        'constellation': 'constellation-pulse 2s ease-in-out infinite',
+        constellation: 'constellation-pulse 2s ease-in-out infinite',
         'space-dust': 'space-dust 20s linear infinite',
-        'starburst': 'starburst 8s ease-in-out infinite',
+        starburst: 'starburst 8s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -291,7 +298,7 @@ const config: Config = {
             opacity: '0',
           },
         },
-        'starburst': {
+        starburst: {
           '0%, 100%': {
             transform: 'rotate(0deg) scale(1)',
             opacity: '0.05',
@@ -303,12 +310,12 @@ const config: Config = {
         },
       },
       boxShadow: {
-        'cosmic': '0 10px 25px -5px rgba(107, 44, 191, 0.3)',
+        cosmic: '0 10px 25px -5px rgba(107, 44, 191, 0.3)',
         'cosmic-hover': '0 20px 35px -5px rgba(107, 44, 191, 0.4)',
         'glow-sm': '0 0 10px rgba(212, 133, 106, 0.2)',
         'glow-md': '0 0 20px rgba(212, 133, 106, 0.3)',
         'glow-lg': '0 0 30px rgba(212, 133, 106, 0.4)',
-        'retro': '0 2px 8px var(--shadow), 0 1px 3px rgba(26, 26, 46, 0.05)',
+        retro: '0 2px 8px var(--shadow), 0 1px 3px rgba(26, 26, 46, 0.05)',
         'retro-hover': '0 8px 24px rgba(26, 26, 46, 0.12), 0 4px 12px rgba(26, 26, 46, 0.08)',
       },
     },

@@ -1,6 +1,6 @@
 'use client'
 
-import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { fadeIn, slideInLeft, slideInRight } from '@/lib/animations/variants'
 import Image from 'next/image'
 
@@ -20,14 +20,14 @@ export function Timeline({ milestones }: TimelineProps) {
     <div className="relative">
       {/* Vertical line */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full hidden md:block" />
-      
+
       {/* Mobile vertical line */}
       <div className="absolute left-8 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full md:hidden" />
 
       <div className="space-y-12 md:space-y-24">
         {milestones.map((milestone, index) => {
           const isEven = index % 2 === 0
-          
+
           return (
             <div key={index} className="relative">
               {/* Desktop Layout - Alternating */}
@@ -35,8 +35,8 @@ export function Timeline({ milestones }: TimelineProps) {
                 {isEven ? (
                   <>
                     {/* Left Side Content */}
-                    <ScrollReveal 
-                      variants={slideInLeft} 
+                    <ScrollReveal
+                      variants={slideInLeft}
                       delay={0.1}
                       className="w-5/12 pr-12 text-right"
                     >
@@ -47,9 +47,7 @@ export function Timeline({ milestones }: TimelineProps) {
                         <h4 className="text-2xl font-semibold text-space-night mb-3">
                           {milestone.title}
                         </h4>
-                        <p className="text-dust-dark leading-relaxed">
-                          {milestone.description}
-                        </p>
+                        <p className="text-dust-dark leading-relaxed">{milestone.description}</p>
                       </div>
                     </ScrollReveal>
 
@@ -106,20 +104,14 @@ export function Timeline({ milestones }: TimelineProps) {
                     </div>
 
                     {/* Right Side Content */}
-                    <ScrollReveal 
-                      variants={slideInRight} 
-                      delay={0.1}
-                      className="w-5/12 pl-12"
-                    >
+                    <ScrollReveal variants={slideInRight} delay={0.1} className="w-5/12 pl-12">
                       <h3 className="text-4xl font-bold text-cosmic-purple mb-2">
                         {milestone.year}
                       </h3>
                       <h4 className="text-2xl font-semibold text-space-night mb-3">
                         {milestone.title}
                       </h4>
-                      <p className="text-dust-dark leading-relaxed">
-                        {milestone.description}
-                      </p>
+                      <p className="text-dust-dark leading-relaxed">{milestone.description}</p>
                     </ScrollReveal>
                   </>
                 )}
@@ -135,20 +127,10 @@ export function Timeline({ milestones }: TimelineProps) {
                 </div>
 
                 {/* Right Side - Content */}
-                <ScrollReveal 
-                  variants={slideInRight} 
-                  delay={0.2}
-                  className="flex-1 pb-8"
-                >
-                  <h3 className="text-3xl font-bold text-cosmic-purple mb-1">
-                    {milestone.year}
-                  </h3>
-                  <h4 className="text-xl font-semibold text-space-night mb-2">
-                    {milestone.title}
-                  </h4>
-                  <p className="text-dust-dark leading-relaxed mb-4">
-                    {milestone.description}
-                  </p>
+                <ScrollReveal variants={slideInRight} delay={0.2} className="flex-1 pb-8">
+                  <h3 className="text-3xl font-bold text-cosmic-purple mb-1">{milestone.year}</h3>
+                  <h4 className="text-xl font-semibold text-space-night mb-2">{milestone.title}</h4>
+                  <p className="text-dust-dark leading-relaxed mb-4">{milestone.description}</p>
                   {milestone.image && (
                     <div className="relative h-40 rounded-lg overflow-hidden shadow-lg">
                       <Image

@@ -60,13 +60,16 @@ export function Footer() {
                 <MapPin size={18} className="text-accent mt-0.5 flex-shrink-0" />
                 <div className="text-surface/80 leading-relaxed">
                   <p>{businessInfo.address.street}</p>
-                  <p>{businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}</p>
+                  <p>
+                    {businessInfo.address.city}, {businessInfo.address.state}{' '}
+                    {businessInfo.address.zip}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={18} className="text-accent flex-shrink-0" />
-                <a 
-                  href={`tel:${businessInfo.phone}`} 
+                <a
+                  href={`tel:${businessInfo.phone}`}
                   className="hover:text-accent transition-colors text-surface/80"
                 >
                   {businessInfo.phone}

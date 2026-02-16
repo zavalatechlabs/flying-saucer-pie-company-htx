@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { businessInfo } from '@/lib/data/business-info'
 import { Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
-import { ScrollReveal } from '@/lib/animations/scroll-reveal'
+import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideInLeft, slideInRight, slideUp } from '@/lib/animations/variants'
 
 export function ContactContent() {
@@ -14,7 +14,7 @@ export function ContactContent() {
     email: '',
     phone: '',
     message: '',
-    subject: 'general'
+    subject: 'general',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -22,13 +22,13 @@ export function ContactContent() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
+    await new Promise((resolve) => setTimeout(resolve, 1500))
+
     setIsSubmitting(false)
     setIsSubmitted(true)
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setFormData({
@@ -36,16 +36,18 @@ export function ContactContent() {
         email: '',
         phone: '',
         message: '',
-        subject: 'general'
+        subject: 'general',
       })
       setIsSubmitted(false)
     }, 3000)
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData(prev => ({
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }))
   }
 
@@ -79,12 +81,10 @@ export function ContactContent() {
             {/* Contact Information */}
             <div className="space-y-8">
               <ScrollReveal variants={slideInLeft}>
-                <h2 className="text-h2 text-deep-navy mb-6">
-                  Get in Touch
-                </h2>
+                <h2 className="text-h2 text-deep-navy mb-6">Get in Touch</h2>
                 <p className="text-body text-neutral-600 mb-8">
-                  For the fastest response, give us a call during business hours. 
-                  We&apos;re always happy to answer questions about our pies!
+                  For the fastest response, give us a call during business hours. We&apos;re always
+                  happy to answer questions about our pies!
                 </p>
               </ScrollReveal>
 
@@ -119,8 +119,10 @@ export function ContactContent() {
                   <div>
                     <h3 className="text-h4 text-deep-navy mb-1">Visit Us</h3>
                     <p className="text-body text-neutral-700">
-                      {businessInfo.address.street}<br />
-                      {businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}
+                      {businessInfo.address.street}
+                      <br />
+                      {businessInfo.address.city}, {businessInfo.address.state}{' '}
+                      {businessInfo.address.zip}
                     </p>
                   </div>
                 </div>
@@ -135,7 +137,8 @@ export function ContactContent() {
                   <div>
                     <h3 className="text-h4 text-deep-navy mb-1">Hours</h3>
                     <p className="text-body text-neutral-700">
-                      Tuesday - Saturday: 8:00 AM - 7:00 PM<br />
+                      Tuesday - Saturday: 8:00 AM - 7:00 PM
+                      <br />
                       Sunday & Monday: Closed
                     </p>
                   </div>
@@ -145,11 +148,9 @@ export function ContactContent() {
               {/* Special Note */}
               <ScrollReveal variants={slideUp} delay={0.25}>
                 <div className="bg-sunset-orange/10 border-2 border-sunset-orange rounded-2xl p-6">
-                  <h3 className="text-h5 text-deep-navy mb-2">
-                    📞 Phone is Best!
-                  </h3>
+                  <h3 className="text-h5 text-deep-navy mb-2">📞 Phone is Best!</h3>
                   <p className="text-body-sm text-neutral-700">
-                    We&apos;re a small family bakery focused on making pies. For the quickest 
+                    We&apos;re a small family bakery focused on making pies. For the quickest
                     response to your questions, please give us a call during business hours.
                   </p>
                 </div>
@@ -158,9 +159,7 @@ export function ContactContent() {
 
             {/* Contact Form */}
             <ScrollReveal variants={slideInRight} className="card shadow-cosmic">
-              <h3 className="text-h3 text-deep-navy mb-6">
-                Send Us a Message
-              </h3>
+              <h3 className="text-h3 text-deep-navy mb-6">Send Us a Message</h3>
 
               {isSubmitted ? (
                 <motion.div
@@ -169,9 +168,7 @@ export function ContactContent() {
                   className="text-center py-12"
                 >
                   <CheckCircle size={64} className="text-success mx-auto mb-4" />
-                  <h4 className="text-h4 text-deep-navy mb-2">
-                    Message Sent!
-                  </h4>
+                  <h4 className="text-h4 text-deep-navy mb-2">Message Sent!</h4>
                   <p className="text-body text-neutral-600">
                     We&apos;ll get back to you as soon as possible.
                   </p>
@@ -180,7 +177,10 @@ export function ContactContent() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block text-body-sm font-medium text-neutral-700 mb-2">
+                    <label
+                      htmlFor="name"
+                      className="block text-body-sm font-medium text-neutral-700 mb-2"
+                    >
                       Your Name *
                     </label>
                     <input
@@ -197,7 +197,10 @@ export function ContactContent() {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block text-body-sm font-medium text-neutral-700 mb-2">
+                    <label
+                      htmlFor="email"
+                      className="block text-body-sm font-medium text-neutral-700 mb-2"
+                    >
                       Email Address *
                     </label>
                     <input
@@ -214,7 +217,10 @@ export function ContactContent() {
 
                   {/* Phone */}
                   <div>
-                    <label htmlFor="phone" className="block text-body-sm font-medium text-neutral-700 mb-2">
+                    <label
+                      htmlFor="phone"
+                      className="block text-body-sm font-medium text-neutral-700 mb-2"
+                    >
                       Phone Number
                     </label>
                     <input
@@ -230,7 +236,10 @@ export function ContactContent() {
 
                   {/* Subject */}
                   <div>
-                    <label htmlFor="subject" className="block text-body-sm font-medium text-neutral-700 mb-2">
+                    <label
+                      htmlFor="subject"
+                      className="block text-body-sm font-medium text-neutral-700 mb-2"
+                    >
                       What&apos;s this about?
                     </label>
                     <select
@@ -249,7 +258,10 @@ export function ContactContent() {
 
                   {/* Message */}
                   <div>
-                    <label htmlFor="message" className="block text-body-sm font-medium text-neutral-700 mb-2">
+                    <label
+                      htmlFor="message"
+                      className="block text-body-sm font-medium text-neutral-700 mb-2"
+                    >
                       Your Message *
                     </label>
                     <textarea
@@ -265,11 +277,7 @@ export function ContactContent() {
                   </div>
 
                   {/* Submit Button */}
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full"
-                  >
+                  <Button type="submit" disabled={isSubmitting} className="w-full">
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />

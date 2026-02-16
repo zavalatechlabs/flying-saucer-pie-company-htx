@@ -1,15 +1,19 @@
 # Flying Saucer Pie Company - V1 Design Document
-*Modern, Interactive Redesign*
+
+_Modern, Interactive Redesign_
 
 ## Executive Summary
+
 Transforming Flying Saucer Pie Company's website into a modern, interactive experience that combines retro space-age aesthetics with contemporary web design. The site will feature smooth animations, engaging scroll interactions, and a premium bakery feel while maintaining the fun "out of this world" brand personality.
 
 ---
 
 ## Design Inspiration & Key Features
 
-### 1. **Hero Landing Animation** *(Inspired by: igloo.inc, tartinebakery.com)*
+### 1. **Hero Landing Animation** _(Inspired by: igloo.inc, tartinebakery.com)_
+
 **Concept:** Flying Saucer Landing Sequence
+
 - **Scene:** UFO descends from top of viewport with tractor beam
 - **Animation Flow:**
   1. Stars/space background fades in
@@ -20,8 +24,10 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 - **Technical:** Framer Motion orchestration, lottie-web for complex animations
 - **Fallback:** Graceful degradation to fade-in for slower connections
 
-### 2. **Color Palette & Typography** *(Inspired by: portal.thenifty.com)*
+### 2. **Color Palette & Typography** _(Inspired by: portal.thenifty.com)_
+
 **Primary Colors:**
+
 - **Cosmic Purple:** `#6B2CBF` (rich, saturated purple - futuristic vibe)
 - **Electric Blue:** `#00D4FF` (accent, neon glow effects)
 - **Warm Cream:** `#FFF8F3` (backgrounds, warmth)
@@ -29,20 +35,25 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 - **Sunset Orange:** `#FF6B35` (CTAs, energy)
 
 **Typography:**
+
 - **Headings:** Space Grotesk (geometric, modern, space-age)
 - **Body:** Inter (clean, readable)
 - **Accents:** JetBrains Mono (technical details, prices)
 
-### 3. **Rotating Pie Showcase** *(Inspired by: emporiumpies.com)*
+### 3. **Rotating Pie Showcase** _(Inspired by: emporiumpies.com)_
+
 **Section:** "Fine Pies for Fine Folk" / "Cosmic Favorites"
+
 - **Interaction:** Pies slowly rotate on hover (3D tilt effect)
 - **Layout:** Carousel or grid with spotlight on center pie
 - **Animation:** CSS 3D transforms + Framer Motion for smooth rotation
 - **Additional:** Parallax effect on scroll (pies move at different speeds)
 - **Lighting:** Subtle shadow/glow to emphasize 3D depth
 
-### 4. **Scroll-Triggered Animations** *(Inspired by: dontboardme.com)*
+### 4. **Scroll-Triggered Animations** _(Inspired by: dontboardme.com)_
+
 **Technique:** Intersection Observer API + Framer Motion
+
 - **Content blocks slide in from left/right** as user scrolls
 - **Stagger animations:** Each element enters with slight delay
 - **Opacity + Transform:** Fade + slide for smooth entrance
@@ -52,16 +63,20 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
   - About us story blocks
   - Location/contact info
 
-### 5. **Falling Cherry/UFO Animation** *(Inspired by: graza.co dripping oil)*
+### 5. **Falling Cherry/UFO Animation** _(Inspired by: graza.co dripping oil)_
+
 **Concept:** Cherry Falls onto Pie
+
 - **Trigger:** Scroll position in menu section
 - **Animation:** Cherry drops from top, lands on pie with slight bounce
 - **Variation:** UFO drops pie slice onto plate
 - **Technical:** Canvas animation or lottie-web for smooth physics
 - **Placement:** Menu section header or pie detail pages
 
-### 6. **Scrolling Reviews Marquee** *(Inspired by: emporiumpies.com)*
+### 6. **Scrolling Reviews Marquee** _(Inspired by: emporiumpies.com)_
+
 **Section:** Customer testimonials
+
 - **Style:** Infinite horizontal scroll (marquee)
 - **Content:** Review cards with customer name, rating, quote
 - **Speed:** Slow, smooth (pausable on hover)
@@ -73,6 +88,7 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 ## Page-by-Page Breakdown
 
 ### **Homepage**
+
 1. **Hero Section**
    - UFO landing animation (3-4 seconds)
    - Headline: "Houston's Pies That Are Out of This World"
@@ -99,22 +115,26 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
    - Order button + contact info
 
 ### **Menu Page**
+
 - Filter by category (fruit, cream, seasonal)
 - Pie cards with 3D tilt on hover
 - Detailed modal on click (ingredients, allergens, pricing)
 - Cherry falling animation at top
 
 ### **About Page**
+
 - Timeline of history (scroll-triggered)
 - Founder story with photos
 - Houston Strong narrative
 
 ### **Location Page**
+
 - Interactive map (Google Maps embed)
 - Hours, contact info
 - Directions with scroll animation
 
 ### **Contact Page**
+
 - Clean form with validation
 - UFO "sending message" animation on submit
 
@@ -123,6 +143,7 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 ## Technical Implementation
 
 ### **Core Tech Stack**
+
 - **Framework:** Next.js 15 (App Router)
 - **Styling:** Tailwind CSS v3
 - **Animations:** Framer Motion
@@ -131,12 +152,14 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 - **Complex Animations:** Lottie-web (for UFO landing, cherry drop)
 
 ### **Performance Considerations**
+
 - Lazy load animations (only animate what's in viewport)
 - Preload critical assets (UFO animation files)
 - Optimize images (WebP, lazy loading)
 - Reduce motion for users who prefer it (`prefers-reduced-motion`)
 
 ### **Accessibility**
+
 - Skip to main content link
 - Keyboard navigation for all interactive elements
 - ARIA labels for animations
@@ -148,6 +171,7 @@ Transforming Flying Saucer Pie Company's website into a modern, interactive expe
 ## Animation Library
 
 ### **Required Animations**
+
 1. **UFO Landing Sequence** (Lottie JSON or Framer Motion)
 2. **Pie 3D Rotation** (CSS transforms + Framer Motion)
 3. **Cherry Drop** (Canvas or Lottie)
@@ -219,6 +243,6 @@ app/
 
 ---
 
-*Design Lead: ZTL Claw*  
-*Date: 2026-02-11*  
-*Version: 1.0*
+_Design Lead: ZTL Claw_  
+_Date: 2026-02-11_  
+_Version: 1.0_

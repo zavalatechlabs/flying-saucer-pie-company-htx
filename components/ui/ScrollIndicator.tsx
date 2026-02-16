@@ -8,14 +8,14 @@ export function ScrollIndicator({ visible }: ScrollIndicatorProps) {
   const handleClick = () => {
     window.scrollTo({
       top: window.innerHeight,
-      behavior: 'smooth'
+      behavior: 'smooth',
     })
   }
 
   if (!visible) return null
 
   return (
-    <div 
+    <div
       className="absolute bottom-[5%] left-1/2 -translate-x-1/2 z-50 
                  transition-opacity duration-700 cursor-pointer
                  hover:scale-110 transition-transform"

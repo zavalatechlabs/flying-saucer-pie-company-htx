@@ -30,13 +30,13 @@ export function Navigation() {
   const closeMenu = () => setIsMenuOpen(false)
 
   return (
-    <nav 
+    <nav
       aria-label="Main navigation"
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled 
-          ? "bg-surface/95 backdrop-blur-lg shadow-retro-hover" 
-          : "bg-surface/80 backdrop-blur-sm"
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        isScrolled
+          ? 'bg-surface/95 backdrop-blur-lg shadow-retro-hover'
+          : 'bg-surface/80 backdrop-blur-sm'
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,11 +47,7 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="nav-link"
-              >
+              <Link key={link.href} href={link.href} className="nav-link">
                 {link.name}
               </Link>
             ))}
@@ -67,11 +63,7 @@ export function Navigation() {
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMenuOpen}
             >
-              {isMenuOpen ? (
-                <X size={24} />
-              ) : (
-                <Menu size={24} />
-              )}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>

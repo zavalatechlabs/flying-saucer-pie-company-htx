@@ -9,25 +9,25 @@ interface Review {
 }
 
 const reviews: Review[] = [
-  { name: "Sarah M.", rating: 5, quote: "Best apple pie I've ever had!" },
-  { name: "Mike T.", rating: 5, quote: "Out of this world pecan pie!" },
-  { name: "Jennifer L.", rating: 5, quote: "The cosmic service matches the cosmic flavor!" },
-  { name: "David R.", rating: 5, quote: "Fresh, delicious, and totally unique!" },
-  { name: "Maria G.", rating: 5, quote: "Houston's best kept secret! Love the key lime!" },
-  { name: "James K.", rating: 5, quote: "These pies are truly extraterrestrial!" },
-  { name: "Amanda S.", rating: 5, quote: "The chocolate cream pie changed my life!" },
-  { name: "Robert H.", rating: 5, quote: "Been coming here since '85. Never disappoints!" },
+  { name: 'Sarah M.', rating: 5, quote: "Best apple pie I've ever had!" },
+  { name: 'Mike T.', rating: 5, quote: 'Out of this world pecan pie!' },
+  { name: 'Jennifer L.', rating: 5, quote: 'The cosmic service matches the cosmic flavor!' },
+  { name: 'David R.', rating: 5, quote: 'Fresh, delicious, and totally unique!' },
+  { name: 'Maria G.', rating: 5, quote: "Houston's best kept secret! Love the key lime!" },
+  { name: 'James K.', rating: 5, quote: 'These pies are truly extraterrestrial!' },
+  { name: 'Amanda S.', rating: 5, quote: 'The chocolate cream pie changed my life!' },
+  { name: 'Robert H.', rating: 5, quote: "Been coming here since '85. Never disappoints!" },
 ]
 
 const moreReviews: Review[] = [
-  { name: "Lisa P.", rating: 5, quote: "Perfect crust, perfect filling, perfect everything!" },
-  { name: "Carlos M.", rating: 5, quote: "Family tradition for over 20 years!" },
-  { name: "Emily R.", rating: 5, quote: "The strawberry cream is pure heaven!" },
-  { name: "Thomas W.", rating: 5, quote: "Worth the drive from across town!" },
-  { name: "Rachel B.", rating: 5, quote: "Brought these to Thanksgiving - instant legend status!" },
-  { name: "Kevin D.", rating: 5, quote: "Dutch apple pie that dreams are made of!" },
-  { name: "Nicole F.", rating: 5, quote: "Supporting local never tasted this good!" },
-  { name: "Brandon C.", rating: 5, quote: "The tractor beam pulled me in and I never left!" },
+  { name: 'Lisa P.', rating: 5, quote: 'Perfect crust, perfect filling, perfect everything!' },
+  { name: 'Carlos M.', rating: 5, quote: 'Family tradition for over 20 years!' },
+  { name: 'Emily R.', rating: 5, quote: 'The strawberry cream is pure heaven!' },
+  { name: 'Thomas W.', rating: 5, quote: 'Worth the drive from across town!' },
+  { name: 'Rachel B.', rating: 5, quote: 'Brought these to Thanksgiving - instant legend status!' },
+  { name: 'Kevin D.', rating: 5, quote: 'Dutch apple pie that dreams are made of!' },
+  { name: 'Nicole F.', rating: 5, quote: 'Supporting local never tasted this good!' },
+  { name: 'Brandon C.', rating: 5, quote: 'The tractor beam pulled me in and I never left!' },
 ]
 
 function ReviewCard({ review }: { review: Review }) {
@@ -36,12 +36,16 @@ function ReviewCard({ review }: { review: Review }) {
       <article
         className="w-80 h-40 p-6 rounded-2xl backdrop-blur-md bg-warm-cream/10 border border-white/20 shadow-lg hover:shadow-cosmic-hover transition-all duration-300"
         style={{
-          background: 'linear-gradient(135deg, rgba(255, 248, 243, 0.1) 0%, rgba(107, 44, 191, 0.1) 100%)',
+          background:
+            'linear-gradient(135deg, rgba(255, 248, 243, 0.1) 0%, rgba(107, 44, 191, 0.1) 100%)',
         }}
       >
         <div className="flex flex-col h-full justify-between">
           {/* Stars */}
-          <div className="flex gap-1 text-sunset-orange text-xl" aria-label={`${review.rating} stars`}>
+          <div
+            className="flex gap-1 text-sunset-orange text-xl"
+            aria-label={`${review.rating} stars`}
+          >
             {Array.from({ length: review.rating }).map((_, i) => (
               <span key={i}>⭐</span>
             ))}
@@ -53,19 +57,23 @@ function ReviewCard({ review }: { review: Review }) {
           </p>
 
           {/* Name */}
-          <p className="text-electric-blue font-semibold text-sm">
-            — {review.name}
-          </p>
+          <p className="text-electric-blue font-semibold text-sm">— {review.name}</p>
         </div>
       </article>
     </div>
   )
 }
 
-function MarqueeRow({ reviews, direction = 'left' }: { reviews: Review[], direction?: 'left' | 'right' }) {
+function MarqueeRow({
+  reviews,
+  direction = 'left',
+}: {
+  reviews: Review[]
+  direction?: 'left' | 'right'
+}) {
   // Duplicate reviews to create seamless loop
   const duplicatedReviews = [...reviews, ...reviews, ...reviews]
-  
+
   return (
     <div className="relative overflow-hidden py-4">
       <motion.div
@@ -124,7 +132,7 @@ export function ReviewsMarquee() {
         <div className="space-y-4 [&:hover>div>div]:animation-play-state-paused">
           {/* Row 1: Scroll left */}
           <MarqueeRow reviews={reviews} direction="left" />
-          
+
           {/* Row 2: Scroll right */}
           <MarqueeRow reviews={moreReviews} direction="right" />
         </div>

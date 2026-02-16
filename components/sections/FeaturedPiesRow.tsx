@@ -9,7 +9,7 @@ import { pies, Pie } from '@/lib/data/pies'
 export function FeaturedPiesRow() {
   const [selectedPie, setSelectedPie] = useState<Pie | null>(null)
   const featuredPies = pies.slice(0, 8) // first 8 pies
-  
+
   return (
     <>
       <section className="py-20 bg-dust-lightest">
@@ -22,45 +22,41 @@ export function FeaturedPiesRow() {
               Our most popular pies that keep Houstonians coming back
             </p>
           </div>
-          
+
           <div className="pie-scroll-container">
             {featuredPies.map((pie, i) => (
-              <div 
-                key={pie.id} 
-                className="pie-item cursor-pointer" 
+              <div
+                key={pie.id}
+                className="pie-item cursor-pointer"
                 style={{ '--i': i } as React.CSSProperties}
                 onClick={() => setSelectedPie(pie)}
               >
                 <div className="pie-spin">
-                  <Image 
-                    src={pie.image || '/pie-placeholder.svg'} 
+                  <Image
+                    src={pie.image || '/pie-placeholder.svg'}
                     alt={pie.name}
                     width={180}
                     height={180}
                     className="rounded-full object-cover"
                   />
                 </div>
-                <p className="text-center mt-3 font-medium text-deep-navy text-sm">
-                  {pie.name}
-                </p>
+                <p className="text-center mt-3 font-medium text-deep-navy text-sm">{pie.name}</p>
               </div>
             ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <Link href="/menu">
-              <button className="btn-primary px-8 py-4 text-lg">
-                View All Pies
-              </button>
+              <button className="btn-primary px-8 py-4 text-lg">View All Pies</button>
             </Link>
           </div>
         </div>
       </section>
-      
-      <PieModal 
-        pie={selectedPie} 
+
+      <PieModal
+        pie={selectedPie}
         isOpen={selectedPie !== null}
-        onClose={() => setSelectedPie(null)} 
+        onClose={() => setSelectedPie(null)}
       />
     </>
   )

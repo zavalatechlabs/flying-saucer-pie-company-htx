@@ -8,7 +8,14 @@ import Link from 'next/link'
 import { SaucerIcon } from '@/components/ui/SaucerIcon'
 
 // Featured pies (handpicked selection)
-const featuredPieIds = ['dutch-apple', 'cherry', 'chocolate-cream', 'key-lime', 'pecan', 'strawberry-cream']
+const featuredPieIds = [
+  'dutch-apple',
+  'cherry',
+  'chocolate-cream',
+  'key-lime',
+  'pecan',
+  'strawberry-cream',
+]
 
 interface PieCardProps {
   pie: Pie
@@ -19,7 +26,7 @@ function PieCard({ pie, index }: PieCardProps) {
   // Mouse position tracking for enhanced 3D effect
   const x = useMotionValue(0)
   const y = useMotionValue(0)
-  
+
   const rotateX = useTransform(y, [-100, 100], [10, -10])
   const rotateY = useTransform(x, [-100, 100], [-10, 10])
 
@@ -53,9 +60,9 @@ function PieCard({ pie, index }: PieCardProps) {
           rotateY,
         }}
         initial={{ scale: 1 }}
-        whileHover={{ 
+        whileHover={{
           scale: 1.05,
-          transition: { duration: 0.3 }
+          transition: { duration: 0.3 },
         }}
       >
         <PieCardContent pie={pie} index={index} />
@@ -65,9 +72,9 @@ function PieCard({ pie, index }: PieCardProps) {
       <motion.div
         className="block md:hidden"
         initial={{ scale: 1 }}
-        whileHover={{ 
+        whileHover={{
           scale: 1.03,
-          transition: { duration: 0.2 }
+          transition: { duration: 0.2 },
         }}
       >
         <PieCardContent pie={pie} index={index} />
@@ -126,12 +133,8 @@ function PieCardContent({ pie, index }: PieCardProps) {
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="text-2xl font-bold text-deep-navy mb-2 font-space">
-          {pie.name}
-        </h3>
-        <p className="text-dust-dark mb-4 line-clamp-2">
-          {pie.description}
-        </p>
+        <h3 className="text-2xl font-bold text-deep-navy mb-2 font-space">{pie.name}</h3>
+        <p className="text-dust-dark mb-4 line-clamp-2">{pie.description}</p>
 
         {/* Pricing */}
         <div className="flex items-center justify-between">
@@ -158,7 +161,7 @@ function PieCardContent({ pie, index }: PieCardProps) {
 
 export function PieShowcase() {
   const featuredPies = featuredPieIds
-    .map(id => pies.find(pie => pie.id === id))
+    .map((id) => pies.find((pie) => pie.id === id))
     .filter((pie): pie is Pie => pie !== undefined)
 
   return (
@@ -192,7 +195,7 @@ export function PieShowcase() {
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: '-100px' }}
         >
           {featuredPies.map((pie, index) => (
             <PieCard key={pie.id} pie={pie} index={index} />
@@ -208,7 +211,10 @@ export function PieShowcase() {
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <Link href="/menu">
-            <Button size="lg" className="text-lg px-10 py-6 shadow-cosmic hover:shadow-cosmic-hover flex items-center gap-2">
+            <Button
+              size="lg"
+              className="text-lg px-10 py-6 shadow-cosmic hover:shadow-cosmic-hover flex items-center gap-2"
+            >
               <SaucerIcon size={24} />
               Explore Full Menu
             </Button>
