@@ -46,7 +46,6 @@ export type {
   AboutSectionProps,
   ContactSectionProps,
   LocationSectionProps,
-  UFOLandingProps,
   AnimatedSwooshProps,
   ScrollRevealProps,
 } from './components'

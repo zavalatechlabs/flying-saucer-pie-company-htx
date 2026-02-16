@@ -97,11 +97,6 @@ export interface LocationSectionProps {
 // Animation Component Props
 // ============================================================================
 
-export interface UFOLandingProps {
-  onComplete?: () => void
-  children?: React.ReactNode
-}
-
 export interface AnimatedSwooshProps {
   className?: string
   phase: number
