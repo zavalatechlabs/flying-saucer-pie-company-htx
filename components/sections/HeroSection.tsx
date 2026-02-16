@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { AnimatedSwoosh } from '../ui/AnimatedSwoosh'
 import { ScrollIndicator } from '../ui/ScrollIndicator'
+import { features } from '@/lib/config'
 
 // Toggle alignment guide
 const SHOW_GUIDE = false
@@ -11,8 +12,8 @@ const SHOW_GUIDE = false
 // Toggle viewport indicator (shows which breakpoint is active)
 const SHOW_VIEWPORT_INDICATOR = false
 
-// Toggle animation (set to false to skip animation)
-const ENABLE_ANIMATION = true
+// Toggle animation (controlled by environment variable)
+const ENABLE_ANIMATION = features.heroAnimation
 
 // Tuning knobs - centralized positioning values
 // Mobile: shifted up more aggressively to fit in viewport with arrow visible
