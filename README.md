@@ -454,11 +454,35 @@ npm run dev
 
 ## 📚 Additional Documentation
 
+All project documentation is organized in the [`/docs`](./docs) folder:
+
+**Developer Guides:**
+
 - [`CONTRIBUTING.md`](./CONTRIBUTING.md) - Contribution guidelines
-- [`DESIGN_V1.md`](./DESIGN_V1.md) - Design system documentation
-- [`AUDIT_FINDINGS_REPORT.md`](./AUDIT_FINDINGS_REPORT.md) - Code quality audit
-- [`.env.example`](./.env.example) - Environment variable template
+- [`docs/design/STYLING_GUIDE.md`](./docs/design/STYLING_GUIDE.md) - Styling conventions
+- [`docs/DEPLOY_CHECKLIST.md`](./docs/DEPLOY_CHECKLIST.md) - Deployment checklist
+
+**Design Documentation:**
+
+- [`docs/design/DESIGN_V1.md`](./docs/design/DESIGN_V1.md) - Design system specifications
+- [`docs/design/HERO_ANALYSIS.md`](./docs/design/HERO_ANALYSIS.md) - Hero section design
 - [`public/ASSETS_NEEDED.md`](./public/ASSETS_NEEDED.md) - Missing assets guide
+
+**Audit & Architecture:**
+
+- [`docs/audit/AUDIT_SUMMARY.md`](./docs/audit/AUDIT_SUMMARY.md) - Audit executive summary
+- [`docs/audit/AUDIT_FINDINGS_REPORT.md`](./docs/audit/AUDIT_FINDINGS_REPORT.md) - Complete findings
+
+**Project Management:**
+
+- [`docs/project-management/PROJECT_SUMMARY.md`](./docs/project-management/PROJECT_SUMMARY.md) - Project overview
+- [`docs/project-management/WORK_ITEMS.md`](./docs/project-management/WORK_ITEMS.md) - Work breakdown
+
+**Configuration:**
+
+- [`.env.example`](./.env.example) - Environment variable template
+
+See [`docs/README.md`](./docs/README.md) for complete documentation index.
 
 ---
 
