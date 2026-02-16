@@ -1,7 +1,6 @@
 'use client'
 
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { useState } from 'react'
 import { pies, Pie } from '@/lib/data/pies'
 import { staggerContainer, staggerItem } from '@/lib/animations/variants'
 import { Button } from '@/components/ui/Button'
@@ -17,8 +16,6 @@ interface PieCardProps {
 }
 
 function PieCard({ pie, index }: PieCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  
   // Mouse position tracking for enhanced 3D effect
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -35,7 +32,6 @@ function PieCard({ pie, index }: PieCardProps) {
   }
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
     x.set(0)
     y.set(0)
   }
@@ -44,7 +40,6 @@ function PieCard({ pie, index }: PieCardProps) {
     <motion.div
       variants={staggerItem}
       className="group relative"
-      onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       onMouseMove={handleMouseMove}
     >

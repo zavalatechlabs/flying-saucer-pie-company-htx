@@ -28,7 +28,7 @@ export function FeaturedPiesRow() {
               <div 
                 key={pie.id} 
                 className="pie-item cursor-pointer" 
-                style={{ '--i': i } as any}
+                style={{ '--i': i } as React.CSSProperties}
                 onClick={() => setSelectedPie(pie)}
               >
                 <div className="pie-spin">

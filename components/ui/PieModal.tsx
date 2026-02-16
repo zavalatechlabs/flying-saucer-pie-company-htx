@@ -49,26 +49,27 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
     const firstElement = focusableElements[0] as HTMLElement
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
 
-    const handleTab = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return
+    const handleTab = (e: Event) => {
+      const keyboardEvent = e as KeyboardEvent
+      if (keyboardEvent.key !== 'Tab') return
 
-      if (e.shiftKey) {
+      if (keyboardEvent.shiftKey) {
         // Shift + Tab
         if (document.activeElement === firstElement) {
-          e.preventDefault()
+          keyboardEvent.preventDefault()
           lastElement?.focus()
         }
       } else {
         // Tab
         if (document.activeElement === lastElement) {
-          e.preventDefault()
+          keyboardEvent.preventDefault()
           firstElement?.focus()
         }
       }
     }
 
-    modal.addEventListener('keydown', handleTab as any)
-    return () => modal.removeEventListener('keydown', handleTab as any)
+    modal.addEventListener('keydown', handleTab)
+    return () => modal.removeEventListener('keydown', handleTab)
   }, [isOpen])
 
   if (!pie) return null

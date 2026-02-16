@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { Heart, Eye } from 'lucide-react'
 import { Pie } from '@/lib/data/pies'
 import { cn } from '@/lib/utils/cn'
@@ -12,7 +11,7 @@ interface PieCardProps {
   onClick?: () => void
 }
 
-export function PieCard({ pie, index = 0, onClick }: PieCardProps) {
+export function PieCard({ pie, index: _index = 0, onClick }: PieCardProps) {
   const [isFavorite, setIsFavorite] = useState(false)
 
   return (
