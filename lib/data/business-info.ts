@@ -1,5 +1,8 @@
-export const businessInfo = {
-  name: 'Flying Saucer Pie Company',
+import type { BusinessInfo } from '@/lib/types'
+import { config } from '@/lib/config'
+
+export const businessInfo: BusinessInfo = {
+  name: config.site.name,
   tagline: 'Our pies are out of this world!',
   established: 1967,
   address: {
@@ -8,8 +11,8 @@ export const businessInfo = {
     state: 'TX',
     zip: '77018'
   },
-  phone: '713-694-1141',
-  email: 'info@flyingsaucerpies.com', // Placeholder
+  phone: config.contact.phone,
+  email: config.contact.email,
   
   hours: {
     regular: {
@@ -52,8 +55,8 @@ export const businessInfo = {
   },
   
   social: {
-    facebook: 'https://facebook.com/flyingsaucerpies', // Placeholder
-    instagram: 'https://instagram.com/flyingsaucerpies' // Placeholder
+    facebook: config.social.facebook,
+    instagram: config.social.instagram,
   },
   
   about: {

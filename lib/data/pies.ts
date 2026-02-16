@@ -2,23 +2,10 @@
 // Using variety across the 8 rotating featured pies on homepage
 // Images have transparent backgrounds and show beautiful overhead shots
 
-export interface Pie {
-  id: string
-  name: string
-  category: 'fruit' | 'cream' | 'cheesecake' | 'seasonal'
-  description: string
-  price: {
-    whole: number
-    slice: number
-  }
-  image: string
-  available: boolean
-  isVegan?: boolean
-  isSpecial?: boolean
-  canFreeze?: boolean
-  shelfLife?: string
-  ingredients?: string[]
-}
+import type { Pie } from '@/lib/types'
+
+// Re-export Pie type for backwards compatibility
+export type { Pie } from '@/lib/types'
 
 export const pies: Pie[] = [
   // FRUIT PIES

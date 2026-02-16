@@ -3,6 +3,7 @@ import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
 import { businessInfo } from '@/lib/data/business-info'
+import { site } from '@/lib/config'
 import { Fredoka, Pacifico, DM_Sans, Outfit } from 'next/font/google'
 
 // Hero logo fonts (LOCKED - hero foreground only)
@@ -64,10 +65,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://flyingsaucerpieshop.com',
+    url: site.url,
     title: 'Flying Saucer Pie Company - Houston\'s Best Pies Since 1967',
     description: 'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives. Our pies are out of this world!',
-    siteName: 'Flying Saucer Pie Company',
+    siteName: site.name,
     images: [
       {
         url: '/og-image.jpg',
@@ -95,7 +96,7 @@ export default function RootLayout({
     '@type': 'Bakery',
     name: businessInfo.name,
     description: businessInfo.about.short,
-    url: 'https://flyingsaucerpieshop.com',
+    url: site.url,
     telephone: businessInfo.phone,
     address: {
       '@type': 'PostalAddress',
@@ -120,7 +121,7 @@ export default function RootLayout({
     ],
     servesCuisine: 'American',
     priceRange: '$$',
-    image: 'https://flyingsaucerpieshop.com/og-image.jpg',
+    image: `${site.url}/og-image.jpg`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -141,7 +142,7 @@ export default function RootLayout({
         <div className="grain-overlay" aria-hidden="true" />
         
         <Navigation />
-        <main>{children}</main>
+        <main aria-label="Main content">{children}</main>
         <Footer />
       </body>
     </html>
