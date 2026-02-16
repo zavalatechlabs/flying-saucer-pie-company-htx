@@ -18,6 +18,8 @@ const eslintConfig = defineConfig([
       // Disable setState-in-effect rule - we have valid use cases for immediate state updates
       // when checking for reduced motion preferences or animation flags
       'react-hooks/set-state-in-effect': 'off',
+      // Warn on console.log but allow console.warn and console.error
+      'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
   },
 ])
