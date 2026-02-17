@@ -65,14 +65,42 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
   return (
     <div className="relative" ref={containerRef}>
       {/* ─── Timeline vertical lines ─── */}
+      {/*
+        Two layers per breakpoint:
+          1. Track  — faint full-height guide (the "empty" line)
+          2. Fill   — accent-colored, scales up from top via scaleY()
+        scaleY is GPU-composited so fill is as smooth as the saucer.
+      */}
 
-      {/* Mobile: left-8 = 32px from container edge */}
-      <div className="absolute top-0 left-8 w-0.5 h-full bg-ink/25 md:hidden" aria-hidden="true" />
-
-      {/* Desktop: center */}
+      {/* Mobile track */}
+      <div className="absolute top-0 left-8 w-0.5 h-full bg-ink/12 md:hidden" aria-hidden="true" />
+      {/* Mobile fill */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-ink/25 hidden md:block"
+        className="absolute top-0 left-8 w-0.5 h-full bg-accent md:hidden"
         aria-hidden="true"
+        style={{
+          transformOrigin: 'top',
+          transform: `scaleY(${saucerProgress})`,
+          willChange: 'transform',
+          transition: 'transform 0.12s ease-out',
+        }}
+      />
+
+      {/* Desktop track */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-ink/12 hidden md:block"
+        aria-hidden="true"
+      />
+      {/* Desktop fill */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent hidden md:block"
+        aria-hidden="true"
+        style={{
+          transformOrigin: 'top',
+          transform: `scaleY(${saucerProgress})`,
+          willChange: 'transform',
+          transition: 'transform 0.12s ease-out',
+        }}
       />
 
       {/* ─── Flying saucer scroll indicator ───
