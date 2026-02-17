@@ -37,159 +37,135 @@ interface FloatingParticle {
 }
 
 /**
- * NEW 1: Shooting Stars - Real star streaks with glowing heads & fading tails
- * - Stars shoot diagonally across the sky with proper trail effect
- * - Appear sporadically (not all at once like rain)
- * - Bright glowing head + fading trail gradient
+ * NEW 1: Shooting Stars - Subtle professional space nod
+ * Light soft-UI background with occasional elegant star streaks.
+ * Stars have a proper shape (glowing head + fading tail) at a
+ * classic diagonal angle — tasteful, not dramatic.
  */
 export function ShootingStarsBackground() {
   const [stars, setStars] = useState<ShootingStar[]>([])
 
   useEffect(() => {
-    // Generate shooting stars with varied timing so they appear one at a time
-    const newStars: ShootingStar[] = Array.from({ length: 8 }, (_, i) => ({
+    const newStars: ShootingStar[] = Array.from({ length: 5 }, (_, i) => ({
       id: i,
-      // Spread start positions across upper portion
-      startX: 5 + (i / 8) * 85, // Spread across top
-      startY: 2 + Math.random() * 35, // Keep in upper 35%
-      delay: i * 2.5 + Math.random() * 3, // Spread out so they appear separately
-      duration: 0.8 + Math.random() * 0.4, // Quick: 0.8-1.2s
-      length: 120 + Math.random() * 80, // 120-200px trails
-      brightness: 0.7 + Math.random() * 0.3,
+      startX: 10 + i * 18 + Math.random() * 8, // Spread across top third
+      startY: 3 + Math.random() * 28,
+      delay: i * 4 + Math.random() * 4, // ~4s apart so only one visible at a time
+      duration: 1.2 + Math.random() * 0.5,
+      length: 80 + Math.random() * 60, // 80–140px — tasteful not theatrical
+      brightness: 0.5 + Math.random() * 0.2,
     }))
     setStars(newStars)
   }, [])
 
-  // Shooting star angle: ~35 degrees (classic falling star look)
-  // The star travels diagonally from upper-left to lower-right
-  // Using SVG for proper head + tail with glow
-
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Deep midnight sky — makes stars pop */}
+      {/* Light soft-UI base — professional and clean */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(160deg, #0A0A1A 0%, #0F0F28 30%, #080818 70%, #04040F 100%)',
+          background: 'linear-gradient(145deg, #F2F2F6 0%, #EAEAF0 40%, #E4E4EC 100%)',
         }}
       />
 
-      {/* Subtle star field (static tiny dots) */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        {/* Static background stars */}
-        {Array.from({ length: 80 }, (_, i) => (
-          <circle
-            key={i}
-            cx={`${(i * 137.508) % 100}%`}
-            cy={`${(i * 73.9) % 80}%`}
-            r={i % 5 === 0 ? 1.2 : 0.6}
-            fill="white"
-            opacity={0.2 + (i % 3) * 0.15}
-          />
-        ))}
-      </svg>
+      {/* Very faint ambient blue tint in upper area (space hint) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 80% 50% at 60% 10%, rgba(2,1,105,0.04) 0%, transparent 60%)',
+        }}
+      />
 
       {/* Shooting stars */}
       {stars.map((star) => (
         <div
           key={star.id}
-          className="shooting-star-wrapper"
+          className="shooting-star-wrap"
           style={
             {
               left: `${star.startX}%`,
               top: `${star.startY}%`,
               animationDelay: `${star.delay}s`,
               animationDuration: `${star.duration}s`,
-              '--trail-length': `${star.length}px`,
-              '--brightness': star.brightness,
+              '--len': `${star.length}px`,
+              '--alpha': star.brightness,
             } as React.CSSProperties
           }
         />
       ))}
 
-      {/* Faint nebula glows for depth */}
+      {/* Soft indigo glow in corner — adds depth without drama */}
       <div
-        className="absolute opacity-20"
+        className="absolute"
         style={{
-          width: '40%',
-          height: '40%',
-          top: '5%',
-          right: '10%',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%)',
-          filter: 'blur(40px)',
-        }}
-      />
-      <div
-        className="absolute opacity-15"
-        style={{
-          width: '30%',
-          height: '30%',
-          bottom: '15%',
-          left: '5%',
-          background: 'radial-gradient(circle, rgba(2,1,105,0.4) 0%, transparent 70%)',
-          filter: 'blur(50px)',
+          width: '35%',
+          height: '45%',
+          top: 0,
+          right: 0,
+          background:
+            'radial-gradient(circle at top right, rgba(99,102,241,0.06) 0%, transparent 70%)',
+          filter: 'blur(20px)',
         }}
       />
 
       <style jsx>{`
-        .shooting-star-wrapper {
+        .shooting-star-wrap {
           position: absolute;
-          animation: shooting-star ease-out infinite;
+          /* Invisible container that flies across */
+          animation: star-fly ease-out infinite;
           animation-fill-mode: both;
         }
 
-        /* The star itself: a bright head + long fading tail */
-        .shooting-star-wrapper::before {
+        /* Fading tail — tapers from nothing at back to bright at head */
+        .shooting-star-wrap::before {
           content: '';
           position: absolute;
-          /* Trail: wide at left (head) fading to nothing on right */
-          width: var(--trail-length);
-          height: 2px;
+          width: var(--len);
+          height: 1.5px;
+          /* Gradient: transparent tail → soft indigo body → bright head tip */
           background: linear-gradient(
-            90deg,
+            to right,
             transparent 0%,
-            rgba(255, 255, 255, calc(var(--brightness) * 0.3)) 20%,
-            rgba(255, 255, 255, calc(var(--brightness) * 0.8)) 70%,
-            rgba(255, 255, 255, var(--brightness)) 90%,
-            white 100%
+            rgba(2, 1, 105, calc(var(--alpha) * 0.15)) 30%,
+            rgba(2, 1, 105, calc(var(--alpha) * 0.5)) 75%,
+            rgba(2, 1, 105, var(--alpha)) 95%,
+            rgba(100, 120, 255, calc(var(--alpha) * 1.2)) 100%
           );
-          /* Rotate so it travels at ~35° angle */
-          transform: rotate(-35deg);
+          transform: rotate(-32deg);
           transform-origin: right center;
-          border-radius: 0 2px 2px 0;
+          border-radius: 2px;
         }
 
-        /* Bright glowing head/tip of the star */
-        .shooting-star-wrapper::after {
+        /* Glowing head dot */
+        .shooting-star-wrap::after {
           content: '';
           position: absolute;
-          width: 4px;
-          height: 4px;
-          background: white;
+          width: 3px;
+          height: 3px;
           border-radius: 50%;
+          background: rgba(2, 1, 105, calc(var(--alpha) * 0.9));
           box-shadow:
-            0 0 4px 2px rgba(255, 255, 255, 0.9),
-            0 0 8px 4px rgba(200, 210, 255, 0.6),
-            0 0 16px 6px rgba(150, 170, 255, 0.3);
-          top: -1px;
-          left: -2px;
+            0 0 3px 1px rgba(2, 1, 105, calc(var(--alpha) * 0.5)),
+            0 0 6px 2px rgba(99, 102, 241, calc(var(--alpha) * 0.25));
+          top: -0.75px;
+          left: -1.5px;
         }
 
-        @keyframes shooting-star {
+        @keyframes star-fly {
           0% {
             opacity: 0;
             transform: translate(0, 0);
           }
-          2% {
+          5% {
             opacity: 1;
           }
-          70% {
-            opacity: 0.8;
+          80% {
+            opacity: 0.7;
           }
           100% {
             opacity: 0;
-            /* Travel diagonally: right and down at 35° */
-            transform: translate(300px, 210px);
+            transform: translate(250px, 165px);
           }
         }
       `}</style>
@@ -447,96 +423,210 @@ export function AuroraWavesBackground() {
 }
 
 /**
- * NEW 5: Nebula Pulse - Subtle breathing/pulsing glows
+ * NEW 5: Nebula Pulse - Dramatic breathing glows with visible color shifts
  */
 export function NebulaPulseBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Soft UI base */}
+      {/* Slightly tinted base — gives glows something to contrast against */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+          background: 'linear-gradient(160deg, #EEEEF8 0%, #E8E8F2 40%, #E2E2EE 100%)',
         }}
       />
 
-      {/* Pulsing nebula glows */}
+      {/* PRIMARY nebula — large indigo, upper right */}
       <div className="nebula nebula-1" />
+
+      {/* SECONDARY nebula — hero blue, center left */}
       <div className="nebula nebula-2" />
+
+      {/* TERTIARY nebula — warm coral, lower right */}
       <div className="nebula nebula-3" />
 
-      {/* Tiny star accents */}
-      <div className="star-accent" style={{ top: '15%', left: '20%' }} />
-      <div className="star-accent" style={{ top: '25%', right: '30%', animationDelay: '1s' }} />
-      <div className="star-accent" style={{ top: '40%', left: '60%', animationDelay: '2s' }} />
+      {/* ACCENT nebula — violet, upper left */}
+      <div className="nebula nebula-4" />
+
+      {/* Cross-fade overlay that shifts color as nebulas breathe */}
+      <div className="nebula-overlay" />
+
+      {/* Star accents — more of them, more visible */}
+      <div className="star-accent star-lg" style={{ top: '12%', left: '22%' }} />
+      <div
+        className="star-accent star-lg"
+        style={{ top: '8%', right: '28%', animationDelay: '0.7s' }}
+      />
+      <div
+        className="star-accent star-md"
+        style={{ top: '28%', right: '15%', animationDelay: '1.3s' }}
+      />
+      <div
+        className="star-accent star-md"
+        style={{ top: '42%', left: '55%', animationDelay: '2s' }}
+      />
+      <div
+        className="star-accent star-sm"
+        style={{ top: '18%', left: '45%', animationDelay: '0.3s' }}
+      />
+      <div
+        className="star-accent star-sm"
+        style={{ top: '35%', left: '10%', animationDelay: '1.8s' }}
+      />
+      <div
+        className="star-accent star-sm"
+        style={{ bottom: '30%', right: '40%', animationDelay: '1s' }}
+      />
 
       <style jsx>{`
         .nebula {
           position: absolute;
           border-radius: 50%;
-          filter: blur(60px);
-          animation: pulse ease-in-out infinite;
+          animation: nebula-breathe ease-in-out infinite;
         }
 
+        /* Large indigo glow — very visible */
         .nebula-1 {
-          width: 300px;
-          height: 300px;
-          top: 10%;
-          right: 10%;
-          background: rgba(99, 102, 241, 0.12);
+          width: 520px;
+          height: 420px;
+          top: -5%;
+          right: -5%;
+          background: radial-gradient(
+            circle,
+            rgba(99, 102, 241, 0.35) 0%,
+            rgba(99, 102, 241, 0.12) 40%,
+            transparent 70%
+          );
+          filter: blur(50px);
           animation-duration: 6s;
+          animation-delay: 0s;
         }
 
+        /* Hero-blue glow — strong presence center-left */
         .nebula-2 {
-          width: 250px;
-          height: 250px;
-          top: 30%;
-          left: 15%;
-          background: rgba(2, 1, 105, 0.08);
+          width: 420px;
+          height: 380px;
+          top: 15%;
+          left: -8%;
+          background: radial-gradient(
+            circle,
+            rgba(2, 1, 105, 0.28) 0%,
+            rgba(2, 1, 105, 0.1) 45%,
+            transparent 70%
+          );
+          filter: blur(55px);
           animation-duration: 8s;
           animation-delay: -2s;
         }
 
+        /* Warm coral glow — bottom right anchor */
         .nebula-3 {
-          width: 200px;
-          height: 200px;
-          bottom: 20%;
-          right: 25%;
-          background: rgba(212, 133, 106, 0.1);
+          width: 380px;
+          height: 300px;
+          bottom: 5%;
+          right: 10%;
+          background: radial-gradient(
+            circle,
+            rgba(212, 133, 106, 0.3) 0%,
+            rgba(212, 133, 106, 0.1) 45%,
+            transparent 70%
+          );
+          filter: blur(45px);
           animation-duration: 7s;
           animation-delay: -4s;
         }
 
-        .star-accent {
-          position: absolute;
-          width: 3px;
-          height: 3px;
-          background: rgba(99, 102, 241, 0.5);
-          border-radius: 50%;
-          animation: star-pulse 3s ease-in-out infinite;
+        /* Violet accent — upper left, smaller */
+        .nebula-4 {
+          width: 280px;
+          height: 260px;
+          top: 5%;
+          left: 20%;
+          background: radial-gradient(
+            circle,
+            rgba(139, 92, 246, 0.2) 0%,
+            rgba(139, 92, 246, 0.07) 50%,
+            transparent 70%
+          );
+          filter: blur(40px);
+          animation-duration: 9s;
+          animation-delay: -3s;
         }
 
-        @keyframes pulse {
+        /* Subtle full-screen color wash that pulses */
+        .nebula-overlay {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(
+            ellipse 90% 60% at 55% 35%,
+            rgba(99, 102, 241, 0.06) 0%,
+            transparent 60%
+          );
+          animation: overlay-pulse 10s ease-in-out infinite;
+        }
+
+        @keyframes nebula-breathe {
           0%,
           100% {
-            transform: scale(1);
-            opacity: 0.6;
+            transform: scale(1) translate(0, 0);
+            opacity: 0.7;
           }
           50% {
-            transform: scale(1.15);
+            transform: scale(1.2) translate(8px, -8px);
             opacity: 1;
           }
+        }
+
+        @keyframes overlay-pulse {
+          0%,
+          100% {
+            opacity: 0.5;
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+
+        /* Star accents */
+        .star-accent {
+          position: absolute;
+          border-radius: 50%;
+          animation: star-pulse ease-in-out infinite;
+        }
+
+        .star-lg {
+          width: 5px;
+          height: 5px;
+          background: rgba(99, 102, 241, 0.7);
+          box-shadow: 0 0 6px 2px rgba(99, 102, 241, 0.4);
+          animation-duration: 2.5s;
+        }
+
+        .star-md {
+          width: 3px;
+          height: 3px;
+          background: rgba(139, 92, 246, 0.6);
+          box-shadow: 0 0 4px 1px rgba(139, 92, 246, 0.35);
+          animation-duration: 3.2s;
+        }
+
+        .star-sm {
+          width: 2px;
+          height: 2px;
+          background: rgba(2, 1, 105, 0.5);
+          box-shadow: 0 0 3px 1px rgba(2, 1, 105, 0.25);
+          animation-duration: 4s;
         }
 
         @keyframes star-pulse {
           0%,
           100% {
-            opacity: 0.2;
-            transform: scale(0.8);
+            opacity: 0.15;
+            transform: scale(0.7);
           }
           50% {
-            opacity: 0.7;
-            transform: scale(1.3);
+            opacity: 1;
+            transform: scale(1.4);
           }
         }
       `}</style>
