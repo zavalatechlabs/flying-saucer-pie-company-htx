@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" fill="currentColor">
+  <!-- Simplified Houston Downtown Skyline -->
+  <!-- From left to right: Various iconic Houston buildings -->
+  
+  <!-- Far left buildings -->
+  <rect x="20" y="140" width="30" height="60" />
+  <rect x="55" y="120" width="25" height="80" />
+  <rect x="85" y="150" width="20" height="50" />
+  
+  <!-- JPMorgan Chase Tower (tallest, iconic sloped top) -->
+  <polygon points="150,40 155,40 190,40 195,40 195,200 150,200" />
+  <polygon points="155,40 172,15 190,40" />
+  
+  <!-- Wells Fargo Plaza -->
+  <rect x="210" y="60" width="35" height="140" />
+  <rect x="215" y="55" width="25" height="10" />
+  
+  <!-- Bank of America Center (stepped top) -->
+  <rect x="260" y="80" width="40" height="120" />
+  <rect x="265" y="70" width="30" height="15" />
+  <rect x="270" y="60" width="20" height="15" />
+  
+  <!-- Williams Tower (Transco, iconic) -->
+  <rect x="320" y="50" width="32" height="150" />
+  <polygon points="325,50 336,25 347,50" />
+  
+  <!-- Heritage Plaza -->
+  <rect x="370" y="75" width="35" height="125" />
+  <rect x="375" y="68" width="25" height="10" />
+  
+  <!-- 609 Main -->
+  <rect x="420" y="55" width="38" height="145" />
+  
+  <!-- Pennzoil Place (twin trapezoids) -->
+  <polygon points="480,200 480,70 510,50 510,200" />
+  <polygon points="520,200 520,70 550,50 550,200" />
+  
+  <!-- One Shell Plaza -->
+  <rect x="570" y="65" width="35" height="135" />
+  
+  <!-- Continental Center -->
+  <rect x="620" y="90" width="30" height="110" />
+  
+  <!-- 1100 Louisiana -->
+  <rect x="665" y="70" width="40" height="130" />
+  <rect x="670" y="63" width="30" height="10" />
+  
+  <!-- Fulbright Tower -->
+  <rect x="720" y="85" width="28" height="115" />
+  
+  <!-- BG Group Place -->
+  <rect x="765" y="60" width="35" height="140" />
+  <polygon points="770,60 782,45 795,60" />
+  
+  <!-- Enterprise Plaza -->
+  <rect x="815" y="95" width="30" height="105" />
+  
+  <!-- Two Houston Center -->
+  <rect x="860" y="75" width="35" height="125" />
+  
+  <!-- First City Tower -->
+  <rect x="910" y="85" width="30" height="115" />
+  
+  <!-- Allen Center complex -->
+  <rect x="955" y="100" width="25" height="100" />
+  <rect x="985" y="90" width="25" height="110" />
+  <rect x="1015" y="110" width="25" height="90" />
+  
+  <!-- Far right buildings -->
+  <rect x="1055" y="130" width="28" height="70" />
+  <rect x="1090" y="145" width="25" height="55" />
+  <rect x="1120" y="160" width="30" height="40" />
+  <rect x="1155" y="155" width="25" height="45" />
+</svg>
