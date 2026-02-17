@@ -26,7 +26,10 @@ const creativeExplorations: { id: string; path: string }[] = [
   { id: 'darkLuxe', path: '/v9' },
   { id: 'bentoGrid', path: '/v10' },
   { id: 'playfulIllustrated', path: '/v11' },
+  { id: 'niftyPortal', path: '/v12' },
 ]
+
+const mainTheme: { id: string; path: string }[] = [{ id: 'main', path: '/main' }]
 
 const otherThemes: { id: string; path: string }[] = [
   { id: 'spaceCity', path: '/home1' },
@@ -39,10 +42,12 @@ const otherThemes: { id: string; path: string }[] = [
 const pathToTheme: Record<string, string> = {}
 const themeToPath: Record<string, string> = {}
 
-;[...retroDinerVariations, ...creativeExplorations, ...otherThemes].forEach(({ id, path }) => {
-  pathToTheme[path] = id
-  themeToPath[id] = path
-})
+;[...mainTheme, ...retroDinerVariations, ...creativeExplorations, ...otherThemes].forEach(
+  ({ id, path }) => {
+    pathToTheme[path] = id
+    themeToPath[id] = path
+  }
+)
 
 export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -116,8 +121,17 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 rounded-xl bg-surface/95 backdrop-blur-lg border border-border/50 shadow-xl overflow-hidden z-50">
+        <div className="absolute right-0 mt-2 w-72 max-h-[70vh] rounded-xl bg-surface/95 backdrop-blur-lg border border-border/50 shadow-xl overflow-y-auto z-50">
           <div className="p-2">
+            {/* Main Theme */}
+            <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
+              <span>⭐</span> Recommended
+            </p>
+            {mainTheme.map(({ id, path }) => renderThemeLink(id, path))}
+
+            {/* Divider */}
+            <div className="my-2 border-t border-border/50" />
+
             {/* Retro Diner Variations */}
             <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
               <span>🛸</span> Retro Diner Variations
