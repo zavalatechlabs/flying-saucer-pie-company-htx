@@ -212,6 +212,151 @@ export const themes: Record<string, Theme> = {
         'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFCF7 0%, #FAF6F1 40%, #F0E6DB 100%)',
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // V2 VARIATIONS (v5-v11) - Creative Explorations
+  // ═══════════════════════════════════════════════════════════════
+
+  // V5: Nifty Retro Typography
+  niftyRetro: {
+    id: 'niftyRetro',
+    name: 'Nifty Retro',
+    description: 'Retro typography with animated elements',
+    emoji: '🎭',
+    colors: {
+      bg: '#F5E6D3',
+      bgAlt: '#EBD9C4',
+      surface: '#FDF8F3',
+      ink: '#2C1810',
+      inkMuted: '#6B5344',
+      accent: '#D35400',
+      accent2: '#8B4513',
+      border: '#D4C4B0',
+      heroBg: '#F5E6D3',
+      heroGradient: 'radial-gradient(ellipse at 50% 30%, #FDF8F3 0%, #F5E6D3 50%, #EBD9C4 100%)',
+    },
+  },
+
+  // V6: Neubrutalism Bold
+  neubrutalism: {
+    id: 'neubrutalism',
+    name: 'Neubrutalism',
+    description: 'Bold colors, hard shadows, playful chaos',
+    emoji: '💥',
+    colors: {
+      bg: '#FEFCE8',
+      bgAlt: '#FEF9C3',
+      surface: '#FFFFFF',
+      ink: '#000000',
+      inkMuted: '#374151',
+      accent: '#F472B6',
+      accent2: '#3B82F6',
+      border: '#000000',
+      heroBg: '#FEFCE8',
+      heroGradient: 'linear-gradient(135deg, #FEFCE8 0%, #FEF9C3 50%, #FED7AA 100%)',
+    },
+  },
+
+  // V7: Neumorphism Soft
+  neumorphism: {
+    id: 'neumorphism',
+    name: 'Soft UI',
+    description: 'Soft shadows, tactile pressed elements',
+    emoji: '🫧',
+    colors: {
+      bg: '#E8E8E8',
+      bgAlt: '#DEDEDE',
+      surface: '#F0F0F0',
+      ink: '#2D3436',
+      inkMuted: '#636E72',
+      accent: '#D4856A',
+      accent2: '#6B8E9F',
+      border: '#D0D0D0',
+      heroBg: '#E8E8E8',
+      heroGradient: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+    },
+  },
+
+  // V8: Gradient Mesh Flow
+  gradientMesh: {
+    id: 'gradientMesh',
+    name: 'Gradient Mesh',
+    description: 'Fluid gradients, organic shapes',
+    emoji: '🌈',
+    colors: {
+      bg: '#FFF5F5',
+      bgAlt: '#FFF0F5',
+      surface: 'rgba(255, 255, 255, 0.8)',
+      ink: '#1A1A2E',
+      inkMuted: '#6B7280',
+      accent: '#F472B6',
+      accent2: '#A78BFA',
+      border: 'rgba(255, 255, 255, 0.3)',
+      heroBg: '#FFF5F5',
+      heroGradient:
+        'linear-gradient(135deg, #FED7AA 0%, #FECACA 25%, #DDD6FE 50%, #C7D2FE 75%, #FFF5F5 100%)',
+    },
+  },
+
+  // V9: Dark Luxe Evening
+  darkLuxe: {
+    id: 'darkLuxe',
+    name: 'Dark Luxe',
+    description: 'Warm dark theme with gold accents',
+    emoji: '🌙',
+    colors: {
+      bg: '#1A1714',
+      bgAlt: '#252220',
+      surface: '#2D2926',
+      ink: '#F5F0EB',
+      inkMuted: '#A39E99',
+      accent: '#D4A574',
+      accent2: '#B8860B',
+      border: '#3D3835',
+      heroBg: '#1A1714',
+      heroGradient: 'radial-gradient(ellipse at 50% 30%, #2D2926 0%, #1A1714 60%, #0F0D0B 100%)',
+    },
+  },
+
+  // V10: Bento Grid Layout
+  bentoGrid: {
+    id: 'bentoGrid',
+    name: 'Bento Grid',
+    description: 'Modular card layouts, organized chaos',
+    emoji: '📦',
+    colors: {
+      bg: '#FAFAF9',
+      bgAlt: '#F5F5F4',
+      surface: '#FFFFFF',
+      ink: '#1C1917',
+      inkMuted: '#57534E',
+      accent: '#EA580C',
+      accent2: '#0891B2',
+      border: '#E7E5E4',
+      heroBg: '#FAFAF9',
+      heroGradient: 'linear-gradient(180deg, #FAFAF9 0%, #F5F5F4 100%)',
+    },
+  },
+
+  // V11: Playful Illustrated
+  playfulIllustrated: {
+    id: 'playfulIllustrated',
+    name: 'Playful',
+    description: 'Hand-drawn doodles, whimsical feel',
+    emoji: '✏️',
+    colors: {
+      bg: '#FFFBF5',
+      bgAlt: '#FEF7ED',
+      surface: '#FFFFFF',
+      ink: '#374151',
+      inkMuted: '#6B7280',
+      accent: '#FB923C',
+      accent2: '#34D399',
+      border: '#E5E7EB',
+      heroBg: '#FFFBF5',
+      heroGradient: 'linear-gradient(180deg, #FFFBF5 0%, #FEF7ED 50%, #FFF7ED 100%)',
+    },
+  },
 }
 
 // Default theme constant for type safety
