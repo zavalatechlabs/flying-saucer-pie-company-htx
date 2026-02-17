@@ -60,7 +60,11 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
         const next = new Set(prev)
         milestoneRefs.current.forEach((ref, i) => {
           if (!ref) return
-          const dotY = ref.offsetTop + ref.offsetHeight / 2
+          // Mobile dot is `absolute top-1.5` (6px) from the row top.
+          // Desktop dot is vertically centered in the flex row.
+          // Using ref.offsetTop + offsetHeight/2 for desktop is correct, but on
+          // mobile it overshoots by ~half the row height (causing the delay).
+          const dotY = isMobile ? ref.offsetTop + 6 : ref.offsetTop + ref.offsetHeight / 2
           if (lineTipY >= dotY && !prev.has(i)) {
             next.add(i)
             changed = true
