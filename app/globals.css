@@ -732,19 +732,28 @@ html {
 
 .infinite-scroll-container {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   position: relative;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  /* Hide scrollbar for cleaner look */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.infinite-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 .infinite-scroll-track {
   display: flex;
   gap: 3rem;
-  animation: infiniteScroll 60s linear infinite;
+  animation: infiniteScroll 100s linear infinite;
   width: fit-content;
 }
 
+.infinite-scroll-track.paused,
 .infinite-scroll-track:hover {
   animation-play-state: paused;
 }
@@ -772,7 +781,7 @@ html {
 }
 
 .pie-spin-infinite {
-  animation: pieRotate 20s linear infinite;
+  animation: pieRotate 35s linear infinite;
   transition: transform 0.3s ease;
 }
 
@@ -793,7 +802,7 @@ html {
 @media (max-width: 768px) {
   .infinite-scroll-track {
     gap: 2rem;
-    animation-duration: 45s; /* Slightly faster on mobile */
+    animation-duration: 75s; /* Slower on mobile */
   }
 
   .infinite-pie-item {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { PieModal } from '@/components/ui/PieModal'
@@ -8,10 +8,43 @@ import { pies, Pie } from '@/lib/data/pies'
 
 export function FeaturedPiesRow() {
   const [selectedPie, setSelectedPie] = useState<Pie | null>(null)
-  const featuredPies = pies.slice(0, 8) // first 8 pies
+  const [isPaused, setIsPaused] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
 
+  const featuredPies = pies.slice(0, 8) // first 8 pies
   // Duplicate pies 3 times for seamless infinite scroll
   const infinitePies = [...featuredPies, ...featuredPies, ...featuredPies]
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
+    const handleScroll = () => {
+      // Pause animation when user scrolls
+      setIsPaused(true)
+
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+
+      // Resume animation 2 seconds after user stops scrolling
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsPaused(false)
+      }, 2000)
+    }
+
+    container.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      container.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
+  }, [])
 
   return (
     <>
@@ -27,29 +60,27 @@ export function FeaturedPiesRow() {
           </div>
 
           {/* Infinite Auto-Scroll Container */}
-          <div className="relative">
-            <div className="infinite-scroll-container">
-              <div className="infinite-scroll-track">
-                {infinitePies.map((pie, i) => (
-                  <div
-                    key={`${pie.id}-${i}`}
-                    className="infinite-pie-item cursor-pointer"
-                    onClick={() => setSelectedPie(pie)}
-                  >
-                    <div className="pie-spin-infinite">
-                      <Image
-                        src={pie.image || '/pie-placeholder.svg'}
-                        alt={pie.name}
-                        width={200}
-                        height={200}
-                        className="rounded-full object-cover"
-                        priority={i < 8}
-                      />
-                    </div>
-                    <p className="text-center mt-4 font-medium text-ink text-base">{pie.name}</p>
+          <div ref={containerRef} className="infinite-scroll-container">
+            <div ref={trackRef} className={`infinite-scroll-track ${isPaused ? 'paused' : ''}`}>
+              {infinitePies.map((pie, i) => (
+                <div
+                  key={`${pie.id}-${i}`}
+                  className="infinite-pie-item cursor-pointer"
+                  onClick={() => setSelectedPie(pie)}
+                >
+                  <div className="pie-spin-infinite">
+                    <Image
+                      src={pie.image || '/pie-placeholder.svg'}
+                      alt={pie.name}
+                      width={200}
+                      height={200}
+                      className="rounded-full object-cover"
+                      priority={i < 8}
+                    />
                   </div>
-                ))}
-              </div>
+                  <p className="text-center mt-4 font-medium text-ink text-base">{pie.name}</p>
+                </div>
+              ))}
             </div>
           </div>
 
