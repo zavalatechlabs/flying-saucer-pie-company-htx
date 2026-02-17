@@ -429,12 +429,12 @@ export const themes: Record<string, Theme> = {
   // Testing different gradients and subtle animations
   // ═══════════════════════════════════════════════════════════════
 
-  // NEW 1: Aurora Glow - Subtle animated gradient
+  // NEW 1: Shooting Stars - Occasional diagonal streaks
   auroraGlow: {
     id: 'auroraGlow',
-    name: '🆕 Aurora Glow',
-    description: 'Soft purple-blue gradient with subtle movement',
-    emoji: '🌌',
+    name: '🆕 Shooting Stars',
+    description: 'Soft UI + occasional shooting star streaks',
+    emoji: '💫',
     colors: {
       bg: '#F8F9FC',
       bgAlt: '#F0F2F8',
@@ -450,12 +450,12 @@ export const themes: Record<string, Theme> = {
     },
   },
 
-  // NEW 2: Sunset Warmth - Coral to peach gradient
+  // NEW 2: Twinkling Stars - Stars that fade in and out
   sunsetWarmth: {
     id: 'sunsetWarmth',
-    name: '🆕 Sunset Warmth',
-    description: 'Warm coral sunset with golden hour feel',
-    emoji: '🌅',
+    name: '🆕 Twinkling Stars',
+    description: 'Soft UI + gentle twinkling star field',
+    emoji: '✨',
     colors: {
       bg: '#FFFBF5',
       bgAlt: '#FEF3E2',
@@ -471,12 +471,12 @@ export const themes: Record<string, Theme> = {
     },
   },
 
-  // NEW 3: Cosmic Dust - Subtle stars/particles
+  // NEW 3: Rising Particles - Gentle upward floating dots
   cosmicDust: {
     id: 'cosmicDust',
-    name: '🆕 Cosmic Dust',
-    description: 'Soft background with subtle floating particles',
-    emoji: '✨',
+    name: '🆕 Rising Particles',
+    description: 'Soft UI + particles floating upward',
+    emoji: '🫧',
     colors: {
       bg: '#F5F5F7',
       bgAlt: '#EBEBF0',
@@ -492,11 +492,11 @@ export const themes: Record<string, Theme> = {
     },
   },
 
-  // NEW 4: Ocean Breeze - Teal waves gradient
+  // NEW 4: Aurora Waves - Slow moving gradient bands
   oceanBreeze: {
     id: 'oceanBreeze',
-    name: '🆕 Ocean Breeze',
-    description: 'Cool teal gradients like gentle waves',
+    name: '🆕 Aurora Waves',
+    description: 'Soft UI + slow drifting color bands',
     emoji: '🌊',
     colors: {
       bg: '#F0FDFA',
@@ -513,12 +513,12 @@ export const themes: Record<string, Theme> = {
     },
   },
 
-  // NEW 5: Soft Cloud - Dreamy light gradient with depth
+  // NEW 5: Nebula Pulse - Subtle breathing glows
   softCloud: {
     id: 'softCloud',
-    name: '🆕 Soft Cloud',
-    description: 'Dreamy light layers like floating clouds',
-    emoji: '☁️',
+    name: '🆕 Nebula Pulse',
+    description: 'Soft UI + breathing/pulsing glow effects',
+    emoji: '🌌',
     colors: {
       bg: '#FAFAFA',
       bgAlt: '#F4F4F5',

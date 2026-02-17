@@ -2,6 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import {
+  ShootingStarsBackground,
+  TwinklingStarsBackground,
+  RisingParticlesBackground,
+  AuroraWavesBackground,
+  NebulaPulseBackground,
+} from './AnimatedHeroBackgrounds'
 
 interface Star {
   id: number
@@ -732,179 +739,33 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
   }
 
   // ═══════════════════════════════════════════════════════════════
-  // 🆕 NEW EXPERIMENTAL HERO BACKGROUNDS
+  // 🆕 NEW ANIMATED HERO BACKGROUNDS
+  // All use Soft UI base + subtle movement
   // ═══════════════════════════════════════════════════════════════
 
-  // NEW 1: Aurora Glow - Animated purple-blue gradient
+  // NEW 1: Shooting Stars - Occasional diagonal streaks
   if (theme === 'auroraGlow') {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Base gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(135deg, #F8F9FC 0%, #EDE9FE 30%, #DDD6FE 50%, #E0E7FF 70%, #F8F9FC 100%)',
-          }}
-        />
-        {/* Animated aurora effect */}
-        <div
-          className="absolute inset-0 opacity-30 animate-aurora"
-          style={{
-            background:
-              'radial-gradient(ellipse 80% 50% at 20% 30%, #C4B5FD 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 70%, #A5B4FC 0%, transparent 50%)',
-          }}
-        />
-        {/* Subtle sparkle points */}
-        <div className="absolute top-[15%] left-[20%] w-1 h-1 bg-white rounded-full opacity-60 animate-pulse" />
-        <div className="absolute top-[30%] right-[25%] w-1.5 h-1.5 bg-white rounded-full opacity-40 animate-pulse delay-300" />
-        <div className="absolute bottom-[35%] left-[40%] w-1 h-1 bg-white rounded-full opacity-50 animate-pulse delay-700" />
-      </div>
-    )
+    return <ShootingStarsBackground />
   }
 
-  // NEW 2: Sunset Warmth - Coral sunset gradient
+  // NEW 2: Twinkling Stars - Stars that fade in and out
   if (theme === 'sunsetWarmth') {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Warm sunset gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, #FFFBF5 0%, #FEF3C7 25%, #FECACA 50%, #FED7AA 75%, #FFFBF5 100%)',
-          }}
-        />
-        {/* Sun glow effect */}
-        <div
-          className="absolute top-[10%] right-[20%] w-48 h-48 rounded-full opacity-40 blur-3xl"
-          style={{
-            background: 'radial-gradient(circle, #FBBF24 0%, #F97316 40%, transparent 70%)',
-          }}
-        />
-        {/* Soft warm overlay */}
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 60% at 50% 100%, #FED7AA 0%, transparent 60%)',
-          }}
-        />
-      </div>
-    )
+    return <TwinklingStarsBackground />
   }
 
-  // NEW 3: Cosmic Dust - Subtle floating particles
+  // NEW 3: Rising Particles - Gentle upward floating dots
   if (theme === 'cosmicDust') {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Clean gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 150% 100% at 50% 0%, #FFFFFF 0%, #F5F5F7 40%, #EBEBF0 100%)',
-          }}
-        />
-        {/* Floating dust particles */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-indigo-400 animate-float"
-            style={{
-              left: `${10 + ((i * 7) % 80)}%`,
-              top: `${15 + ((i * 11) % 60)}%`,
-              width: `${2 + (i % 3)}px`,
-              height: `${2 + (i % 3)}px`,
-              opacity: 0.15 + (i % 4) * 0.05,
-              animationDelay: `${i * 0.3}s`,
-              animationDuration: `${4 + (i % 3)}s`,
-            }}
-          />
-        ))}
-        {/* Subtle blue accent */}
-        <div
-          className="absolute top-[20%] left-[50%] -translate-x-1/2 w-64 h-64 rounded-full opacity-[0.08] blur-3xl"
-          style={{ background: 'radial-gradient(circle, #6366F1 0%, transparent 60%)' }}
-        />
-      </div>
-    )
+    return <RisingParticlesBackground />
   }
 
-  // NEW 4: Ocean Breeze - Teal wave gradient
+  // NEW 4: Aurora Waves - Slow moving gradient bands
   if (theme === 'oceanBreeze') {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Ocean gradient */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(180deg, #FFFFFF 0%, #F0FDFA 20%, #CCFBF1 50%, #A5F3FC 80%, #F0FDFA 100%)',
-          }}
-        />
-        {/* Wave curves at bottom */}
-        <svg
-          className="absolute bottom-0 left-0 right-0 w-full h-32 opacity-20"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,40 C200,80 400,0 600,40 C800,80 1000,0 1200,40 L1200,120 L0,120 Z"
-            fill="#0D9488"
-          />
-          <path
-            d="M0,60 C150,90 350,20 550,60 C750,100 950,20 1200,60 L1200,120 L0,120 Z"
-            fill="#14B8A6"
-            opacity="0.5"
-          />
-        </svg>
-        {/* Soft teal glow */}
-        <div
-          className="absolute top-[30%] left-[50%] -translate-x-1/2 w-96 h-64 rounded-full opacity-[0.1] blur-3xl"
-          style={{ background: 'radial-gradient(circle, #2DD4BF 0%, transparent 60%)' }}
-        />
-      </div>
-    )
+    return <AuroraWavesBackground />
   }
 
-  // NEW 5: Soft Cloud - Dreamy layered clouds
+  // NEW 5: Nebula Pulse - Subtle breathing/pulsing glows
   if (theme === 'softCloud') {
-    return (
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Base gradient with depth */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFFFF 0%, #FAFAFA 30%, #F4F4F5 60%, #E4E4E7 100%)',
-          }}
-        />
-        {/* Cloud layer 1 */}
-        <div
-          className="absolute top-[5%] left-[10%] w-80 h-32 rounded-full opacity-40 blur-2xl"
-          style={{ background: 'linear-gradient(90deg, #FFFFFF 0%, #F4F4F5 100%)' }}
-        />
-        {/* Cloud layer 2 */}
-        <div
-          className="absolute top-[15%] right-[15%] w-64 h-24 rounded-full opacity-30 blur-2xl"
-          style={{ background: 'linear-gradient(90deg, #F4F4F5 0%, #FFFFFF 100%)' }}
-        />
-        {/* Cloud layer 3 */}
-        <div
-          className="absolute top-[25%] left-[30%] w-96 h-28 rounded-full opacity-25 blur-3xl"
-          style={{ background: 'linear-gradient(90deg, #FFFFFF 0%, #E4E4E7 50%, #FFFFFF 100%)' }}
-        />
-        {/* Soft vignette */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'radial-gradient(ellipse 90% 80% at 50% 40%, transparent 40%, rgba(228, 228, 231, 0.3) 100%)',
-          }}
-        />
-      </div>
-    )
+    return <NebulaPulseBackground />
   }
 
   // Old Retro Diner theme
