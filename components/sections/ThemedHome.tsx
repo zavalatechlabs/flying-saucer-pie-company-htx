@@ -17,6 +17,13 @@ type ThemeId =
   | 'houstonPride'
   | 'atomicAge'
   | 'warmMocha'
+  | 'niftyRetro'
+  | 'neubrutalism'
+  | 'neumorphism'
+  | 'gradientMesh'
+  | 'darkLuxe'
+  | 'bentoGrid'
+  | 'playfulIllustrated'
 
 interface ThemedHomeProps {
   themeId: ThemeId

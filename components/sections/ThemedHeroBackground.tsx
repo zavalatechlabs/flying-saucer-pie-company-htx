@@ -22,6 +22,13 @@ type ThemeId =
   | 'houstonPride'
   | 'atomicAge'
   | 'warmMocha'
+  | 'niftyRetro'
+  | 'neubrutalism'
+  | 'neumorphism'
+  | 'gradientMesh'
+  | 'darkLuxe'
+  | 'bentoGrid'
+  | 'playfulIllustrated'
 
 interface ThemedHeroBackgroundProps {
   theme: ThemeId
@@ -441,6 +448,192 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             backgroundSize: '60px 60px',
           }}
         />
+      </div>
+    )
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // V2 CREATIVE EXPLORATIONS (v5-v11)
+  // ═══════════════════════════════════════════════════════════════
+
+  // V5: Nifty Retro Typography
+  if (theme === 'niftyRetro') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 30%, #FDF8F3 0%, #F5E6D3 50%, #EBD9C4 100%)',
+          }}
+        />
+        {/* Vintage texture overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '150px',
+          }}
+        />
+        {/* Retro decorative circles */}
+        <div className="absolute top-[10%] left-[8%] w-32 h-32 rounded-full opacity-[0.06] border-4 border-[#D35400]" />
+        <div className="absolute bottom-[15%] right-[10%] w-24 h-24 rounded-full opacity-[0.05] border-4 border-[#8B4513]" />
+      </div>
+    )
+  }
+
+  // V6: Neubrutalism Bold
+  if (theme === 'neubrutalism') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #FEFCE8 0%, #FEF9C3 50%, #FED7AA 100%)',
+          }}
+        />
+        {/* Bold geometric shapes */}
+        <div
+          className="absolute top-[5%] right-[5%] w-40 h-40 bg-[#F472B6] opacity-[0.15]"
+          style={{ transform: 'rotate(12deg)' }}
+        />
+        <div
+          className="absolute bottom-[10%] left-[8%] w-32 h-32 bg-[#3B82F6] opacity-[0.12]"
+          style={{ transform: 'rotate(-8deg)' }}
+        />
+        <div className="absolute top-[40%] left-[15%] w-20 h-20 rounded-full bg-[#FBBF24] opacity-[0.2]" />
+      </div>
+    )
+  }
+
+  // V7: Neumorphism Soft
+  if (theme === 'neumorphism') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+          }}
+        />
+        {/* Soft inner shadows */}
+        <div
+          className="absolute inset-0"
+          style={{
+            boxShadow: 'inset 20px 20px 60px #D0D0D0, inset -20px -20px 60px #FFFFFF',
+            borderRadius: '0',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // V8: Gradient Mesh Flow
+  if (theme === 'gradientMesh') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(135deg, #FED7AA 0%, #FECACA 25%, #DDD6FE 50%, #C7D2FE 75%, #FFF5F5 100%)',
+          }}
+        />
+        {/* Organic blob shapes */}
+        <div
+          className="absolute top-[10%] right-[10%] w-64 h-64 rounded-full opacity-30 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #F472B6 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute bottom-[20%] left-[5%] w-48 h-48 rounded-full opacity-25 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #A78BFA 0%, transparent 70%)' }}
+        />
+        <div
+          className="absolute top-[50%] left-[50%] w-40 h-40 rounded-full opacity-20 blur-3xl"
+          style={{ background: 'radial-gradient(circle, #FCD34D 0%, transparent 70%)' }}
+        />
+        {/* Subtle grain */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '128px',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // V9: Dark Luxe Evening
+  if (theme === 'darkLuxe') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 30%, #2D2926 0%, #1A1714 60%, #0F0D0B 100%)',
+          }}
+        />
+        {/* Gold accent glows */}
+        <div
+          className="absolute top-[15%] left-[50%] -translate-x-1/2 w-96 h-64 rounded-full opacity-[0.08] blur-3xl"
+          style={{ background: 'radial-gradient(circle, #D4A574 0%, transparent 60%)' }}
+        />
+        {/* Subtle texture */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.5'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '200px',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // V10: Bento Grid Layout
+  if (theme === 'bentoGrid') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, #FAFAF9 0%, #F5F5F4 100%)',
+          }}
+        />
+        {/* Subtle grid pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, #A8A29E 1px, transparent 1px),
+              linear-gradient(to bottom, #A8A29E 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // V11: Playful Illustrated
+  if (theme === 'playfulIllustrated') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(180deg, #FFFBF5 0%, #FEF7ED 50%, #FFF7ED 100%)',
+          }}
+        />
+        {/* Doodle-style dots */}
+        <div className="absolute top-[8%] left-[12%] w-3 h-3 rounded-full bg-[#FB923C] opacity-[0.3]" />
+        <div className="absolute top-[15%] right-[18%] w-2 h-2 rounded-full bg-[#34D399] opacity-[0.25]" />
+        <div className="absolute bottom-[20%] left-[20%] w-2.5 h-2.5 rounded-full bg-[#60A5FA] opacity-[0.2]" />
+        <div className="absolute bottom-[30%] right-[12%] w-2 h-2 rounded-full bg-[#F472B6] opacity-[0.25]" />
+        <div className="absolute top-[45%] left-[8%] w-1.5 h-1.5 rounded-full bg-[#FBBF24] opacity-[0.3]" />
+        {/* Squiggly line decorations would go here (SVG) */}
       </div>
     )
   }

@@ -18,6 +18,16 @@ const retroDinerVariations: { id: string; path: string }[] = [
   { id: 'warmMocha', path: '/v4' },
 ]
 
+const creativeExplorations: { id: string; path: string }[] = [
+  { id: 'niftyRetro', path: '/v5' },
+  { id: 'neubrutalism', path: '/v6' },
+  { id: 'neumorphism', path: '/v7' },
+  { id: 'gradientMesh', path: '/v8' },
+  { id: 'darkLuxe', path: '/v9' },
+  { id: 'bentoGrid', path: '/v10' },
+  { id: 'playfulIllustrated', path: '/v11' },
+]
+
 const otherThemes: { id: string; path: string }[] = [
   { id: 'spaceCity', path: '/home1' },
   { id: 'gulfCoast', path: '/home2' },
@@ -29,7 +39,7 @@ const otherThemes: { id: string; path: string }[] = [
 const pathToTheme: Record<string, string> = {}
 const themeToPath: Record<string, string> = {}
 
-;[...retroDinerVariations, ...otherThemes].forEach(({ id, path }) => {
+;[...retroDinerVariations, ...creativeExplorations, ...otherThemes].forEach(({ id, path }) => {
   pathToTheme[path] = id
   themeToPath[id] = path
 })
@@ -113,6 +123,15 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
               <span>🛸</span> Retro Diner Variations
             </p>
             {retroDinerVariations.map(({ id, path }) => renderThemeLink(id, path))}
+
+            {/* Divider */}
+            <div className="my-2 border-t border-border/50" />
+
+            {/* Creative Explorations */}
+            <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
+              <span>🎨</span> Creative Explorations
+            </p>
+            {creativeExplorations.map(({ id, path }) => renderThemeLink(id, path))}
 
             {/* Divider */}
             <div className="my-2 border-t border-border/50" />

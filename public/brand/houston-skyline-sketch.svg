@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Hand-drawn style Houston skyline with organic, sketchy lines -->
+  
+  <!-- Far left smaller buildings -->
+  <path d="M25 180 L25 148 Q27 146 30 146 L48 146 Q51 146 53 148 L53 180" />
+  <path d="M60 180 L61 132 L63 130 L82 130 L84 132 L83 180" />
+  <path d="M92 180 L93 155 Q95 152 100 152 L115 153 Q118 154 118 157 L117 180" />
+  
+  <!-- JPMorgan Chase Tower (tallest, iconic sloped top) -->
+  <path d="M140 180 L142 52 Q143 48 148 45 L168 22 Q172 18 176 22 L196 45 Q200 48 201 52 L202 180" />
+  <path d="M150 52 L150 180" opacity="0.3" />
+  <path d="M192 52 L192 180" opacity="0.3" />
+  
+  <!-- Wells Fargo Plaza area -->
+  <path d="M220 180 L221 72 Q223 68 228 68 L258 69 Q262 70 263 74 L262 180" />
+  <path d="M228 68 L228 62 L258 63 L258 68" />
+  
+  <!-- Bank of America Center (stepped top) -->
+  <path d="M278 180 L279 88 Q281 85 286 85 L324 86 Q328 87 329 90 L328 180" />
+  <path d="M288 85 L289 78 L318 79 L318 85" />
+  <path d="M296 78 L297 70 L310 71 L310 78" />
+  
+  <!-- Williams Tower (iconic spire) -->
+  <path d="M348 180 L349 58 Q350 55 354 55 L382 56 Q386 56 387 59 L386 180" />
+  <path d="M360 55 L368 28 L376 55" />
+  <path d="M368 28 L368 18" stroke-width="2" />
+  
+  <!-- Heritage Plaza -->
+  <path d="M405 180 L406 82 Q408 78 414 78 L448 79 Q453 80 454 84 L453 180" />
+  
+  <!-- 609 Main -->
+  <path d="M472 180 L473 62 Q475 58 482 58 L518 59 Q524 60 525 64 L524 180" />
+  
+  <!-- Pennzoil Place (twin trapezoids) -->
+  <path d="M545 180 L545 78 Q548 72 555 68 L575 55 Q578 53 580 55 L580 180" />
+  <path d="M592 180 L592 78 Q595 72 602 68 L622 55 Q625 53 627 55 L627 180" />
+  
+  <!-- One Shell Plaza -->
+  <path d="M648 180 L649 70 Q651 66 658 66 L692 67 Q698 68 699 72 L698 180" />
+  
+  <!-- Continental Center -->
+  <path d="M718 180 L719 95 Q721 92 728 92 L758 93 Q763 94 764 97 L763 180" />
+  
+  <!-- 1100 Louisiana -->
+  <path d="M785 180 L786 75 Q788 71 796 71 L838 72 Q844 73 845 77 L844 180" />
+  <path d="M796 71 L797 65 L836 66 L836 71" />
+  
+  <!-- Fulbright Tower -->
+  <path d="M865 180 L866 90 Q868 86 876 86 L906 87 Q912 88 913 92 L912 180" />
+  
+  <!-- BG Group Place -->
+  <path d="M932 180 L933 68 Q935 64 943 64 L978 65 Q984 66 985 70 L984 180" />
+  <path d="M948 64 L960 48 L972 64" />
+  
+  <!-- Enterprise Plaza -->
+  <path d="M1002 180 L1003 98 Q1005 95 1012 95 L1042 96 Q1047 97 1048 100 L1047 180" />
+  
+  <!-- Allen Center complex -->
+  <path d="M1068 180 L1069 108 Q1070 105 1076 105 L1098 106 Q1102 107 1103 110 L1102 180" />
+  <path d="M1112 180 L1113 95 Q1115 92 1122 92 L1144 93 Q1148 94 1149 97 L1148 180" />
+  <path d="M1158 180 L1159 115 Q1160 112 1166 112 L1185 113 Q1189 114 1190 117 L1189 180" />
+  
+  <!-- Ground line with slight organic variation -->
+  <path d="M0 180 Q300 181 600 180 Q900 179 1200 180" stroke-width="2" />
+</svg>
