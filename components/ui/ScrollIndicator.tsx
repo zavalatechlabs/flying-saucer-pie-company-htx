@@ -32,13 +32,13 @@ export function ScrollIndicator({ visible }: ScrollIndicatorProps) {
     >
       <div className="scroll-bounce">
         <svg
-          className="w-6 h-6 mx-auto"
+          className="w-6 h-6 mx-auto text-ink"
           fill="none"
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth="2"
           viewBox="0 0 24 24"
-          stroke="#020169"
+          stroke="currentColor"
         >
           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
         </svg>
