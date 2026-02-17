@@ -17,16 +17,24 @@ interface TimelineProps {
   showSaucer?: boolean
 }
 
+// Saucer image heights (half-value used to stop line at saucer top edge)
+const SAUCER_HALF_MOBILE = 16 // 32px saucer / 2
+const SAUCER_HALF_DESKTOP = 20 // 40px saucer / 2
+
 export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  // Use pixel-based Y so we only animate `transform` (GPU) — never `top`
+  // milestoneRefs[i] points to each milestone row — used to detect when
+  // the saucer passes each dot so we can fill it in
+  const milestoneRefs = useRef<(HTMLDivElement | null)[]>([])
+
   const [saucerY, setSaucerY] = useState(0)
-  const [saucerProgress, setSaucerProgress] = useState(0)
+  const [containerHeight, setContainerHeight] = useState(1)
+  // Set of milestone indices whose dot has been "passed" by the saucer
+  const [filledDots, setFilledDots] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     if (!showSaucer) return
 
-    // rAF gate: only one update per frame → eliminates mobile jank
     let rafId = 0
 
     const update = () => {
@@ -37,21 +45,43 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
       }
 
       const rect = container.getBoundingClientRect()
-      const progress = Math.max(0, Math.min(1, (window.innerHeight / 2 - rect.top) / rect.height))
+      const h = rect.height
+      const progress = Math.max(0, Math.min(1, (window.innerHeight / 2 - rect.top) / h))
+      const y = progress * h
 
-      setSaucerProgress(progress)
-      // Store absolute pixel offset from top of container
-      setSaucerY(progress * rect.height)
+      setSaucerY(y)
+      setContainerHeight(h)
+
+      // Check which milestone dots have been passed by the saucer.
+      // Each dot is at approximately the vertical center of its milestone row.
+      // Only trigger a re-render when the set actually changes.
+      setFilledDots((prev) => {
+        let changed = false
+        const next = new Set(prev)
+        milestoneRefs.current.forEach((ref, i) => {
+          if (!ref) return
+          const dotY = ref.offsetTop + ref.offsetHeight / 2
+          if (y >= dotY && !prev.has(i)) {
+            next.add(i)
+            changed = true
+          } else if (y < dotY && prev.has(i)) {
+            next.delete(i)
+            changed = true
+          }
+        })
+        return changed ? next : prev
+      })
+
       rafId = 0
     }
 
     const onScroll = () => {
-      if (rafId) return // skip if a frame is already queued
+      if (rafId) return
       rafId = requestAnimationFrame(update)
     }
 
     window.addEventListener('scroll', onScroll, { passive: true })
-    update() // seed on mount
+    update()
 
     return () => {
       window.removeEventListener('scroll', onScroll)
@@ -59,8 +89,11 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
     }
   }, [showSaucer])
 
-  // Saucer size (half-width for centering)
-  const SAUCER_HALF = 16 // 32px / 2
+  // Fill line scale: stop exactly at the saucer's top edge, not its center
+  const mobileFillScale =
+    containerHeight > 1 ? Math.max(0, (saucerY - SAUCER_HALF_MOBILE) / containerHeight) : 0
+  const desktopFillScale =
+    containerHeight > 1 ? Math.max(0, (saucerY - SAUCER_HALF_DESKTOP) / containerHeight) : 0
 
   return (
     <div className="relative" ref={containerRef}>
@@ -69,18 +102,18 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
         Two layers per breakpoint:
           1. Track  — faint full-height guide (the "empty" line)
           2. Fill   — accent-colored, scales up from top via scaleY()
-        scaleY is GPU-composited so fill is as smooth as the saucer.
+                      stops at the saucer's top edge (not its center)
       */}
 
       {/* Mobile track */}
       <div className="absolute top-0 left-8 w-0.5 h-full bg-ink/12 md:hidden" aria-hidden="true" />
-      {/* Mobile fill */}
+      {/* Mobile fill — stops at saucer top */}
       <div
         className="absolute top-0 left-8 w-0.5 h-full bg-accent md:hidden"
         aria-hidden="true"
         style={{
           transformOrigin: 'top',
-          transform: `scaleY(${saucerProgress})`,
+          transform: `scaleY(${mobileFillScale})`,
           willChange: 'transform',
           transition: 'transform 0.12s ease-out',
         }}
@@ -91,22 +124,19 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
         className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-ink/12 hidden md:block"
         aria-hidden="true"
       />
-      {/* Desktop fill */}
+      {/* Desktop fill — stops at saucer top */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent hidden md:block"
         aria-hidden="true"
         style={{
           transformOrigin: 'top',
-          transform: `scaleY(${saucerProgress})`,
+          transform: `scaleY(${desktopFillScale})`,
           willChange: 'transform',
           transition: 'transform 0.12s ease-out',
         }}
       />
 
-      {/* ─── Flying saucer scroll indicator ───
-           Mobile:  follows left-8 line  →  left: 32px, translateX(-50%)
-           Desktop: follows center line  →  left: 50%,  translateX(-50%)
-           Both use translateY(px) only — no `top` changes, zero reflow  */}
+      {/* ─── Flying saucer scroll indicator ─── */}
       {showSaucer && (
         <>
           {/* Mobile saucer */}
@@ -115,9 +145,9 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
             className="pointer-events-none absolute md:hidden z-20 w-8 h-8"
             style={{
               top: 0,
-              left: 32, // matches left-8 line
+              left: 32,
               willChange: 'transform',
-              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF)}px) rotate(${-8 + saucerProgress * 16}deg)`,
+              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF_MOBILE)}px) rotate(${-8 + (saucerY / Math.max(1, containerHeight)) * 16}deg)`,
               transition: 'transform 0.1s ease-out',
             }}
           >
@@ -126,7 +156,7 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
               alt=""
               width={32}
               height={32}
-              className="w-full h-auto opacity-60 drop-shadow-md"
+              className="w-full h-auto opacity-70 drop-shadow-md"
             />
           </div>
 
@@ -138,7 +168,7 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
               top: 0,
               left: '50%',
               willChange: 'transform',
-              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - 20)}px) rotate(${-8 + saucerProgress * 16}deg)`,
+              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF_DESKTOP)}px) rotate(${-8 + (saucerY / Math.max(1, containerHeight)) * 16}deg)`,
               transition: 'transform 0.1s ease-out',
             }}
           >
@@ -147,9 +177,9 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
               alt=""
               width={40}
               height={40}
-              className="w-full h-auto opacity-60 drop-shadow-md"
+              className="w-full h-auto opacity-70 drop-shadow-md"
             />
-            {saucerProgress > 0.85 && (
+            {saucerY / Math.max(1, containerHeight) > 0.85 && (
               <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent/40 rounded-full blur-sm animate-pulse" />
             )}
           </div>
@@ -160,17 +190,29 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
       <div className="space-y-12 md:space-y-24">
         {milestones.map((milestone, index) => {
           const isEven = index % 2 === 0
+          const dotFilled = filledDots.has(index)
+
+          // Dot styles: hollow ring until saucer passes, then fills with accent
+          const dotStyleDesktop = dotFilled
+            ? 'w-5 h-5 rounded-full border-4 border-accent bg-accent shadow-md transition-all duration-300'
+            : 'w-5 h-5 rounded-full border-4 border-ink/30 bg-transparent shadow-sm transition-all duration-300'
+
+          const dotStyleMobile = dotFilled
+            ? 'w-4 h-4 rounded-full border-2 border-accent bg-accent shadow-md transition-all duration-300'
+            : 'w-4 h-4 rounded-full border-2 border-ink/30 bg-transparent shadow-sm transition-all duration-300'
 
           return (
-            <div key={index} className="relative">
-              {/* ── Desktop alternating layout ─────────────────────
-                   5/12 | 2/12 (dot) | 5/12  →  totals 12/12
-                   The explicit w-2/12 center column prevents the absolute
-                   line from overlapping either side's text               */}
+            <div
+              key={index}
+              className="relative"
+              ref={(el) => {
+                milestoneRefs.current[index] = el
+              }}
+            >
+              {/* ── Desktop alternating layout ── */}
               <div className="hidden md:flex items-center">
                 {isEven ? (
                   <>
-                    {/* Left content */}
                     <ScrollReveal
                       variants={slideInLeft}
                       delay={0.1}
@@ -183,16 +225,13 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                       </div>
                     </ScrollReveal>
 
-                    {/* Center dot — w-2/12 ensures equal split */}
+                    {/* Center dot */}
                     <div className="w-2/12 relative z-10 flex items-center justify-center">
                       <ScrollReveal variants={fadeIn} delay={0.2}>
-                        <div className="relative w-5 h-5 bg-accent rounded-full border-4 border-bg-alt shadow-md">
-                          <div className="absolute inset-0 bg-accent/50 rounded-full animate-ping" />
-                        </div>
+                        <div className={dotStyleDesktop} />
                       </ScrollReveal>
                     </div>
 
-                    {/* Right image */}
                     <div className="w-5/12 pl-10">
                       {milestone.image && (
                         <ScrollReveal variants={slideInRight} delay={0.3}>
@@ -210,7 +249,6 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                   </>
                 ) : (
                   <>
-                    {/* Left image */}
                     <div className="w-5/12 pr-10">
                       {milestone.image && (
                         <ScrollReveal variants={slideInLeft} delay={0.3}>
@@ -226,16 +264,13 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                       )}
                     </div>
 
-                    {/* Center dot — w-2/12 */}
+                    {/* Center dot */}
                     <div className="w-2/12 relative z-10 flex items-center justify-center">
                       <ScrollReveal variants={fadeIn} delay={0.2}>
-                        <div className="relative w-5 h-5 bg-accent rounded-full border-4 border-bg-alt shadow-md">
-                          <div className="absolute inset-0 bg-accent/50 rounded-full animate-ping" />
-                        </div>
+                        <div className={dotStyleDesktop} />
                       </ScrollReveal>
                     </div>
 
-                    {/* Right content */}
                     <ScrollReveal variants={slideInRight} delay={0.1} className="w-5/12 pl-10">
                       <h3 className="text-4xl font-bold text-accent mb-2">{milestone.year}</h3>
                       <h4 className="text-2xl font-semibold text-ink mb-3">{milestone.title}</h4>
@@ -245,19 +280,13 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                 )}
               </div>
 
-              {/* ── Mobile layout ──────────────────────────────────
-                   Content has pl-16 to clear the left-8 line + spacing.
-                   Dot is absolutely positioned at left-8 (32px), centered
-                   on the line with -translate-x-1/2.                    */}
+              {/* ── Mobile layout ── */}
               <div className="md:hidden relative pl-16 pb-8">
-                {/* Dot sits on the line */}
                 <div className="absolute left-8 top-1.5 -translate-x-1/2 z-10">
                   <ScrollReveal variants={fadeIn} delay={0.1}>
-                    <div className="w-4 h-4 bg-accent rounded-full border-2 border-bg-alt shadow-md" />
+                    <div className={dotStyleMobile} />
                   </ScrollReveal>
                 </div>
-
-                {/* Content */}
                 <ScrollReveal variants={slideInRight} delay={0.2}>
                   <h3 className="text-3xl font-bold text-accent mb-1">{milestone.year}</h3>
                   <h4 className="text-xl font-semibold text-ink mb-2">{milestone.title}</h4>
