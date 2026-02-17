@@ -70,15 +70,17 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4 mt-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-ink/95 backdrop-blur-xl border-t border-surface/10 shadow-2xl">
-            <div className="flex flex-col gap-1 pt-4">
+          <div className="md:hidden pb-4 mt-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-surface border-t border-ink/10 shadow-2xl">
+            <div className="flex flex-col pt-2 pb-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={closeMenu}
-                  className="px-4 py-3 text-surface hover:text-surface
-                           hover:bg-surface/10 rounded-lg transition-all font-display"
+                  className="flex items-center gap-3 px-4 py-3 text-ink font-display
+                           hover:text-accent hover:bg-bg-alt rounded-lg
+                           border-l-2 border-transparent hover:border-accent
+                           transition-all duration-150"
                 >
                   {link.name}
                 </Link>
