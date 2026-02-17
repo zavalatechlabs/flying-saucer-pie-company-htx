@@ -10,19 +10,34 @@ A modern, retro space-themed website for Houston's oldest family-owned bakery, s
 
 ### Design & UX
 
-- **Retro Space-Age Diner Theme**: Warm cream colors, paper grain texture, vintage aesthetics
-- **Hero Animation**: Sequential reveal animation (swoosh, headline, saucer, tagline)
+- **Soft UI Theme**: Neumorphic gray base with terracotta accents — clean, modern, consistent across all pages
+- **Meteor Shower Hero**: Aceternity-style meteors (hero blue `#020169`, `rotate(215deg) translateX(-500px)`) animate across the hero background — GPU-composited, no CSS variable side effects
+- **Hero Animation**: Sequential reveal (swoosh draws → headline appears → saucer lands → tagline fades in)
 - **Mobile-First**: Fully responsive design optimized for all screen sizes
 - **Accessibility**: WCAG 2.1 AA compliant, screen reader friendly, keyboard navigation
-- **Performance**: Optimized images, animations respect `prefers-reduced-motion`
+- **Performance**: All scroll animations use `transform`/`opacity` only (zero layout reflow), `prefers-reduced-motion` respected
+
+### About Page — Interactive Timeline
+
+- **Scroll-driven saucer**: A flying saucer SVG rides the timeline line as you scroll, position calculated via `requestAnimationFrame` (no `top` CSS — pure `translateY` for GPU compositing)
+- **Fill line**: Two-layer line — a faint track + an accent-colored fill that scales up from the top via `scaleY(progress)`, stops precisely at the saucer's top edge
+- **Dot fill-in**: Timeline milestone dots start hollow; fill with accent color the moment the line tip reaches them. Mobile uses `ref.offsetTop + 6px` (dot is `top-1.5`), desktop uses `ref.offsetTop + offsetHeight/2` (centered in flex row)
+- **No ghost/blur**: Saucer has no CSS `transition` — the `rAF` gate at 60fps is smooth enough on its own; transitions caused compositing artifacts on fast scroll
 
 ### Business Features
 
 - **Menu Showcase**: Beautiful pie cards with detailed information
 - **Business Info**: Hours, location, contact information
-- **About Page**: Company history, timeline, team info
+- **About Page**: Company history, interactive timeline, values, FAQ
 - **Contact Form**: Get in touch with the bakery
 - **SEO Optimized**: Structured data, sitemap, robots.txt
+
+### Theme Archive
+
+A full theme exploration system was built during development (20+ variations) and is preserved for reference:
+
+- **Branch**: `feature/theme-archive` — complete snapshot before cleanup
+- **Routes**: `app/(themes)/` — all variation pages still accessible at `/new1`–`/new6`, `/v1`–`/v12`, etc., but hidden from navigation
 
 ---
 
