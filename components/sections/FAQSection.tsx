@@ -38,7 +38,7 @@ function FAQItem({ question, answer }: FAQItemProps) {
 }
 
 interface FAQSectionProps {
-  title?: string
+  title?: string | null
   items: FAQItemType[]
 }
 
@@ -46,9 +46,11 @@ export function FAQSection({ title = 'Frequently Asked Questions', items }: FAQS
   return (
     <section className="py-section-lg bg-bg-alt">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal variants={slideUp}>
-          <h2 className="text-h1 font-display text-ink text-center mb-section">{title}</h2>
-        </ScrollReveal>
+        {title && (
+          <ScrollReveal variants={slideUp}>
+            <h2 className="text-h1 font-display text-ink text-center mb-section">{title}</h2>
+          </ScrollReveal>
+        )}
 
         <div className="bg-surface rounded-2xl shadow-retro p-6 md:p-8">
           {items.map((faq, index) => (

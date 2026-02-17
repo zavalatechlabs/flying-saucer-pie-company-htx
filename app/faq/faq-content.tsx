@@ -29,7 +29,7 @@ export function FAQContent() {
       </section>
 
       {/* FAQ accordion */}
-      <FAQSection items={faqItems} />
+      <FAQSection title={null} items={faqItems} />
     </div>
   )
 }
