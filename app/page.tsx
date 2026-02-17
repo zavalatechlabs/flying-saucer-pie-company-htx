@@ -1,11 +1,5 @@
-import { HeroSection } from '@/components/sections/HeroSection'
-import { FeaturedPiesRow } from '@/components/sections/FeaturedPiesRow'
+import { ThemedHome } from '@/components/sections/ThemedHome'
 
 export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <FeaturedPiesRow />
-    </>
-  )
+  return <ThemedHome themeId="meteorShower" />
 }

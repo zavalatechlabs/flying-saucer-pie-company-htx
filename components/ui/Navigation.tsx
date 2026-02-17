@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Logo } from './Logo'
-import { ThemeSwitcher } from './ThemeSwitcher'
 import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 
@@ -52,12 +51,10 @@ export function Navigation() {
                 {link.name}
               </Link>
             ))}
-            <ThemeSwitcher />
           </div>
 
-          {/* Mobile Theme Switcher & Menu Button */}
+          {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-2">
-            <ThemeSwitcher />
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
