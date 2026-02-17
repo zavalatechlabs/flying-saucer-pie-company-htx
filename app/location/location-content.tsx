@@ -19,7 +19,7 @@ export function LocationContent() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-display-md md:text-display-lg font-display mb-4"
+            className="text-display-md md:text-display-lg font-fredoka font-bold mb-4"
           >
             Find Us in Space City
           </motion.h1>
@@ -27,7 +27,7 @@ export function LocationContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-body-xl text-surface/80"
+            className="text-xl font-pacifico text-surface/90"
           >
             Easy to find, impossible to forget
           </motion.p>

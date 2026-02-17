@@ -197,6 +197,9 @@ const config: Config = {
         body: ['var(--font-body)', 'DM Sans', 'Inter', 'system-ui', 'sans-serif'],
         sans: ['var(--font-body)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+        // Brand logo fonts — use for hero headlines and taglines only
+        fredoka: ['var(--font-fredoka)', 'Fredoka', 'system-ui', 'sans-serif'],
+        pacifico: ['var(--font-pacifico)', 'Pacifico', 'cursive'],
       },
       fontSize: {
         'display-xl': ['4.5rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '700' }],
