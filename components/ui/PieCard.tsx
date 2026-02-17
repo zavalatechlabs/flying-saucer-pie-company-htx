@@ -70,8 +70,9 @@ export function PieCard({ pie, onClick }: PieCardProps) {
           </div>
         </div>
 
+        {pie.note && <p className="text-xs text-ink-muted mt-3 italic">{pie.note}</p>}
         {pie.canFreeze && (
-          <p className="text-xs text-ink-muted mt-3 flex items-center gap-1">
+          <p className="text-xs text-ink-muted mt-2 flex items-center gap-1">
             <span>❄️</span> Can be frozen
           </p>
         )}

@@ -27,6 +27,7 @@ export interface Pie {
   canFreeze?: boolean
   shelfLife?: string
   ingredients?: string[]
+  note?: string
 }
 
 // ============================================================================

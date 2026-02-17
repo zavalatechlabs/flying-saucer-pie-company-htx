@@ -1,235 +1,178 @@
-// Pie images updated with 5 transparent background varieties
-// Using variety across the 8 rotating featured pies on homepage
-// Images have transparent backgrounds and show beautiful overhead shots
-
 import type { Pie } from '@/lib/types'
 
 // Re-export Pie type for backwards compatibility
 export type { Pie } from '@/lib/types'
 
 export const pies: Pie[] = [
-  // FRUIT PIES
+  // ── FRUIT PIES ────────────────────────────────────────────────────────────
   {
     id: 'apple',
     name: 'Apple Pie',
     category: 'fruit',
-    description: 'Classic apple pie with tender apples and warm cinnamon spice',
-    price: { whole: 24.99, slice: 4.99 },
+    description:
+      'Traditional double crust pie filled with tender sliced apples, cinnamon, & sugar.',
+    price: { whole: 22, slice: 5 },
     image: '/images/pies/apple-crumble-1.jpg',
     available: true,
-    isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
-  },
-  {
-    id: 'dutch-apple',
-    name: 'Dutch Apple Pie',
-    category: 'fruit',
-    description: 'Apple pie topped with a buttery crumb topping',
-    price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/apple-crumble-2.jpg',
-    available: true,
-    isVegan: true,
-    canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    note: 'Add a ring of cream for $1.00',
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
   },
   {
     id: 'peach',
     name: 'Peach Pie',
     category: 'fruit',
-    description: 'Sweet Georgia peaches in a flaky golden crust',
-    price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/chocolate-swirl.jpg',
+    description:
+      'Double crust pie filled with tender sliced peaches & mixed with a sweet peach filling.',
+    price: { whole: 21, slice: 5 },
+    image: '/images/pies/apple-crumble-2.jpg',
     available: true,
-    isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
   },
   {
     id: 'cherry',
     name: 'Cherry Pie',
     category: 'fruit',
-    description: 'Tart cherries balanced with just the right amount of sweetness',
-    price: { whole: 28.99, slice: 5.99 },
+    description:
+      'Double crust pie filled with whole tart cherries & mixed with a sweet cherry filling.',
+    price: { whole: 20, slice: 5 },
     image: '/images/pies/blueberry-pie.jpg',
     available: true,
-    isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
-  },
-  {
-    id: 'pineapple',
-    name: 'Pineapple Pie',
-    category: 'fruit',
-    description: 'Tropical pineapple filling in our signature crust',
-    price: { whole: 26.99, slice: 5.49 },
-    image: '/images/pies/pecan-pie.jpg',
-    available: true,
-    isVegan: true,
-    canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
   },
   {
     id: 'pecan',
     name: 'Pecan Pie',
     category: 'fruit',
-    description: 'Texas pecans in a rich, buttery filling',
-    price: { whole: 32.99, slice: 6.49 },
+    description: 'Traditional pecan pie filling with a top layer of caramelized pecan pieces.',
+    price: { whole: 23, slice: 5 },
     image: '/images/pies/pecan-pie.jpg',
     available: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
   },
   {
-    id: 'blackberry',
-    name: 'Blackberry Pie',
+    id: 'pineapple',
+    name: 'Pineapple Pie',
     category: 'fruit',
-    description: 'Juicy blackberries bursting with summer flavor',
-    price: { whole: 28.99, slice: 5.99 },
+    description:
+      'Double crust pie filled with pineapple chunks & mixed with sweet pineapple filling.',
+    price: { whole: 20, slice: 5 },
+    image: '/images/pies/pecan-pie.jpg',
+    available: true,
+    canFreeze: true,
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
+  },
+  {
+    id: 'dutch-apple',
+    name: 'Dutch Apple Pie',
+    category: 'fruit',
+    description:
+      'Single crust apple pie topped with a crumbly cinnamon sugar strudel. Extra sweet with firmer apples.',
+    price: { whole: 20, slice: 5 },
     image: '/images/pies/apple-crumble-1.jpg',
     available: true,
-    isVegan: true,
     canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
-  },
-  {
-    id: 'blueberry',
-    name: 'Blueberry Pie',
-    category: 'fruit',
-    description: 'Plump blueberries in a perfectly sweet filling',
-    price: { whole: 28.99, slice: 5.99 },
-    image: '/images/pies/blueberry-pie.jpg',
-    available: true,
-    isVegan: true,
-    canFreeze: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
+    note: 'Unavailable Dec 24–25',
+    shelfLife: '3 days room temp, 4–5 days refrigerated',
   },
 
-  // CREAM PIES
+  // ── CREAM PIES ────────────────────────────────────────────────────────────
   {
     id: 'strawberry-cream',
-    name: 'Fresh Strawberry Cream',
+    name: 'Fresh Strawberry Cream Pie',
     category: 'cream',
-    description: 'Fresh strawberries with homemade whipped cream',
-    price: { whole: 29.99, slice: 5.99 },
+    description:
+      'Whole & halved fresh strawberries layered in a sweet strawberry glaze & topped with whipped cream.',
+    price: { whole: 20, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    isVegan: true,
-    shelfLife: '2-3 days refrigerated',
-    ingredients: [
-      'Fresh strawberries',
-      'Coconut cream',
-      'Vanilla',
-      'Sugar',
-      'Graham crackers',
-      'Vegan butter',
-    ],
+    shelfLife: '2–3 days refrigerated',
   },
   {
     id: 'banana-cream',
-    name: 'Fresh Banana Cream',
+    name: 'Fresh Banana Cream Pie',
     category: 'cream',
-    description: 'Fresh banana slices layered with vanilla custard and whipped cream',
-    price: { whole: 24.99, slice: 4.99 },
+    description: 'Fresh banana slices in a handmade vanilla pudding topped with whipped cream.',
+    price: { whole: 21, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '1-2 days refrigerated (uncut), will brown once cut',
+    shelfLife: '1–2 days refrigerated (best enjoyed same day once cut)',
   },
   {
     id: 'chocolate-cream',
-    name: 'Chocolate Cream',
+    name: 'Chocolate Cream Pie',
     category: 'cream',
-    description: 'Rich chocolate pudding topped with whipped cream',
-    price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
+    description: 'Creamy handmade dark chocolate pudding filling topped with whipped cream.',
+    price: { whole: 21, slice: 5 },
+    image: '/images/pies/chocolate-swirl.jpg',
     available: true,
-    shelfLife: '2-3 days refrigerated',
-  },
-  {
-    id: 'lemon-cream',
-    name: 'Lemon Cream',
-    category: 'cream',
-    description: 'Tangy lemon filling with a cloud of whipped cream',
-    price: { whole: 24.99, slice: 4.99 },
-    image: '/images/pies/cherry-lattice-pie.jpg',
-    available: true,
-    shelfLife: '2-3 days refrigerated',
+    shelfLife: '2–3 days refrigerated',
   },
   {
     id: 'coconut-cream',
-    name: 'Coconut Cream',
+    name: 'Coconut Cream Pie',
     category: 'cream',
-    description: 'Creamy coconut custard topped with toasted coconut flakes',
-    price: { whole: 26.99, slice: 5.49 },
+    description:
+      'Creamy handmade pudding filling mixed with flake coconut. Topped with whipped cream & sprinkled with golden toasted coconut flakes.',
+    price: { whole: 21, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '2-3 days refrigerated',
+    shelfLife: '2–3 days refrigerated',
   },
-
-  // CHEESECAKES
   {
-    id: 'cheesecake',
-    name: 'Classic Cheesecake',
-    category: 'cheesecake',
-    description: 'New York style cheesecake with graham cracker crust',
-    price: { whole: 34.99, slice: 6.99 },
+    id: 'lemon-cream',
+    name: 'Lemon Cream Pie',
+    category: 'cream',
+    description:
+      'Sweet & refreshingly tart lemon filling made with fresh squeezed lemon juice & topped with whipped cream.',
+    price: { whole: 21, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '3-4 days refrigerated',
-    ingredients: [
-      'Cream cheese',
-      'Sugar',
-      'Eggs',
-      'Vanilla extract',
-      'Sour cream',
-      'Graham crackers',
-      'Butter',
-    ],
+    shelfLife: '2–3 days refrigerated',
   },
   {
     id: 'key-lime',
     name: 'Key Lime Pie',
-    category: 'cheesecake',
-    description: 'Tart and creamy key lime filling with graham crust',
-    price: { whole: 29.99, slice: 5.99 },
+    category: 'cream',
+    description:
+      'Rich & creamy with a sweet & tart condensed milk base. Topped with a scalloped ring of whipped cream.',
+    price: { whole: 21, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    shelfLife: '3-4 days refrigerated',
+    shelfLife: '2–3 days refrigerated',
   },
 
-  // SEASONAL PIES
+  // ── CHEESECAKES ───────────────────────────────────────────────────────────
   {
-    id: 'pumpkin',
-    name: 'Pumpkin Pie',
-    category: 'seasonal',
-    description: 'Traditional spiced pumpkin filling - perfect for fall!',
-    price: { whole: 24.99, slice: 4.99 },
+    id: 'cheesecake-strawberry',
+    name: 'Cheesecake — Strawberry',
+    category: 'cheesecake',
+    description:
+      'Creamy, rich & decadent cheesecake baked in our signature flaky crust, topped with sliced strawberries in a sweet glaze & a scalloped ring of whipped cream.',
+    price: { whole: 23, slice: 5 },
     image: '/images/pies/cherry-lattice-pie.jpg',
     available: true,
-    isSpecial: true,
-    shelfLife: '3 days room temp, 4-5 days refrigerated',
-    ingredients: [
-      'Pumpkin puree',
-      'Eggs',
-      'Heavy cream',
-      'Sugar',
-      'Cinnamon',
-      'Ginger',
-      'Nutmeg',
-      'Cloves',
-      'Flour',
-      'Butter',
-    ],
+    shelfLife: '3–4 days refrigerated',
+  },
+  {
+    id: 'cheesecake-cherry',
+    name: 'Cheesecake — Cherry',
+    category: 'cheesecake',
+    description:
+      'Creamy, rich & decadent cheesecake baked in our signature flaky crust, topped with whole cherries in a sweet glaze & a scalloped ring of whipped cream.',
+    price: { whole: 23, slice: 5 },
+    image: '/images/pies/cherry-lattice-pie.jpg',
+    available: true,
+    shelfLife: '3–4 days refrigerated',
   },
 ]
 
 // Helper functions
 export function getPiesByCategory(category: Pie['category']): Pie[] {
   return pies.filter((pie) => pie.category === category)
-}
-
-export function getVeganPies(): Pie[] {
-  return pies.filter((pie) => pie.isVegan)
 }
 
 export function getFreezablePies(): Pie[] {
