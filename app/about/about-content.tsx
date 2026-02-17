@@ -45,7 +45,7 @@ export function AboutContent() {
                   />
                 </div>
                 <figcaption className="text-sm text-ink-muted text-center mt-4 italic">
-                  Proud pie people — Flying Saucer Pie Co., Houston
+                  Flying Saucer Pie Co. — Houston, TX
                 </figcaption>
               </figure>
             </ScrollReveal>

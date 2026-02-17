@@ -619,6 +619,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip; /* Must be on html too — body clip alone doesn't propagate to viewport in all browsers */
 }
 
 /* === SELECTION COLOR === */
