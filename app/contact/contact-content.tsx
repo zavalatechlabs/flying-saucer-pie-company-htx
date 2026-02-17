@@ -72,7 +72,7 @@ export function ContactContent() {
               </div>
             </motion.div>
 
-            {/* Address / Hours / Phone cards */}
+            {/* Address / Hours cards */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -115,27 +115,6 @@ export function ContactContent() {
                     </div>
                     <p className="text-xs text-accent font-medium mt-3">
                       Extended hours in November &amp; December!
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Phone */}
-              <div className="bg-surface rounded-2xl p-6 shadow-retro">
-                <div className="flex items-start gap-4">
-                  <div className="p-2 bg-accent/10 rounded-full flex-shrink-0">
-                    <Phone size={20} className="text-accent" />
-                  </div>
-                  <div>
-                    <h2 className="text-h5 font-display font-semibold text-ink mb-1">Phone</h2>
-                    <a
-                      href={`tel:${businessInfo.phone}`}
-                      className="text-lg font-semibold text-accent hover:text-accent/80 transition-colors"
-                    >
-                      {businessInfo.phone}
-                    </a>
-                    <p className="text-body-sm text-ink-muted mt-1">
-                      Best times: Tuesday – Saturday, 8am – 7pm
                     </p>
                   </div>
                 </div>
