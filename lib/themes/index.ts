@@ -125,6 +125,93 @@ export const themes: Record<string, Theme> = {
       heroGradient: 'radial-gradient(ellipse at center, #1A1A2E 0%, #0A0A0A 70%)',
     },
   },
+
+  // ═══════════════════════════════════════════════════════════════
+  // RETRO DINER VARIATIONS (v1-v4)
+  // All variations of the core retro diner theme
+  // ═══════════════════════════════════════════════════════════════
+
+  // Variation 1: Vintage Paper & Ink
+  vintagePaper: {
+    id: 'vintagePaper',
+    name: 'Vintage Paper',
+    description: 'Layered paper textures with hand-drawn warmth',
+    emoji: '🎨',
+    colors: {
+      bg: '#FDF6E3',
+      bgAlt: '#F5ECD7',
+      surface: '#FFFEFA',
+      ink: '#2D2A24',
+      inkMuted: '#6B6459',
+      accent: '#C7522A',
+      accent2: '#5B7B65',
+      border: '#D4C9B5',
+      heroBg: '#FDF6E3',
+      heroGradient:
+        'radial-gradient(ellipse 120% 100% at 50% 30%, #FFFEF8 0%, #FDF6E3 40%, #F5ECD7 100%)',
+    },
+  },
+
+  // Variation 2: Space City Houston
+  houstonPride: {
+    id: 'houstonPride',
+    name: 'Space City HTX',
+    description: 'Houston skyline with warm sunset tones',
+    emoji: '🏙️',
+    colors: {
+      bg: '#FFF5EB',
+      bgAlt: '#FFECD9',
+      surface: '#FFFFFF',
+      ink: '#1F2937',
+      inkMuted: '#6B7280',
+      accent: '#E85D04',
+      accent2: '#003087',
+      border: '#FED7AA',
+      heroBg: '#FFF5EB',
+      heroGradient: 'linear-gradient(180deg, #FFF5EB 0%, #FFE4CC 40%, #FECACA 80%, #FFF5EB 100%)',
+    },
+  },
+
+  // Variation 3: Atomic Age Deluxe
+  atomicAge: {
+    id: 'atomicAge',
+    name: 'Atomic Age',
+    description: 'Vibrant 1950s diner glamour',
+    emoji: '✨',
+    colors: {
+      bg: '#F0FDF9',
+      bgAlt: '#FEFCE8',
+      surface: '#FFFFFF',
+      ink: '#1C1917',
+      inkMuted: '#57534E',
+      accent: '#F97316',
+      accent2: '#14B8A6',
+      border: '#D1FAE5',
+      heroBg: '#F0FDF9',
+      heroGradient: 'linear-gradient(135deg, #F0FDF9 0%, #FEFCE8 50%, #FFF7ED 100%)',
+    },
+  },
+
+  // Variation 4: Warm Mocha Evening
+  warmMocha: {
+    id: 'warmMocha',
+    name: 'Warm Mocha',
+    description: 'Cozy evening bakery with rich tones',
+    emoji: '☕',
+    colors: {
+      bg: '#FAF6F1',
+      bgAlt: '#F0E6DB',
+      surface: '#FFFCF7',
+      ink: '#3D2C1E',
+      inkMuted: '#7A6555',
+      accent: '#B45309',
+      accent2: '#78350F',
+      border: '#E6D5C3',
+      heroBg: '#FAF6F1',
+      heroGradient:
+        'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFCF7 0%, #FAF6F1 40%, #F0E6DB 100%)',
+    },
+  },
 }
 
 // Default theme constant for type safety

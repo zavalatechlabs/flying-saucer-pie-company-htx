@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 interface Star {
   id: number
@@ -11,8 +12,19 @@ interface Star {
   delay: number
 }
 
+type ThemeId =
+  | 'default'
+  | 'spaceCity'
+  | 'gulfCoast'
+  | 'editorial'
+  | 'neonNights'
+  | 'vintagePaper'
+  | 'houstonPride'
+  | 'atomicAge'
+  | 'warmMocha'
+
 interface ThemedHeroBackgroundProps {
-  theme: 'default' | 'spaceCity' | 'gulfCoast' | 'editorial' | 'neonNights'
+  theme: ThemeId
 }
 
 export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
@@ -20,23 +32,270 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
 
   useEffect(() => {
     // Generate stars for space themes
-    if (theme === 'spaceCity' || theme === 'neonNights') {
-      const newStars: Star[] = Array.from({ length: 50 }, (_, i) => ({
+    if (theme === 'spaceCity' || theme === 'neonNights' || theme === 'houstonPride') {
+      const starCount = theme === 'houstonPride' ? 20 : 50
+      const newStars: Star[] = Array.from({ length: starCount }, (_, i) => ({
         id: i,
         x: Math.random() * 100,
-        y: Math.random() * 100,
+        y: Math.random() * 60, // Keep stars in upper portion for houstonPride
         size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.3,
+        opacity: theme === 'houstonPride' ? Math.random() * 0.2 + 0.1 : Math.random() * 0.5 + 0.3,
         delay: Math.random() * 3,
       }))
       setStars(newStars)
     }
   }, [theme])
 
+  // ═══════════════════════════════════════════════════════════════
+  // RETRO DINER VARIATIONS
+  // ═══════════════════════════════════════════════════════════════
+
+  // Variation 1: Vintage Paper & Ink
+  if (theme === 'vintagePaper') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Base warm parchment gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 120% 100% at 50% 30%, #FFFEF8 0%, #FDF6E3 40%, #F5ECD7 100%)',
+          }}
+        />
+
+        {/* Paper texture overlay - visible grain */}
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: '200px 200px',
+          }}
+        />
+
+        {/* Ink bleed / watercolor edges */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            background: `
+              radial-gradient(ellipse 80% 50% at 10% 20%, #C7522A 0%, transparent 50%),
+              radial-gradient(ellipse 60% 40% at 90% 80%, #5B7B65 0%, transparent 50%)
+            `,
+          }}
+        />
+
+        {/* Soft vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, rgba(45, 42, 36, 0.06) 100%)',
+          }}
+        />
+
+        {/* Decorative ink splatter dots */}
+        <div className="absolute top-[15%] left-[8%] w-2 h-2 rounded-full bg-[#C7522A] opacity-[0.08]" />
+        <div className="absolute top-[25%] right-[12%] w-1.5 h-1.5 rounded-full bg-[#5B7B65] opacity-[0.06]" />
+        <div className="absolute bottom-[20%] left-[15%] w-1 h-1 rounded-full bg-[#2D2A24] opacity-[0.05]" />
+      </div>
+    )
+  }
+
+  // Variation 2: Space City Houston
+  if (theme === 'houstonPride') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Warm sunset gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(180deg, #FFF5EB 0%, #FFE4CC 35%, #FFDAB9 60%, #FFF5EB 100%)',
+          }}
+        />
+
+        {/* Subtle warm glow from center */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 100% 80% at 50% 40%, rgba(255, 255, 255, 0.6) 0%, transparent 60%)',
+          }}
+        />
+
+        {/* Faint star points (Houston = Space City) */}
+        {stars.map((star) => (
+          <div
+            key={star.id}
+            className="absolute rounded-full bg-[#E85D04]"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: `${star.size}px`,
+              height: `${star.size}px`,
+              opacity: star.opacity,
+            }}
+          />
+        ))}
+
+        {/* Houston skyline silhouette at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-[25%] flex items-end justify-center">
+          <Image
+            src="/brand/houston-skyline.svg"
+            alt=""
+            width={1200}
+            height={200}
+            className="w-full max-w-[1400px] h-auto opacity-[0.08] object-contain object-bottom"
+            style={{ color: '#1F2937' }}
+          />
+        </div>
+
+        {/* Soft coral accent at horizon */}
+        <div
+          className="absolute bottom-[20%] left-0 right-0 h-[15%]"
+          style={{
+            background:
+              'linear-gradient(180deg, transparent 0%, rgba(254, 202, 202, 0.3) 50%, transparent 100%)',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // Variation 3: Atomic Age Deluxe
+  if (theme === 'atomicAge') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Fresh mint-to-cream gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #F0FDF9 0%, #FEFCE8 50%, #FFF7ED 100%)',
+          }}
+        />
+
+        {/* Chrome reflection effect at top */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[30%]"
+          style={{
+            background:
+              'linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 30%, transparent 100%)',
+          }}
+        />
+
+        {/* Atomic/starburst pattern overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: 'url("/brand/atomic-pattern.svg")',
+            backgroundSize: '120px 120px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
+
+        {/* Coral accent glow */}
+        <div
+          className="absolute top-[10%] right-[5%] w-64 h-64 rounded-full opacity-[0.15] blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, #F97316 0%, transparent 70%)',
+          }}
+        />
+
+        {/* Teal accent glow */}
+        <div
+          className="absolute bottom-[15%] left-[10%] w-48 h-48 rounded-full opacity-[0.12] blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, #14B8A6 0%, transparent 70%)',
+          }}
+        />
+
+        {/* Decorative starburst elements */}
+        <svg
+          className="absolute top-[8%] left-[5%] w-12 h-12 text-[#F97316] opacity-[0.15]"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+        >
+          <polygon points="50,0 54,42 100,50 54,58 50,100 46,58 0,50 46,42" />
+        </svg>
+        <svg
+          className="absolute bottom-[25%] right-[8%] w-8 h-8 text-[#14B8A6] opacity-[0.12]"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+        >
+          <polygon points="50,0 54,42 100,50 54,58 50,100 46,58 0,50 46,42" />
+        </svg>
+      </div>
+    )
+  }
+
+  // Variation 4: Warm Mocha Evening
+  if (theme === 'warmMocha') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Warm mocha gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFCF7 0%, #FAF6F1 40%, #F0E6DB 100%)',
+          }}
+        />
+
+        {/* Golden hour warm glow from center */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255, 237, 213, 0.5) 0%, transparent 60%)',
+          }}
+        />
+
+        {/* Subtle wood grain texture */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.02 0.4' numOctaves='2' result='noise'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")`,
+            backgroundSize: '400px 100px',
+          }}
+        />
+
+        {/* Warm amber accent */}
+        <div
+          className="absolute top-[15%] left-[50%] -translate-x-1/2 w-96 h-96 rounded-full opacity-[0.08] blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, #B45309 0%, transparent 60%)',
+          }}
+        />
+
+        {/* Soft shadows for depth */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(ellipse 50% 30% at 15% 85%, rgba(61, 44, 30, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse 50% 30% at 85% 85%, rgba(61, 44, 30, 0.05) 0%, transparent 50%)
+            `,
+          }}
+        />
+
+        {/* Cozy vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 85% 75% at 50% 45%, transparent 50%, rgba(61, 44, 30, 0.04) 100%)',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // ═══════════════════════════════════════════════════════════════
+  // ORIGINAL THEMES (preserved from before)
+  // ═══════════════════════════════════════════════════════════════
+
   if (theme === 'spaceCity') {
     return (
       <div className="absolute inset-0 overflow-hidden">
-        {/* Deep space gradient */}
         <div
           className="absolute inset-0"
           style={{
@@ -44,7 +303,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
               'radial-gradient(ellipse at 30% 20%, #1A1F35 0%, #0B1426 40%, #050A15 100%)',
           }}
         />
-        {/* Stars */}
         {stars.map((star) => (
           <div
             key={star.id}
@@ -60,7 +318,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             }}
           />
         ))}
-        {/* Nebula glow */}
         <div
           className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl"
           style={{
@@ -84,7 +341,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
   if (theme === 'gulfCoast') {
     return (
       <div className="absolute inset-0 overflow-hidden">
-        {/* Sunset gradient */}
         <div
           className="absolute inset-0"
           style={{
@@ -92,7 +348,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
               'linear-gradient(180deg, #FEF3C7 0%, #FED7AA 25%, #FECACA 50%, #F0FDFA 100%)',
           }}
         />
-        {/* Sun */}
         <div
           className="absolute w-32 h-32 rounded-full"
           style={{
@@ -102,7 +357,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             filter: 'blur(2px)',
           }}
         />
-        {/* Waves at bottom */}
         <svg
           className="absolute bottom-0 left-0 right-0 w-full h-24 opacity-30"
           viewBox="0 0 1200 120"
@@ -120,14 +374,12 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
   if (theme === 'editorial') {
     return (
       <div className="absolute inset-0 overflow-hidden">
-        {/* Clean gradient */}
         <div
           className="absolute inset-0"
           style={{
             background: 'linear-gradient(180deg, #FFFBF5 0%, #FEF2E8 100%)',
           }}
         />
-        {/* Bold geometric accent */}
         <div
           className="absolute w-1/3 h-full right-0"
           style={{
@@ -142,14 +394,12 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
   if (theme === 'neonNights') {
     return (
       <div className="absolute inset-0 overflow-hidden">
-        {/* Dark gradient */}
         <div
           className="absolute inset-0"
           style={{
             background: 'radial-gradient(ellipse at center, #1A1A2E 0%, #0A0A0A 70%)',
           }}
         />
-        {/* Stars */}
         {stars.map((star) => (
           <div
             key={star.id}
@@ -165,7 +415,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             }}
           />
         ))}
-        {/* Neon glow - pink */}
         <div
           className="absolute w-80 h-80 rounded-full opacity-30 blur-3xl"
           style={{
@@ -174,7 +423,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             left: '10%',
           }}
         />
-        {/* Neon glow - cyan */}
         <div
           className="absolute w-64 h-64 rounded-full opacity-25 blur-3xl"
           style={{
@@ -183,7 +431,6 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
             right: '15%',
           }}
         />
-        {/* Grid lines */}
         <div
           className="absolute inset-0 opacity-5"
           style={{

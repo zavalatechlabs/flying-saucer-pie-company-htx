@@ -5,17 +5,35 @@ import { useTheme } from '@/components/providers/ThemeProvider'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { FeaturedPiesRow } from '@/components/sections/FeaturedPiesRow'
 import { ThemedHeroBackground } from '@/components/sections/ThemedHeroBackground'
+import { getThemeById } from '@/lib/themes'
+
+type ThemeId =
+  | 'default'
+  | 'spaceCity'
+  | 'gulfCoast'
+  | 'editorial'
+  | 'neonNights'
+  | 'vintagePaper'
+  | 'houstonPride'
+  | 'atomicAge'
+  | 'warmMocha'
 
 interface ThemedHomeProps {
-  themeId: 'default' | 'spaceCity' | 'gulfCoast' | 'editorial' | 'neonNights'
+  themeId: ThemeId
 }
 
 export function ThemedHome({ themeId }: ThemedHomeProps) {
   const { setTheme } = useTheme()
+  const theme = getThemeById(themeId)
 
   useEffect(() => {
     setTheme(themeId)
   }, [themeId, setTheme])
+
+  // Check if this is a retro diner variation
+  const isRetroDinerVariation = ['vintagePaper', 'houstonPride', 'atomicAge', 'warmMocha'].includes(
+    themeId
+  )
 
   return (
     <>
@@ -34,12 +52,13 @@ export function ThemedHome({ themeId }: ThemedHomeProps) {
           <p className="text-ink-muted text-sm">
             You&apos;re viewing the{' '}
             <span className="font-semibold text-accent">
-              {themeId === 'spaceCity' && '🚀 Space City'}
-              {themeId === 'gulfCoast' && '🌊 Gulf Coast'}
-              {themeId === 'editorial' && '📰 Editorial'}
-              {themeId === 'neonNights' && '🌃 Neon Nights'}
+              {theme.emoji} {theme.name}
             </span>{' '}
-            theme. Use the theme switcher in the navbar to compare.
+            theme
+            {isRetroDinerVariation && (
+              <span className="text-ink-muted"> (Retro Diner variation)</span>
+            )}
+            . Use the theme switcher in the navbar to compare.
           </p>
         </div>
       </section>
