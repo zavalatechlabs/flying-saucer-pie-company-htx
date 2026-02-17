@@ -1,9 +1,10 @@
 'use client'
 
+import Image from 'next/image'
 import { businessInfo } from '@/lib/data/business-info'
 import { timelineMilestones, faqItems } from '@/lib/data/about-content'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
-import { slideUp, slideInLeft } from '@/lib/animations/variants'
+import { slideUp, slideInLeft, slideInRight } from '@/lib/animations/variants'
 import { Timeline } from '@/components/timeline'
 import { AboutHero } from '@/components/sections/AboutHero'
 import { FAQSection } from '@/components/sections/FAQSection'
@@ -16,17 +17,39 @@ export function AboutContent() {
 
       {/* Our Story Section */}
       <section className="py-section-lg">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal variants={slideUp}>
             <h2 className="text-h1 font-display text-ink text-center mb-section">Our Story</h2>
           </ScrollReveal>
 
-          <ScrollReveal variants={slideInLeft}>
-            <div className="prose prose-lg max-w-none text-ink-muted">
-              <p className="text-body-lg leading-relaxed mb-6">{businessInfo.about.full}</p>
-              <p className="text-body-lg leading-relaxed mb-6">{businessInfo.about.mission}</p>
-            </div>
-          </ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Text */}
+            <ScrollReveal variants={slideInLeft}>
+              <div className="prose prose-lg max-w-none text-ink-muted">
+                <p className="text-body-lg leading-relaxed mb-6">{businessInfo.about.full}</p>
+                <p className="text-body-lg leading-relaxed">{businessInfo.about.mission}</p>
+              </div>
+            </ScrollReveal>
+
+            {/* Photo */}
+            <ScrollReveal variants={slideInRight}>
+              <figure className="relative">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                  <div className="absolute -bottom-3 -right-3 w-full h-full rounded-2xl bg-accent/15 -z-10" />
+                  <Image
+                    src="/images/owners.jpg"
+                    alt="The Flying Saucer Pie Co. team holding fresh pies in front of the store"
+                    width={800}
+                    height={900}
+                    className="w-full h-auto object-cover grayscale-[15%]"
+                  />
+                </div>
+                <figcaption className="text-sm text-ink-muted text-center mt-4 italic">
+                  Proud pie people — Flying Saucer Pie Co., Houston
+                </figcaption>
+              </figure>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
