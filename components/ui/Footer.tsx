@@ -7,13 +7,13 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer aria-label="Site footer" className="bg-[#545E75] py-section">
+    <footer aria-label="Site footer" className="bg-ink py-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Column */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <SaucerIcon size={48} />
+              <SaucerIcon size={48} white />
               <div>
                 <h3 className="text-xl font-display font-bold text-white">Flying Saucer</h3>
                 <p className="text-xs text-white/60 font-display">Pie Company</p>
@@ -122,7 +122,7 @@ export function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50 font-body">
             <p>© {currentYear} Flying Saucer Pie Company. All pies reserved.</p>
             <p className="flex items-center gap-2 font-display">
-              <SaucerIcon size={20} />
+              <SaucerIcon size={20} white />
               Powered by Space City Love
             </p>
           </div>
