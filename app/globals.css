@@ -87,7 +87,7 @@
   h6 {
     font-family: var(--font-display), 'Space Grotesk', 'Inter', system-ui, sans-serif;
     font-weight: 700;
-    color: var(--ink);
+    color: inherit;
     letter-spacing: var(--tracking-display);
     line-height: var(--leading-display);
   }
@@ -118,7 +118,7 @@
 
   p {
     line-height: var(--leading-body);
-    color: var(--ink);
+    color: inherit;
   }
 
   /* Custom scrollbar - Retro theme */
