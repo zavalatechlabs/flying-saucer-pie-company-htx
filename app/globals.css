@@ -62,6 +62,7 @@
     font-family: var(--font-body), 'Inter', system-ui, sans-serif;
     line-height: var(--leading-body);
     position: relative;
+    overflow-x: clip; /* Prevents slideInLeft/slideInRight x-translations from creating horizontal scroll */
   }
 
   /* Global Paper Grain Texture Overlay */
