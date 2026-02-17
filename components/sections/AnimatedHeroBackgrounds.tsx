@@ -4,18 +4,7 @@ import { useEffect, useState } from 'react'
 
 // ═══════════════════════════════════════════════════════════════
 // ANIMATED HERO BACKGROUNDS
-// Subtle, modern, moving effects for the Soft UI base
 // ═══════════════════════════════════════════════════════════════
-
-interface ShootingStar {
-  id: number
-  startX: number
-  startY: number
-  delay: number
-  duration: number
-  length: number
-  brightness: number
-}
 
 interface TwinklingStar {
   id: number
@@ -36,31 +25,31 @@ interface FloatingParticle {
   opacity: number
 }
 
+// Fixed star positions for the rotating sky — no JS randomness causing rain effect
+const SKY_STARS = [
+  { top: '5%', left: '8%', delay: 0, dur: 3.0 },
+  { top: '10%', left: '25%', delay: 1.5, dur: 2.5 },
+  { top: '2%', left: '45%', delay: 0.8, dur: 3.5 },
+  { top: '14%', left: '62%', delay: 2.2, dur: 2.8 },
+  { top: '6%', left: '80%', delay: 0.3, dur: 3.2 },
+  { top: '20%', left: '12%', delay: 3.0, dur: 2.2 },
+  { top: '22%', left: '50%', delay: 1.2, dur: 4.0 },
+  { top: '1%', left: '37%', delay: 2.8, dur: 3.0 },
+  { top: '17%', left: '88%', delay: 0.6, dur: 2.6 },
+  { top: '28%', left: '70%', delay: 1.8, dur: 2.8 },
+  { top: '8%', left: '57%', delay: 3.7, dur: 3.3 },
+  { top: '30%', left: '33%', delay: 0.9, dur: 3.6 },
+]
+
 /**
- * NEW 1: Shooting Stars - Subtle professional space nod
- * Light soft-UI background with occasional elegant star streaks.
- * Stars have a proper shape (glowing head + fading tail) at a
- * classic diagonal angle — tasteful, not dramatic.
+ * NEW 1: Shooting Stars — codemyui rotating sky approach
+ * A slowly rotating container holds stars that shoot horizontally.
+ * The sky rotation is what makes them appear diagonal — pure CSS, no JS angle math.
  */
 export function ShootingStarsBackground() {
-  const [stars, setStars] = useState<ShootingStar[]>([])
-
-  useEffect(() => {
-    const newStars: ShootingStar[] = Array.from({ length: 5 }, (_, i) => ({
-      id: i,
-      startX: 10 + i * 18 + Math.random() * 8, // Spread across top third
-      startY: 3 + Math.random() * 28,
-      delay: i * 4 + Math.random() * 4, // ~4s apart so only one visible at a time
-      duration: 1.2 + Math.random() * 0.5,
-      length: 80 + Math.random() * 60, // 80–140px — tasteful not theatrical
-      brightness: 0.5 + Math.random() * 0.2,
-    }))
-    setStars(newStars)
-  }, [])
-
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Light soft-UI base — professional and clean */}
+      {/* Light soft-UI base */}
       <div
         className="absolute inset-0"
         style={{
@@ -68,104 +57,105 @@ export function ShootingStarsBackground() {
         }}
       />
 
-      {/* Very faint ambient blue tint in upper area (space hint) */}
+      {/* Faint ambient indigo hint */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 80% 50% at 60% 10%, rgba(2,1,105,0.04) 0%, transparent 60%)',
+            'radial-gradient(ellipse 80% 50% at 65% 10%, rgba(2,1,105,0.04) 0%, transparent 60%)',
         }}
       />
 
-      {/* Shooting stars */}
-      {stars.map((star) => (
-        <div
-          key={star.id}
-          className="shooting-star-wrap"
-          style={
-            {
-              left: `${star.startX}%`,
-              top: `${star.startY}%`,
-              animationDelay: `${star.delay}s`,
-              animationDuration: `${star.duration}s`,
-              '--len': `${star.length}px`,
-              '--alpha': star.brightness,
-            } as React.CSSProperties
-          }
-        />
-      ))}
-
-      {/* Soft indigo glow in corner — adds depth without drama */}
-      <div
-        className="absolute"
-        style={{
-          width: '35%',
-          height: '45%',
-          top: 0,
-          right: 0,
-          background:
-            'radial-gradient(circle at top right, rgba(99,102,241,0.06) 0%, transparent 70%)',
-          filter: 'blur(20px)',
-        }}
-      />
+      {/* Rotating sky container — stars inside shoot horizontally,
+          the rotation creates the diagonal falling star appearance */}
+      <div className="star-sky">
+        {SKY_STARS.map((s, i) => (
+          <div
+            key={i}
+            className="star"
+            style={{
+              top: s.top,
+              left: s.left,
+              animationDelay: `${s.delay}s`,
+              animationDuration: `${s.dur}s`,
+            }}
+          />
+        ))}
+      </div>
 
       <style jsx>{`
-        .shooting-star-wrap {
+        /* Oversized container so corners don't clip when rotating */
+        .star-sky {
           position: absolute;
-          /* Invisible container that flies across */
-          animation: star-fly ease-out infinite;
-          animation-fill-mode: both;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          animation: sky-rotate 120s linear infinite;
         }
 
-        /* Fading tail — tapers from nothing at back to bright at head */
-        .shooting-star-wrap::before {
-          content: '';
+        /* Each star: a line that grows, shoots, then fades */
+        .star {
           position: absolute;
-          width: var(--len);
-          height: 1.5px;
-          /* Gradient: transparent tail → soft indigo body → bright head tip */
-          background: linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(2, 1, 105, calc(var(--alpha) * 0.15)) 30%,
-            rgba(2, 1, 105, calc(var(--alpha) * 0.5)) 75%,
-            rgba(2, 1, 105, var(--alpha)) 95%,
-            rgba(100, 120, 255, calc(var(--alpha) * 1.2)) 100%
-          );
-          transform: rotate(-32deg);
-          transform-origin: right center;
-          border-radius: 2px;
+          height: 2px;
+          width: 0;
+          border-radius: 999px;
+          background: linear-gradient(to left, rgba(2, 1, 105, 0.8), transparent);
+          animation:
+            shooting var(--dur, 3s) ease-in-out infinite,
+            shining var(--dur, 3s) ease-in-out infinite;
         }
 
-        /* Glowing head dot */
-        .shooting-star-wrap::after {
+        /* Bright head dot */
+        .star::before {
           content: '';
           position: absolute;
-          width: 3px;
-          height: 3px;
+          right: -1px;
+          top: -3px;
+          width: 6px;
+          height: 6px;
           border-radius: 50%;
-          background: rgba(2, 1, 105, calc(var(--alpha) * 0.9));
+          background: rgba(2, 1, 105, 0.75);
           box-shadow:
-            0 0 3px 1px rgba(2, 1, 105, calc(var(--alpha) * 0.5)),
-            0 0 6px 2px rgba(99, 102, 241, calc(var(--alpha) * 0.25));
-          top: -0.75px;
-          left: -1.5px;
+            0 0 4px 1px rgba(2, 1, 105, 0.4),
+            0 0 8px 2px rgba(99, 102, 241, 0.2);
         }
 
-        @keyframes star-fly {
+        @keyframes sky-rotate {
           0% {
-            opacity: 0;
-            transform: translate(0, 0);
-          }
-          5% {
-            opacity: 1;
-          }
-          80% {
-            opacity: 0.7;
+            transform: rotate(45deg);
           }
           100% {
+            transform: rotate(405deg);
+          }
+        }
+
+        @keyframes shooting {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(300px);
+          }
+        }
+
+        @keyframes shining {
+          0% {
+            width: 0;
             opacity: 0;
-            transform: translate(250px, 165px);
+          }
+          20% {
+            opacity: 1;
+          }
+          50% {
+            width: 30px;
+          }
+          80% {
+            opacity: 1;
+          }
+          100% {
+            width: 0;
+            opacity: 0;
           }
         }
       `}</style>
@@ -193,15 +183,12 @@ export function TwinklingStarsBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Soft UI base */}
       <div
         className="absolute inset-0"
         style={{
           background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
         }}
       />
-
-      {/* Twinkling stars */}
       {stars.map((star) => (
         <div
           key={star.id}
@@ -216,8 +203,6 @@ export function TwinklingStarsBackground() {
           }}
         />
       ))}
-
-      {/* Soft ambient glow */}
       <div
         className="absolute inset-0"
         style={{
@@ -225,7 +210,6 @@ export function TwinklingStarsBackground() {
             'radial-gradient(ellipse 60% 40% at 30% 30%, rgba(99, 102, 241, 0.04) 0%, transparent 50%)',
         }}
       />
-
       <style jsx>{`
         .twinkle-star {
           position: absolute;
@@ -233,7 +217,6 @@ export function TwinklingStarsBackground() {
           border-radius: 50%;
           animation: twinkle ease-in-out infinite;
         }
-
         @keyframes twinkle {
           0%,
           100% {
@@ -271,15 +254,12 @@ export function RisingParticlesBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Soft UI base */}
       <div
         className="absolute inset-0"
         style={{
           background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
         }}
       />
-
-      {/* Rising particles */}
       {particles.map((p) => (
         <div
           key={p.id}
@@ -295,8 +275,6 @@ export function RisingParticlesBackground() {
           }}
         />
       ))}
-
-      {/* Warm accent glow */}
       <div
         className="absolute inset-0"
         style={{
@@ -304,7 +282,6 @@ export function RisingParticlesBackground() {
             'radial-gradient(ellipse 50% 30% at 50% 80%, rgba(212, 133, 106, 0.06) 0%, transparent 60%)',
         }}
       />
-
       <style jsx>{`
         .rising-particle {
           position: absolute;
@@ -312,7 +289,6 @@ export function RisingParticlesBackground() {
           border-radius: 50%;
           animation: rise linear infinite;
         }
-
         @keyframes rise {
           0% {
             transform: translateY(0) translateX(0);
@@ -340,23 +316,15 @@ export function RisingParticlesBackground() {
 export function AuroraWavesBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Soft UI base */}
       <div
         className="absolute inset-0"
         style={{
           background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
         }}
       />
-
-      {/* Aurora wave 1 */}
       <div className="aurora-wave aurora-1" />
-
-      {/* Aurora wave 2 */}
       <div className="aurora-wave aurora-2" />
-
-      {/* Aurora wave 3 */}
       <div className="aurora-wave aurora-3" />
-
       <style jsx>{`
         .aurora-wave {
           position: absolute;
@@ -365,7 +333,6 @@ export function AuroraWavesBackground() {
           opacity: 0.06;
           animation: aurora-drift 15s ease-in-out infinite;
         }
-
         .aurora-1 {
           top: 5%;
           left: -50%;
@@ -379,7 +346,6 @@ export function AuroraWavesBackground() {
           );
           animation-delay: 0s;
         }
-
         .aurora-2 {
           top: 20%;
           left: -30%;
@@ -393,7 +359,6 @@ export function AuroraWavesBackground() {
           animation-delay: -5s;
           animation-duration: 18s;
         }
-
         .aurora-3 {
           top: 35%;
           left: -70%;
@@ -407,7 +372,6 @@ export function AuroraWavesBackground() {
           animation-delay: -10s;
           animation-duration: 20s;
         }
-
         @keyframes aurora-drift {
           0%,
           100% {
@@ -436,22 +400,12 @@ export function NebulaPulseBackground() {
         }}
       />
 
-      {/* PRIMARY nebula — large indigo, upper right */}
       <div className="nebula nebula-1" />
-
-      {/* SECONDARY nebula — hero blue, center left */}
       <div className="nebula nebula-2" />
-
-      {/* TERTIARY nebula — warm coral, lower right */}
       <div className="nebula nebula-3" />
-
-      {/* ACCENT nebula — violet, upper left */}
       <div className="nebula nebula-4" />
-
-      {/* Cross-fade overlay that shifts color as nebulas breathe */}
       <div className="nebula-overlay" />
 
-      {/* Star accents — more of them, more visible */}
       <div className="star-accent star-lg" style={{ top: '12%', left: '22%' }} />
       <div
         className="star-accent star-lg"
@@ -484,8 +438,6 @@ export function NebulaPulseBackground() {
           border-radius: 50%;
           animation: nebula-breathe ease-in-out infinite;
         }
-
-        /* Large indigo glow — very visible */
         .nebula-1 {
           width: 520px;
           height: 420px;
@@ -499,10 +451,7 @@ export function NebulaPulseBackground() {
           );
           filter: blur(50px);
           animation-duration: 6s;
-          animation-delay: 0s;
         }
-
-        /* Hero-blue glow — strong presence center-left */
         .nebula-2 {
           width: 420px;
           height: 380px;
@@ -518,8 +467,6 @@ export function NebulaPulseBackground() {
           animation-duration: 8s;
           animation-delay: -2s;
         }
-
-        /* Warm coral glow — bottom right anchor */
         .nebula-3 {
           width: 380px;
           height: 300px;
@@ -535,8 +482,6 @@ export function NebulaPulseBackground() {
           animation-duration: 7s;
           animation-delay: -4s;
         }
-
-        /* Violet accent — upper left, smaller */
         .nebula-4 {
           width: 280px;
           height: 260px;
@@ -552,8 +497,6 @@ export function NebulaPulseBackground() {
           animation-duration: 9s;
           animation-delay: -3s;
         }
-
-        /* Subtle full-screen color wash that pulses */
         .nebula-overlay {
           position: absolute;
           inset: 0;
@@ -564,7 +507,6 @@ export function NebulaPulseBackground() {
           );
           animation: overlay-pulse 10s ease-in-out infinite;
         }
-
         @keyframes nebula-breathe {
           0%,
           100% {
@@ -576,7 +518,6 @@ export function NebulaPulseBackground() {
             opacity: 1;
           }
         }
-
         @keyframes overlay-pulse {
           0%,
           100% {
@@ -586,14 +527,11 @@ export function NebulaPulseBackground() {
             opacity: 1;
           }
         }
-
-        /* Star accents */
         .star-accent {
           position: absolute;
           border-radius: 50%;
           animation: star-pulse ease-in-out infinite;
         }
-
         .star-lg {
           width: 5px;
           height: 5px;
@@ -601,7 +539,6 @@ export function NebulaPulseBackground() {
           box-shadow: 0 0 6px 2px rgba(99, 102, 241, 0.4);
           animation-duration: 2.5s;
         }
-
         .star-md {
           width: 3px;
           height: 3px;
@@ -609,7 +546,6 @@ export function NebulaPulseBackground() {
           box-shadow: 0 0 4px 1px rgba(139, 92, 246, 0.35);
           animation-duration: 3.2s;
         }
-
         .star-sm {
           width: 2px;
           height: 2px;
@@ -617,7 +553,6 @@ export function NebulaPulseBackground() {
           box-shadow: 0 0 3px 1px rgba(2, 1, 105, 0.25);
           animation-duration: 4s;
         }
-
         @keyframes star-pulse {
           0%,
           100% {
@@ -627,6 +562,102 @@ export function NebulaPulseBackground() {
           50% {
             opacity: 1;
             transform: scale(1.4);
+          }
+        }
+      `}</style>
+    </div>
+  )
+}
+
+/**
+ * NEW 6: Meteors — Aceternity UI-style meteor shower, light theme
+ * Meteors positioned at top, rotated 215°, fly via translateX(-500px).
+ * Hero blue (#020169) color scheme on a pale tinted background.
+ */
+export function MeteorsBackground() {
+  const [meteors, setMeteors] = useState<{ left: string; delay: string; dur: string }[]>([])
+
+  useEffect(() => {
+    const m = Array.from({ length: 18 }, () => ({
+      left: Math.floor(Math.random() * 800 - 200) + 'px',
+      delay: (Math.random() * 0.8 + 0.2).toFixed(2) + 's',
+      dur: Math.floor(Math.random() * 8 + 3) + 's',
+    }))
+    setMeteors(m)
+  }, [])
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Pale indigo-tinted base so meteors are visible */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'linear-gradient(160deg, #F4F4FB 0%, #EEEEF8 40%, #E8E8F4 100%)',
+        }}
+      />
+
+      {/* Subtle depth glow at top */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(2,1,105,0.05) 0%, transparent 60%)',
+        }}
+      />
+
+      {meteors.map((m, i) => (
+        <span
+          key={i}
+          className="meteor"
+          style={{
+            top: 0,
+            left: m.left,
+            animationDelay: m.delay,
+            animationDuration: m.dur,
+          }}
+        />
+      ))}
+
+      <style jsx>{`
+        .meteor {
+          position: absolute;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: rgba(2, 1, 105, 0.7);
+          box-shadow:
+            0 0 0 1px rgba(2, 1, 105, 0.1),
+            0 0 6px 2px rgba(99, 102, 241, 0.3);
+          transform: rotate(215deg);
+          animation: meteor-fly linear infinite;
+          animation-fill-mode: both;
+        }
+
+        /* Trailing tail */
+        .meteor::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 1px;
+          width: 60px;
+          height: 1px;
+          background: linear-gradient(to right, rgba(2, 1, 105, 0.6), transparent);
+          border-radius: 100%;
+        }
+
+        /* Aceternity animation — 215° angle locked, translateX is travel */
+        @keyframes meteor-fly {
+          0% {
+            transform: rotate(215deg) translateX(0);
+            opacity: 1;
+          }
+          70% {
+            opacity: 1;
+          }
+          100% {
+            transform: rotate(215deg) translateX(-500px);
+            opacity: 0;
           }
         }
       `}</style>

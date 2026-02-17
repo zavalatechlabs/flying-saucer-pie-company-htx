@@ -8,6 +8,7 @@ import {
   RisingParticlesBackground,
   AuroraWavesBackground,
   NebulaPulseBackground,
+  MeteorsBackground,
 } from './AnimatedHeroBackgrounds'
 
 interface Star {
@@ -44,6 +45,7 @@ type ThemeId =
   | 'cosmicDust'
   | 'oceanBreeze'
   | 'softCloud'
+  | 'meteorShower'
 
 interface ThemedHeroBackgroundProps {
   theme: ThemeId
@@ -766,6 +768,11 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
   // NEW 5: Nebula Pulse - Subtle breathing/pulsing glows
   if (theme === 'softCloud') {
     return <NebulaPulseBackground />
+  }
+
+  // NEW 6: Meteors — Aceternity-style meteor shower
+  if (theme === 'meteorShower') {
+    return <MeteorsBackground />
   }
 
   // Old Retro Diner theme

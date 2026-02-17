@@ -533,6 +533,26 @@ export const themes: Record<string, Theme> = {
         'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFFFF 0%, #FAFAFA 30%, #F4F4F5 60%, #E4E4E7 100%)',
     },
   },
+
+  // NEW 6: Meteors — Aceternity UI-style meteor shower (light theme)
+  meteorShower: {
+    id: 'meteorShower',
+    name: '🆕 Meteor Shower',
+    description: 'Aceternity-style meteors on a pale indigo sky',
+    emoji: '☄️',
+    colors: {
+      bg: '#F4F4FB',
+      bgAlt: '#EEEEF8',
+      surface: '#FFFFFF',
+      ink: '#1E1B4B',
+      inkMuted: '#4C4789',
+      accent: '#020169', // Hero blue
+      accent2: '#7C3AED',
+      border: '#C7C7E8',
+      heroBg: '#F4F4FB',
+      heroGradient: 'linear-gradient(160deg, #F4F4FB 0%, #EEEEF8 40%, #E8E8F4 100%)',
+    },
+  },
 }
 
 // Default theme constant for type safety

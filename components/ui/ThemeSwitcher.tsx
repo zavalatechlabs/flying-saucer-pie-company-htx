@@ -12,13 +12,14 @@ interface ThemeSwitcherProps {
 // Current main theme
 const currentThemeRoute: { id: string; path: string }[] = [{ id: 'default', path: '/' }]
 
-// 🆕 NEW - 5 Experimental Hero Background Variations
+// 🆕 NEW - 6 Experimental Hero Background Variations
 const newExperimental: { id: string; path: string }[] = [
   { id: 'auroraGlow', path: '/new1' },
   { id: 'sunsetWarmth', path: '/new2' },
   { id: 'cosmicDust', path: '/new3' },
   { id: 'oceanBreeze', path: '/new4' },
   { id: 'softCloud', path: '/new5' },
+  { id: 'meteorShower', path: '/new6' },
 ]
 
 // Old themes - all previous variations
@@ -188,7 +189,7 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
                 <span className="animate-pulse">🆕</span> NEW - Hero Background Experiments
               </p>
               <p className="px-2 text-xs text-ink-muted mb-2">
-                5 new variations with gradient backgrounds
+                6 variations with animated backgrounds
               </p>
               <div className="space-y-1">
                 {newExperimental.map(({ id, path }) => renderThemeLink(id, path, true))}
