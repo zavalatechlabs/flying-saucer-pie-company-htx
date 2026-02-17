@@ -1,5 +1,12 @@
-import { ThemedHome } from '@/components/sections/ThemedHome'
+import { MeteorHeroWrapper } from '@/components/sections/MeteorHeroWrapper'
+import { FeaturedPiesRow } from '@/components/sections/FeaturedPiesRow'
 
 export default function Home() {
-  return <ThemedHome themeId="meteorShower" />
+  return (
+    <>
+      {/* Hero with meteor animation — no CSS variable overrides, theme stays at default */}
+      <MeteorHeroWrapper />
+      <FeaturedPiesRow />
+    </>
+  )
 }
