@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Logo } from './Logo'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -69,25 +70,56 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4 mt-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-surface border-t border-ink/10 shadow-2xl">
-            <div className="flex flex-col pt-2 pb-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="flex items-center gap-3 px-4 py-3 text-ink font-display
-                           hover:text-accent hover:bg-bg-alt rounded-lg
-                           border-l-2 border-transparent hover:border-accent
-                           transition-all duration-150"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+              className="md:hidden absolute top-full left-0 right-0 bg-surface border-t border-ink/10 shadow-2xl"
+            >
+              {/* Nav links */}
+              <nav aria-label="Mobile navigation" className="px-4 py-3">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.14, delay: i * 0.04, ease: 'easeOut' }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={closeMenu}
+                      className="group flex items-center justify-between
+                               px-4 py-4 rounded-xl
+                               text-xl font-fredoka text-ink
+                               hover:text-accent hover:bg-bg-alt
+                               transition-all duration-150"
+                    >
+                      {link.name}
+                      <ArrowRight
+                        size={16}
+                        className="text-ink/20 group-hover:text-accent group-hover:translate-x-1
+                                 transition-all duration-150"
+                      />
+                    </Link>
+                    {i < navLinks.length - 1 && <div className="mx-4 border-b border-ink/5" />}
+                  </motion.div>
+                ))}
+              </nav>
+
+              {/* Branded footer */}
+              <div className="px-8 py-4 border-t border-ink/5 flex items-center gap-2">
+                <span className="text-lg">🥧</span>
+                <p className="text-xs font-display text-ink-muted tracking-wide">
+                  Our pies are out of this world!
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   )
