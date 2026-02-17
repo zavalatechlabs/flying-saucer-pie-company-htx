@@ -588,20 +588,20 @@ export function MeteorsBackground() {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Pale indigo-tinted base so meteors are visible */}
+      {/* Match the site's Soft UI gray so the hero blends with the rest of the page */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(160deg, #F4F4FB 0%, #EEEEF8 40%, #E8E8F4 100%)',
+          background: 'linear-gradient(160deg, #F0F0F0 0%, #E8E8E8 40%, #DEDEDE 100%)',
         }}
       />
 
-      {/* Subtle depth glow at top */}
+      {/* Very subtle depth glow — barely visible, just adds a hint of dimension */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(2,1,105,0.05) 0%, transparent 60%)',
+            'radial-gradient(ellipse 70% 50% at 50% 0%, rgba(2,1,105,0.03) 0%, transparent 60%)',
         }}
       />
 
