@@ -32,6 +32,7 @@ type ThemeId =
   | 'cosmicDust'
   | 'oceanBreeze'
   | 'softCloud'
+  | 'meteorShower'
 
 interface ThemedHomeProps {
   themeId: ThemeId
