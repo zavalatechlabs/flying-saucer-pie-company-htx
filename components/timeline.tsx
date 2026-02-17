@@ -19,102 +19,156 @@ interface TimelineProps {
 
 export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  // Use pixel-based Y so we only animate `transform` (GPU) — never `top`
+  const [saucerY, setSaucerY] = useState(0)
   const [saucerProgress, setSaucerProgress] = useState(0)
 
   useEffect(() => {
     if (!showSaucer) return
 
-    const handleScroll = () => {
+    // rAF gate: only one update per frame → eliminates mobile jank
+    let rafId = 0
+
+    const update = () => {
       const container = containerRef.current
-      if (!container) return
+      if (!container) {
+        rafId = 0
+        return
+      }
 
       const rect = container.getBoundingClientRect()
-      const windowHeight = window.innerHeight
-      const viewportCenter = windowHeight / 2
+      const progress = Math.max(0, Math.min(1, (window.innerHeight / 2 - rect.top) / rect.height))
 
-      // Calculate progress through the timeline
-      const progress = Math.max(0, Math.min(1, (viewportCenter - rect.top) / rect.height))
       setSaucerProgress(progress)
+      // Store absolute pixel offset from top of container
+      setSaucerY(progress * rect.height)
+      rafId = 0
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    const onScroll = () => {
+      if (rafId) return // skip if a frame is already queued
+      rafId = requestAnimationFrame(update)
+    }
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    update() // seed on mount
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [showSaucer])
+
+  // Saucer size (half-width for centering)
+  const SAUCER_HALF = 16 // 32px / 2
 
   return (
     <div className="relative" ref={containerRef}>
-      {/* Vertical line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full hidden md:block" />
+      {/* ─── Timeline vertical lines ─── */}
 
-      {/* Mobile vertical line */}
-      <div className="absolute left-8 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full md:hidden" />
+      {/* Mobile: left-8 = 32px from container edge */}
+      <div className="absolute top-0 left-8 w-0.5 h-full bg-ink/25 md:hidden" aria-hidden="true" />
 
-      {/* Flying Saucer Progress Indicator */}
+      {/* Desktop: center */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-ink/25 hidden md:block"
+        aria-hidden="true"
+      />
+
+      {/* ─── Flying saucer scroll indicator ───
+           Mobile:  follows left-8 line  →  left: 32px, translateX(-50%)
+           Desktop: follows center line  →  left: 50%,  translateX(-50%)
+           Both use translateY(px) only — no `top` changes, zero reflow  */}
       {showSaucer && (
-        <div
-          className="absolute right-4 md:right-8 w-8 h-8 md:w-10 md:h-10 transition-all duration-200 ease-out z-20"
-          style={{
-            top: `${Math.max(2, Math.min(95, saucerProgress * 96))}%`,
-            transform: `translateY(-50%) rotate(${-10 + saucerProgress * 20}deg)`,
-          }}
-        >
-          <Image
-            src="/brand/saucer.svg"
-            alt="Timeline progress"
-            width={40}
-            height={40}
-            className="w-full h-auto opacity-50 hover:opacity-70 transition-opacity drop-shadow-lg"
-          />
-          {/* Landing glow effect when near bottom */}
-          {saucerProgress > 0.85 && (
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-accent/30 rounded-full blur-sm animate-pulse" />
-          )}
-        </div>
+        <>
+          {/* Mobile saucer */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute md:hidden z-20 w-8 h-8"
+            style={{
+              top: 0,
+              left: 32, // matches left-8 line
+              willChange: 'transform',
+              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF)}px) rotate(${-8 + saucerProgress * 16}deg)`,
+              transition: 'transform 0.1s ease-out',
+            }}
+          >
+            <Image
+              src="/brand/saucer.svg"
+              alt=""
+              width={32}
+              height={32}
+              className="w-full h-auto opacity-60 drop-shadow-md"
+            />
+          </div>
+
+          {/* Desktop saucer */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute hidden md:block z-20 w-10 h-10"
+            style={{
+              top: 0,
+              left: '50%',
+              willChange: 'transform',
+              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - 20)}px) rotate(${-8 + saucerProgress * 16}deg)`,
+              transition: 'transform 0.1s ease-out',
+            }}
+          >
+            <Image
+              src="/brand/saucer.svg"
+              alt=""
+              width={40}
+              height={40}
+              className="w-full h-auto opacity-60 drop-shadow-md"
+            />
+            {saucerProgress > 0.85 && (
+              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent/40 rounded-full blur-sm animate-pulse" />
+            )}
+          </div>
+        </>
       )}
 
+      {/* ─── Milestone items ─── */}
       <div className="space-y-12 md:space-y-24">
         {milestones.map((milestone, index) => {
           const isEven = index % 2 === 0
 
           return (
             <div key={index} className="relative">
-              {/* Desktop Layout - Alternating */}
+              {/* ── Desktop alternating layout ─────────────────────
+                   5/12 | 2/12 (dot) | 5/12  →  totals 12/12
+                   The explicit w-2/12 center column prevents the absolute
+                   line from overlapping either side's text               */}
               <div className="hidden md:flex items-center">
                 {isEven ? (
                   <>
-                    {/* Left Side Content */}
+                    {/* Left content */}
                     <ScrollReveal
                       variants={slideInLeft}
                       delay={0.1}
-                      className="w-5/12 pr-12 text-right"
+                      className="w-5/12 pr-10 text-right"
                     >
                       <div className="inline-block text-left">
-                        <h3 className="text-4xl font-bold text-cosmic-purple mb-2">
-                          {milestone.year}
-                        </h3>
-                        <h4 className="text-2xl font-semibold text-space-night mb-3">
-                          {milestone.title}
-                        </h4>
-                        <p className="text-dust-dark leading-relaxed">{milestone.description}</p>
+                        <h3 className="text-4xl font-bold text-accent mb-2">{milestone.year}</h3>
+                        <h4 className="text-2xl font-semibold text-ink mb-3">{milestone.title}</h4>
+                        <p className="text-ink-muted leading-relaxed">{milestone.description}</p>
                       </div>
                     </ScrollReveal>
 
-                    {/* Center Dot */}
-                    <div className="relative z-10 flex items-center justify-center">
+                    {/* Center dot — w-2/12 ensures equal split */}
+                    <div className="w-2/12 relative z-10 flex items-center justify-center">
                       <ScrollReveal variants={fadeIn} delay={0.2}>
-                        <div className="w-6 h-6 bg-cosmic-purple rounded-full border-4 border-warm-cream shadow-lg">
-                          <div className="absolute inset-0 bg-cosmic-purple rounded-full animate-ping opacity-75" />
+                        <div className="relative w-5 h-5 bg-accent rounded-full border-4 border-bg-alt shadow-md">
+                          <div className="absolute inset-0 bg-accent/50 rounded-full animate-ping" />
                         </div>
                       </ScrollReveal>
                     </div>
 
-                    {/* Right Side Image/Space */}
-                    <div className="w-5/12 pl-12">
+                    {/* Right image */}
+                    <div className="w-5/12 pl-10">
                       {milestone.image && (
                         <ScrollReveal variants={slideInRight} delay={0.3}>
-                          <div className="relative h-48 rounded-lg overflow-hidden shadow-xl">
+                          <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
                             <Image
                               src={milestone.image}
                               alt={milestone.title}
@@ -128,11 +182,11 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                   </>
                 ) : (
                   <>
-                    {/* Left Side Image/Space */}
-                    <div className="w-5/12 pr-12">
+                    {/* Left image */}
+                    <div className="w-5/12 pr-10">
                       {milestone.image && (
                         <ScrollReveal variants={slideInLeft} delay={0.3}>
-                          <div className="relative h-48 rounded-lg overflow-hidden shadow-xl">
+                          <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
                             <Image
                               src={milestone.image}
                               alt={milestone.title}
@@ -144,43 +198,42 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
                       )}
                     </div>
 
-                    {/* Center Dot */}
-                    <div className="relative z-10 flex items-center justify-center">
+                    {/* Center dot — w-2/12 */}
+                    <div className="w-2/12 relative z-10 flex items-center justify-center">
                       <ScrollReveal variants={fadeIn} delay={0.2}>
-                        <div className="w-6 h-6 bg-cosmic-purple rounded-full border-4 border-warm-cream shadow-lg">
-                          <div className="absolute inset-0 bg-cosmic-purple rounded-full animate-ping opacity-75" />
+                        <div className="relative w-5 h-5 bg-accent rounded-full border-4 border-bg-alt shadow-md">
+                          <div className="absolute inset-0 bg-accent/50 rounded-full animate-ping" />
                         </div>
                       </ScrollReveal>
                     </div>
 
-                    {/* Right Side Content */}
-                    <ScrollReveal variants={slideInRight} delay={0.1} className="w-5/12 pl-12">
-                      <h3 className="text-4xl font-bold text-cosmic-purple mb-2">
-                        {milestone.year}
-                      </h3>
-                      <h4 className="text-2xl font-semibold text-space-night mb-3">
-                        {milestone.title}
-                      </h4>
-                      <p className="text-dust-dark leading-relaxed">{milestone.description}</p>
+                    {/* Right content */}
+                    <ScrollReveal variants={slideInRight} delay={0.1} className="w-5/12 pl-10">
+                      <h3 className="text-4xl font-bold text-accent mb-2">{milestone.year}</h3>
+                      <h4 className="text-2xl font-semibold text-ink mb-3">{milestone.title}</h4>
+                      <p className="text-ink-muted leading-relaxed">{milestone.description}</p>
                     </ScrollReveal>
                   </>
                 )}
               </div>
 
-              {/* Mobile Layout - All Left Aligned */}
-              <div className="flex md:hidden items-start">
-                {/* Left Side - Dot */}
-                <div className="relative z-10 flex items-start justify-center pt-2 mr-6">
+              {/* ── Mobile layout ──────────────────────────────────
+                   Content has pl-16 to clear the left-8 line + spacing.
+                   Dot is absolutely positioned at left-8 (32px), centered
+                   on the line with -translate-x-1/2.                    */}
+              <div className="md:hidden relative pl-16 pb-8">
+                {/* Dot sits on the line */}
+                <div className="absolute left-8 top-1.5 -translate-x-1/2 z-10">
                   <ScrollReveal variants={fadeIn} delay={0.1}>
-                    <div className="w-4 h-4 bg-cosmic-purple rounded-full border-2 border-warm-cream shadow-lg" />
+                    <div className="w-4 h-4 bg-accent rounded-full border-2 border-bg-alt shadow-md" />
                   </ScrollReveal>
                 </div>
 
-                {/* Right Side - Content */}
-                <ScrollReveal variants={slideInRight} delay={0.2} className="flex-1 pb-8">
-                  <h3 className="text-3xl font-bold text-cosmic-purple mb-1">{milestone.year}</h3>
-                  <h4 className="text-xl font-semibold text-space-night mb-2">{milestone.title}</h4>
-                  <p className="text-dust-dark leading-relaxed mb-4">{milestone.description}</p>
+                {/* Content */}
+                <ScrollReveal variants={slideInRight} delay={0.2}>
+                  <h3 className="text-3xl font-bold text-accent mb-1">{milestone.year}</h3>
+                  <h4 className="text-xl font-semibold text-ink mb-2">{milestone.title}</h4>
+                  <p className="text-ink-muted leading-relaxed mb-4">{milestone.description}</p>
                   {milestone.image && (
                     <div className="relative h-40 rounded-lg overflow-hidden shadow-lg">
                       <Image
