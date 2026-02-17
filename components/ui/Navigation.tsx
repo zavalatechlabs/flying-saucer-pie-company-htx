@@ -11,7 +11,6 @@ const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menu' },
   { name: 'About', href: '/about' },
-  { name: 'Location', href: '/location' },
   { name: 'Contact', href: '/contact' },
 ]
 

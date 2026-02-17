@@ -22,7 +22,7 @@ export function LocationTeaser() {
 
             {/* Right column: CTA */}
             <div className="md:col-span-1 text-center md:text-right">
-              <Link href="/location">
+              <Link href="/contact">
                 <Button variant="primary">Get details →</Button>
               </Link>
             </div>

@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import { ContactContent } from './contact-content'
 
 export const metadata: Metadata = {
-  title: 'Contact Us - Get in Touch',
+  title: 'Find Us & Contact - Flying Saucer Pie Company',
   description:
-    'Contact Flying Saucer Pie Company for questions about pies, large orders, or general inquiries. Call us at 713-694-1141.',
+    'Find Flying Saucer Pie Company at 436 W Crosstimbers St, Houston, TX. Hours, directions, parking, and contact form. Call us at 713-694-1141.',
 }
 
 export default function ContactPage() {
