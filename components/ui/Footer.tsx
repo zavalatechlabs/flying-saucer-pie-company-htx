@@ -123,7 +123,7 @@ export function Footer() {
             <p>© {currentYear} Flying Saucer Pie Company. All pies reserved.</p>
             <p className="flex items-center gap-2 font-display">
               <SaucerIcon size={20} white />
-              Powered by Space City Love
+              Powered by Zavala Tech Labs
             </p>
           </div>
         </div>
