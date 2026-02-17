@@ -198,7 +198,7 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                         </div>
                         <div className="bg-bg-alt p-4 rounded-lg">
                           <p className="text-sm text-ink-muted mb-1">Single Slice</p>
-                          <p className="text-2xl font-bold text-cosmic-orange">
+                          <p className="text-2xl font-bold text-accent">
                             ${pie.price.slice.toFixed(2)}
                           </p>
                           <p className="text-xs text-ink-muted mt-1">1/6 of whole pie</p>

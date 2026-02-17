@@ -57,14 +57,14 @@ export function MenuContent() {
   }
 
   return (
-    <div className="min-h-screen bg-cream-white">
+    <div className="min-h-screen bg-bg">
       {/* Header */}
-      <section className="bg-space-night text-white py-20">
+      <section className="bg-ink text-surface py-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-6xl font-bold mb-4"
+            className="text-display-md md:text-display-lg font-display mb-4"
           >
             Our Cosmic Collection
           </motion.h1>
@@ -72,7 +72,7 @@ export function MenuContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-cream-white/80"
+            className="text-body-xl text-surface/80"
           >
             Fresh pies made daily with love and no preservatives
           </motion.p>
@@ -87,7 +87,7 @@ export function MenuContent() {
             {/* Search Bar */}
             <div className="relative max-w-md mx-auto mb-8">
               <Search
-                className="absolute left-3 top-1/2 -translate-y-1/2 text-dust-medium"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted"
                 size={20}
               />
               <input
@@ -110,8 +110,8 @@ export function MenuContent() {
                   className={`px-8 py-3 rounded-full font-semibold transition-all duration-300
                     ${
                       selectedCategory === category.id
-                        ? 'bg-cosmic-purple text-white shadow-lg shadow-cosmic-purple/30'
-                        : 'bg-white text-space-night hover:bg-cosmic-purple/10 border-2 border-cosmic-purple/20'
+                        ? 'bg-accent text-surface shadow-lg shadow-accent/30'
+                        : 'bg-surface text-ink hover:bg-accent/10 border-2 border-accent/20'
                     }`}
                 >
                   <span className="mr-2 text-lg">{category.emoji}</span>
@@ -122,7 +122,7 @@ export function MenuContent() {
           </div>
 
           {/* Results Count */}
-          <p className="text-center text-dust-medium mb-8">
+          <p className="text-center text-ink-muted mb-8">
             Showing {filteredPies.length} delicious {filteredPies.length === 1 ? 'pie' : 'pies'}
           </p>
 
@@ -141,7 +141,7 @@ export function MenuContent() {
               animate={{ opacity: 1 }}
               className="text-center py-20"
             >
-              <p className="text-2xl text-dust-medium mb-4">
+              <p className="text-2xl text-ink-muted mb-4">
                 No pies found matching your criteria 😢
               </p>
               <Button
@@ -162,13 +162,15 @@ export function MenuContent() {
           <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Slice Information */}
             <ScrollReveal variants={slideUp} delay={0.1}>
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-space-night mb-4">🍰 About Our Slices</h3>
-                <p className="text-dust-medium mb-4">
+              <div className="bg-surface rounded-2xl p-8 shadow-retro">
+                <h3 className="text-2xl font-display font-semibold text-ink mb-4">
+                  🍰 About Our Slices
+                </h3>
+                <p className="text-ink-muted mb-4">
                   All pies are available by the slice (1/6 of a whole pie). Perfect for trying
                   multiple flavors!
                 </p>
-                <p className="text-sm text-dust-medium">
+                <p className="text-sm text-ink-muted">
                   <strong>Note:</strong> After 6pm, slice selection may be limited based on
                   availability.
                 </p>
@@ -177,14 +179,14 @@ export function MenuContent() {
 
             {/* Freezing Information */}
             <ScrollReveal variants={slideUp} delay={0.2}>
-              <div className="bg-white rounded-2xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-space-night mb-4">
+              <div className="bg-surface rounded-2xl p-8 shadow-retro">
+                <h3 className="text-2xl font-display font-semibold text-ink mb-4">
                   ❄️ Freezing Instructions
                 </h3>
-                <p className="text-dust-medium mb-4">
+                <p className="text-ink-muted mb-4">
                   Pies with the ❄️ symbol can be frozen for up to 3 months.
                 </p>
-                <p className="text-sm text-dust-medium">
+                <p className="text-sm text-ink-muted">
                   Wrap tightly in foil and heat from frozen at 350°F for 30-45 minutes.
                 </p>
               </div>
