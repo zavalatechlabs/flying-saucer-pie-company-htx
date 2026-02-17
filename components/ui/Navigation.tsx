@@ -7,10 +7,11 @@ import { Menu, X, ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils/cn'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const navLinks = [
+const navLinks: { name: string; href: string }[] = [
   { name: 'Home', href: '/' },
   { name: 'Menu', href: '/menu' },
   { name: 'About', href: '/about' },
+  { name: 'FAQ', href: '/faq' },
   { name: 'Location & Contact', href: '/contact' },
 ]
 

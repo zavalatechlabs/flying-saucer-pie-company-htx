@@ -2,12 +2,11 @@
 
 import Image from 'next/image'
 import { businessInfo } from '@/lib/data/business-info'
-import { timelineMilestones, faqItems } from '@/lib/data/about-content'
+import { timelineMilestones } from '@/lib/data/about-content'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideUp, slideInLeft, slideInRight } from '@/lib/animations/variants'
 import { Timeline } from '@/components/timeline'
 import { AboutHero } from '@/components/sections/AboutHero'
-import { FAQSection } from '@/components/sections/FAQSection'
 
 export function AboutContent() {
   return (
@@ -68,28 +67,22 @@ export function AboutContent() {
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="py-section-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FAQ teaser */}
+      <section className="py-16 bg-bg-alt">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <ScrollReveal variants={slideUp}>
-            <h2 className="text-h1 font-display text-ink text-center mb-section">What We Value</h2>
+            <p className="text-ink-muted mb-4 text-body-lg">
+              Questions about orders, freezing, hours, or payment?
+            </p>
+            <a
+              href="/faq"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-surface rounded-full font-semibold hover:bg-ink transition-colors duration-200"
+            >
+              View our FAQ →
+            </a>
           </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {businessInfo.features.map((feature, index) => (
-              <ScrollReveal key={index} variants={slideUp} delay={index * 0.1}>
-                <div className="text-center p-6 bg-surface rounded-2xl shadow-retro hover:shadow-retro-hover transition-shadow">
-                  <div className="text-4xl mb-3">🥧</div>
-                  <h3 className="font-display font-semibold text-ink">{feature}</h3>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
-      <FAQSection items={faqItems} />
     </>
   )
 }
