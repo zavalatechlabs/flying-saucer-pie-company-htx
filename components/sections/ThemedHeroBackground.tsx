@@ -29,6 +29,8 @@ type ThemeId =
   | 'darkLuxe'
   | 'bentoGrid'
   | 'playfulIllustrated'
+  | 'niftyPortal'
+  | 'main'
 
 interface ThemedHeroBackgroundProps {
   theme: ThemeId
@@ -144,14 +146,14 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
           />
         ))}
 
-        {/* Houston skyline silhouette at bottom */}
+        {/* Houston skyline silhouette at bottom (hand-drawn style) */}
         <div className="absolute bottom-0 left-0 right-0 h-[25%] flex items-end justify-center">
           <Image
-            src="/brand/houston-skyline.svg"
+            src="/brand/houston-skyline-handdrawn.svg"
             alt=""
-            width={1200}
-            height={200}
-            className="w-full max-w-[1400px] h-auto opacity-[0.08] object-contain object-bottom"
+            width={1000}
+            height={150}
+            className="w-full max-w-[1200px] h-auto opacity-[0.12] object-contain object-bottom"
             style={{ color: '#1F2937' }}
           />
         </div>
@@ -633,7 +635,92 @@ export function ThemedHeroBackground({ theme }: ThemedHeroBackgroundProps) {
         <div className="absolute bottom-[20%] left-[20%] w-2.5 h-2.5 rounded-full bg-[#60A5FA] opacity-[0.2]" />
         <div className="absolute bottom-[30%] right-[12%] w-2 h-2 rounded-full bg-[#F472B6] opacity-[0.25]" />
         <div className="absolute top-[45%] left-[8%] w-1.5 h-1.5 rounded-full bg-[#FBBF24] opacity-[0.3]" />
-        {/* Squiggly line decorations would go here (SVG) */}
+      </div>
+    )
+  }
+
+  // V12: Nifty Portal (Dark + Gold)
+  if (theme === 'niftyPortal') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Deep black gradient */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse at 50% 30%, #1A1A1A 0%, #0A0A0A 60%, #000000 100%)',
+          }}
+        />
+        {/* Gold accent glow */}
+        <div
+          className="absolute top-[20%] left-[50%] -translate-x-1/2 w-80 h-80 rounded-full opacity-[0.12] blur-3xl"
+          style={{ background: 'radial-gradient(circle, #FFD700 0%, transparent 60%)' }}
+        />
+        {/* Secondary gold accent */}
+        <div
+          className="absolute bottom-[25%] right-[15%] w-48 h-48 rounded-full opacity-[0.08] blur-3xl"
+          style={{ background: 'radial-gradient(circle, #FFC107 0%, transparent 60%)' }}
+        />
+        {/* Subtle noise texture */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '150px',
+          }}
+        />
+      </div>
+    )
+  }
+
+  // Main: Combined best elements (Vintage Paper + Atomic footer colors + Houston skyline)
+  if (theme === 'main') {
+    return (
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Warm parchment gradient (from Vintage Paper) */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 120% 100% at 50% 30%, #FFFEF8 0%, #FDF6E3 40%, #F5ECD7 100%)',
+          }}
+        />
+
+        {/* Paper texture overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+            backgroundSize: '200px 200px',
+          }}
+        />
+
+        {/* Soft teal accent (from Atomic Age) */}
+        <div
+          className="absolute bottom-[15%] left-[10%] w-64 h-64 rounded-full opacity-[0.06] blur-3xl"
+          style={{ background: 'radial-gradient(circle, #14B8A6 0%, transparent 70%)' }}
+        />
+
+        {/* Soft vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 70% at 50% 50%, transparent 50%, rgba(45, 42, 36, 0.05) 100%)',
+          }}
+        />
+
+        {/* Houston skyline at bottom (hand-drawn) */}
+        <div className="absolute bottom-0 left-0 right-0 h-[20%] flex items-end justify-center">
+          <Image
+            src="/brand/houston-skyline-handdrawn.svg"
+            alt=""
+            width={1000}
+            height={150}
+            className="w-full max-w-[1100px] h-auto opacity-[0.08] object-contain object-bottom"
+            style={{ color: '#2D2A24' }}
+          />
+        </div>
       </div>
     )
   }

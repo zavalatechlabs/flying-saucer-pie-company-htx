@@ -1,5 +1,6 @@
 'use client'
 
+import { useRef, useEffect, useState } from 'react'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { fadeIn, slideInLeft, slideInRight } from '@/lib/animations/variants'
 import Image from 'next/image'
@@ -13,16 +14,65 @@ export interface TimelineMilestone {
 
 interface TimelineProps {
   milestones: TimelineMilestone[]
+  showSaucer?: boolean
 }
 
-export function Timeline({ milestones }: TimelineProps) {
+export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [saucerProgress, setSaucerProgress] = useState(0)
+
+  useEffect(() => {
+    if (!showSaucer) return
+
+    const handleScroll = () => {
+      const container = containerRef.current
+      if (!container) return
+
+      const rect = container.getBoundingClientRect()
+      const windowHeight = window.innerHeight
+      const viewportCenter = windowHeight / 2
+
+      // Calculate progress through the timeline
+      const progress = Math.max(0, Math.min(1, (viewportCenter - rect.top) / rect.height))
+      setSaucerProgress(progress)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [showSaucer])
+
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       {/* Vertical line */}
       <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full hidden md:block" />
 
       {/* Mobile vertical line */}
       <div className="absolute left-8 w-1 bg-gradient-to-b from-cosmic-purple via-cosmic-purple-light to-cosmic-purple h-full md:hidden" />
+
+      {/* Flying Saucer Progress Indicator */}
+      {showSaucer && (
+        <div
+          className="absolute right-4 md:right-8 w-8 h-8 md:w-10 md:h-10 transition-all duration-200 ease-out z-20"
+          style={{
+            top: `${Math.max(2, Math.min(95, saucerProgress * 96))}%`,
+            transform: `translateY(-50%) rotate(${-10 + saucerProgress * 20}deg)`,
+          }}
+        >
+          <Image
+            src="/brand/saucer.svg"
+            alt="Timeline progress"
+            width={40}
+            height={40}
+            className="w-full h-auto opacity-50 hover:opacity-70 transition-opacity drop-shadow-lg"
+          />
+          {/* Landing glow effect when near bottom */}
+          {saucerProgress > 0.85 && (
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-6 h-1 bg-accent/30 rounded-full blur-sm animate-pulse" />
+          )}
+        </div>
+      )}
 
       <div className="space-y-12 md:space-y-24">
         {milestones.map((milestone, index) => {

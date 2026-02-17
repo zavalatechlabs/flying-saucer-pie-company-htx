@@ -357,6 +357,47 @@ export const themes: Record<string, Theme> = {
       heroGradient: 'linear-gradient(180deg, #FFFBF5 0%, #FEF7ED 50%, #FFF7ED 100%)',
     },
   },
+
+  // V12: Nifty Portal Inspired (Dark + Gold)
+  niftyPortal: {
+    id: 'niftyPortal',
+    name: 'Nifty Portal',
+    description: 'Dark theme with gold accents, retro type',
+    emoji: '🌟',
+    colors: {
+      bg: '#0A0A0A',
+      bgAlt: '#141414',
+      surface: '#1A1A1A',
+      ink: '#FFFFFF',
+      inkMuted: '#9CA3AF',
+      accent: '#FFD700',
+      accent2: '#FFC107',
+      border: '#2A2A2A',
+      heroBg: '#0A0A0A',
+      heroGradient: 'radial-gradient(ellipse at 50% 30%, #1A1A1A 0%, #0A0A0A 60%, #000000 100%)',
+    },
+  },
+
+  // Main: Combined best elements (Vintage Paper + Atomic footer + Houston skyline)
+  main: {
+    id: 'main',
+    name: 'Main',
+    description: 'Best elements combined - the definitive theme',
+    emoji: '⭐',
+    colors: {
+      bg: '#FDF6E3',
+      bgAlt: '#F0FDF9',
+      surface: '#FFFEFA',
+      ink: '#2D2A24',
+      inkMuted: '#6B6459',
+      accent: '#C7522A',
+      accent2: '#14B8A6',
+      border: '#D4C9B5',
+      heroBg: '#FDF6E3',
+      heroGradient:
+        'radial-gradient(ellipse 120% 100% at 50% 30%, #FFFEF8 0%, #FDF6E3 40%, #F5ECD7 100%)',
+    },
+  },
 }
 
 // Default theme constant for type safety

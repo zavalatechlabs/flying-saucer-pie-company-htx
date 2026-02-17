@@ -24,6 +24,8 @@ type ThemeId =
   | 'darkLuxe'
   | 'bentoGrid'
   | 'playfulIllustrated'
+  | 'niftyPortal'
+  | 'main'
 
 interface ThemedHomeProps {
   themeId: ThemeId
