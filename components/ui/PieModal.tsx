@@ -108,26 +108,26 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                 className="absolute top-4 right-4 p-2 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors z-10"
                 aria-label="Close modal"
               >
-                <X size={24} className="text-dust-dark" />
+                <X size={24} className="text-ink" />
               </button>
 
               {/* Modal Content */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
                 {/* Left Column - Image */}
                 <div className="relative">
-                  <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-pie-crust-light to-pie-crust flex items-center justify-center">
+                  <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
                     <span className="text-[12rem] steam-container">🥧</span>
                   </div>
 
                   {/* Labels */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     {pie.isSpecial && (
-                      <span className="px-3 py-1 bg-berry-red text-white rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-accent text-white rounded-full text-sm font-medium">
                         ⭐ Special
                       </span>
                     )}
                     {pie.isVegan && (
-                      <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm font-medium">
+                      <span className="px-3 py-1 bg-ink text-white rounded-full text-sm font-medium">
                         🌱 Vegan
                       </span>
                     )}
@@ -143,26 +143,21 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                 <div className="flex flex-col">
                   <div className="flex-1">
                     {/* Title */}
-                    <h2
-                      id="modal-title"
-                      className="text-3xl md:text-4xl font-bold text-space-night mb-2"
-                    >
+                    <h2 id="modal-title" className="text-3xl md:text-4xl font-bold text-ink mb-2">
                       {pie.name}
                     </h2>
 
                     {/* Category */}
-                    <p className="text-cosmic-purple font-medium mb-4 capitalize">
-                      {pie.category} Pie
-                    </p>
+                    <p className="text-accent font-medium mb-4 capitalize">{pie.category} Pie</p>
 
                     {/* Description */}
-                    <p className="text-dust-medium text-lg mb-6">{pie.description}</p>
+                    <p className="text-ink-muted text-lg mb-6">{pie.description}</p>
 
                     {/* Ingredients */}
                     {pie.ingredients && pie.ingredients.length > 0 && (
                       <div className="mb-6">
-                        <h3 className="text-lg font-semibold text-space-night mb-2">Ingredients</h3>
-                        <ul className="list-disc list-inside text-dust-medium space-y-1">
+                        <h3 className="text-lg font-semibold text-ink mb-2">Ingredients</h3>
+                        <ul className="list-disc list-inside text-ink-muted space-y-1">
                           {pie.ingredients.map((ingredient, index) => (
                             <li key={index}>{ingredient}</li>
                           ))}
@@ -172,10 +167,10 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
 
                     {/* Allergen Info */}
                     <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-                      <h3 className="text-sm font-semibold text-space-night mb-2">
+                      <h3 className="text-sm font-semibold text-ink mb-2">
                         ⚠️ Allergen Information
                       </h3>
-                      <p className="text-sm text-dust-medium">
+                      <p className="text-sm text-ink-muted">
                         {pie.isVegan
                           ? 'This pie is vegan and contains no animal products. May contain wheat and nuts.'
                           : 'Contains dairy, eggs, and wheat. May contain nuts. Made in a facility that processes tree nuts and peanuts.'}
@@ -185,28 +180,28 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                     {/* Shelf Life */}
                     {pie.shelfLife && (
                       <div className="mb-6">
-                        <h3 className="text-sm font-semibold text-space-night mb-1">Shelf Life</h3>
-                        <p className="text-sm text-dust-medium">{pie.shelfLife}</p>
+                        <h3 className="text-sm font-semibold text-ink mb-1">Shelf Life</h3>
+                        <p className="text-sm text-ink-muted">{pie.shelfLife}</p>
                       </div>
                     )}
 
                     {/* Pricing */}
-                    <div className="border-t border-dust-light pt-6 mb-6">
-                      <h3 className="text-lg font-semibold text-space-night mb-3">Pricing</h3>
+                    <div className="border-t border-border pt-6 mb-6">
+                      <h3 className="text-lg font-semibold text-ink mb-3">Pricing</h3>
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-cosmic-purple/5 p-4 rounded-lg">
-                          <p className="text-sm text-dust-medium mb-1">Whole Pie</p>
-                          <p className="text-2xl font-bold text-cosmic-purple">
+                        <div className="bg-bg-alt p-4 rounded-lg">
+                          <p className="text-sm text-ink-muted mb-1">Whole Pie</p>
+                          <p className="text-2xl font-bold text-accent">
                             ${pie.price.whole.toFixed(2)}
                           </p>
-                          <p className="text-xs text-dust-medium mt-1">9-inch, serves 6-8</p>
+                          <p className="text-xs text-ink-muted mt-1">9-inch, serves 6-8</p>
                         </div>
-                        <div className="bg-cosmic-orange/5 p-4 rounded-lg">
-                          <p className="text-sm text-dust-medium mb-1">Single Slice</p>
+                        <div className="bg-bg-alt p-4 rounded-lg">
+                          <p className="text-sm text-ink-muted mb-1">Single Slice</p>
                           <p className="text-2xl font-bold text-cosmic-orange">
                             ${pie.price.slice.toFixed(2)}
                           </p>
-                          <p className="text-xs text-dust-medium mt-1">1/6 of whole pie</p>
+                          <p className="text-xs text-ink-muted mt-1">1/6 of whole pie</p>
                         </div>
                       </div>
                     </div>

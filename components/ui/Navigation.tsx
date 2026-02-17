@@ -35,7 +35,7 @@ export function Navigation() {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-surface/95 backdrop-blur-lg shadow-retro-hover'
+          ? 'bg-surface backdrop-blur-lg shadow-retro-hover'
           : 'bg-surface/80 backdrop-blur-sm'
       )}
     >
@@ -70,7 +70,7 @@ export function Navigation() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden pb-4 border-t border-border-color mt-2">
+          <div className="md:hidden pb-4 mt-2 -mx-4 sm:-mx-6 lg:-mx-8 px-4 sm:px-6 lg:px-8 bg-surface border-t border-border">
             <div className="flex flex-col gap-1 pt-4">
               {navLinks.map((link) => (
                 <Link

@@ -1,9 +1,7 @@
 'use client'
 
-import { Heart, Eye } from 'lucide-react'
+import { Eye } from 'lucide-react'
 import { Pie } from '@/lib/data/pies'
-import { cn } from '@/lib/utils/cn'
-import { useState } from 'react'
 
 interface PieCardProps {
   pie: Pie
@@ -12,8 +10,6 @@ interface PieCardProps {
 }
 
 export function PieCard({ pie, onClick }: PieCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false)
-
   return (
     <div
       className="pie-card group cursor-pointer"
@@ -29,70 +25,56 @@ export function PieCard({ pie, onClick }: PieCardProps) {
       aria-label={`View details for ${pie.name}`}
     >
       {/* Image Container */}
-      <div className="relative h-64 overflow-hidden">
-        {/* Placeholder for pie image */}
-        <div className="w-full h-full bg-gradient-to-br from-pie-crust-light to-pie-crust flex items-center justify-center">
-          <span className="text-8xl steam-container">🥧</span>
+      <div className="relative h-64 overflow-hidden rounded-t-xl">
+        <div className="w-full h-full bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
+          <span className="text-8xl">🥧</span>
         </div>
 
         {/* Labels */}
         {pie.isSpecial && (
-          <div className="absolute top-2 left-2 bg-berry-red text-white px-3 py-1 rounded-full text-sm font-medium">
+          <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
             Special
           </div>
         )}
         {pie.isVegan && (
-          <div className="absolute top-2 right-2 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+          <div className="absolute top-3 right-3 bg-ink text-surface px-3 py-1 rounded-full text-xs font-semibold">
             🌱 Vegan
           </div>
         )}
 
-        {/* Favorite Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            setIsFavorite(!isFavorite)
-          }}
-          className={cn(
-            'absolute top-2 right-2 p-2 rounded-full bg-white/80 backdrop-blur-sm',
-            'transition-all duration-300 hover:scale-110',
-            pie.isVegan && 'right-20'
-          )}
-          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
-        >
-          <Heart
-            size={20}
-            className={cn(
-              'transition-colors duration-300',
-              isFavorite ? 'fill-berry-red text-berry-red' : 'text-dust-medium'
-            )}
-          />
-        </button>
-
-        {/* View Details Indicator */}
-        <div className="absolute bottom-2 right-2 p-2 rounded-full bg-cosmic-purple text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <Eye size={20} />
+        {/* View Details hover indicator */}
+        <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-200 flex items-center justify-center">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-surface/90 backdrop-blur-sm rounded-full p-3 shadow-md">
+            <Eye size={20} className="text-ink" />
+          </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-space-night mb-2">{pie.name}</h3>
-        <p className="text-dust-medium text-sm mb-4 line-clamp-2">{pie.description}</p>
+      <div className="p-5">
+        <h3 className="text-lg font-semibold text-ink mb-1.5">{pie.name}</h3>
+        <p className="text-ink-muted text-sm mb-4 line-clamp-2 leading-relaxed">
+          {pie.description}
+        </p>
 
-        {/* Price */}
-        <div className="flex items-end gap-2 mb-4">
-          <span className="text-2xl font-bold text-cosmic-orange">
-            ${pie.price.whole.toFixed(2)}
-          </span>
-          <span className="text-sm text-dust-medium mb-1">whole pie</span>
+        {/* Pricing */}
+        <div className="flex items-baseline gap-3">
+          <div>
+            <span className="text-2xl font-bold text-accent">${pie.price.whole.toFixed(2)}</span>
+            <span className="text-xs text-ink-muted ml-1">whole</span>
+          </div>
+          <div className="text-ink-muted text-sm">·</div>
+          <div>
+            <span className="text-sm font-medium text-ink">${pie.price.slice.toFixed(2)}</span>
+            <span className="text-xs text-ink-muted ml-1">slice</span>
+          </div>
         </div>
 
-        {/* Slice price */}
-        <p className="text-sm text-dust-medium mb-4">Slice: ${pie.price.slice.toFixed(2)}</p>
-
-        {/* Additional Info */}
-        {pie.canFreeze && <p className="text-xs text-dust-medium mt-3">❄️ Can be frozen</p>}
+        {pie.canFreeze && (
+          <p className="text-xs text-ink-muted mt-3 flex items-center gap-1">
+            <span>❄️</span> Can be frozen
+          </p>
+        )}
       </div>
     </div>
   )

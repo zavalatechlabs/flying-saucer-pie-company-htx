@@ -42,10 +42,7 @@ function ReviewCard({ review }: { review: Review }) {
       >
         <div className="flex flex-col h-full justify-between">
           {/* Stars */}
-          <div
-            className="flex gap-1 text-sunset-orange text-xl"
-            aria-label={`${review.rating} stars`}
-          >
+          <div className="flex gap-1 text-accent text-xl" aria-label={`${review.rating} stars`}>
             {Array.from({ length: review.rating }).map((_, i) => (
               <span key={i}>⭐</span>
             ))}
@@ -107,7 +104,7 @@ export function ReviewsMarquee() {
     <section className="relative py-20 bg-gradient-to-b from-deep-navy via-deep-navy-light to-deep-navy overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-20 w-64 h-64 bg-cosmic-purple/30 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-20 w-64 h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-10 right-20 w-64 h-64 bg-electric-blue/30 rounded-full blur-3xl" />
       </div>
 
@@ -139,7 +136,7 @@ export function ReviewsMarquee() {
       </div>
 
       {/* Bottom decoration */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cosmic-purple/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
     </section>
   )
 }

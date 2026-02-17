@@ -98,7 +98,7 @@ function PieCardContent({ pie, index }: PieCardProps) {
       }}
     >
       {/* Image container */}
-      <div className="relative h-64 overflow-hidden bg-gradient-to-br from-cosmic-purple/10 to-electric-blue/10">
+      <div className="relative h-64 overflow-hidden bg-gradient-to-br from-bg-alt to-accent/10">
         {/* Placeholder for pie image */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div
@@ -118,7 +118,7 @@ function PieCardContent({ pie, index }: PieCardProps) {
 
         {/* Special badge */}
         {pie.isSpecial && (
-          <div className="absolute top-4 right-4 bg-sunset-orange text-white px-3 py-1 rounded-full text-sm font-semibold">
+          <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
             ⭐ Special
           </div>
         )}
@@ -134,27 +134,23 @@ function PieCardContent({ pie, index }: PieCardProps) {
       {/* Content */}
       <div className="p-6">
         <h3 className="text-2xl font-bold text-deep-navy mb-2 font-space">{pie.name}</h3>
-        <p className="text-dust-dark mb-4 line-clamp-2">{pie.description}</p>
+        <p className="text-ink mb-4 line-clamp-2">{pie.description}</p>
 
         {/* Pricing */}
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="text-sm text-dust-medium">Slice</span>
-            <span className="text-xl font-bold text-sunset-orange">
-              ${pie.price.slice.toFixed(2)}
-            </span>
+            <span className="text-sm text-ink-muted">Slice</span>
+            <span className="text-xl font-bold text-accent">${pie.price.slice.toFixed(2)}</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-sm text-dust-medium">Whole</span>
-            <span className="text-xl font-bold text-cosmic-purple">
-              ${pie.price.whole.toFixed(2)}
-            </span>
+            <span className="text-sm text-ink-muted">Whole</span>
+            <span className="text-xl font-bold text-accent">${pie.price.whole.toFixed(2)}</span>
           </div>
         </div>
       </div>
 
       {/* Hover overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-cosmic-purple/0 to-cosmic-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/0 to-ink/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
     </article>
   )
 }
@@ -165,11 +161,11 @@ export function PieShowcase() {
     .filter((pie): pie is Pie => pie !== undefined)
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-deep-navy via-cosmic-purple-dark/20 to-deep-navy overflow-hidden">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-ink via-ink/80 to-ink overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-32 h-32 bg-electric-blue/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-sunset-orange/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-accent/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative max-w-7xl mx-auto">

@@ -17,7 +17,7 @@ const featuredPies = [
 
 export function MenuPreviewSection() {
   return (
-    <section className="py-20 bg-dust-lightest">
+    <section className="py-20 bg-bg-alt">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,10 +25,8 @@ export function MenuPreviewSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-space-night mb-4">
-            🌟 Cosmic Favorites
-          </h2>
-          <p className="text-xl text-dust-medium mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold text-ink mb-4">🌟 Cosmic Favorites</h2>
+          <p className="text-xl text-ink-muted mb-8">
             Our most popular pies that keep Houstonians coming back
           </p>
         </motion.div>
@@ -52,7 +50,7 @@ export function MenuPreviewSection() {
             </Button>
           </Link>
 
-          <p className="mt-6 text-dust-medium">
+          <p className="mt-6 text-ink-muted">
             We have {pies.length} varieties of pies - something for everyone!
           </p>
         </motion.div>
@@ -62,10 +60,10 @@ export function MenuPreviewSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-16 bg-cosmic-orange/10 border-2 border-cosmic-orange rounded-2xl p-8 text-center"
+          className="mt-16 bg-accent/10 border-2 border-accent rounded-2xl p-8 text-center"
         >
-          <h3 className="text-2xl font-bold text-space-night mb-3">🎄 Holiday Orders</h3>
-          <p className="text-dust-dark mb-4">
+          <h3 className="text-2xl font-bold text-ink mb-3">🎄 Holiday Orders</h3>
+          <p className="text-ink mb-4">
             Planning for Thanksgiving? Remember - we don&apos;t take orders during Thanksgiving
             week. All pies are first come, first served!
           </p>
