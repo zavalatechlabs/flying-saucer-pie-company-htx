@@ -724,3 +724,90 @@ html {
     bottom: 22% !important;
   }
 }
+
+/* ============================================================================
+   INFINITE AUTO-SCROLL PIE CAROUSEL
+   Art gallery showcase - slow, elegant, continuous
+   ============================================================================ */
+
+.infinite-scroll-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.infinite-scroll-track {
+  display: flex;
+  gap: 3rem;
+  animation: infiniteScroll 60s linear infinite;
+  width: fit-content;
+}
+
+.infinite-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes infiniteScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%); /* Move by 1/3 (8 pies out of 24) */
+  }
+}
+
+.infinite-pie-item {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.infinite-pie-item:hover {
+  transform: scale(1.1);
+}
+
+.pie-spin-infinite {
+  animation: pieRotate 20s linear infinite;
+  transition: transform 0.3s ease;
+}
+
+.infinite-pie-item:hover .pie-spin-infinite {
+  animation-play-state: paused;
+}
+
+@keyframes pieRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .infinite-scroll-track {
+    gap: 2rem;
+    animation-duration: 45s; /* Slightly faster on mobile */
+  }
+
+  .infinite-pie-item {
+    min-width: 160px;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .infinite-scroll-track {
+    animation: none !important;
+  }
+
+  .pie-spin-infinite {
+    animation: none !important;
+  }
+}
