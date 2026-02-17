@@ -8,5 +8,9 @@ export const metadata: Metadata = {
 }
 
 export default function FAQPage() {
-  return <FAQContent />
+  return (
+    <div className="pt-16">
+      <FAQContent />
+    </div>
+  )
 }
