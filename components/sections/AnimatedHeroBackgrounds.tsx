@@ -9,11 +9,12 @@ import { useEffect, useState } from 'react'
 
 interface ShootingStar {
   id: number
-  x: number
-  y: number
+  startX: number
+  startY: number
   delay: number
   duration: number
-  angle: number
+  length: number
+  brightness: number
 }
 
 interface TwinklingStar {
@@ -36,79 +37,159 @@ interface FloatingParticle {
 }
 
 /**
- * NEW 1: Shooting Stars - Occasional diagonal streaks
+ * NEW 1: Shooting Stars - Real star streaks with glowing heads & fading tails
+ * - Stars shoot diagonally across the sky with proper trail effect
+ * - Appear sporadically (not all at once like rain)
+ * - Bright glowing head + fading trail gradient
  */
 export function ShootingStarsBackground() {
   const [stars, setStars] = useState<ShootingStar[]>([])
 
   useEffect(() => {
-    // Generate shooting stars
-    const newStars: ShootingStar[] = Array.from({ length: 6 }, (_, i) => ({
+    // Generate shooting stars with varied timing so they appear one at a time
+    const newStars: ShootingStar[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 50,
-      delay: i * 3 + Math.random() * 2,
-      duration: 1 + Math.random() * 0.5,
-      angle: 35 + Math.random() * 20,
+      // Spread start positions across upper portion
+      startX: 5 + (i / 8) * 85, // Spread across top
+      startY: 2 + Math.random() * 35, // Keep in upper 35%
+      delay: i * 2.5 + Math.random() * 3, // Spread out so they appear separately
+      duration: 0.8 + Math.random() * 0.4, // Quick: 0.8-1.2s
+      length: 120 + Math.random() * 80, // 120-200px trails
+      brightness: 0.7 + Math.random() * 0.3,
     }))
     setStars(newStars)
   }, [])
 
+  // Shooting star angle: ~35 degrees (classic falling star look)
+  // The star travels diagonally from upper-left to lower-right
+  // Using SVG for proper head + tail with glow
+
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* Soft UI base */}
+      {/* Deep midnight sky — makes stars pop */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+          background: 'linear-gradient(160deg, #0A0A1A 0%, #0F0F28 30%, #080818 70%, #04040F 100%)',
         }}
       />
+
+      {/* Subtle star field (static tiny dots) */}
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        {/* Static background stars */}
+        {Array.from({ length: 80 }, (_, i) => (
+          <circle
+            key={i}
+            cx={`${(i * 137.508) % 100}%`}
+            cy={`${(i * 73.9) % 80}%`}
+            r={i % 5 === 0 ? 1.2 : 0.6}
+            fill="white"
+            opacity={0.2 + (i % 3) * 0.15}
+          />
+        ))}
+      </svg>
 
       {/* Shooting stars */}
       {stars.map((star) => (
         <div
           key={star.id}
-          className="shooting-star"
-          style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            animationDelay: `${star.delay}s`,
-            animationDuration: `${star.duration}s`,
-            transform: `rotate(${star.angle}deg)`,
-          }}
+          className="shooting-star-wrapper"
+          style={
+            {
+              left: `${star.startX}%`,
+              top: `${star.startY}%`,
+              animationDelay: `${star.delay}s`,
+              animationDuration: `${star.duration}s`,
+              '--trail-length': `${star.length}px`,
+              '--brightness': star.brightness,
+            } as React.CSSProperties
+          }
         />
       ))}
 
-      {/* Subtle gradient overlay */}
+      {/* Faint nebula glows for depth */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute opacity-20"
         style={{
-          background:
-            'radial-gradient(ellipse 80% 50% at 70% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%)',
+          width: '40%',
+          height: '40%',
+          top: '5%',
+          right: '10%',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.3) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+        }}
+      />
+      <div
+        className="absolute opacity-15"
+        style={{
+          width: '30%',
+          height: '30%',
+          bottom: '15%',
+          left: '5%',
+          background: 'radial-gradient(circle, rgba(2,1,105,0.4) 0%, transparent 70%)',
+          filter: 'blur(50px)',
         }}
       />
 
       <style jsx>{`
-        .shooting-star {
+        .shooting-star-wrapper {
           position: absolute;
-          width: 80px;
-          height: 1px;
-          background: linear-gradient(90deg, rgba(99, 102, 241, 0.6), transparent);
-          animation: shoot 1.5s ease-out infinite;
-          opacity: 0;
+          animation: shooting-star ease-out infinite;
+          animation-fill-mode: both;
         }
 
-        @keyframes shoot {
+        /* The star itself: a bright head + long fading tail */
+        .shooting-star-wrapper::before {
+          content: '';
+          position: absolute;
+          /* Trail: wide at left (head) fading to nothing on right */
+          width: var(--trail-length);
+          height: 2px;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255, 255, 255, calc(var(--brightness) * 0.3)) 20%,
+            rgba(255, 255, 255, calc(var(--brightness) * 0.8)) 70%,
+            rgba(255, 255, 255, var(--brightness)) 90%,
+            white 100%
+          );
+          /* Rotate so it travels at ~35° angle */
+          transform: rotate(-35deg);
+          transform-origin: right center;
+          border-radius: 0 2px 2px 0;
+        }
+
+        /* Bright glowing head/tip of the star */
+        .shooting-star-wrapper::after {
+          content: '';
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background: white;
+          border-radius: 50%;
+          box-shadow:
+            0 0 4px 2px rgba(255, 255, 255, 0.9),
+            0 0 8px 4px rgba(200, 210, 255, 0.6),
+            0 0 16px 6px rgba(150, 170, 255, 0.3);
+          top: -1px;
+          left: -2px;
+        }
+
+        @keyframes shooting-star {
           0% {
             opacity: 0;
-            transform: translateX(0) translateY(0) rotate(35deg);
+            transform: translate(0, 0);
           }
-          10% {
+          2% {
+            opacity: 1;
+          }
+          70% {
             opacity: 0.8;
           }
           100% {
             opacity: 0;
-            transform: translateX(150px) translateY(100px) rotate(35deg);
+            /* Travel diagonally: right and down at 35° */
+            transform: translate(300px, 210px);
           }
         }
       `}</style>

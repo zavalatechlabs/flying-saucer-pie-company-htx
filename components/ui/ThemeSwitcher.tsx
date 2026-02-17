@@ -73,25 +73,68 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
 
   const renderThemeLink = (themeId: string, path: string, isNew = false) => {
     const theme: Theme = getThemeById(themeId)
+    const isActive = themeId === currentThemeId
     return (
       <Link
         key={themeId}
         href={path}
         onClick={() => setIsOpen(false)}
-        className={`flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors ${
-          themeId === currentThemeId
-            ? 'bg-accent/10 text-accent'
+        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all ${
+          isActive
+            ? 'bg-accent/10 text-accent ring-1 ring-accent/30'
             : isNew
-              ? 'hover:bg-accent/5 text-ink border border-accent/20'
+              ? 'hover:bg-accent/5 text-ink border border-accent/20 hover:border-accent/40'
               : 'hover:bg-bg-alt text-ink'
         }`}
       >
-        <span className="text-lg">{theme.emoji}</span>
-        <div className="flex-1 min-w-0">
-          <p className="font-medium text-sm truncate">{theme.name}</p>
-          <p className="text-xs text-ink-muted truncate">{theme.description}</p>
+        {/* Color swatch preview - 3 stacked circles showing theme palette */}
+        <div className="relative flex-shrink-0 w-9 h-9">
+          {/* Background color - largest circle */}
+          <div
+            className="absolute inset-0 rounded-md shadow-sm"
+            style={{ backgroundColor: theme.colors.bg }}
+          />
+          {/* Accent color - medium circle, offset */}
+          <div
+            className="absolute bottom-0.5 right-0.5 w-5 h-5 rounded-full border-2 shadow-sm"
+            style={{
+              backgroundColor: theme.colors.accent,
+              borderColor: theme.colors.bg,
+            }}
+          />
+          {/* Accent2 / surface - small dot */}
+          <div
+            className="absolute top-0.5 right-0.5 w-3 h-3 rounded-full border border-white/50 shadow-sm"
+            style={{ backgroundColor: theme.colors.accent2 }}
+          />
+          {/* Emoji badge */}
+          <span className="absolute -bottom-1 -left-1 text-xs leading-none">{theme.emoji}</span>
         </div>
-        {themeId === currentThemeId && (
+
+        <div className="flex-1 min-w-0">
+          <p className="font-semibold text-sm truncate">{theme.name}</p>
+          <p className="text-xs text-ink-muted truncate leading-tight mt-0.5">
+            {theme.description}
+          </p>
+          {/* Color strip */}
+          <div className="flex gap-0.5 mt-1.5">
+            {[
+              theme.colors.bg,
+              theme.colors.surface,
+              theme.colors.accent,
+              theme.colors.accent2,
+              theme.colors.border,
+            ].map((color, i) => (
+              <div
+                key={i}
+                className="h-1.5 flex-1 rounded-full"
+                style={{ backgroundColor: color }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {isActive && (
           <svg
             className="w-4 h-4 flex-shrink-0 text-accent"
             fill="currentColor"
