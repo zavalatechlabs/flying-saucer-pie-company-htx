@@ -26,24 +26,23 @@ export interface Theme {
 }
 
 export const themes: Record<string, Theme> = {
-  // Main theme - Soft UI (Neumorphism) with proper contrast
-  // Hero text color: #020169 (incorporated into accent2)
+  // Main theme - Warm Parchment & Space Navy
   default: {
     id: 'default',
-    name: 'Soft UI',
-    description: 'Clean neumorphic design with excellent readability',
-    emoji: '🫧',
+    name: 'Space Parchment',
+    description: 'Warm parchment canvas with deep space navy — refined and inviting',
+    emoji: '🪐',
     colors: {
-      bg: '#E8E8E8',
-      bgAlt: '#DEDEDE',
-      surface: '#F0F0F0',
-      ink: '#1A1A2E', // Dark for good contrast
-      inkMuted: '#4A4A5A', // Darker muted for better readability
-      accent: '#020169', // Hero blue color
-      accent2: '#D4856A', // Warm coral
-      border: '#C8C8C8',
-      heroBg: '#E8E8E8',
-      heroGradient: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+      bg: '#F5F2EB', // Warm parchment — main page canvas
+      bgAlt: '#ECEBE4', // Warm beige — alternating sections
+      surface: '#FFFFFF', // Clean white — cards, elevated surfaces
+      ink: '#1A1A2E', // Deep space navy — primary text + dark section bg
+      inkMuted: '#394867', // Slate blue — secondary text, captions
+      accent: '#2B3A55', // Dark navy slate — primary CTAs, links
+      accent2: '#2E2E38', // Deep charcoal — secondary CTAs, badges
+      border: '#ECEBE4', // Warm beige — subtle borders
+      heroBg: '#F5F2EB',
+      heroGradient: 'linear-gradient(145deg, #FFFFFF 0%, #F5F2EB 50%, #ECEBE4 100%)',
     },
   },
 

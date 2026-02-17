@@ -170,18 +170,39 @@ flying-saucer-pie/
 
 ## 🎨 Design System
 
-### Color Palette
+### Color Palette — Warm Parchment & Space Navy
 
-| Color              | Value     | Usage                   |
-| ------------------ | --------- | ----------------------- |
-| **Background**     | `#FFF8F0` | Page backgrounds        |
-| **Background Alt** | `#FFF3E6` | Alternate sections      |
-| **Surface**        | `#FFFFFF` | Cards, modals           |
-| **Ink**            | `#1A1A2E` | Text, headings          |
-| **Ink Muted**      | `#4A5568` | Secondary text          |
-| **Accent**         | `#D4856A` | CTAs, links, highlights |
-| **Accent 2**       | `#6B8E9F` | Secondary accents       |
-| **Border**         | `#E8DDD0` | Borders, dividers       |
+The palette pairs two warm, parchment-toned lights against a family of deep space navies and charcoals. Warmth comes from the cream backgrounds; sophistication from the high-contrast dark tones.
+
+| Token         | Hex       | Lightness | Role                                                          |
+| ------------- | --------- | --------- | ------------------------------------------------------------- |
+| `--bg`        | `#F5F2EB` | ~94%      | Main page canvas — warm parchment                             |
+| `--bg-alt`    | `#ECEBE4` | ~92%      | Alternating sections (timeline, FAQ, etc.)                    |
+| `--surface`   | `#FFFFFF` | 100%      | Cards, modals — lifts above warm bg                           |
+| `--ink`       | `#1A1A2E` | ~14%      | Deep space navy — **dark section backgrounds + primary text** |
+| `--ink-muted` | `#394867` | ~31%      | Slate blue — secondary text, captions, metadata               |
+| `--accent`    | `#2B3A55` | ~25%      | Dark navy slate — **primary CTAs, links, active states**      |
+| `--accent-2`  | `#2E2E38` | ~20%      | Deep charcoal — secondary CTAs, badges, alt highlights        |
+| `--border`    | `#ECEBE4` | ~92%      | Subtle borders on white surfaces                              |
+
+> **Reserved**: `#1B1B1B` (near-black neutral) is in the brand palette but not assigned a token — too close to `--ink` to be distinct. Available for dark mode or very high-contrast future work.
+
+> **Brand-locked colors** (do not standardize): `#020169` is used **only** in the saucer SVG fill and the hero headline/tagline text — these come directly from the Flying Saucer logo identity.
+
+### Interactive Color Behavior
+
+| Element              | Default                         | Hover                              | Active/Focus               |
+| -------------------- | ------------------------------- | ---------------------------------- | -------------------------- |
+| **Primary button**   | `bg-accent` (`#2B3A55`)         | `bg-ink` (`#1A1A2E`) — deeper navy | Scale down + dimmed shadow |
+| **Secondary button** | `border-accent` + `text-accent` | Fills `bg-accent`, text white      | Scale down                 |
+| **Ghost button**     | `text-ink`, transparent         | `bg-bg-alt` + `text-accent`        | `bg-border`                |
+| **Links**            | `text-accent` with underline    | Darkens to `#1E2D44`               | —                          |
+| **Form fields**      | `border-border`                 | `border-accent`                    | Ring: `accent/10`          |
+| **Nav links**        | `text-ink`                      | `text-accent`                      | Underline scales in        |
+
+### Dark Sections (headers, footer)
+
+All page hero headers and the site footer use `bg-ink` (`#1A1A2E`). Text in these sections uses `text-surface` (white) and `text-surface/80` for secondary content. Buttons inside dark sections should use `variant="secondary"` or `variant="ghost"`.
 
 ### Typography
 
@@ -196,9 +217,14 @@ All design tokens are defined as CSS variables in `app/globals.css`:
 ```css
 :root {
   /* Colors */
-  --bg: #fff8f0;
-  --accent: #d4856a;
-  --ink: #1a1a2e;
+  --bg: #f5f2eb; /* Warm parchment — main page canvas */
+  --bg-alt: #ecebe4; /* Warm beige — alternating sections */
+  --surface: #ffffff; /* Clean white — cards, elevated surfaces */
+  --ink: #1a1a2e; /* Deep space navy — text + dark section bg */
+  --ink-muted: #394867; /* Slate blue — secondary text */
+  --accent: #2b3a55; /* Dark navy slate — primary CTAs, links */
+  --accent-2: #2e2e38; /* Deep charcoal — secondary CTAs, badges */
+  --border: #ecebe4; /* Warm beige — subtle borders */
 
   /* Border Radius */
   --radius-sm: 0.5rem;
