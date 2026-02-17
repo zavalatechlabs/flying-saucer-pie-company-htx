@@ -65,7 +65,11 @@ const FONTS = {
   },
 }
 
-export function HeroSection() {
+interface HeroSectionProps {
+  hideDefaultBackground?: boolean
+}
+
+export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps) {
   const [animationPhase, setAnimationPhase] = useState(0)
 
   // Helper function for delays
@@ -97,7 +101,11 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="hero-retro-background relative w-full h-screen md:h-auto flex items-center justify-center overflow-hidden py-4">
+    <section
+      className={`relative w-full h-screen md:h-auto flex items-center justify-center overflow-hidden py-4 ${
+        hideDefaultBackground ? '' : 'hero-retro-background'
+      }`}
+    >
       {/* CSS Variables for Responsive Font Sizes */}
       <style jsx>{`
         /* === RETRO HERO BACKGROUND (background-only changes) === */
