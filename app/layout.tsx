@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
+import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { businessInfo } from '@/lib/data/business-info'
 import { site } from '@/lib/config'
 import { Fredoka, Pacifico, DM_Sans, Outfit } from 'next/font/google'
@@ -143,12 +144,14 @@ export default function RootLayout({
       <body
         className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${dmSans.variable} ${outfit.variable}`}
       >
-        {/* Global paper grain texture overlay */}
-        <div className="grain-overlay" aria-hidden="true" />
+        <ThemeProvider>
+          {/* Global paper grain texture overlay */}
+          <div className="grain-overlay" aria-hidden="true" />
 
-        <Navigation />
-        <main aria-label="Main content">{children}</main>
-        <Footer />
+          <Navigation />
+          <main aria-label="Main content">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
