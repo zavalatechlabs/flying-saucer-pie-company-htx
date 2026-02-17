@@ -9,16 +9,25 @@ interface ThemeSwitcherProps {
   className?: string
 }
 
-// Organized theme groups for the switcher
-const retroDinerVariations: { id: string; path: string }[] = [
-  { id: 'default', path: '/' },
+// Current main theme
+const currentThemeRoute: { id: string; path: string }[] = [{ id: 'default', path: '/' }]
+
+// 🆕 NEW - 5 Experimental Hero Background Variations
+const newExperimental: { id: string; path: string }[] = [
+  { id: 'auroraGlow', path: '/new1' },
+  { id: 'sunsetWarmth', path: '/new2' },
+  { id: 'cosmicDust', path: '/new3' },
+  { id: 'oceanBreeze', path: '/new4' },
+  { id: 'softCloud', path: '/new5' },
+]
+
+// Old themes - all previous variations
+const oldThemes: { id: string; path: string }[] = [
+  { id: 'retroDiner', path: '/old/retro' },
   { id: 'vintagePaper', path: '/v1' },
   { id: 'houstonPride', path: '/v2' },
   { id: 'atomicAge', path: '/v3' },
   { id: 'warmMocha', path: '/v4' },
-]
-
-const creativeExplorations: { id: string; path: string }[] = [
   { id: 'niftyRetro', path: '/v5' },
   { id: 'neubrutalism', path: '/v6' },
   { id: 'neumorphism', path: '/v7' },
@@ -27,11 +36,7 @@ const creativeExplorations: { id: string; path: string }[] = [
   { id: 'bentoGrid', path: '/v10' },
   { id: 'playfulIllustrated', path: '/v11' },
   { id: 'niftyPortal', path: '/v12' },
-]
-
-const mainTheme: { id: string; path: string }[] = [{ id: 'main', path: '/main' }]
-
-const otherThemes: { id: string; path: string }[] = [
+  { id: 'main', path: '/main' },
   { id: 'spaceCity', path: '/home1' },
   { id: 'gulfCoast', path: '/home2' },
   { id: 'editorial', path: '/home3' },
@@ -42,12 +47,10 @@ const otherThemes: { id: string; path: string }[] = [
 const pathToTheme: Record<string, string> = {}
 const themeToPath: Record<string, string> = {}
 
-;[...mainTheme, ...retroDinerVariations, ...creativeExplorations, ...otherThemes].forEach(
-  ({ id, path }) => {
-    pathToTheme[path] = id
-    themeToPath[id] = path
-  }
-)
+;[...currentThemeRoute, ...newExperimental, ...oldThemes].forEach(({ id, path }) => {
+  pathToTheme[path] = id
+  themeToPath[id] = path
+})
 
 export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
   const [isOpen, setIsOpen] = useState(false)
@@ -68,7 +71,7 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  const renderThemeLink = (themeId: string, path: string) => {
+  const renderThemeLink = (themeId: string, path: string, isNew = false) => {
     const theme: Theme = getThemeById(themeId)
     return (
       <Link
@@ -76,7 +79,11 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
         href={path}
         onClick={() => setIsOpen(false)}
         className={`flex items-center gap-3 px-3 py-2.5 rounded-md transition-colors ${
-          themeId === currentThemeId ? 'bg-accent/10 text-accent' : 'hover:bg-bg-alt text-ink'
+          themeId === currentThemeId
+            ? 'bg-accent/10 text-accent'
+            : isNew
+              ? 'hover:bg-accent/5 text-ink border border-accent/20'
+              : 'hover:bg-bg-alt text-ink'
         }`}
       >
         <span className="text-lg">{theme.emoji}</span>
@@ -121,40 +128,40 @@ export function ThemeSwitcher({ className = '' }: ThemeSwitcherProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-72 max-h-[70vh] rounded-xl bg-surface/95 backdrop-blur-lg border border-border/50 shadow-xl overflow-y-auto z-50">
+        <div className="absolute right-0 mt-2 w-80 max-h-[70vh] rounded-xl bg-surface/95 backdrop-blur-lg border border-border/50 shadow-xl overflow-y-auto z-50">
           <div className="p-2">
-            {/* Main Theme */}
+            {/* Current Theme */}
             <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
-              <span>⭐</span> Recommended
+              <span>🫧</span> Current Theme
             </p>
-            {mainTheme.map(({ id, path }) => renderThemeLink(id, path))}
+            {currentThemeRoute.map(({ id, path }) => renderThemeLink(id, path))}
 
             {/* Divider */}
-            <div className="my-2 border-t border-border/50" />
+            <div className="my-3 border-t border-border/50" />
 
-            {/* Retro Diner Variations */}
-            <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
-              <span>🛸</span> Retro Diner Variations
-            </p>
-            {retroDinerVariations.map(({ id, path }) => renderThemeLink(id, path))}
-
-            {/* Divider */}
-            <div className="my-2 border-t border-border/50" />
-
-            {/* Creative Explorations */}
-            <p className="px-3 py-2 text-xs font-semibold text-accent uppercase tracking-wider flex items-center gap-2">
-              <span>🎨</span> Creative Explorations
-            </p>
-            {creativeExplorations.map(({ id, path }) => renderThemeLink(id, path))}
+            {/* NEW Experimental - Very Obvious */}
+            <div className="bg-accent/5 rounded-lg p-2 mb-2 border border-accent/20">
+              <p className="px-2 py-1 text-xs font-bold text-accent uppercase tracking-wider flex items-center gap-2">
+                <span className="animate-pulse">🆕</span> NEW - Hero Background Experiments
+              </p>
+              <p className="px-2 text-xs text-ink-muted mb-2">
+                5 new variations with gradient backgrounds
+              </p>
+              <div className="space-y-1">
+                {newExperimental.map(({ id, path }) => renderThemeLink(id, path, true))}
+              </div>
+            </div>
 
             {/* Divider */}
-            <div className="my-2 border-t border-border/50" />
+            <div className="my-3 border-t border-border/50" />
 
-            {/* Other Themes */}
-            <p className="px-3 py-2 text-xs font-medium text-ink-muted uppercase tracking-wider">
-              Other Themes
+            {/* Old Themes */}
+            <p className="px-3 py-2 text-xs font-medium text-ink-muted uppercase tracking-wider flex items-center gap-2">
+              <span>📁</span> Old Themes
             </p>
-            {otherThemes.map(({ id, path }) => renderThemeLink(id, path))}
+            <div className="space-y-1">
+              {oldThemes.map(({ id, path }) => renderThemeLink(id, path))}
+            </div>
           </div>
         </div>
       )}
