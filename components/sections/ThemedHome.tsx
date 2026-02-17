@@ -9,6 +9,7 @@ import { getThemeById } from '@/lib/themes'
 
 type ThemeId =
   | 'default'
+  | 'retroDiner'
   | 'spaceCity'
   | 'gulfCoast'
   | 'editorial'
@@ -26,6 +27,11 @@ type ThemeId =
   | 'playfulIllustrated'
   | 'niftyPortal'
   | 'main'
+  | 'auroraGlow'
+  | 'sunsetWarmth'
+  | 'cosmicDust'
+  | 'oceanBreeze'
+  | 'softCloud'
 
 interface ThemedHomeProps {
   themeId: ThemeId

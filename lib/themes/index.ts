@@ -26,9 +26,34 @@ export interface Theme {
 }
 
 export const themes: Record<string, Theme> = {
-  // Current default theme (for reference)
+  // Main theme - Soft UI (Neumorphism) with proper contrast
+  // Hero text color: #020169 (incorporated into accent2)
   default: {
     id: 'default',
+    name: 'Soft UI',
+    description: 'Clean neumorphic design with excellent readability',
+    emoji: '🫧',
+    colors: {
+      bg: '#E8E8E8',
+      bgAlt: '#DEDEDE',
+      surface: '#F0F0F0',
+      ink: '#1A1A2E', // Dark for good contrast
+      inkMuted: '#4A4A5A', // Darker muted for better readability
+      accent: '#020169', // Hero blue color
+      accent2: '#D4856A', // Warm coral
+      border: '#C8C8C8',
+      heroBg: '#E8E8E8',
+      heroGradient: 'linear-gradient(145deg, #F0F0F0 0%, #E8E8E8 50%, #DEDEDE 100%)',
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // OLD THEMES (Previous iterations)
+  // ═══════════════════════════════════════════════════════════════
+
+  // Old: Retro Diner
+  retroDiner: {
+    id: 'retroDiner',
     name: 'Retro Diner',
     description: 'Classic retro space-age diner aesthetic',
     emoji: '🛸',
@@ -396,6 +421,116 @@ export const themes: Record<string, Theme> = {
       heroBg: '#FDF6E3',
       heroGradient:
         'radial-gradient(ellipse 120% 100% at 50% 30%, #FFFEF8 0%, #FDF6E3 40%, #F5ECD7 100%)',
+    },
+  },
+
+  // ═══════════════════════════════════════════════════════════════
+  // 🆕 NEW EXPERIMENTAL THEMES - Hero Background Variations
+  // Testing different gradients and subtle animations
+  // ═══════════════════════════════════════════════════════════════
+
+  // NEW 1: Aurora Glow - Subtle animated gradient
+  auroraGlow: {
+    id: 'auroraGlow',
+    name: '🆕 Aurora Glow',
+    description: 'Soft purple-blue gradient with subtle movement',
+    emoji: '🌌',
+    colors: {
+      bg: '#F8F9FC',
+      bgAlt: '#F0F2F8',
+      surface: '#FFFFFF',
+      ink: '#1E1B4B', // Deep indigo for contrast
+      inkMuted: '#4C4789',
+      accent: '#020169', // Hero blue
+      accent2: '#7C3AED',
+      border: '#E0E4ED',
+      heroBg: '#F8F9FC',
+      heroGradient:
+        'linear-gradient(135deg, #F8F9FC 0%, #EDE9FE 30%, #DDD6FE 50%, #E0E7FF 70%, #F8F9FC 100%)',
+    },
+  },
+
+  // NEW 2: Sunset Warmth - Coral to peach gradient
+  sunsetWarmth: {
+    id: 'sunsetWarmth',
+    name: '🆕 Sunset Warmth',
+    description: 'Warm coral sunset with golden hour feel',
+    emoji: '🌅',
+    colors: {
+      bg: '#FFFBF5',
+      bgAlt: '#FEF3E2',
+      surface: '#FFFFFF',
+      ink: '#422006', // Dark brown for warmth
+      inkMuted: '#78350F',
+      accent: '#EA580C',
+      accent2: '#020169', // Hero blue
+      border: '#FED7AA',
+      heroBg: '#FFFBF5',
+      heroGradient:
+        'linear-gradient(180deg, #FFFBF5 0%, #FEF3C7 25%, #FECACA 50%, #FED7AA 75%, #FFFBF5 100%)',
+    },
+  },
+
+  // NEW 3: Cosmic Dust - Subtle stars/particles
+  cosmicDust: {
+    id: 'cosmicDust',
+    name: '🆕 Cosmic Dust',
+    description: 'Soft background with subtle floating particles',
+    emoji: '✨',
+    colors: {
+      bg: '#F5F5F7',
+      bgAlt: '#EBEBF0',
+      surface: '#FFFFFF',
+      ink: '#1A1A2E',
+      inkMuted: '#52525B',
+      accent: '#020169', // Hero blue
+      accent2: '#6366F1',
+      border: '#D4D4D8',
+      heroBg: '#F5F5F7',
+      heroGradient:
+        'radial-gradient(ellipse 150% 100% at 50% 0%, #FFFFFF 0%, #F5F5F7 40%, #EBEBF0 100%)',
+    },
+  },
+
+  // NEW 4: Ocean Breeze - Teal waves gradient
+  oceanBreeze: {
+    id: 'oceanBreeze',
+    name: '🆕 Ocean Breeze',
+    description: 'Cool teal gradients like gentle waves',
+    emoji: '🌊',
+    colors: {
+      bg: '#F0FDFA',
+      bgAlt: '#CCFBF1',
+      surface: '#FFFFFF',
+      ink: '#134E4A', // Dark teal for contrast
+      inkMuted: '#0F766E',
+      accent: '#0D9488',
+      accent2: '#020169', // Hero blue
+      border: '#99F6E4',
+      heroBg: '#F0FDFA',
+      heroGradient:
+        'linear-gradient(180deg, #FFFFFF 0%, #F0FDFA 20%, #CCFBF1 50%, #A5F3FC 80%, #F0FDFA 100%)',
+    },
+  },
+
+  // NEW 5: Soft Cloud - Dreamy light gradient with depth
+  softCloud: {
+    id: 'softCloud',
+    name: '🆕 Soft Cloud',
+    description: 'Dreamy light layers like floating clouds',
+    emoji: '☁️',
+    colors: {
+      bg: '#FAFAFA',
+      bgAlt: '#F4F4F5',
+      surface: '#FFFFFF',
+      ink: '#18181B',
+      inkMuted: '#52525B',
+      accent: '#020169', // Hero blue
+      accent2: '#A1A1AA',
+      border: '#E4E4E7',
+      heroBg: '#FAFAFA',
+      heroGradient:
+        'radial-gradient(ellipse 100% 80% at 50% 20%, #FFFFFF 0%, #FAFAFA 30%, #F4F4F5 60%, #E4E4E7 100%)',
     },
   },
 }
