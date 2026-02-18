@@ -79,9 +79,6 @@ export type Config = typeof config
 // Validate required config at build time
 if (typeof window === 'undefined') {
   // Server-side only validation
-  if (config.dev.debug) {
-    console.log('✓ Configuration loaded successfully')
-  }
 
   // Log warnings for missing optional values
   if (!config.analytics.gaId) {
