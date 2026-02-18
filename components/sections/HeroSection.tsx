@@ -55,6 +55,7 @@ const FONTS = {
     lg: '7vw', // large screens (1024px+)
     xl: '5.25vw', // extra large (1280px+)
     xxl: '4.75rem', // ultra wide (1536px+) — fixed cap, ~76px, stops runaway scaling
+    mobileLandscape: '7vw', // phones sideways — overrides sm/md breakpoints
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
@@ -64,6 +65,7 @@ const FONTS = {
     lg: '4vw', // large screens (1024px+)
     xl: '3vw', // extra large (1280px+)
     xxl: '2.75rem', // ultra wide (1536px+) — fixed cap, ~44px, stops runaway scaling
+    mobileLandscape: '4vw', // phones sideways — overrides sm/md breakpoints
   },
 }
 
@@ -195,6 +197,17 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
           }
           .hero-tagline {
             font-size: ${FONTS.tagline.xl};
+          }
+        }
+
+        /* Mobile landscape — phone rotated sideways triggers sm/md breakpoints
+           but screen is still physically small. Targets phones only (height ≤ 500px). */
+        @media (orientation: landscape) and (max-height: 500px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.mobileLandscape};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.mobileLandscape};
           }
         }
 
