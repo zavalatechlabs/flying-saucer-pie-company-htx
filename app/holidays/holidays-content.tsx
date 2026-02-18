@@ -79,10 +79,10 @@ export function HolidaysContent() {
       </section>
 
       {/* Thanksgiving FAQ Section */}
-      <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} />
+      <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} className="pb-section-sm" />
 
       {/* Christmas & New Year's FAQ Section */}
-      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="pt-0" />
+      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="pt-section-sm" />
     </>
   )
 }

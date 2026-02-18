@@ -5,6 +5,7 @@ import { ChevronDown } from 'lucide-react'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideUp } from '@/lib/animations/variants'
 import type { FAQItem as FAQItemType } from '@/lib/data/about-content'
+import { cn } from '@/lib/utils/cn'
 
 interface FAQItemProps {
   question: string
@@ -69,7 +70,7 @@ export function FAQSection({ title = 'Frequently Asked Questions', items, classN
   const groups = hasCategories ? groupByCategory(items) : [{ category: null, items }]
 
   return (
-    <section className={`py-section-lg bg-bg-alt ${className ?? ''}`}>
+    <section className={cn('py-section-lg bg-bg-alt', className)}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {title && (
           <ScrollReveal variants={slideUp}>
