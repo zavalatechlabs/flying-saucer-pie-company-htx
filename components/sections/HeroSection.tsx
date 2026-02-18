@@ -43,17 +43,6 @@ const POS = {
     taglineTop: '32%',
     saucerBottom: '10%',
   },
-  // Mobile landscape — phone rotated sideways needs completely different layout
-  mobileLandscape: {
-    headlineTop: '4%',
-    swooshTop: '14%',
-    taglineTop: '24%',
-    taglineLeft: '40%',
-    taglineWidth: '55%',
-    saucerBottom: '5%',
-    saucerRight: '2%',
-    saucerWidth: '28%', // Much smaller in landscape
-  },
 }
 
 // Font size tuning knobs - adjust per viewport!
@@ -221,30 +210,12 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
             font-size: ${FONTS.tagline.mobileLandscape};
           }
 
-          /* Override container aspect ratio for landscape phones */
+          /* Uniformly scale down the entire hero in landscape phones */
           .hero-stage {
-            aspect-ratio: 16 / 9 !important;
-            max-height: calc(100vh - 5rem) !important;
+            transform: scale(0.65);
+            transform-origin: top center;
             max-width: none !important;
             width: 100% !important;
-          }
-
-          /* Override inline positioning for landscape phones */
-          .hero-headline-container {
-            top: ${POS.mobileLandscape.headlineTop} !important;
-          }
-          .hero-swoosh {
-            top: ${POS.mobileLandscape.swooshTop} !important;
-          }
-          .hero-tagline-container {
-            top: ${POS.mobileLandscape.taglineTop} !important;
-            left: ${POS.mobileLandscape.taglineLeft} !important;
-            width: ${POS.mobileLandscape.taglineWidth} !important;
-          }
-          .hero-saucer {
-            bottom: ${POS.mobileLandscape.saucerBottom} !important;
-            right: ${POS.mobileLandscape.saucerRight} !important;
-            width: ${POS.mobileLandscape.saucerWidth} !important;
           }
         }
 
