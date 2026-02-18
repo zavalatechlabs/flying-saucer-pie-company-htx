@@ -28,8 +28,7 @@ export async function submitContactForm(
 
   // If no API key, log and return success (dev mode)
   if (!process.env.RESEND_API_KEY) {
-    console.warn('RESEND_API_KEY not set — contact form submission logged but not sent')
-    console.log('Contact form submission:', data)
+    console.warn('RESEND_API_KEY not set — contact form submission logged but not sent', data)
     return { success: true }
   }
 

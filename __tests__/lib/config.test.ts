@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { config, site, contact } from '@/lib/config'
+import { config, contact } from '@/lib/config'
 
 describe('Config', () => {
   it('has required site configuration', () => {
