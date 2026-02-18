@@ -79,10 +79,17 @@ export function HolidaysContent() {
       </section>
 
       {/* Thanksgiving FAQ Section */}
-      <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} className="pb-section-sm" />
+      <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} className="pb-8" />
+
+      {/* Divider */}
+      <div className="bg-bg-alt">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <hr className="border-border-color" />
+        </div>
+      </div>
 
       {/* Christmas & New Year's FAQ Section */}
-      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="pt-section-sm" />
+      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="pt-8" />
     </>
   )
 }
