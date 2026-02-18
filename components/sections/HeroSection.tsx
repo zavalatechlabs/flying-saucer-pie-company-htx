@@ -55,7 +55,6 @@ const FONTS = {
     lg: '7vw', // large screens (1024px+)
     xl: '5.25vw', // extra large (1280px+)
     xxl: '4.75rem', // ultra wide (1536px+) — fixed cap, ~76px, stops runaway scaling
-    mobileLandscape: '7vw', // phones sideways — overrides sm/md breakpoints
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
@@ -65,7 +64,6 @@ const FONTS = {
     lg: '4vw', // large screens (1024px+)
     xl: '3vw', // extra large (1280px+)
     xxl: '2.75rem', // ultra wide (1536px+) — fixed cap, ~44px, stops runaway scaling
-    mobileLandscape: '4vw', // phones sideways — overrides sm/md breakpoints
   },
 }
 
@@ -200,25 +198,6 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
           }
         }
 
-        /* Mobile landscape — phone rotated sideways triggers sm/md breakpoints
-           but screen is still physically small. Targets phones only (height ≤ 500px). */
-        @media (orientation: landscape) and (max-height: 500px) {
-          .hero-headline {
-            font-size: ${FONTS.headline.mobileLandscape};
-          }
-          .hero-tagline {
-            font-size: ${FONTS.tagline.mobileLandscape};
-          }
-
-          /* Uniformly scale down the entire hero in landscape phones */
-          .hero-stage {
-            transform: scale(0.65);
-            transform-origin: top center;
-            max-width: none !important;
-            width: 100% !important;
-          }
-        }
-
         /* Ultra-wide cap — stops vw scaling beyond ~1450px equivalent */
         @media (min-width: 1536px) {
           .hero-headline {
@@ -276,7 +255,7 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
       `}</style>
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
-      <div className="hero-stage relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[calc(100vh-2rem)]">
+      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[calc(100vh-2rem)]">
         {/* Layer 1: Reference Guide (optional, controlled by SHOW_GUIDE) */}
         {SHOW_GUIDE && (
           <div className="absolute inset-0 z-0">
