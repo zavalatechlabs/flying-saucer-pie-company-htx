@@ -5,7 +5,7 @@ import { businessInfo } from '@/lib/data/business-info'
 import { timelineMilestones } from '@/lib/data/about-content'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideUp, slideInLeft, slideInRight } from '@/lib/animations/variants'
-import { Timeline } from '@/components/timeline'
+import { Timeline } from '@/components/ui/Timeline'
 import { AboutHero } from '@/components/sections/AboutHero'
 
 export function AboutContent() {

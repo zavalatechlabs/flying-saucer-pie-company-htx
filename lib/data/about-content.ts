@@ -1,4 +1,4 @@
-import { TimelineMilestone } from '@/components/timeline'
+import { TimelineMilestone } from '@/components/ui/Timeline'
 
 export const timelineMilestones: TimelineMilestone[] = [
   {
