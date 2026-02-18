@@ -6,6 +6,7 @@ import { Send, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideInRight } from '@/lib/animations/variants'
+import { submitContactForm } from '@/app/actions/contact'
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -17,28 +18,32 @@ export function ContactForm() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    const result = await submitContactForm(formData)
 
     setIsSubmitting(false)
-    setIsSubmitted(true)
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-        subject: 'general',
-      })
-      setIsSubmitted(false)
-    }, 3000)
+    if (result.success) {
+      setIsSubmitted(true)
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+          subject: 'general',
+        })
+        setIsSubmitted(false)
+      }, 3000)
+    } else {
+      setError(result.error || 'Something went wrong')
+    }
   }
 
   const handleChange = (
@@ -68,6 +73,12 @@ export function ContactForm() {
         </motion.div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {error && (
+            <div className="mb-4 p-3 bg-error/10 border border-error/20 rounded-lg text-error text-sm">
+              {error}
+            </div>
+          )}
+
           {/* Name */}
           <div>
             <label htmlFor="name" className="block text-body-sm font-medium text-ink mb-2">
