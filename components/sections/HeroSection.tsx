@@ -43,6 +43,17 @@ const POS = {
     taglineTop: '32%',
     saucerBottom: '10%',
   },
+  // Mobile landscape — phone rotated sideways needs completely different layout
+  mobileLandscape: {
+    headlineTop: '4%',
+    swooshTop: '14%',
+    taglineTop: '24%',
+    taglineLeft: '40%',
+    taglineWidth: '55%',
+    saucerBottom: '5%',
+    saucerRight: '2%',
+    saucerWidth: '28%', // Much smaller in landscape
+  },
 }
 
 // Font size tuning knobs - adjust per viewport!
@@ -209,6 +220,32 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
           .hero-tagline {
             font-size: ${FONTS.tagline.mobileLandscape};
           }
+
+          /* Override container aspect ratio for landscape phones */
+          .hero-stage {
+            aspect-ratio: 16 / 9 !important;
+            max-height: calc(100vh - 5rem) !important;
+            max-width: none !important;
+            width: 100% !important;
+          }
+
+          /* Override inline positioning for landscape phones */
+          .hero-headline-container {
+            top: ${POS.mobileLandscape.headlineTop} !important;
+          }
+          .hero-swoosh {
+            top: ${POS.mobileLandscape.swooshTop} !important;
+          }
+          .hero-tagline-container {
+            top: ${POS.mobileLandscape.taglineTop} !important;
+            left: ${POS.mobileLandscape.taglineLeft} !important;
+            width: ${POS.mobileLandscape.taglineWidth} !important;
+          }
+          .hero-saucer {
+            bottom: ${POS.mobileLandscape.saucerBottom} !important;
+            right: ${POS.mobileLandscape.saucerRight} !important;
+            width: ${POS.mobileLandscape.saucerWidth} !important;
+          }
         }
 
         /* Ultra-wide cap — stops vw scaling beyond ~1450px equivalent */
@@ -268,7 +305,7 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
       `}</style>
 
       {/* Alignment Stage - Fixed aspect ratio for stable coordinates */}
-      <div className="relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[calc(100vh-2rem)]">
+      <div className="hero-stage relative mx-auto aspect-[3/4] w-full max-w-[520px] sm:max-w-[640px] md:max-w-[760px] md:max-h-[calc(100vh-2rem)]">
         {/* Layer 1: Reference Guide (optional, controlled by SHOW_GUIDE) */}
         {SHOW_GUIDE && (
           <div className="absolute inset-0 z-0">
