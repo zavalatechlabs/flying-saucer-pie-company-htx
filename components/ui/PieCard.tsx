@@ -1,6 +1,7 @@
 'use client'
 
 import { Eye } from 'lucide-react'
+import Image from 'next/image'
 import { Pie } from '@/lib/data/pies'
 
 interface PieCardProps {
@@ -26,24 +27,34 @@ export function PieCard({ pie, onClick }: PieCardProps) {
     >
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden rounded-t-xl">
-        <div className="w-full h-full bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
-          <span className="text-8xl">🥧</span>
-        </div>
+        {pie.image ? (
+          <Image
+            src={pie.image}
+            alt={pie.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
+            <span className="text-8xl">🥧</span>
+          </div>
+        )}
 
         {/* Labels */}
         {pie.isSpecial && (
-          <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide">
+          <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide z-10">
             Special
           </div>
         )}
         {pie.isVegan && (
-          <div className="absolute top-3 right-3 bg-ink text-surface px-3 py-1 rounded-full text-xs font-semibold">
+          <div className="absolute top-3 right-3 bg-ink text-surface px-3 py-1 rounded-full text-xs font-semibold z-10">
             🌱 Vegan
           </div>
         )}
 
         {/* View Details hover indicator */}
-        <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-200 flex items-center justify-center">
+        <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-200 flex items-center justify-center z-10">
           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-surface/90 backdrop-blur-sm rounded-full p-3 shadow-md">
             <Eye size={20} className="text-ink" />
           </div>

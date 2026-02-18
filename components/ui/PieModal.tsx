@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
+import Image from 'next/image'
 import { Pie } from '@/lib/data/pies'
 
 interface PieModalProps {
@@ -115,8 +116,20 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-8">
                 {/* Left Column - Image */}
                 <div className="relative">
-                  <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
-                    <span className="text-[12rem] steam-container">🥧</span>
+                  <div className="aspect-square rounded-xl overflow-hidden bg-gradient-to-br from-bg-alt to-border relative">
+                    {pie.image ? (
+                      <Image
+                        src={pie.image}
+                        alt={pie.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-[12rem] steam-container">🥧</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Labels */}
