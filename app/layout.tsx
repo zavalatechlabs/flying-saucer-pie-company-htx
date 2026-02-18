@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     siteName: site.name,
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/social-share-preview.jpg',
         width: 1200,
         height: 630,
         alt: 'Flying Saucer Pie Company',
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     title: "Flying Saucer Pie Company - Houston's Best Pies Since 1967",
     description:
       'The oldest family-owned bakery in Houston. Handmade fresh pies daily with no preservatives.',
-    images: ['/og-image.jpg'],
+    images: ['/social-share-preview.jpg'],
   },
 }
 
@@ -125,7 +125,7 @@ export default function RootLayout({
     ],
     servesCuisine: 'American',
     priceRange: '$$',
-    image: `${site.url}/og-image.jpg`,
+    image: `${site.url}/social-share-preview.jpg`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
