@@ -82,7 +82,7 @@ export function HolidaysContent() {
       <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} />
 
       {/* Christmas & New Year's FAQ Section */}
-      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} />
+      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="pt-0" />
     </>
   )
 }
