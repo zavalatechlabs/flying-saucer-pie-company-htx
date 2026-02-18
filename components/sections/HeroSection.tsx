@@ -54,6 +54,7 @@ const FONTS = {
     md: '8.6vw', // medium screens (768px+)
     lg: '7vw', // large screens (1024px+)
     xl: '5.25vw', // extra large (1280px+)
+    xxl: '4.75rem', // ultra wide (1536px+) — fixed cap, ~76px, stops runaway scaling
   },
   // Tagline (Our Pies Are / Out Of This World!)
   tagline: {
@@ -62,6 +63,7 @@ const FONTS = {
     md: '5vw', // medium screens (768px+)
     lg: '4vw', // large screens (1024px+)
     xl: '3vw', // extra large (1280px+)
+    xxl: '2.75rem', // ultra wide (1536px+) — fixed cap, ~44px, stops runaway scaling
   },
 }
 
@@ -193,6 +195,16 @@ export function HeroSection({ hideDefaultBackground = false }: HeroSectionProps)
           }
           .hero-tagline {
             font-size: ${FONTS.tagline.xl};
+          }
+        }
+
+        /* Ultra-wide cap — stops vw scaling beyond ~1450px equivalent */
+        @media (min-width: 1536px) {
+          .hero-headline {
+            font-size: ${FONTS.headline.xxl};
+          }
+          .hero-tagline {
+            font-size: ${FONTS.tagline.xxl};
           }
         }
 

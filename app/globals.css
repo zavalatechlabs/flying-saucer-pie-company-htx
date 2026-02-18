@@ -655,6 +655,16 @@ html {
   }
 }
 
+@media (min-width: 1536px) {
+  h1 {
+    font-size: 3rem; /* Locked — no further growth on ultra-wide screens */
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+}
+
 /* ============================================
    HERO SEQUENTIAL REVEAL ANIMATION
    ============================================ */
