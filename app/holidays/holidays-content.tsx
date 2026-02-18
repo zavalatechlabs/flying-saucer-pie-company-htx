@@ -79,10 +79,18 @@ export function HolidaysContent() {
       </section>
 
       {/* Thanksgiving FAQ Section */}
-      <FAQSection title="🦃 Thanksgiving" items={thanksgivingFAQs} className="py-section" />
+      <FAQSection
+        title="🦃 Thanksgiving"
+        items={thanksgivingFAQs}
+        style={{ paddingTop: '4rem', paddingBottom: '2rem' }}
+      />
 
       {/* Christmas & New Year's FAQ Section */}
-      <FAQSection title="🎄 Christmas & New Year's" items={christmasFAQs} className="py-section" />
+      <FAQSection
+        title="🎄 Christmas & New Year's"
+        items={christmasFAQs}
+        style={{ paddingTop: '2rem', paddingBottom: '4rem' }}
+      />
     </>
   )
 }

@@ -45,8 +45,8 @@ export const config = {
 
   // Social media links
   social: {
-    facebook: getEnvVar('NEXT_PUBLIC_FACEBOOK_URL', 'https://facebook.com/flyingsaucerpies'),
-    instagram: getEnvVar('NEXT_PUBLIC_INSTAGRAM_URL', 'https://instagram.com/flyingsaucerpies'),
+    facebook: getEnvVar('NEXT_PUBLIC_FACEBOOK_URL', 'https://www.facebook.com/share/14PhjDvY7Dr/?mibextid=wwXIfr'),
+    instagram: getEnvVar('NEXT_PUBLIC_INSTAGRAM_URL', 'https://instagram.com/flyingsaucerpie'),
   },
 
   // Feature flags

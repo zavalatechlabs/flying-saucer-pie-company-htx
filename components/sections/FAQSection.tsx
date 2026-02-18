@@ -44,6 +44,7 @@ interface FAQSectionProps {
   title?: string | null
   items: FAQItemType[]
   className?: string
+  style?: React.CSSProperties
 }
 
 function groupByCategory(
@@ -65,12 +66,12 @@ function groupByCategory(
   return groups
 }
 
-export function FAQSection({ title = 'Frequently Asked Questions', items, className }: FAQSectionProps) {
+export function FAQSection({ title = 'Frequently Asked Questions', items, className, style }: FAQSectionProps) {
   const hasCategories = items.some((item) => item.category)
   const groups = hasCategories ? groupByCategory(items) : [{ category: null, items }]
 
   return (
-    <section className={cn('bg-bg-alt', className ?? 'py-section-lg')}>
+    <section className={cn('py-section-lg bg-bg-alt', className)} style={style}>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {title && (
           <ScrollReveal variants={slideUp}>
