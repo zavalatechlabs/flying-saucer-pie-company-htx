@@ -12,7 +12,7 @@ export const pies: Pie[] = [
     description:
       'Traditional double crust pie filled with tender sliced apples, cinnamon, & sugar.',
     price: { whole: 22, slice: 5 },
-    image: '/images/pies/menu/apple-crumble-1.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     canFreeze: true,
     note: 'Add a ring of cream for $1.00',
@@ -25,7 +25,7 @@ export const pies: Pie[] = [
     description:
       'Double crust pie filled with tender sliced peaches & mixed with a sweet peach filling.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/peach-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     imagePosition: 'center 80%',
     available: true,
     canFreeze: true,
@@ -38,7 +38,7 @@ export const pies: Pie[] = [
     description:
       'Double crust pie filled with whole tart cherries & mixed with a sweet cherry filling.',
     price: { whole: 20, slice: 5 },
-    image: '/images/pies/menu/cherry-lattice-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     imagePosition: 'center 80%',
     available: true,
     canFreeze: true,
@@ -50,7 +50,7 @@ export const pies: Pie[] = [
     category: 'fruit',
     description: 'Traditional pecan pie filling with a top layer of caramelized pecan pieces.',
     price: { whole: 23, slice: 5 },
-    image: '/images/pies/menu/pecan-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     canFreeze: true,
     shelfLife: '3 days room temp, 4–5 days refrigerated',
@@ -62,7 +62,7 @@ export const pies: Pie[] = [
     description:
       'Double crust pie filled with pineapple chunks & mixed with sweet pineapple filling.',
     price: { whole: 20, slice: 5 },
-    image: '/images/pies/menu/pineapple-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     canFreeze: true,
     shelfLife: '3 days room temp, 4–5 days refrigerated',
@@ -74,7 +74,7 @@ export const pies: Pie[] = [
     description:
       'Single crust apple pie topped with a crumbly cinnamon sugar strudel. Extra sweet with firmer apples.',
     price: { whole: 20, slice: 5 },
-    image: '/images/pies/menu/apple-crumble-2.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     canFreeze: true,
     note: 'Unavailable Dec 24–25',
@@ -89,7 +89,7 @@ export const pies: Pie[] = [
     description:
       'Whole & halved fresh strawberries layered in a sweet strawberry glaze & topped with whipped cream.',
     price: { whole: 20, slice: 5 },
-    image: '/images/pies/menu/strawberry-cream-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     imagePosition: 'center 80%',
     available: true,
     shelfLife: '2–3 days refrigerated',
@@ -100,7 +100,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Fresh banana slices in a handmade vanilla pudding topped with whipped cream.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/banana-cream-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     imagePosition: 'center 80%',
     available: true,
     shelfLife: '1–2 days refrigerated (best enjoyed same day once cut)',
@@ -111,7 +111,7 @@ export const pies: Pie[] = [
     category: 'cream',
     description: 'Creamy handmade dark chocolate pudding filling topped with whipped cream.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/chocolate-swirl.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     shelfLife: '2–3 days refrigerated',
   },
@@ -122,7 +122,7 @@ export const pies: Pie[] = [
     description:
       'Creamy handmade pudding filling mixed with flake coconut. Topped with whipped cream & sprinkled with golden toasted coconut flakes.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/coconut-cream-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     imagePosition: 'center 80%',
     available: true,
     shelfLife: '2–3 days refrigerated',
@@ -134,7 +134,7 @@ export const pies: Pie[] = [
     description:
       'Sweet & refreshingly tart lemon filling made with fresh squeezed lemon juice & topped with whipped cream.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/lemon-cream-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     shelfLife: '2–3 days refrigerated',
   },
@@ -145,7 +145,7 @@ export const pies: Pie[] = [
     description:
       'Rich & creamy with a sweet & tart condensed milk base. Topped with a scalloped ring of whipped cream.',
     price: { whole: 21, slice: 5 },
-    image: '/images/pies/menu/key-lime-pie.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     shelfLife: '2–3 days refrigerated',
   },
@@ -158,7 +158,7 @@ export const pies: Pie[] = [
     description:
       'Creamy, rich & decadent cheesecake baked in our signature flaky crust, topped with sliced strawberries in a sweet glaze & a scalloped ring of whipped cream.',
     price: { whole: 23, slice: 5 },
-    image: '/images/pies/menu/cheesecake-strawberry.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     shelfLife: '3–4 days refrigerated',
   },
@@ -169,7 +169,7 @@ export const pies: Pie[] = [
     description:
       'Creamy, rich & decadent cheesecake baked in our signature flaky crust, topped with whole cherries in a sweet glaze & a scalloped ring of whipped cream.',
     price: { whole: 23, slice: 5 },
-    image: '/images/pies/menu/cheesecake-cherry.jpg',
+    image: '/images/pies/blueberry-carousel.jpg',
     available: true,
     shelfLife: '3–4 days refrigerated',
   },
