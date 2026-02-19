@@ -8,10 +8,10 @@ export const timelineMilestones: TimelineMilestone[] = [
       'Flying Saucer Pie Company opens its doors in Houston, Texas. A family dream becomes reality as we start baking fresh pies daily for our community.',
   },
   {
-    year: 1975,
-    title: 'Building Our Reputation',
+    year: 1974,
+    title: 'NASA Contract & Current Location',
     description:
-      'Word spreads across Houston about our handmade pies. We expand our daily production while maintaining our commitment to fresh, quality ingredients and no preservatives.',
+      'The business secures a contract to supply apple pies to the NASA commissary and builds out its iconic location at 436 W. Crosstimbers St., where pies would stay fresh and customers would come for decades.',
   },
   {
     year: 1985,
