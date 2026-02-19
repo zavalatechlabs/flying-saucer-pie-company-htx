@@ -34,6 +34,7 @@ export function PieCard({ pie, onClick }: PieCardProps) {
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ objectPosition: pie.imagePosition ?? 'center' }}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">

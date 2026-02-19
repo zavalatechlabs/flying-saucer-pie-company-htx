@@ -124,6 +124,7 @@ export function PieModal({ pie, isOpen, onClose }: PieModalProps) {
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 50vw"
+                        style={{ objectPosition: pie.imagePosition ?? 'center' }}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">

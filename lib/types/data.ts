@@ -21,6 +21,8 @@ export interface Pie {
   description: string
   price: PiePrice
   image: string
+  /** CSS object-position for the menu card image, e.g. 'center 20%'. Defaults to 'center'. */
+  imagePosition?: string
   available: boolean
   isVegan?: boolean
   isSpecial?: boolean
