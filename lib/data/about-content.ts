@@ -26,22 +26,16 @@ export const timelineMilestones: TimelineMilestone[] = [
       "William \"Pie Bill\" Leeson's daughter, Heather Leeson, who grew up in the bakery, joins full-time and begins shaping the direction of the business with her own voice and energy. Three generations strong — the shop fully becomes a family bakery legacy.",
   },
   {
-    year: 2005,
-    title: 'Media Recognition',
+    year: 2010,
+    title: 'Thanksgiving Lines Become Tradition',
     description:
-      "Local and national media discover what Houstonians have known for decades. Flying Saucer earns recognition as one of Houston's iconic food destinations.",
+      'The annual pre-Thanksgiving rush becomes legendary — hundreds of people camp out, sometimes days in advance, in tailgate-style queues that stretch blocks as they wait for freshly baked pies.',
   },
   {
     year: 2017,
     title: '50 Years of Pie',
     description:
       'Half a century of serving Houston! We celebrate 50 years with the community that made it all possible. Still family-owned, still handmade, still fresh daily.',
-  },
-  {
-    year: 2020,
-    title: 'Houston Strong',
-    description:
-      'Through challenges and changes, we adapt while staying true to our roots. Our community rallies around us, and we continue serving fresh pies with pride.',
   },
   {
     year: 2024,
