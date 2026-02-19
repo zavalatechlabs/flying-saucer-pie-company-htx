@@ -20,9 +20,12 @@ export interface Pie {
   category: PieCategory
   description: string
   price: PiePrice
+  /** Angled food photography — used on the menu page */
   image: string
   /** CSS object-position for the menu card image, e.g. 'center 20%'. Defaults to 'center'. */
   imagePosition?: string
+  /** Aerial/top-down overhead shot — used on the home page spinning saucer carousel */
+  heroImage?: string
   available: boolean
   isVegan?: boolean
   isSpecial?: boolean
