@@ -70,7 +70,7 @@ export function FeaturedPiesRow() {
                 >
                   <div className="pie-spin-infinite">
                     <Image
-                      src={pie.heroImage || pie.image || '/pie-placeholder.svg'}
+                      src={pie.image || '/pie-placeholder.svg'}
                       alt={pie.name}
                       width={200}
                       height={200}
