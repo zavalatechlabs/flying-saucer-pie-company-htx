@@ -20,10 +20,10 @@ export const timelineMilestones: TimelineMilestone[] = [
       'Two decades of dedication pay off as Flying Saucer becomes a beloved Houston landmark. Families make us part of their holiday traditions.',
   },
   {
-    year: 1995,
-    title: 'Three Generations Strong',
+    year: 1999,
+    title: 'Next Generation Takes Lead',
     description:
-      'The bakery celebrates passing to its third generation of family ownership. The original recipes and values remain unchanged, while techniques are refined.',
+      "William \"Pie Bill\" Leeson's daughter, Heather Leeson, who grew up in the bakery, joins full-time and begins shaping the direction of the business with her own voice and energy. Three generations strong — the shop fully becomes a family bakery legacy.",
   },
   {
     year: 2005,
