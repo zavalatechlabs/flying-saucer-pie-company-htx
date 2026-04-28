@@ -25,80 +25,129 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const milestoneRefs = useRef<(HTMLDivElement | null)[]>([])
 
-  const [saucerY, setSaucerY] = useState(0)
-  const [containerHeight, setContainerHeight] = useState(1)
+  // Refs for elements whose styles update on every scroll frame.
+  // Using direct DOM mutation here avoids React re-rendering the whole
+  // Timeline (and its 17 child ScrollReveal wrappers) 60 times per second.
+  const saucerMobileRef = useRef<HTMLDivElement>(null)
+  const saucerDesktopRef = useRef<HTMLDivElement>(null)
+  const fillMobileRef = useRef<HTMLDivElement>(null)
+  const fillDesktopRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+
+  // State only for the dot-fill set — this only changes when the line tip
+  // actually crosses a milestone threshold, not on every frame.
   const [filledDots, setFilledDots] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     if (!showSaucer) return
 
+    const container = containerRef.current
+    if (!container) return
+
     let rafId = 0
 
-    const update = () => {
-      const container = containerRef.current
-      if (!container) {
-        rafId = 0
-        return
-      }
+    // Cached layout — refreshed on resize / via ResizeObserver. Reading
+    // getBoundingClientRect / offsetTop inside the scroll loop forces a
+    // synchronous layout every frame; caching avoids that.
+    const cache = {
+      containerTop: 0,
+      containerHeight: 1,
+      offsets: [] as number[],
+      heights: [] as number[],
+    }
 
+    const recalc = () => {
       const rect = container.getBoundingClientRect()
-      const h = rect.height
-      const progress = Math.max(0, Math.min(1, (window.innerHeight / 2 - rect.top) / h))
-      const y = progress * h
+      cache.containerTop = rect.top + window.scrollY
+      cache.containerHeight = rect.height
+      cache.offsets = milestoneRefs.current.map((ref) => ref?.offsetTop ?? 0)
+      cache.heights = milestoneRefs.current.map((ref) => ref?.offsetHeight ?? 0)
+    }
 
-      setSaucerY(y)
-      setContainerHeight(h)
+    const update = () => {
+      rafId = 0
 
-      // Fill dot when the LINE TIP reaches it, not the saucer center.
-      // Line tip = saucerY - saucerHalf (the line stops at saucer top edge).
       const isMobile = window.innerWidth < 768
       const saucerHalf = isMobile ? SAUCER_HALF_MOBILE : SAUCER_HALF_DESKTOP
-      const lineTipY = y - saucerHalf
 
+      const scrollY = window.scrollY
+      const viewportH = window.innerHeight
+      const containerScrollTop = cache.containerTop - scrollY
+      const progress = Math.max(
+        0,
+        Math.min(1, (viewportH / 2 - containerScrollTop) / cache.containerHeight)
+      )
+      const y = progress * cache.containerHeight
+      const lineTipY = Math.max(0, y - saucerHalf)
+      const fillScale = lineTipY / cache.containerHeight
+      const rotation = -8 + progress * 16
+
+      // Saucer position — direct DOM
+      const saucerEl = isMobile ? saucerMobileRef.current : saucerDesktopRef.current
+      if (saucerEl) {
+        saucerEl.style.transform = `translateX(-50%) translateY(${lineTipY}px) rotate(${rotation}deg)`
+      }
+
+      // Fill bar — direct DOM
+      const fillEl = isMobile ? fillMobileRef.current : fillDesktopRef.current
+      if (fillEl) {
+        fillEl.style.transform = `scaleY(${fillScale})`
+      }
+
+      // Glow visibility — opacity toggled, element always mounted
+      if (glowRef.current) {
+        glowRef.current.style.opacity = progress > 0.85 ? '1' : '0'
+      }
+
+      // Dot fills — React state, but the updater returns the SAME reference
+      // when nothing crossed, so React bails out without re-rendering.
       setFilledDots((prev) => {
         let changed = false
         const next = new Set(prev)
-        milestoneRefs.current.forEach((ref, i) => {
-          if (!ref) return
-          // Mobile dot is `absolute top-1.5` (6px) from the row top.
-          // Desktop dot is vertically centered in the flex row.
-          // Using ref.offsetTop + offsetHeight/2 for desktop is correct, but on
-          // mobile it overshoots by ~half the row height (causing the delay).
-          const dotY = isMobile ? ref.offsetTop + 6 : ref.offsetTop + ref.offsetHeight / 2
-          if (lineTipY >= dotY && !prev.has(i)) {
+        for (let i = 0; i < cache.offsets.length; i++) {
+          const dotY = isMobile ? cache.offsets[i] + 6 : cache.offsets[i] + cache.heights[i] / 2
+          const shouldFill = lineTipY >= dotY
+          if (shouldFill && !prev.has(i)) {
             next.add(i)
             changed = true
-          } else if (lineTipY < dotY && prev.has(i)) {
+          } else if (!shouldFill && prev.has(i)) {
             next.delete(i)
             changed = true
           }
-        })
+        }
         return changed ? next : prev
       })
-
-      rafId = 0
     }
 
-    const onScroll = () => {
-      if (rafId) return
-      rafId = requestAnimationFrame(update)
+    const scheduleUpdate = () => {
+      if (!rafId) rafId = requestAnimationFrame(update)
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    const onResize = () => {
+      recalc()
+      scheduleUpdate()
+    }
+
+    recalc()
     update()
 
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', onResize, { passive: true })
+
+    // Catch layout shifts after fonts/images settle
+    const ro = new ResizeObserver(() => {
+      recalc()
+      scheduleUpdate()
+    })
+    ro.observe(container)
+
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', onResize)
+      ro.disconnect()
       if (rafId) cancelAnimationFrame(rafId)
     }
   }, [showSaucer])
-
-  const mobileFillScale =
-    containerHeight > 1 ? Math.max(0, (saucerY - SAUCER_HALF_MOBILE) / containerHeight) : 0
-  const desktopFillScale =
-    containerHeight > 1 ? Math.max(0, (saucerY - SAUCER_HALF_DESKTOP) / containerHeight) : 0
-
-  const saucerRotation = -8 + (saucerY / Math.max(1, containerHeight)) * 16
 
   return (
     <div className="relative" ref={containerRef}>
@@ -106,16 +155,12 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
 
       {/* Mobile track */}
       <div className="absolute top-0 left-8 w-0.5 h-full bg-ink/12 md:hidden" aria-hidden="true" />
-      {/* Mobile fill — scaleY stops at saucer top edge, tiny transition ok (it's a div not a SVG) */}
+      {/* Mobile fill — transform set via ref every frame */}
       <div
-        className="absolute top-0 left-8 w-0.5 h-full bg-accent md:hidden"
+        ref={fillMobileRef}
+        className="absolute top-0 left-8 w-0.5 h-full bg-accent md:hidden origin-top will-change-transform"
         aria-hidden="true"
-        style={{
-          transformOrigin: 'top',
-          transform: `scaleY(${mobileFillScale})`,
-          willChange: 'transform',
-          transition: 'transform 0.06s linear',
-        }}
+        style={{ transform: 'scaleY(0)' }}
       />
 
       {/* Desktop track */}
@@ -125,65 +170,53 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
       />
       {/* Desktop fill */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent hidden md:block"
+        ref={fillDesktopRef}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-full bg-accent hidden md:block origin-top will-change-transform"
         aria-hidden="true"
-        style={{
-          transformOrigin: 'top',
-          transform: `scaleY(${desktopFillScale})`,
-          willChange: 'transform',
-          transition: 'transform 0.06s linear',
-        }}
+        style={{ transform: 'scaleY(0)' }}
       />
 
-      {/* ─── Flying saucer ───
-           NO CSS transition — the 0.1s lag was causing ghost/blur during
-           fast scroll as mid-transition and new-position composited together.
-           rAF at 60fps is already smooth without any transition.           */}
+      {/* ─── Flying saucer — transforms applied via direct DOM mutation ─── */}
       {showSaucer && (
         <>
           {/* Mobile saucer */}
           <div
+            ref={saucerMobileRef}
             aria-hidden="true"
-            className="pointer-events-none absolute md:hidden z-20 w-8 h-8"
-            style={{
-              top: 0,
-              left: 32,
-              willChange: 'transform',
-              // No transition here — prevents ghost/blur on fast scroll
-              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF_MOBILE)}px) rotate(${saucerRotation}deg)`,
-            }}
+            className="pointer-events-none absolute md:hidden z-20 w-8 h-8 will-change-transform"
+            style={{ top: 0, left: 32, transform: 'translateX(-50%)' }}
           >
             <Image
               src="/brand/saucer.svg"
               alt=""
               width={32}
               height={32}
-              className="w-full h-auto opacity-70 drop-shadow-md"
+              className="w-full h-auto opacity-70"
+              priority={false}
             />
           </div>
 
           {/* Desktop saucer */}
           <div
+            ref={saucerDesktopRef}
             aria-hidden="true"
-            className="pointer-events-none absolute hidden md:block z-20 w-10 h-10"
-            style={{
-              top: 0,
-              left: '50%',
-              willChange: 'transform',
-              // No transition — same reason as above
-              transform: `translateX(-50%) translateY(${Math.max(0, saucerY - SAUCER_HALF_DESKTOP)}px) rotate(${saucerRotation}deg)`,
-            }}
+            className="pointer-events-none absolute hidden md:block z-20 w-10 h-10 will-change-transform"
+            style={{ top: 0, left: '50%', transform: 'translateX(-50%)' }}
           >
             <Image
               src="/brand/saucer.svg"
               alt=""
               width={40}
               height={40}
-              className="w-full h-auto opacity-70 drop-shadow-md"
+              className="w-full h-auto opacity-70"
+              priority={false}
             />
-            {saucerY / Math.max(1, containerHeight) > 0.85 && (
-              <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent/40 rounded-full blur-sm animate-pulse" />
-            )}
+            {/* Glow — always rendered, opacity toggled via ref */}
+            <div
+              ref={glowRef}
+              className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-5 h-0.5 bg-accent/40 rounded-full blur-sm transition-opacity duration-300"
+              style={{ opacity: 0 }}
+            />
           </div>
         </>
       )}
@@ -194,8 +227,6 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
           const isEven = index % 2 === 0
           const dotFilled = filledDots.has(index)
 
-          // Dots: hollow ring until line tip reaches them, then instant fill.
-          // duration-75 (75ms) is near-instant but avoids a hard visual pop.
           const dotDesktop = `w-5 h-5 rounded-full border-4 shadow-md transition-colors duration-75 ${
             dotFilled ? 'border-accent bg-accent' : 'border-ink/30 bg-transparent'
           }`
