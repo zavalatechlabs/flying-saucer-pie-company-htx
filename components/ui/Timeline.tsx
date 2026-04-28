@@ -105,7 +105,9 @@ export function Timeline({ milestones, showSaucer = true }: TimelineProps) {
         let changed = false
         const next = new Set(prev)
         for (let i = 0; i < cache.offsets.length; i++) {
-          const dotY = isMobile ? cache.offsets[i] + 6 : cache.offsets[i] + cache.heights[i] / 2
+          const offset = cache.offsets[i] ?? 0
+          const height = cache.heights[i] ?? 0
+          const dotY = isMobile ? offset + 6 : offset + height / 2
           const shouldFill = lineTipY >= dotY
           if (shouldFill && !prev.has(i)) {
             next.add(i)
