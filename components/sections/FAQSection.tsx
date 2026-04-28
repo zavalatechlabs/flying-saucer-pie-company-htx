@@ -103,7 +103,6 @@ export function FAQSection({ title = 'Frequently Asked Questions', items, classN
 
         <div className="space-y-16 md:space-y-20">
           {groups.map((group, groupIndex) => {
-            const sectionNumber = String(groupIndex + 1).padStart(2, '0')
             const headlineMap: Record<string, string> = {
               'General Questions': 'The basics, sorted.',
               'Pie Questions': 'About the pies themselves.',
