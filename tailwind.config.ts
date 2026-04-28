@@ -127,14 +127,13 @@ const config: Config = {
       fontFamily: {
         display: [
           'var(--font-display)',
-          'Outfit',
-          'Space Grotesk',
-          'Inter',
+          'Josefin Sans',
+          'Avenir Next',
           'system-ui',
           'sans-serif',
         ],
-        body: ['var(--font-body)', 'DM Sans', 'Inter', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-body)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        body: ['var(--font-body)', 'Mulish', 'Avenir', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-body)', 'Mulish', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
         // Brand logo fonts — use for hero headlines and taglines only
         fredoka: ['var(--font-fredoka)', 'Fredoka', 'system-ui', 'sans-serif'],

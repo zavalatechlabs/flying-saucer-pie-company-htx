@@ -1,6 +1,5 @@
 'use client'
 
-import { Eye } from 'lucide-react'
 import Image from 'next/image'
 import { Pie } from '@/lib/data/pies'
 
@@ -10,10 +9,18 @@ interface PieCardProps {
   onClick?: () => void
 }
 
+const categoryLabelMap: Record<string, string> = {
+  fruit: 'Fruit Pie',
+  cream: 'Cream Pie',
+  cheesecake: 'Cheesecake',
+}
+
 export function PieCard({ pie, onClick }: PieCardProps) {
+  const categoryLabel = categoryLabelMap[pie.category] ?? 'Pie'
+
   return (
     <div
-      className="pie-card group cursor-pointer"
+      className="group cursor-pointer bg-surface rounded-2xl border border-ink/[0.08] overflow-hidden shadow-retro hover:shadow-retro-hover hover:-translate-y-1 transition-all duration-300"
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -25,69 +32,85 @@ export function PieCard({ pie, onClick }: PieCardProps) {
       }}
       aria-label={`View details for ${pie.name}`}
     >
-      {/* Image Container */}
-      <div className="relative h-64 overflow-hidden rounded-t-xl">
+      {/* Image — full-bleed top */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-bg-alt">
         {pie.image ? (
           <Image
             src={pie.image}
             alt={pie.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             style={{ objectPosition: pie.imagePosition ?? 'center' }}
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-bg-alt to-border flex items-center justify-center">
-            <span className="text-8xl">🥧</span>
+          <div className="w-full h-full flex items-center justify-center px-6">
+            <span className="font-display font-bold text-2xl text-ink/15 uppercase tracking-widest text-center">
+              {pie.name}
+            </span>
           </div>
         )}
 
-        {/* Labels */}
-        {pie.isSpecial && (
-          <div className="absolute top-3 left-3 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold tracking-wide z-10">
-            Special
-          </div>
-        )}
-        {pie.isVegan && (
-          <div className="absolute top-3 right-3 bg-ink text-surface px-3 py-1 rounded-full text-xs font-semibold z-10">
-            🌱 Vegan
-          </div>
-        )}
-
-        {/* View Details hover indicator */}
-        <div className="absolute inset-0 bg-ink/0 group-hover:bg-ink/10 transition-colors duration-200 flex items-center justify-center z-10">
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-surface/90 backdrop-blur-sm rounded-full p-3 shadow-md">
-            <Eye size={20} className="text-ink" />
-          </div>
+        {/* Tags — uppercase, no emojis */}
+        <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 max-w-[calc(100%-1.5rem)]">
+          {pie.isSpecial && (
+            <span className="px-2.5 py-1 bg-ink text-surface text-[0.65rem] font-display font-semibold uppercase tracking-[0.18em] rounded-sm">
+              Special
+            </span>
+          )}
+          {pie.isVegan && (
+            <span className="px-2.5 py-1 bg-surface text-ink text-[0.65rem] font-display font-semibold uppercase tracking-[0.18em] rounded-sm shadow-sm">
+              Vegan
+            </span>
+          )}
         </div>
+
+        {/* Subtle hover vignette — replaces the Eye-icon overlay */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-ink/0 group-hover:bg-ink/[0.06] transition-colors duration-300"
+        />
       </div>
 
       {/* Content */}
-      <div className="p-5">
-        <h3 className="text-lg font-semibold text-ink mb-1.5">{pie.name}</h3>
-        <p className="text-ink-muted text-sm mb-4 line-clamp-2 leading-relaxed">
+      <div className="p-5 md:p-6">
+        {/* Category eyebrow */}
+        <p className="text-[0.65rem] font-display font-semibold uppercase tracking-[0.22em] text-accent mb-2">
+          {categoryLabel}
+        </p>
+
+        {/* Name */}
+        <h3 className="text-xl font-display font-semibold text-ink leading-tight mb-3">
+          {pie.name}
+        </h3>
+
+        {/* Description */}
+        <p className="text-ink-muted text-sm leading-relaxed line-clamp-2 mb-5 min-h-[2.6em]">
           {pie.description}
         </p>
 
-        {/* Pricing */}
-        <div className="flex items-baseline gap-3">
-          <div>
-            <span className="text-2xl font-bold text-accent">${pie.price.whole.toFixed(2)}</span>
-            <span className="text-xs text-ink-muted ml-1">whole</span>
+        {/* Pricing — hairline-separated */}
+        <div className="flex items-baseline justify-between pt-4 border-t border-ink/[0.08]">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-2xl font-display font-bold text-ink leading-none">
+              ${pie.price.whole.toFixed(2)}
+            </span>
+            <span className="text-[0.65rem] font-display font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              whole
+            </span>
           </div>
-          <div className="text-ink-muted text-sm">·</div>
-          <div>
-            <span className="text-sm font-medium text-ink">${pie.price.slice.toFixed(2)}</span>
-            <span className="text-xs text-ink-muted ml-1">slice</span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-base font-display font-semibold text-ink-muted leading-none">
+              ${pie.price.slice.toFixed(2)}
+            </span>
+            <span className="text-[0.65rem] font-display font-semibold uppercase tracking-[0.18em] text-ink-muted">
+              slice
+            </span>
           </div>
         </div>
 
-        {pie.note && <p className="text-xs text-ink-muted mt-3 italic">{pie.note}</p>}
-        {pie.canFreeze && (
-          <p className="text-xs text-ink-muted mt-2 flex items-center gap-1">
-            <span>❄️</span> Can be frozen
-          </p>
-        )}
+        {/* Note */}
+        {pie.note && <p className="mt-3 text-xs italic text-ink-muted">{pie.note}</p>}
       </div>
     </div>
   )

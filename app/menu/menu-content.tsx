@@ -8,12 +8,13 @@ import { PieCard } from '@/components/ui/PieCard'
 import { PieModal } from '@/components/ui/PieModal'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
 import { slideUp } from '@/lib/animations/variants'
+import { cn } from '@/lib/utils/cn'
 
 const categories = [
-  { id: 'all', label: 'All Pies', emoji: '🥧' },
-  { id: 'fruit', label: 'Fruit Pies', emoji: '🍎' },
-  { id: 'cream', label: 'Cream Pies', emoji: '🥛' },
-  { id: 'cheesecake', label: 'Cheesecakes', emoji: '🎂' },
+  { id: 'all', label: 'All Pies' },
+  { id: 'fruit', label: 'Fruit' },
+  { id: 'cream', label: 'Cream' },
+  { id: 'cheesecake', label: 'Cheesecakes' },
 ]
 
 export function MenuContent() {
@@ -36,95 +37,151 @@ export function MenuContent() {
 
   return (
     <div className="min-h-screen bg-bg">
-      {/* Hero */}
-      <section className="bg-ink text-surface py-section">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+      {/* Hero — atmospheric retro panel */}
+      <section className="relative bg-ink text-surface overflow-hidden">
+        {/* Atomic pattern texture */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-[0.05] text-surface"
+          style={{
+            backgroundImage: `url('/brand/atomic-pattern.svg')`,
+            backgroundSize: '140px 140px',
+            backgroundRepeat: 'repeat',
+          }}
+        />
+        {/* Soft top→bottom gradient overlay for depth */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 60% 70% at 50% 0%, rgba(255,255,255,0.06), transparent 60%)',
+          }}
+        />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section-lg text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-display-md md:text-display-lg font-fredoka font-bold mb-4"
+            className="text-[0.7rem] sm:text-xs font-display font-semibold uppercase tracking-[0.32em] text-surface/55 mb-5"
+          >
+            Houston, TX &nbsp;·&nbsp; Since 1967
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="font-fredoka font-bold mb-5 leading-[1.02]"
+            style={{ fontSize: 'clamp(2.75rem, 1.5rem + 5vw, 4.5rem)' }}
           >
             Our Menu
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl font-pacifico text-surface/90 mb-8"
+            transition={{ delay: 0.25 }}
+            className="text-xl md:text-2xl font-pacifico text-surface/85 mb-10"
           >
-            Fresh handmade pies baked daily — no preservatives, ever
+            Fresh handmade pies, baked daily &mdash; no preservatives, ever.
           </motion.p>
 
-          {/* Printer-friendly + Gift Cards */}
+          {/* Auxiliary actions — smaller, restrained, non-competing with the heading */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.35 }}
-            className="flex flex-wrap justify-center gap-4"
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-display"
           >
             <a
               href="https://storage.googleapis.com/wzukusers/user-35097651/documents/4419e2b972c643f78c3f27d066976415/FSP%202025%20Holiday%20Menu.docx"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface/30 text-surface/80 hover:text-surface hover:border-surface/60 text-sm font-medium transition-colors duration-200"
+              className="group inline-flex items-center gap-2 text-surface/70 hover:text-surface transition-colors"
             >
-              <FileText size={16} />
-              Printer-Friendly Version
+              <FileText size={15} className="text-surface/50 group-hover:text-surface/80" />
+              <span className="border-b border-surface/30 group-hover:border-surface pb-0.5 transition-colors">
+                Printer-friendly menu
+              </span>
             </a>
             <a
               href="https://www.clover.com/online-ordering/flying-saucer-pie-co-houston"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface/30 text-surface/80 hover:text-surface hover:border-surface/60 text-sm font-medium transition-colors duration-200"
+              className="group inline-flex items-center gap-2 text-surface/70 hover:text-surface transition-colors"
             >
-              <Gift size={16} />
-              Gift Cards
+              <Gift size={15} className="text-surface/50 group-hover:text-surface/80" />
+              <span className="border-b border-surface/30 group-hover:border-surface pb-0.5 transition-colors">
+                Gift cards
+              </span>
             </a>
           </motion.div>
         </div>
       </section>
 
-      {/* Pricing Notice */}
+      {/* Pricing notice — subtle stamp */}
       <div className="bg-bg-alt border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-center text-sm text-ink-muted">
-          All slices $5.00 &nbsp;·&nbsp; Prices subject to change without notice. If you have
-          questions, please{' '}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 text-center text-sm text-ink-muted font-body">
+          <span className="font-display font-semibold tracking-wide text-ink">
+            All slices&nbsp;
+            <span className="text-accent">$5.00</span>
+          </span>
+          <span className="mx-3 text-ink/30">·</span>
+          Prices subject to change.{' '}
           <a
             href="/contact"
-            className="underline underline-offset-2 hover:text-ink transition-colors"
+            className="text-ink underline underline-offset-[3px] decoration-ink/30 hover:decoration-ink transition-all"
           >
-            give us a call
+            Give us a call
           </a>
-          .
+          &nbsp;with questions.
         </div>
       </div>
 
       {/* Menu Content */}
-      <section className="py-12">
+      <section className="py-section-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {categories.map((cat) => (
-              <motion.button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`px-8 py-3 rounded-full font-semibold transition-all duration-300
-                  ${
-                    selectedCategory === cat.id
-                      ? 'bg-accent text-surface shadow-lg shadow-accent/30'
-                      : 'bg-surface text-ink hover:bg-accent/10 border-2 border-accent/20'
-                  }`}
-              >
-                <span className="mr-2 text-lg">{cat.emoji}</span>
-                {cat.label}
-              </motion.button>
-            ))}
+          {/* Category Filter — refined pills, no emojis */}
+          <div
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12 md:mb-16"
+            role="tablist"
+            aria-label="Filter pies by category"
+          >
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat.id
+              return (
+                <motion.button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.97 }}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={cn(
+                    'px-5 sm:px-6 py-2.5 rounded-full text-sm font-display font-semibold uppercase tracking-[0.14em] transition-all duration-200',
+                    isActive
+                      ? 'bg-ink text-surface border-2 border-ink'
+                      : 'bg-transparent text-ink border-2 border-ink/15 hover:border-ink/40 hover:bg-surface'
+                  )}
+                >
+                  {cat.label}
+                </motion.button>
+              )
+            })}
           </div>
 
+          {/* Result count — small, whispered metadata */}
+          <motion.p
+            key={selectedCategory}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="text-center text-xs uppercase tracking-[0.22em] text-ink-muted font-display mb-8"
+          >
+            Showing {filteredPies.length} {filteredPies.length === 1 ? 'pie' : 'pies'}
+          </motion.p>
+
           {/* Pie Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7 md:gap-8">
             {filteredPies.map((pie, index) => (
               <ScrollReveal key={pie.id} variants={slideUp} delay={index * 0.05}>
                 <PieCard pie={pie} index={index} onClick={() => handlePieClick(pie)} />
@@ -132,41 +189,42 @@ export function MenuContent() {
             ))}
           </div>
 
-          {/* Pie Modal */}
           <PieModal pie={selectedPie} isOpen={isModalOpen} onClose={handleCloseModal} />
 
-          {/* Info Cards */}
-          <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* Info — editorial pair, no card wrappers */}
+          <div className="mt-24 md:mt-28 grid grid-cols-1 md:grid-cols-2 gap-x-14 gap-y-12 max-w-5xl mx-auto">
             <ScrollReveal variants={slideUp} delay={0.1}>
-              <div className="bg-surface rounded-2xl p-8 shadow-retro">
-                <h3 className="text-2xl font-display font-semibold text-ink mb-4">
-                  🍰 About Our Slices
-                </h3>
-                <p className="text-ink-muted mb-4">
-                  All pies are available by the slice — one-sixth of a whole pie. Perfect for
-                  sampling a few flavors in one visit!
-                </p>
-                <p className="text-sm text-ink-muted">
-                  <strong>Note:</strong> After 6 pm, slice selection may be limited depending on
-                  what&apos;s been freshly baked that day.
-                </p>
-              </div>
+              <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-accent mb-3">
+                By the Slice
+              </p>
+              <h3 className="text-2xl font-display font-semibold text-ink mb-4 leading-snug">
+                One-sixth of a whole pie.
+              </h3>
+              <p className="text-ink-muted mb-3 max-w-[60ch] leading-relaxed">
+                Every pie on the menu is also available by the slice &mdash; perfect for sampling a
+                few flavors on a single visit.
+              </p>
+              <p className="text-sm text-ink-muted/80 leading-relaxed">
+                After 6 pm, slice selection may be limited depending on what was freshly baked that
+                day.
+              </p>
             </ScrollReveal>
 
             <ScrollReveal variants={slideUp} delay={0.2}>
-              <div className="bg-surface rounded-2xl p-8 shadow-retro">
-                <h3 className="text-2xl font-display font-semibold text-ink mb-4">
-                  ❄️ Freezing Instructions
-                </h3>
-                <p className="text-ink-muted mb-4">
-                  Our fruit pies freeze beautifully for up to 3 months. Wrap tightly in foil and
-                  heat from frozen at 350 °F for 30–45 minutes.
-                </p>
-                <p className="text-sm text-ink-muted">
-                  Cream pies and cheesecakes are best enjoyed fresh — refrigerate and consume within
-                  2–4 days.
-                </p>
-              </div>
+              <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-accent mb-3">
+                Take One Home
+              </p>
+              <h3 className="text-2xl font-display font-semibold text-ink mb-4 leading-snug">
+                Freezing &amp; reheating.
+              </h3>
+              <p className="text-ink-muted mb-3 max-w-[60ch] leading-relaxed">
+                Fruit pies freeze beautifully for up to three months. Wrap tightly in foil and heat
+                from frozen at 350&deg;F for 30&ndash;45 minutes.
+              </p>
+              <p className="text-sm text-ink-muted/80 leading-relaxed">
+                Cream pies and cheesecakes are best enjoyed fresh &mdash; refrigerate and consume
+                within 2&ndash;4 days.
+              </p>
             </ScrollReveal>
           </div>
         </div>

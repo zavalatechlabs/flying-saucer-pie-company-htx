@@ -1,8 +1,7 @@
 import { MeteorHeroWrapper } from '@/components/sections/MeteorHeroWrapper'
 import { FeaturedPiesRow } from '@/components/sections/FeaturedPiesRow'
 import { Since1967Section } from '@/components/sections/Since1967Section'
-import { HolidayOrderingSection } from '@/components/sections/HolidayOrderingSection'
-import { LocationTeaser } from '@/components/sections/LocationTeaser'
+import { BakeryPromiseSection } from '@/components/sections/BakeryPromiseSection'
 
 export default function Home() {
   return (
@@ -11,8 +10,7 @@ export default function Home() {
       <MeteorHeroWrapper />
       <FeaturedPiesRow />
       <Since1967Section />
-      <HolidayOrderingSection />
-      <LocationTeaser />
+      <BakeryPromiseSection />
     </>
   )
 }

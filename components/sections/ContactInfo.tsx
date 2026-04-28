@@ -1,83 +1,83 @@
 'use client'
 
 import { businessInfo } from '@/lib/data/business-info'
-import { Phone, MapPin, Clock } from 'lucide-react'
 import { ScrollReveal } from '@/lib/animations/ScrollReveal'
-import { slideUp, slideInLeft } from '@/lib/animations/variants'
+import { slideInLeft, slideUp } from '@/lib/animations/variants'
 
 export function ContactInfo() {
   return (
-    <div className="space-y-8">
+    <div>
       <ScrollReveal variants={slideInLeft}>
-        <h2 className="text-h2 text-ink mb-6">Get in Touch</h2>
-        <p className="text-body text-ink-muted mb-8">
-          For the fastest response, give us a call during business hours. We&apos;re always happy to
-          answer questions about our pies!
+        <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-accent mb-3">
+          The Quickest Way
+        </p>
+        <h3 className="font-display text-2xl md:text-[1.75rem] text-ink leading-snug mb-4">
+          Pick up the phone &mdash; we usually answer.
+        </h3>
+        <p className="text-ink-muted leading-relaxed mb-10 max-w-[42ch]">
+          We&rsquo;re a small family bakery, and the kitchen sits a few feet from the counter. A
+          quick call almost always beats an email.
         </p>
       </ScrollReveal>
 
-      {/* Phone */}
+      {/* Phone — oversized type, no icon-in-circle */}
       <ScrollReveal variants={slideUp} delay={0.1}>
-        <div className="card flex items-start gap-4 hover:shadow-glow-sm">
-          <div className="p-3 bg-accent/10 rounded-full">
-            <Phone size={24} className="text-accent" />
-          </div>
-          <div>
-            <h3 className="text-h4 text-ink mb-1">Call Us</h3>
-            <a
-              href={`tel:${businessInfo.phone}`}
-              className="text-lg text-accent hover:text-accent/80 transition-colors font-medium"
-            >
-              {businessInfo.phone}
-            </a>
-            <p className="text-body-sm text-ink-muted mt-1">
-              Best times: Tuesday-Saturday, 8am-7pm
-            </p>
-          </div>
+        <div className="border-t border-border pt-7 mb-7">
+          <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-ink-muted mb-2">
+            Call
+          </p>
+          <a
+            href={`tel:${businessInfo.phone}`}
+            className="font-display font-semibold text-ink hover:text-accent transition-colors block leading-tight"
+            style={{ fontSize: 'clamp(1.75rem, 1.25rem + 1.5vw, 2.25rem)' }}
+          >
+            {businessInfo.phone}
+          </a>
+          <p className="text-sm text-ink-muted mt-2 italic">
+            Best times: Tuesday &ndash; Saturday, 8am &ndash; 7pm.
+          </p>
         </div>
       </ScrollReveal>
 
-      {/* Location */}
+      {/* Visit */}
       <ScrollReveal variants={slideUp} delay={0.15}>
-        <div className="card flex items-start gap-4 hover:shadow-glow-sm">
-          <div className="p-3 bg-accent/10 rounded-full">
-            <MapPin size={24} className="text-accent" />
-          </div>
-          <div>
-            <h3 className="text-h4 text-ink mb-1">Visit Us</h3>
-            <p className="text-body text-ink">
-              {businessInfo.address.street}
-              <br />
-              {businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}
-            </p>
-          </div>
+        <div className="border-t border-border pt-7 mb-7">
+          <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-ink-muted mb-2">
+            Visit
+          </p>
+          <p className="font-display text-xl text-ink leading-snug">
+            {businessInfo.address.street}
+          </p>
+          <p className="text-ink-muted">
+            {businessInfo.address.city}, {businessInfo.address.state} {businessInfo.address.zip}
+          </p>
         </div>
       </ScrollReveal>
 
-      {/* Hours Quick Reference */}
+      {/* Email */}
       <ScrollReveal variants={slideUp} delay={0.2}>
-        <div className="card flex items-start gap-4 hover:shadow-glow-sm">
-          <div className="p-3 bg-accent/10 rounded-full">
-            <Clock size={24} className="text-accent" />
-          </div>
-          <div>
-            <h3 className="text-h4 text-ink mb-1">Hours</h3>
-            <p className="text-body text-ink">
-              Tuesday - Saturday: 8:00 AM - 7:00 PM
-              <br />
-              Sunday & Monday: Closed
-            </p>
-          </div>
+        <div className="border-t border-border pt-7 mb-10">
+          <p className="text-[0.7rem] font-display font-semibold uppercase tracking-[0.28em] text-ink-muted mb-2">
+            Email
+          </p>
+          <a
+            href={`mailto:${businessInfo.email}`}
+            className="font-display text-lg text-ink hover:text-accent transition-colors break-all"
+          >
+            {businessInfo.email}
+          </a>
+          <p className="text-sm text-ink-muted mt-2 italic">
+            We aim to reply within one business day.
+          </p>
         </div>
       </ScrollReveal>
 
-      {/* Special Note */}
+      {/* Inline pull-quote style aside — no banned card pattern */}
       <ScrollReveal variants={slideUp} delay={0.25}>
-        <div className="bg-accent/10 border-2 border-accent rounded-2xl p-6">
-          <h3 className="text-h5 text-ink mb-2">📞 Phone is Best!</h3>
-          <p className="text-body-sm text-ink-muted">
-            We&apos;re a small family bakery focused on making pies. For the quickest response to
-            your questions, please give us a call during business hours.
+        <div className="border-y border-accent/25 py-6">
+          <p className="font-display italic text-ink leading-snug text-lg max-w-[36ch]">
+            &ldquo;Sundays and Mondays we&rsquo;re closed &mdash; resting up to bake the rest of the
+            week.&rdquo;
           </p>
         </div>
       </ScrollReveal>

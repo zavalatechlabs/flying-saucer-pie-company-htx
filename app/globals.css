@@ -6,37 +6,32 @@
   :root {
     /* === RETRO SPACE-AGE DINER DESIGN TOKENS === */
 
-    /* Colors - Warm Parchment & Space Navy */
-    --bg: #f5f2eb; /* Warm parchment — main page canvas */
-    --bg-alt: #ecebe4; /* Warm beige — alternating sections, dividers */
-    --surface: #ffffff; /* Clean white — cards, modals, elevated surfaces */
-    --ink: #1a1a2e; /* Deep space navy — headers, footer bg, primary text */
-    --ink-muted: #394867; /* Slate blue — secondary text, captions, metadata */
-    --accent: #2b3a55; /* Dark navy slate — primary CTAs, links, active states */
-    --accent-2: #2e2e38; /* Deep charcoal — secondary CTAs, badges, alt highlights */
-    --border: #ecebe4; /* Warm beige — subtle borders on white surfaces */
-    --shadow: rgba(26, 26, 46, 0.08); /* Navy-tinted shadow */
+    /* Colors — OKLCH for perceptual uniformity. Warm parchment lights, deep navy darks. */
+    --bg: oklch(96.5% 0.012 88); /* Warm parchment — main page canvas */
+    --bg-alt: oklch(93.5% 0.011 88); /* Warm beige — alternating sections, dividers */
+    --surface: oklch(99.3% 0.004 250); /* Slightly tinted white — cards, modals (not pure white) */
+    --ink: oklch(15% 0.045 275); /* Deep space navy — headers, footer bg, primary text */
+    --ink-muted: oklch(33% 0.062 256); /* Slate blue — secondary text, captions, metadata */
+    --accent: oklch(26% 0.058 257); /* Dark navy slate — primary CTAs, links, active states */
+    --accent-2: oklch(22% 0.022 274); /* Deep charcoal — secondary CTAs, badges */
+    --border: oklch(93.5% 0.011 88); /* Warm beige — subtle borders on white surfaces */
+    --shadow: oklch(15% 0.045 275 / 0.08); /* Navy-tinted shadow */
 
-    /* Accent highlights (from original palette, used sparingly) */
-    --cosmic-purple: #6b2cbf;
-    --cosmic-purple-light: #8b4fd9;
-    --cosmic-purple-dark: #4f1e99;
-    --electric-blue: #00d4ff;
-    --sunset-orange: #ff6b35;
-    --deep-navy: #0b1929;
-    --warm-cream: #fff8f3;
+    /* Brand-locked color (saucer SVG + hero text only — DO NOT use elsewhere) */
+    --brand-blue: #020169;
 
-    /* Radii - Friendly Rounded */
+    /* Radii — Friendly Rounded */
     --radius-sm: 0.5rem;
     --radius-md: 0.75rem;
     --radius-lg: 1.25rem;
     --radius-pill: 9999px;
 
     /* Typography */
-    --font-display: var(--font-outfit);
-    --font-body: var(--font-dm-sans);
-    --tracking-display: -0.02em;
-    --leading-display: 1.1;
+    --font-display: var(--font-josefin-sans);
+    --font-body: var(--font-mulish);
+    --tracking-display: 0.005em; /* Josefin Sans wants slightly open tracking */
+    --tracking-tight: -0.01em;
+    --leading-display: 1.05;
     --leading-body: 1.6;
 
     /* Layout */
@@ -59,7 +54,7 @@
   body {
     background-color: var(--bg);
     color: var(--ink);
-    font-family: var(--font-body), 'Inter', system-ui, sans-serif;
+    font-family: var(--font-body), 'Avenir', system-ui, sans-serif;
     line-height: var(--leading-body);
     position: relative;
     overflow-x: clip; /* Prevents slideInLeft/slideInRight x-translations from creating horizontal scroll */
@@ -79,34 +74,37 @@
     mix-blend-mode: multiply;
   }
 
-  /* Retro Typography System */
+  /* Retro Typography System — fluid sizing with clamp() */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: var(--font-display), 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    font-family: var(--font-display), 'Avenir Next', system-ui, sans-serif;
     font-weight: 700;
     color: inherit;
     letter-spacing: var(--tracking-display);
     line-height: var(--leading-display);
   }
 
+  /* Fluid type scale — 1.5× ratio between h1 and h2 at desktop, breathes between mobile/desktop */
   h1 {
-    font-size: 2.5rem;
+    font-size: clamp(2.25rem, 1.5rem + 3.25vw, 3.75rem);
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: clamp(1.75rem, 1.25rem + 2.25vw, 2.5rem);
+    letter-spacing: var(--tracking-tight);
   }
 
   h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1.375rem, 1.1rem + 1.25vw, 1.875rem);
+    letter-spacing: var(--tracking-tight);
   }
 
   h4 {
-    font-size: 1.25rem;
+    font-size: clamp(1.125rem, 1rem + 0.625vw, 1.375rem);
   }
 
   h5 {
@@ -120,6 +118,12 @@
   p {
     line-height: var(--leading-body);
     color: inherit;
+  }
+
+  /* Body prose readability — cap line length on long-form text */
+  .prose-readable p,
+  .prose-readable li {
+    max-width: 68ch;
   }
 
   /* Custom scrollbar - Retro theme */
@@ -577,15 +581,6 @@
     padding-bottom: var(--section-xl);
   }
 
-  /* === GRADIENT TEXT === */
-
-  .gradient-text {
-    background: linear-gradient(to right, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   /* === LOADING SKELETON === */
 
   .skeleton {
@@ -629,41 +624,7 @@ html {
   color: white;
 }
 
-/* === RESPONSIVE TYPOGRAPHY === */
-
-@media (max-width: 640px) {
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-  }
-
-  h3 {
-    font-size: 1.375rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 3rem;
-  }
-
-  h2 {
-    font-size: 2.25rem;
-  }
-}
-
-@media (min-width: 1536px) {
-  h1 {
-    font-size: 3rem; /* Locked — no further growth on ultra-wide screens */
-  }
-
-  h2 {
-    font-size: 2.25rem;
-  }
-}
+/* Responsive typography is now handled by clamp() in @layer base — no media queries needed */
 
 /* ============================================
    HERO SEQUENTIAL REVEAL ANIMATION
@@ -767,6 +728,8 @@ html {
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
+  /* Vertical padding buffers the 1.1× hover scale so the item doesn't clip top/bottom */
+  padding-block: 1.5rem;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   /* Hide scrollbar for cleaner look */
@@ -805,6 +768,11 @@ html {
   flex-direction: column;
   align-items: center;
   min-width: 200px;
+  transition: transform 0.3s ease;
+}
+
+.infinite-pie-item:hover {
+  transform: scale(1.1);
 }
 
 .pie-spin-infinite {
@@ -814,7 +782,6 @@ html {
 
 .infinite-pie-item:hover .pie-spin-infinite {
   animation-play-state: paused;
-  transform: scale(1.1);
 }
 
 @keyframes pieRotate {

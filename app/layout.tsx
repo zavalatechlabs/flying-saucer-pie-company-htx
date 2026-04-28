@@ -2,10 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Navigation } from '@/components/ui/Navigation'
 import { Footer } from '@/components/ui/Footer'
+import { LocationTeaser } from '@/components/sections/LocationTeaser'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { businessInfo } from '@/lib/data/business-info'
 import { site } from '@/lib/config'
-import { Fredoka, Pacifico, DM_Sans, Outfit } from 'next/font/google'
+import { Fredoka, Pacifico, Mulish, Josefin_Sans } from 'next/font/google'
 
 // Hero logo fonts (LOCKED - hero foreground only)
 const fredoka = Fredoka({
@@ -20,16 +21,17 @@ const pacifico = Pacifico({
   variable: '--font-pacifico',
 })
 
-// Retro theme fonts (applied globally except hero foreground)
-const dmSans = DM_Sans({
+// Body font — humanist sans, warm and highly readable
+const mulish = Mulish({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   variable: '--font-body',
 })
 
-const outfit = Outfit({
+// Display font — geometric 1960s sans, complements the retro space-age aesthetic
+const josefinSans = Josefin_Sans({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700'],
   variable: '--font-display',
 })
 
@@ -142,7 +144,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${dmSans.variable} ${outfit.variable}`}
+        className={`font-body antialiased ${fredoka.variable} ${pacifico.variable} ${mulish.variable} ${josefinSans.variable}`}
       >
         <ThemeProvider>
           {/* Global paper grain texture overlay */}
@@ -150,6 +152,7 @@ export default function RootLayout({
 
           <Navigation />
           <main aria-label="Main content">{children}</main>
+          <LocationTeaser />
           <Footer />
         </ThemeProvider>
       </body>
