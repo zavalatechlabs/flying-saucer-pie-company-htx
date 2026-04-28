@@ -110,14 +110,6 @@ export function Navigation() {
                   </motion.div>
                 ))}
               </nav>
-
-              {/* Branded footer */}
-              <div className="px-8 py-4 border-t border-ink/5 flex items-center gap-2">
-                <span className="text-lg">🥧</span>
-                <p className="text-xs font-display text-ink-muted tracking-wide">
-                  Our pies are out of this world!
-                </p>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
