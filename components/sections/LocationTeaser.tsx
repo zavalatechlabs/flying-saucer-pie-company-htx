@@ -33,7 +33,11 @@ export function LocationTeaser() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-section-lg">
+      {/* Mobile/tablet (single-column stack): use pb-44 (176px) so the bottom-most
+          element clears the absolute h-40 (160px) skyline by ~16px.
+          At lg+ (2-col grid with items-end), the layout no longer stacks so the
+          original symmetric py-section-lg returns. */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-section-lg pb-44 lg:pb-section-lg">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
           {/* Left — eyebrow + heading + address block */}
           <ScrollReveal variants={slideUp} className="lg:col-span-7">
